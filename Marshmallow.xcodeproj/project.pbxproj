@@ -29,6 +29,7 @@
 		C356BEFF16FF998E00F7A031 /* BDKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C356BEFE16FF998E00F7A031 /* BDKViewController.m */; };
 		C356BF0216FF9ACD00F7A031 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = C356BF0016FF9ACD00F7A031 /* Podfile */; };
 		C356BF0316FF9ACD00F7A031 /* readme.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C356BF0116FF9ACD00F7A031 /* readme.markdown */; };
+		C356BF0616FF9BC600F7A031 /* BDKCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C356BF0516FF9BC600F7A031 /* BDKCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		C356BEFE16FF998E00F7A031 /* BDKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKViewController.m; sourceTree = "<group>"; };
 		C356BF0016FF9ACD00F7A031 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C356BF0116FF9ACD00F7A031 /* readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
+		C356BF0416FF9BC600F7A031 /* BDKCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCollectionViewController.h; sourceTree = "<group>"; };
+		C356BF0516FF9BC600F7A031 /* BDKCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCollectionViewController.m; sourceTree = "<group>"; };
 		C838434D40344DB6ACBA0934 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -209,6 +212,8 @@
 		C356BEFC16FF997F00F7A031 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				C356BF0416FF9BC600F7A031 /* BDKCollectionViewController.h */,
+				C356BF0516FF9BC600F7A031 /* BDKCollectionViewController.m */,
 				C356BEFD16FF998E00F7A031 /* BDKViewController.h */,
 				C356BEFE16FF998E00F7A031 /* BDKViewController.m */,
 			);
@@ -347,6 +352,7 @@
 				C356BEF216FF93CA00F7A031 /* Marshmallow.xcdatamodeld in Sources */,
 				C356BEFA16FF971300F7A031 /* BDKLog.m in Sources */,
 				C356BEFF16FF998E00F7A031 /* BDKViewController.m in Sources */,
+				C356BF0616FF9BC600F7A031 /* BDKCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

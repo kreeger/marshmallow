@@ -1,4 +1,5 @@
 #import "BDKAppDelegate.h"
+#import "BDKCollectionViewController.h"
 
 #import <CocoaLumberjack/DDTTYLogger.h>
 
@@ -11,7 +12,9 @@
     [MagicalRecord setupAutoMigratingCoreDataStack];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
-    self.window.backgroundColor = [UIColor whiteColor];
+    BDKCollectionViewController *vc = [BDKCollectionViewController vcWithIdentifier:@"base"];
+    [self.window addSubview:vc.view];
+
     [self.window makeKeyAndVisible];
     return YES;
 }
