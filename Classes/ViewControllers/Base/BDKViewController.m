@@ -8,9 +8,21 @@
 
 @implementation BDKViewController
 
++ (id)vc
+{
+    return [[self alloc] init];
+}
+
 + (id)vcWithIdentifier:(NSString *)identifier
 {
     return [[self alloc] initWithIdentifier:identifier];
+}
+
+- (id)init {
+    if (self = [super init]) {
+        _identifier = @"";
+    }
+    return self;
 }
 
 - (id)initWithIdentifier:(NSString *)identifier

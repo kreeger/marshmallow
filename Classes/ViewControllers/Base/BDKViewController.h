@@ -7,6 +7,7 @@
 @property (strong, nonatomic) NSString *identifier;
 @property (readonly) CGRect frame;
 
++ (id)vc;
 + (id)vcWithIdentifier:(NSString *)identifier;
 - (id)initWithIdentifier:(NSString *)identifier;
 

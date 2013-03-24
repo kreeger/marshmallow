@@ -1,5 +1,5 @@
 #import "BDKAppDelegate.h"
-#import "BDKCollectionViewController.h"
+#import "BDKLoginViewController.h"
 
 #import <CocoaLumberjack/DDTTYLogger.h>
 
@@ -12,8 +12,10 @@
     [MagicalRecord setupAutoMigratingCoreDataStack];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
-    BDKCollectionViewController *vc = [BDKCollectionViewController vcWithIdentifier:@"base"];
-    [self.window addSubview:vc.view];
+    // check if the user is logged in first
+    
+    BDKLoginViewController *vc = [BDKLoginViewController vc];
+    self.window.rootViewController = vc;
 
     [self.window makeKeyAndVisible];
     return YES;
