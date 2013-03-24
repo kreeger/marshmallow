@@ -1,0 +1,29 @@
+//
+// Prefix header for all source files of the 'Marshmallow' target in the 'Marshmallow' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
+// Third-party
+#define MR_SHORTHAND
+#define MR_ENABLE_ACTIVE_RECORD_LOGGING 0
+#import <MagicalRecord/CoreData+MagicalRecord.h>
+#import <CocoaLumberjack/DDLog.h>
+#import <ObjectiveSugar/ObjectiveSugar.h>
+
+// Internal
+#import "BDKLog.h"
+
+static const int ddLogLevel = LOG_LEVEL_INFO | LOG_FLAG_CUSTOM;
+
+#endif
