@@ -26,6 +26,9 @@
 		C356BEF516FF93CA00F7A031 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C356BEEC16FF93CA00F7A031 /* Default@2x.png */; };
 		C356BEF616FF93CA00F7A031 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C356BEED16FF93CA00F7A031 /* InfoPlist.strings */; };
 		C356BEFA16FF971300F7A031 /* BDKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = C356BEF916FF971300F7A031 /* BDKLog.m */; };
+		C356BEFF16FF998E00F7A031 /* BDKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C356BEFE16FF998E00F7A031 /* BDKViewController.m */; };
+		C356BF0216FF9ACD00F7A031 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = C356BF0016FF9ACD00F7A031 /* Podfile */; };
+		C356BF0316FF9ACD00F7A031 /* readme.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C356BF0116FF9ACD00F7A031 /* readme.markdown */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,10 @@
 		C356BEEF16FF93CA00F7A031 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C356BEF816FF971300F7A031 /* BDKLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLog.h; sourceTree = "<group>"; };
 		C356BEF916FF971300F7A031 /* BDKLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLog.m; sourceTree = "<group>"; };
+		C356BEFD16FF998E00F7A031 /* BDKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKViewController.h; sourceTree = "<group>"; };
+		C356BEFE16FF998E00F7A031 /* BDKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKViewController.m; sourceTree = "<group>"; };
+		C356BF0016FF9ACD00F7A031 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C356BF0116FF9ACD00F7A031 /* readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
 		C838434D40344DB6ACBA0934 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -102,6 +109,8 @@
 				C356BEA416FF8F8300F7A031 /* Frameworks */,
 				C356BEA316FF8F8300F7A031 /* Products */,
 				ACAE2580D4154BEE81C50205 /* Pods.xcconfig */,
+				C356BF0016FF9ACD00F7A031 /* Podfile */,
+				C356BF0116FF9ACD00F7A031 /* readme.markdown */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,6 +160,7 @@
 			children = (
 				C356BEE116FF93CA00F7A031 /* Core */,
 				C356BEE616FF93CA00F7A031 /* Data */,
+				C356BEFB16FF990800F7A031 /* ViewControllers */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -186,6 +196,23 @@
 				C356BEEF16FF93CA00F7A031 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C356BEFB16FF990800F7A031 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C356BEFC16FF997F00F7A031 /* Base */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C356BEFC16FF997F00F7A031 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C356BEFD16FF998E00F7A031 /* BDKViewController.h */,
+				C356BEFE16FF998E00F7A031 /* BDKViewController.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +292,8 @@
 				C356BEF416FF93CA00F7A031 /* Default.png in Resources */,
 				C356BEF516FF93CA00F7A031 /* Default@2x.png in Resources */,
 				C356BEF616FF93CA00F7A031 /* InfoPlist.strings in Resources */,
+				C356BF0216FF9ACD00F7A031 /* Podfile in Resources */,
+				C356BF0316FF9ACD00F7A031 /* readme.markdown in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +346,7 @@
 				C356BEF116FF93CA00F7A031 /* main.m in Sources */,
 				C356BEF216FF93CA00F7A031 /* Marshmallow.xcdatamodeld in Sources */,
 				C356BEFA16FF971300F7A031 /* BDKLog.m in Sources */,
+				C356BEFF16FF998E00F7A031 /* BDKViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
