@@ -40,6 +40,14 @@
 		C356BF2216FFAA5F00F7A031 /* RobotoCondensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C356BF1C16FFAA5F00F7A031 /* RobotoCondensed-Light.ttf */; };
 		C356BF2316FFAA5F00F7A031 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C356BF1D16FFAA5F00F7A031 /* RobotoCondensed-LightItalic.ttf */; };
 		C356BF2416FFAA5F00F7A031 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C356BF1E16FFAA5F00F7A031 /* RobotoCondensed-Regular.ttf */; };
+		C3FD9E4B16FFB7530099E595 /* BDKCampfireClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD9E4A16FFB7530099E595 /* BDKCampfireClient.m */; };
+		C3FD9E4E16FFB78D0099E595 /* BDKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD9E4D16FFB78D0099E595 /* BDKAPIClient.m */; };
+		C3FD9E5016FFB7FC0099E595 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FD9E4F16FFB7FC0099E595 /* QuartzCore.framework */; };
+		C3FD9E5216FFB8040099E595 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FD9E5116FFB8040099E595 /* SystemConfiguration.framework */; };
+		C3FD9E5516FFB84A0099E595 /* NSString+BDKKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD9E5416FFB84A0099E595 /* NSString+BDKKit.m */; };
+		C3FD9E5716FFB8E00099E595 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FD9E5616FFB8E00099E595 /* MobileCoreServices.framework */; };
+		C3FD9E5A16FFBAF00099E595 /* BDKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD9E5916FFBAF00099E595 /* BDKWebViewController.m */; };
+		C3FD9E5F16FFBF710099E595 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3FD9E5E16FFBF710099E595 /* APIKeys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +105,19 @@
 		C356BF1C16FFAA5F00F7A031 /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
 		C356BF1D16FFAA5F00F7A031 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
 		C356BF1E16FFAA5F00F7A031 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		C3FD9E4916FFB7530099E595 /* BDKCampfireClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCampfireClient.h; sourceTree = "<group>"; };
+		C3FD9E4A16FFB7530099E595 /* BDKCampfireClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCampfireClient.m; sourceTree = "<group>"; };
+		C3FD9E4C16FFB78D0099E595 /* BDKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKAPIClient.h; sourceTree = "<group>"; };
+		C3FD9E4D16FFB78D0099E595 /* BDKAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKAPIClient.m; sourceTree = "<group>"; };
+		C3FD9E4F16FFB7FC0099E595 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C3FD9E5116FFB8040099E595 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C3FD9E5316FFB84A0099E595 /* NSString+BDKKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BDKKit.h"; sourceTree = "<group>"; };
+		C3FD9E5416FFB84A0099E595 /* NSString+BDKKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BDKKit.m"; sourceTree = "<group>"; };
+		C3FD9E5616FFB8E00099E595 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C3FD9E5816FFBAF00099E595 /* BDKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKWebViewController.h; sourceTree = "<group>"; };
+		C3FD9E5916FFBAF00099E595 /* BDKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKWebViewController.m; sourceTree = "<group>"; };
+		C3FD9E5B16FFBCCD0099E595 /* BDKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKConstants.h; sourceTree = "<group>"; };
+		C3FD9E5E16FFBF710099E595 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		C838434D40344DB6ACBA0934 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -109,6 +130,9 @@
 				C356BEA816FF8F8300F7A031 /* Foundation.framework in Frameworks */,
 				C356BEAA16FF8F8300F7A031 /* CoreGraphics.framework in Frameworks */,
 				C356BEAC16FF8F8300F7A031 /* CoreData.framework in Frameworks */,
+				C3FD9E5216FFB8040099E595 /* SystemConfiguration.framework in Frameworks */,
+				C3FD9E5716FFB8E00099E595 /* MobileCoreServices.framework in Frameworks */,
+				C3FD9E5016FFB7FC0099E595 /* QuartzCore.framework in Frameworks */,
 				2285529B29D246ADA43EBE3B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,6 +177,9 @@
 		C356BEA416FF8F8300F7A031 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3FD9E5616FFB8E00099E595 /* MobileCoreServices.framework */,
+				C3FD9E5116FFB8040099E595 /* SystemConfiguration.framework */,
+				C3FD9E4F16FFB7FC0099E595 /* QuartzCore.framework */,
 				C356BEA516FF8F8300F7A031 /* UIKit.framework */,
 				C356BEA716FF8F8300F7A031 /* Foundation.framework */,
 				C356BEA916FF8F8300F7A031 /* CoreGraphics.framework */,
@@ -185,6 +212,7 @@
 		C356BEE016FF93CA00F7A031 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C3FD9E4716FFB73B0099E595 /* Adapters */,
 				C356BF1316FFA6A300F7A031 /* Categories */,
 				C356BEE116FF93CA00F7A031 /* Core */,
 				C356BEE616FF93CA00F7A031 /* Data */,
@@ -203,6 +231,7 @@
 				C356BEF916FF971300F7A031 /* BDKLog.m */,
 				C356BEE416FF93CA00F7A031 /* main.m */,
 				C356BEE516FF93CA00F7A031 /* Prefix.pch */,
+				C3FD9E5B16FFBCCD0099E595 /* BDKConstants.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -224,6 +253,7 @@
 				C356BEEC16FF93CA00F7A031 /* Default@2x.png */,
 				C356BEED16FF93CA00F7A031 /* InfoPlist.strings */,
 				C356BEEF16FF93CA00F7A031 /* Info.plist */,
+				C3FD9E5E16FFBF710099E595 /* APIKeys.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -246,6 +276,8 @@
 				C356BF0816FF9E0100F7A031 /* BDKTableViewController.m */,
 				C356BEFD16FF998E00F7A031 /* BDKViewController.h */,
 				C356BEFE16FF998E00F7A031 /* BDKViewController.m */,
+				C3FD9E5816FFBAF00099E595 /* BDKWebViewController.h */,
+				C3FD9E5916FFBAF00099E595 /* BDKWebViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -279,6 +311,8 @@
 		C356BF1316FFA6A300F7A031 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				C3FD9E5316FFB84A0099E595 /* NSString+BDKKit.h */,
+				C3FD9E5416FFB84A0099E595 /* NSString+BDKKit.m */,
 				C356BF1416FFA6B100F7A031 /* UIFont+App.h */,
 				C356BF1516FFA6B100F7A031 /* UIFont+App.m */,
 			);
@@ -304,6 +338,25 @@
 				C356BF1E16FFAA5F00F7A031 /* RobotoCondensed-Regular.ttf */,
 			);
 			path = Roboto;
+			sourceTree = "<group>";
+		};
+		C3FD9E4716FFB73B0099E595 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				C3FD9E4816FFB73B0099E595 /* Campfire */,
+				C3FD9E4C16FFB78D0099E595 /* BDKAPIClient.h */,
+				C3FD9E4D16FFB78D0099E595 /* BDKAPIClient.m */,
+			);
+			path = Adapters;
+			sourceTree = "<group>";
+		};
+		C3FD9E4816FFB73B0099E595 /* Campfire */ = {
+			isa = PBXGroup;
+			children = (
+				C3FD9E4916FFB7530099E595 /* BDKCampfireClient.h */,
+				C3FD9E4A16FFB7530099E595 /* BDKCampfireClient.m */,
+			);
+			path = Campfire;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,6 +444,7 @@
 				C356BF2216FFAA5F00F7A031 /* RobotoCondensed-Light.ttf in Resources */,
 				C356BF2316FFAA5F00F7A031 /* RobotoCondensed-LightItalic.ttf in Resources */,
 				C356BF2416FFAA5F00F7A031 /* RobotoCondensed-Regular.ttf in Resources */,
+				C3FD9E5F16FFBF710099E595 /* APIKeys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +503,10 @@
 				C356BF0D16FFA02D00F7A031 /* BDKLoginViewController.m in Sources */,
 				C356BF1216FFA4C800F7A031 /* BDKTextFieldCell.m in Sources */,
 				C356BF1616FFA6B100F7A031 /* UIFont+App.m in Sources */,
+				C3FD9E4B16FFB7530099E595 /* BDKCampfireClient.m in Sources */,
+				C3FD9E4E16FFB78D0099E595 /* BDKAPIClient.m in Sources */,
+				C3FD9E5516FFB84A0099E595 /* NSString+BDKKit.m in Sources */,
+				C3FD9E5A16FFBAF00099E595 /* BDKWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

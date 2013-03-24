@@ -1,5 +1,5 @@
-#import "BDKTableViewController.h"
+#import "BDKWebViewController.h"
 
-@interface BDKLoginViewController : BDKTableViewController
+@interface BDKLoginViewController : BDKWebViewController
 
 @end

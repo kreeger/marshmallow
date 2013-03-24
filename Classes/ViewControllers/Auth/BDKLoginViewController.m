@@ -1,6 +1,8 @@
 #import "BDKLoginViewController.h"
 #import "BDKTextFieldCell.h"
 
+#import "NSString+BDKKit.h"
+
 @interface BDKLoginViewController ()
 
 @end
@@ -9,7 +11,7 @@
 
 - (id)init
 {
-    if (self = [super initWithIdentifier:@"login" tableViewStyle:UITableViewStyleGrouped]) {
+    if (self = [super initWithIdentifier:@"login"]) {
 
     }
     return self;
@@ -18,7 +20,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    NSString *clientID = @"";
+    NSString *clientSecret = @"";
+    NSString *urlString = NSStringWithFormat(kBDKLaunchpadURL, clientID, clientSecret);
+    [self.webView loadRequest:[NSURLRequest requestWithURL:urlString.urlValue]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -27,29 +32,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Properties
+
 #pragma mark - Parent overrides
-
-- (void)registerCellTypes {
-    [self.tableView registerClass:[BDKTextFieldCell class] forCellReuseIdentifier:kBDKTextFieldCellID];
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 2;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    BDKTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:kBDKTextFieldCellID forIndexPath:indexPath];
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"Username";
-    } else {
-        cell.textLabel.text = @"Password";
-    }
-
-    return cell;
-}
 
 @end
