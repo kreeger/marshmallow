@@ -15,7 +15,8 @@
     // check if the user is logged in first
     
     BDKLoginViewController *vc = [BDKLoginViewController vc];
-    self.window.rootViewController = vc;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = nav;
 
     [self.window makeKeyAndVisible];
     return YES;

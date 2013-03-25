@@ -48,6 +48,8 @@
 		C3FD9E5716FFB8E00099E595 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FD9E5616FFB8E00099E595 /* MobileCoreServices.framework */; };
 		C3FD9E5A16FFBAF00099E595 /* BDKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD9E5916FFBAF00099E595 /* BDKWebViewController.m */; };
 		C3FD9E5F16FFBF710099E595 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3FD9E5E16FFBF710099E595 /* APIKeys.plist */; };
+		C3FD9E6216FFEACC0099E595 /* BDKAPIKeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD9E6116FFEACC0099E595 /* BDKAPIKeyManager.m */; };
+		C3FD9E6516FFEF7A0099E595 /* BDKLaunchpadClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD9E6416FFEF7A0099E595 /* BDKLaunchpadClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,10 @@
 		C3FD9E5916FFBAF00099E595 /* BDKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKWebViewController.m; sourceTree = "<group>"; };
 		C3FD9E5B16FFBCCD0099E595 /* BDKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKConstants.h; sourceTree = "<group>"; };
 		C3FD9E5E16FFBF710099E595 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
+		C3FD9E6016FFEACC0099E595 /* BDKAPIKeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKAPIKeyManager.h; sourceTree = "<group>"; };
+		C3FD9E6116FFEACC0099E595 /* BDKAPIKeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKAPIKeyManager.m; sourceTree = "<group>"; };
+		C3FD9E6316FFEF7A0099E595 /* BDKLaunchpadClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLaunchpadClient.h; sourceTree = "<group>"; };
+		C3FD9E6416FFEF7A0099E595 /* BDKLaunchpadClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLaunchpadClient.m; sourceTree = "<group>"; };
 		C838434D40344DB6ACBA0934 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -227,11 +233,11 @@
 			children = (
 				C356BEE216FF93CA00F7A031 /* BDKAppDelegate.h */,
 				C356BEE316FF93CA00F7A031 /* BDKAppDelegate.m */,
+				C3FD9E5B16FFBCCD0099E595 /* BDKConstants.h */,
 				C356BEF816FF971300F7A031 /* BDKLog.h */,
 				C356BEF916FF971300F7A031 /* BDKLog.m */,
 				C356BEE416FF93CA00F7A031 /* main.m */,
 				C356BEE516FF93CA00F7A031 /* Prefix.pch */,
-				C3FD9E5B16FFBCCD0099E595 /* BDKConstants.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -346,6 +352,8 @@
 				C3FD9E4816FFB73B0099E595 /* Campfire */,
 				C3FD9E4C16FFB78D0099E595 /* BDKAPIClient.h */,
 				C3FD9E4D16FFB78D0099E595 /* BDKAPIClient.m */,
+				C3FD9E6016FFEACC0099E595 /* BDKAPIKeyManager.h */,
+				C3FD9E6116FFEACC0099E595 /* BDKAPIKeyManager.m */,
 			);
 			path = Adapters;
 			sourceTree = "<group>";
@@ -355,6 +363,8 @@
 			children = (
 				C3FD9E4916FFB7530099E595 /* BDKCampfireClient.h */,
 				C3FD9E4A16FFB7530099E595 /* BDKCampfireClient.m */,
+				C3FD9E6316FFEF7A0099E595 /* BDKLaunchpadClient.h */,
+				C3FD9E6416FFEF7A0099E595 /* BDKLaunchpadClient.m */,
 			);
 			path = Campfire;
 			sourceTree = "<group>";
@@ -507,6 +517,8 @@
 				C3FD9E4E16FFB78D0099E595 /* BDKAPIClient.m in Sources */,
 				C3FD9E5516FFB84A0099E595 /* NSString+BDKKit.m in Sources */,
 				C3FD9E5A16FFBAF00099E595 /* BDKWebViewController.m in Sources */,
+				C3FD9E6216FFEACC0099E595 /* BDKAPIKeyManager.m in Sources */,
+				C3FD9E6516FFEF7A0099E595 /* BDKLaunchpadClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

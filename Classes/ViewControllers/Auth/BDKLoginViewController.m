@@ -1,4 +1,5 @@
 #import "BDKLoginViewController.h"
+#import "BDKLaunchpadClient.h"
 #import "BDKTextFieldCell.h"
 
 #import "NSString+BDKKit.h"
@@ -20,10 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *clientID = @"";
-    NSString *clientSecret = @"";
-    NSString *urlString = NSStringWithFormat(kBDKLaunchpadURL, clientID, clientSecret);
-    [self.webView loadRequest:[NSURLRequest requestWithURL:urlString.urlValue]];
+    self.title = @"Login";
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[BDKLaunchpadClient launchpadURL]]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,6 +33,19 @@
 
 #pragma mark - Properties
 
-#pragma mark - Parent overrides
+#pragma mark - UIWebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if ([request.URL.absoluteString hasPrefix:@"marshmallow"]) {
+        // Don't know if I like this shitty way of doing things.
+        NSString *authCode = [request.URL.absoluteString split:@"="][1];
+        DDLogUI(@"Request %@, nav type %i. Auth code %@.", request, navigationType, authCode);
+        [BDKLaunchpadClient getAccessTokenForVerificationCode:authCode success:^(id responseObject) {
+            DDLogAPI(@"Response %@.", responseObject);
+        } failure:nil];
+    }
+    return YES;
+}
 
 @end

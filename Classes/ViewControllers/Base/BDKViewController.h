@@ -6,6 +6,7 @@
 
 @property (strong, nonatomic) NSString *identifier;
 @property (readonly) CGRect frame;
+@property (readonly) CGRect bounds;
 
 + (id)vc;
 + (id)vcWithIdentifier:(NSString *)identifier;

@@ -59,4 +59,9 @@
     return self.view.frame;
 }
 
+- (CGRect)bounds
+{
+    return self.view.bounds;
+}
+
 @end
