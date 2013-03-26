@@ -41,8 +41,9 @@
         // Don't know if I like this shitty way of doing things.
         NSString *authCode = [request.URL.absoluteString split:@"="][1];
         DDLogUI(@"Request %@, nav type %i. Auth code %@.", request, navigationType, authCode);
-        [BDKLaunchpadClient getAccessTokenForVerificationCode:authCode success:^(id responseObject) {
-            DDLogAPI(@"Response %@.", responseObject);
+        [BDKLaunchpadClient getAccessTokenForVerificationCode:authCode success:^(NSString *accessToken, NSString *refreshToken, NSDate *expiresOn) {
+            DDLogAPI(@"Token %@ expires %@.", accessToken, expiresOn);
+            
         } failure:nil];
     }
     return YES;

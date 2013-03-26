@@ -1,5 +1,7 @@
 #import "BDKAPIClient.h"
 
+typedef void (^TokenSuccessBlock)(NSString *accessToken, NSString *refreshToken, NSDate *expiresAt);
+
 @interface BDKLaunchpadClient : BDKAPIClient
 
 /** Grabs a singleton instance of the adapter so manual requests can be made.
@@ -10,7 +12,7 @@
 + (NSURL *)launchpadURL;
 
 + (void)getAccessTokenForVerificationCode:(NSString *)verificationCode
-                                  success:(SuccessBlock)success
+                                  success:(TokenSuccessBlock)success
                                   failure:(FailureBlock)failure;
 
 @end

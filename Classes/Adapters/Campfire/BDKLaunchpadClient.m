@@ -2,6 +2,8 @@
 #import "BDKAPIKeyManager.h"
 #import "NSString+BDKKit.h"
 
+#import <AFNetworking/AFHTTPRequestOperation.h>
+
 @implementation BDKLaunchpadClient
 
 + (id)sharedInstance {
@@ -22,13 +24,21 @@
 }
 
 + (void)getAccessTokenForVerificationCode:(NSString *)verificationCode
-                                  success:(SuccessBlock)success
+                                  success:(TokenSuccessBlock)success
                                   failure:(FailureBlock)failure {
-    NSDictionary *params = @{};
-    [[self sharedInstance] getPath:@"" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
+    NSDictionary *params = @{@"type": @"web_server",
+                             @"client_id": [BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientKey],
+                             @"redirect_uri": [BDKAPIKeyManager apiKeyForKey:kBDK37SignalsRedirectURI],
+                             @"client_secret": [BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientSecret],
+                             @"code": verificationCode.stringByUrlEncoding};
+    [[self sharedInstance] postPath:@"token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *accessToken = responseObject[@"access_token"];
+        NSString *refreshToken = responseObject[@"refresh_token"];
+        NSTimeInterval interval = [responseObject[@"expires_in"] doubleValue];
+        NSDate *expiresAt = [[NSDate date] dateByAddingTimeInterval:interval];
+        success(accessToken, refreshToken, expiresAt);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, 500);
+        failure(error, operation.response.statusCode);
     }];
 }
 
