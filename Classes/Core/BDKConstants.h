@@ -1,2 +1,5 @@
 #define kBDKLaunchpadURL @"https://launchpad.37signals.com/authorization/new?type=web_server&client_id=%@&redirect_uri=%@"
-#define kBDKLaunchpadRequestURL @"https://launchpad.37signals.com/authorization/token?type=web_server&client_id=%@&redirect_uri=%@&client_secret=%@&code=%@"
+
+#define kBDKUserDefaultAccessToken @"AccessToken"
+#define kBDKUserDefaultRefreshToken @"RefreshToken"
+#define kBDKUserDefaultTokenExpiresOn @"TokenExpiresOn"

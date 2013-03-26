@@ -43,7 +43,10 @@
         DDLogUI(@"Request %@, nav type %i. Auth code %@.", request, navigationType, authCode);
         [BDKLaunchpadClient getAccessTokenForVerificationCode:authCode success:^(NSString *accessToken, NSString *refreshToken, NSDate *expiresOn) {
             DDLogAPI(@"Token %@ expires %@.", accessToken, expiresOn);
-            
+            [[NSUserDefaults standardUserDefaults] setValue:accessToken forKey:kBDKUserDefaultAccessToken];
+            [[NSUserDefaults standardUserDefaults] setValue:refreshToken forKey:kBDKUserDefaultRefreshToken];
+            [[NSUserDefaults standardUserDefaults] setValue:expiresOn forKey:kBDKUserDefaultTokenExpiresOn];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         } failure:nil];
     }
     return YES;

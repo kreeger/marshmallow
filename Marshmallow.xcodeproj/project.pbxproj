@@ -40,6 +40,8 @@
 		C356BF2216FFAA5F00F7A031 /* RobotoCondensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C356BF1C16FFAA5F00F7A031 /* RobotoCondensed-Light.ttf */; };
 		C356BF2316FFAA5F00F7A031 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C356BF1D16FFAA5F00F7A031 /* RobotoCondensed-LightItalic.ttf */; };
 		C356BF2416FFAA5F00F7A031 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C356BF1E16FFAA5F00F7A031 /* RobotoCondensed-Regular.ttf */; };
+		C3632ECA17013A4A0028C794 /* BDKRoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3632EC917013A4A0028C794 /* BDKRoomsViewController.m */; };
+		C3632ECD17013A750028C794 /* UINavigationController+BDKKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3632ECC17013A750028C794 /* UINavigationController+BDKKit.m */; };
 		C3FD9E4B16FFB7530099E595 /* BDKCampfireClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD9E4A16FFB7530099E595 /* BDKCampfireClient.m */; };
 		C3FD9E4E16FFB78D0099E595 /* BDKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD9E4D16FFB78D0099E595 /* BDKAPIClient.m */; };
 		C3FD9E5016FFB7FC0099E595 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FD9E4F16FFB7FC0099E595 /* QuartzCore.framework */; };
@@ -107,6 +109,10 @@
 		C356BF1C16FFAA5F00F7A031 /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
 		C356BF1D16FFAA5F00F7A031 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
 		C356BF1E16FFAA5F00F7A031 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		C3632EC817013A4A0028C794 /* BDKRoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoomsViewController.h; sourceTree = "<group>"; };
+		C3632EC917013A4A0028C794 /* BDKRoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomsViewController.m; sourceTree = "<group>"; };
+		C3632ECB17013A750028C794 /* UINavigationController+BDKKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BDKKit.h"; sourceTree = "<group>"; };
+		C3632ECC17013A750028C794 /* UINavigationController+BDKKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+BDKKit.m"; sourceTree = "<group>"; };
 		C3FD9E4916FFB7530099E595 /* BDKCampfireClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCampfireClient.h; sourceTree = "<group>"; };
 		C3FD9E4A16FFB7530099E595 /* BDKCampfireClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCampfireClient.m; sourceTree = "<group>"; };
 		C3FD9E4C16FFB78D0099E595 /* BDKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKAPIClient.h; sourceTree = "<group>"; };
@@ -269,6 +275,7 @@
 			children = (
 				C356BF0A16FFA01900F7A031 /* Auth */,
 				C356BEFC16FF997F00F7A031 /* Base */,
+				C3632EC717013A160028C794 /* Lists */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -321,6 +328,8 @@
 				C3FD9E5416FFB84A0099E595 /* NSString+BDKKit.m */,
 				C356BF1416FFA6B100F7A031 /* UIFont+App.h */,
 				C356BF1516FFA6B100F7A031 /* UIFont+App.m */,
+				C3632ECB17013A750028C794 /* UINavigationController+BDKKit.h */,
+				C3632ECC17013A750028C794 /* UINavigationController+BDKKit.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -344,6 +353,15 @@
 				C356BF1E16FFAA5F00F7A031 /* RobotoCondensed-Regular.ttf */,
 			);
 			path = Roboto;
+			sourceTree = "<group>";
+		};
+		C3632EC717013A160028C794 /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				C3632EC817013A4A0028C794 /* BDKRoomsViewController.h */,
+				C3632EC917013A4A0028C794 /* BDKRoomsViewController.m */,
+			);
+			path = Lists;
 			sourceTree = "<group>";
 		};
 		C3FD9E4716FFB73B0099E595 /* Adapters */ = {
@@ -519,6 +537,8 @@
 				C3FD9E5A16FFBAF00099E595 /* BDKWebViewController.m in Sources */,
 				C3FD9E6216FFEACC0099E595 /* BDKAPIKeyManager.m in Sources */,
 				C3FD9E6516FFEF7A0099E595 /* BDKLaunchpadClient.m in Sources */,
+				C3632ECA17013A4A0028C794 /* BDKRoomsViewController.m in Sources */,
+				C3632ECD17013A750028C794 /* UINavigationController+BDKKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

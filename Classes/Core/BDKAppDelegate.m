@@ -1,7 +1,16 @@
 #import "BDKAppDelegate.h"
 #import "BDKLoginViewController.h"
-
+#import "BDKRoomsViewController.h"
+#import "UINavigationController+BDKKit.h"
 #import <CocoaLumberjack/DDTTYLogger.h>
+
+@interface BDKAppDelegate ()
+
+/** Initializes user defaults.
+ */
+- (void)kickstartUserDefaults;
+
+@end
 
 @implementation BDKAppDelegate
 
@@ -13,10 +22,15 @@
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
     // check if the user is logged in first
-    
-    BDKLoginViewController *vc = [BDKLoginViewController vc];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController = nav;
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]) {
+        BDKRoomsViewController *vc = [BDKRoomsViewController vc];
+        UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
+        self.window.rootViewController = nav;
+    } else {
+        BDKLoginViewController *vc = [BDKLoginViewController vc];
+        UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
+        self.window.rootViewController = nav;
+    }
 
     [self.window makeKeyAndVisible];
     return YES;
@@ -41,6 +55,15 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [MagicalRecord cleanUp];
+}
+
+#pragma mark - Methods
+
+- (void)kickstartUserDefaults
+{
+    NSDictionary *userDefaults = @{};
+    [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaults];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - Application's Documents directory

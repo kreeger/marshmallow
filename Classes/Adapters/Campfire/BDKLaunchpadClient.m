@@ -6,7 +6,8 @@
 
 @implementation BDKLaunchpadClient
 
-+ (id)sharedInstance {
++ (id)sharedInstance
+{
     static BDKLaunchpadClient *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -16,7 +17,8 @@
     return __sharedInstance;
 }
 
-+ (NSURL *)launchpadURL {
++ (NSURL *)launchpadURL
+{
     NSString *clientID = [BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientKey];
     NSString *redirectURI = [BDKAPIKeyManager apiKeyForKey:kBDK37SignalsRedirectURI];
     NSString *urlString = NSStringWithFormat(kBDKLaunchpadURL, clientID, redirectURI);
@@ -25,7 +27,8 @@
 
 + (void)getAccessTokenForVerificationCode:(NSString *)verificationCode
                                   success:(TokenSuccessBlock)success
-                                  failure:(FailureBlock)failure {
+                                  failure:(FailureBlock)failure
+{
     NSDictionary *params = @{@"type": @"web_server",
                              @"client_id": [BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientKey],
                              @"redirect_uri": [BDKAPIKeyManager apiKeyForKey:kBDK37SignalsRedirectURI],
