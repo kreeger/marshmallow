@@ -34,8 +34,6 @@
         _createdAt = [formatter dateFromString:dictionary[@"created_at"]];
         formatter = nil;
     }
-    
-
     return self;
 }
 

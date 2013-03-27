@@ -14,6 +14,8 @@
 		C31776F5170261450010DE26 /* BDKLPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = C31776F4170261440010DE26 /* BDKLPIdentity.m */; };
 		C31776F8170262130010DE26 /* BDKLPAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C31776F7170262130010DE26 /* BDKLPAccount.m */; };
 		C31776FB170284CE0010DE26 /* BDKCFUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = C31776FA170284CE0010DE26 /* BDKCFUpload.m */; };
+		C31776FE170288690010DE26 /* BDKCFRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = C31776FD170288690010DE26 /* BDKCFRoom.m */; };
+		C317770117028B870010DE26 /* BDKCFMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C317770017028B860010DE26 /* BDKCFMessage.m */; };
 		C356BEA616FF8F8300F7A031 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA516FF8F8300F7A031 /* UIKit.framework */; };
 		C356BEA816FF8F8300F7A031 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA716FF8F8300F7A031 /* Foundation.framework */; };
 		C356BEAA16FF8F8300F7A031 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA916FF8F8300F7A031 /* CoreGraphics.framework */; };
@@ -84,6 +86,10 @@
 		C31776F7170262130010DE26 /* BDKLPAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLPAccount.m; sourceTree = "<group>"; };
 		C31776F9170284CE0010DE26 /* BDKCFUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCFUpload.h; sourceTree = "<group>"; };
 		C31776FA170284CE0010DE26 /* BDKCFUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCFUpload.m; sourceTree = "<group>"; };
+		C31776FC170288680010DE26 /* BDKCFRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCFRoom.h; sourceTree = "<group>"; };
+		C31776FD170288690010DE26 /* BDKCFRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCFRoom.m; sourceTree = "<group>"; };
+		C31776FF17028B860010DE26 /* BDKCFMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCFMessage.h; sourceTree = "<group>"; };
+		C317770017028B860010DE26 /* BDKCFMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCFMessage.m; sourceTree = "<group>"; };
 		C356BEA216FF8F8300F7A031 /* Marshmallow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C356BEA516FF8F8300F7A031 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C356BEA716FF8F8300F7A031 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -186,16 +192,20 @@
 			children = (
 				C31776EA170259CA0010DE26 /* BDKCFModel.h */,
 				C31776EB170259CA0010DE26 /* BDKCFModel.m */,
+				C31776FC170288680010DE26 /* BDKCFRoom.h */,
+				C31776FD170288690010DE26 /* BDKCFRoom.m */,
+				C31776F9170284CE0010DE26 /* BDKCFUpload.h */,
+				C31776FA170284CE0010DE26 /* BDKCFUpload.m */,
 				C31776ED170259D70010DE26 /* BDKCFUser.h */,
 				C31776EE170259D70010DE26 /* BDKCFUser.m */,
+				C31776F6170262130010DE26 /* BDKLPAccount.h */,
+				C31776F7170262130010DE26 /* BDKLPAccount.m */,
 				C31776F0170260CE0010DE26 /* BDKLPAuthorizationData.h */,
 				C31776F1170260CE0010DE26 /* BDKLPAuthorizationData.m */,
 				C31776F3170261440010DE26 /* BDKLPIdentity.h */,
 				C31776F4170261440010DE26 /* BDKLPIdentity.m */,
-				C31776F6170262130010DE26 /* BDKLPAccount.h */,
-				C31776F7170262130010DE26 /* BDKLPAccount.m */,
-				C31776F9170284CE0010DE26 /* BDKCFUpload.h */,
-				C31776FA170284CE0010DE26 /* BDKCFUpload.m */,
+				C31776FF17028B860010DE26 /* BDKCFMessage.h */,
+				C317770017028B860010DE26 /* BDKCFMessage.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -583,6 +593,8 @@
 				C31776F5170261450010DE26 /* BDKLPIdentity.m in Sources */,
 				C31776F8170262130010DE26 /* BDKLPAccount.m in Sources */,
 				C31776FB170284CE0010DE26 /* BDKCFUpload.m in Sources */,
+				C31776FE170288690010DE26 /* BDKCFRoom.m in Sources */,
+				C317770117028B870010DE26 /* BDKCFMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
