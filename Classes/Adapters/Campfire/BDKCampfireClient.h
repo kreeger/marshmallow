@@ -6,6 +6,7 @@ typedef void (^AccountBlock)(BDKCFAccount *account);
 typedef void (^UserBlock)(BDKCFUser *user);
 typedef void (^RoomBlock)(BDKCFRoom *room);
 typedef void (^MessageBlock)(BDKCFMessage *message);
+typedef void (^UploadBlock)(BDKCFUpload *upload);
 
 @interface BDKCampfireClient : BDKAPIClient
 
@@ -31,6 +32,27 @@ typedef void (^MessageBlock)(BDKCFMessage *message);
 + (void)getRooms:(ArrayBlock)success failure:(FailureBlock)failure;
 + (void)getPresentRooms:(ArrayBlock)success failure:(FailureBlock)failure;
 + (void)getRoomForId:(NSNumber *)roomId success:(RoomBlock)success failure:(FailureBlock)failure;
++ (void)updateRoom:(BDKCFRoom *)room success:(EmptyBlock)success failure:(FailureBlock)failure;
++ (void)joinRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
++ (void)leaveRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
++ (void)lockRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
++ (void)unlockRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
+
+#pragma mark - Search methods
+
++ (void)searchMessagesForQuery:(NSString *)query success:(ArrayBlock)success failure:(FailureBlock)failure;
+
+#pragma mark - Transcript methods
+
++ (void)getTranscriptForToday:(ArrayBlock)success failure:(FailureBlock)failure;
++ (void)getTranscriptForDate:(NSDate *)date success:(ArrayBlock)success failure:(FailureBlock)failure;
+
+#pragma mark - Upload methods
+
++ (void)uploadFile:(NSData *)file toRoom:(NSNumber *)roomId success:(UploadBlock)success failure:(FailureBlock)failure;
++ (void)getRecentUploadsForRoomId:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure;
++ (void)getUploadForMessage:(NSNumber *)messageId inRoom:(NSNumber *)roomId
+                    success:(UploadBlock)success failure:(FailureBlock)failure;
 
 #pragma mark - User methods
 
