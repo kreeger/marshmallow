@@ -62,6 +62,19 @@
     }];
 }
 
++ (void)getMessagesForRoom:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure
+{
+    NSString *path = NSStringWithFormat(@"rooms/%@", roomId);
+    [[self sharedInstance] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *messages = [responseObject map:^BDKCFMessage *(NSDictionary *message) {
+            return [BDKCFMessage modelWithDictionary:message];
+        }];
+        success(messages);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error, operation.response.statusCode);
+    }];
+}
+
 #pragma mark - Room methods
 
 + (void)getRooms:(ArrayBlock)success failure:(FailureBlock)failure

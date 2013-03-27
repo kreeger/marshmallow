@@ -22,6 +22,7 @@ typedef void (^MessageBlock)(BDKCFMessage *message);
 
 + (void)postMessage:(BDKCFMessage *)message toRoom:(NSNumber *)roomId
             success:(MessageBlock)success failure:(FailureBlock)failure;
++ (void)getMessagesForRoom:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure;
 
 #pragma mark - Room methods
 
