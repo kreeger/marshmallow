@@ -1,6 +1,6 @@
 #import "BDKLaunchpadClient.h"
 #import "BDKAPIKeyManager.h"
-#import "BDKLPAuthorizationData.h"
+#import "BDKLPModels.h"
 #import "NSString+BDKKit.h"
 
 #import <AFNetworking/AFHTTPRequestOperation.h>

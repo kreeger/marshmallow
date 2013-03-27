@@ -5,8 +5,7 @@
 #import <CocoaLumberjack/DDTTYLogger.h>
 
 #import "BDKLaunchpadClient.h"
-#import "BDKLPAuthorizationData.h"
-#import "BDKLPAccount.h"
+#import "BDKLPModels.h"
 
 @interface BDKAppDelegate ()
 

@@ -15,11 +15,11 @@ typedef void (^RoomBlock)(BDKCFRoom *room);
 
 + (void)getCurrentAccount:(AccountBlock)success failure:(FailureBlock)failure;
 
-+ (void)getUserForId:(NSNumber *)userId success:(UserBlock)success failure:(FailureBlock)failure;
-+ (void)getCurrentUser:(UserBlock)success failure:(FailureBlock)failure;
-
 + (void)getRooms:(ArrayBlock)success failure:(FailureBlock)failure;
 + (void)getPresentRooms:(ArrayBlock)success failure:(FailureBlock)failure;
 + (void)getRoomForId:(NSNumber *)roomId success:(RoomBlock)success failure:(FailureBlock)failure;
+
++ (void)getUserForId:(NSNumber *)userId success:(UserBlock)success failure:(FailureBlock)failure;
++ (void)getCurrentUser:(UserBlock)success failure:(FailureBlock)failure;
 
 @end
