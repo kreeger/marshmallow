@@ -48,6 +48,20 @@
     }];
 }
 
+#pragma mark - Message methods
+
++ (void)postMessage:(BDKCFMessage *)message toRoom:(NSNumber *)roomId
+            success:(MessageBlock)success failure:(FailureBlock)failure
+{
+    NSString *path = NSStringWithFormat(@"rooms/%@/speak", roomId);
+    [[self sharedInstance] postPath:path parameters:message.asApiBody success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        BDKCFMessage *message = [BDKCFMessage modelWithDictionary:responseObject];
+        success(message);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error, operation.response.statusCode);
+    }];
+}
+
 #pragma mark - Room methods
 
 + (void)getRooms:(ArrayBlock)success failure:(FailureBlock)failure
