@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2285529B29D246ADA43EBE3B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C838434D40344DB6ACBA0934 /* libPods.a */; };
+		C31776EC170259CA0010DE26 /* BDKCFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C31776EB170259CA0010DE26 /* BDKCFModel.m */; };
+		C31776EF170259D70010DE26 /* BDKCFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C31776EE170259D70010DE26 /* BDKCFUser.m */; };
+		C31776F2170260CE0010DE26 /* BDKLPAuthorizationData.m in Sources */ = {isa = PBXBuildFile; fileRef = C31776F1170260CE0010DE26 /* BDKLPAuthorizationData.m */; };
+		C31776F5170261450010DE26 /* BDKLPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = C31776F4170261440010DE26 /* BDKLPIdentity.m */; };
+		C31776F8170262130010DE26 /* BDKLPAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C31776F7170262130010DE26 /* BDKLPAccount.m */; };
+		C31776FB170284CE0010DE26 /* BDKCFUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = C31776FA170284CE0010DE26 /* BDKCFUpload.m */; };
 		C356BEA616FF8F8300F7A031 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA516FF8F8300F7A031 /* UIKit.framework */; };
 		C356BEA816FF8F8300F7A031 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA716FF8F8300F7A031 /* Foundation.framework */; };
 		C356BEAA16FF8F8300F7A031 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA916FF8F8300F7A031 /* CoreGraphics.framework */; };
@@ -66,6 +72,18 @@
 
 /* Begin PBXFileReference section */
 		ACAE2580D4154BEE81C50205 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		C31776EA170259CA0010DE26 /* BDKCFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCFModel.h; sourceTree = "<group>"; };
+		C31776EB170259CA0010DE26 /* BDKCFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCFModel.m; sourceTree = "<group>"; };
+		C31776ED170259D70010DE26 /* BDKCFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCFUser.h; sourceTree = "<group>"; };
+		C31776EE170259D70010DE26 /* BDKCFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCFUser.m; sourceTree = "<group>"; };
+		C31776F0170260CE0010DE26 /* BDKLPAuthorizationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLPAuthorizationData.h; sourceTree = "<group>"; };
+		C31776F1170260CE0010DE26 /* BDKLPAuthorizationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLPAuthorizationData.m; sourceTree = "<group>"; };
+		C31776F3170261440010DE26 /* BDKLPIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLPIdentity.h; sourceTree = "<group>"; };
+		C31776F4170261440010DE26 /* BDKLPIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLPIdentity.m; sourceTree = "<group>"; };
+		C31776F6170262130010DE26 /* BDKLPAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLPAccount.h; sourceTree = "<group>"; };
+		C31776F7170262130010DE26 /* BDKLPAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLPAccount.m; sourceTree = "<group>"; };
+		C31776F9170284CE0010DE26 /* BDKCFUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCFUpload.h; sourceTree = "<group>"; };
+		C31776FA170284CE0010DE26 /* BDKCFUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCFUpload.m; sourceTree = "<group>"; };
 		C356BEA216FF8F8300F7A031 /* Marshmallow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C356BEA516FF8F8300F7A031 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C356BEA716FF8F8300F7A031 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -163,6 +181,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C31776E9170259B80010DE26 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C31776EA170259CA0010DE26 /* BDKCFModel.h */,
+				C31776EB170259CA0010DE26 /* BDKCFModel.m */,
+				C31776ED170259D70010DE26 /* BDKCFUser.h */,
+				C31776EE170259D70010DE26 /* BDKCFUser.m */,
+				C31776F0170260CE0010DE26 /* BDKLPAuthorizationData.h */,
+				C31776F1170260CE0010DE26 /* BDKLPAuthorizationData.m */,
+				C31776F3170261440010DE26 /* BDKLPIdentity.h */,
+				C31776F4170261440010DE26 /* BDKLPIdentity.m */,
+				C31776F6170262130010DE26 /* BDKLPAccount.h */,
+				C31776F7170262130010DE26 /* BDKLPAccount.m */,
+				C31776F9170284CE0010DE26 /* BDKCFUpload.h */,
+				C31776FA170284CE0010DE26 /* BDKCFUpload.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C356BE9916FF8F8300F7A031 = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +416,7 @@
 		C3FD9E4816FFB73B0099E595 /* Campfire */ = {
 			isa = PBXGroup;
 			children = (
+				C31776E9170259B80010DE26 /* Models */,
 				C3FD9E4916FFB7530099E595 /* BDKCampfireClient.h */,
 				C3FD9E4A16FFB7530099E595 /* BDKCampfireClient.m */,
 				C3FD9E6316FFEF7A0099E595 /* BDKLaunchpadClient.h */,
@@ -539,6 +577,12 @@
 				C3FD9E6516FFEF7A0099E595 /* BDKLaunchpadClient.m in Sources */,
 				C3632ECA17013A4A0028C794 /* BDKRoomsViewController.m in Sources */,
 				C3632ECD17013A750028C794 /* UINavigationController+BDKKit.m in Sources */,
+				C31776EC170259CA0010DE26 /* BDKCFModel.m in Sources */,
+				C31776EF170259D70010DE26 /* BDKCFUser.m in Sources */,
+				C31776F2170260CE0010DE26 /* BDKLPAuthorizationData.m in Sources */,
+				C31776F5170261450010DE26 /* BDKLPIdentity.m in Sources */,
+				C31776F8170262130010DE26 /* BDKLPAccount.m in Sources */,
+				C31776FB170284CE0010DE26 /* BDKCFUpload.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

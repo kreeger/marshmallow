@@ -4,6 +4,10 @@
 #import "UINavigationController+BDKKit.h"
 #import <CocoaLumberjack/DDTTYLogger.h>
 
+#import "BDKLaunchpadClient.h"
+#import "BDKLPAuthorizationData.h"
+#import "BDKLPAccount.h"
+
 @interface BDKAppDelegate ()
 
 /** Initializes user defaults.
@@ -23,6 +27,14 @@
 
     // check if the user is logged in first
     if ([[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]) {
+        [BDKLaunchpadClient getAuthorization:^(BDKLPAuthorizationData *authData) {
+            NSArray *accounts = [authData.accounts select:^BOOL(BDKLPAccount *acc) {
+                return acc.type == BDKLPAccountTypeCampfire;
+            }];
+            DDLogAPI(@"%@", accounts.first);
+        } failure:^(NSError *error, NSInteger responseCode) {
+            DDLogError(@"Error! %@.", error);
+        }];
         BDKRoomsViewController *vc = [BDKRoomsViewController vc];
         UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
         self.window.rootViewController = nav;

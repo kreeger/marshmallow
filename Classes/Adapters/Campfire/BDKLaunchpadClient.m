@@ -1,5 +1,6 @@
 #import "BDKLaunchpadClient.h"
 #import "BDKAPIKeyManager.h"
+#import "BDKLPAuthorizationData.h"
 #import "NSString+BDKKit.h"
 
 #import <AFNetworking/AFHTTPRequestOperation.h>
@@ -13,6 +14,8 @@
     dispatch_once(&onceToken, ^{
         __sharedInstance = [[BDKLaunchpadClient alloc] initWithBaseURL:
                             [@"https://launchpad.37signals.com/authorization" urlValue]];
+        NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken];
+        if (token) [__sharedInstance setAuthorizationHeaderWithToken:token];
     });
     return __sharedInstance;
 }
@@ -36,10 +39,20 @@
                              @"code": verificationCode.stringByUrlEncoding};
     [[self sharedInstance] postPath:@"token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *accessToken = responseObject[@"access_token"];
+        [[self sharedInstance] setAuthorizationHeaderWithToken:accessToken];
         NSString *refreshToken = responseObject[@"refresh_token"];
         NSTimeInterval interval = [responseObject[@"expires_in"] doubleValue];
         NSDate *expiresAt = [[NSDate date] dateByAddingTimeInterval:interval];
         success(accessToken, refreshToken, expiresAt);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error, operation.response.statusCode);
+    }];
+}
+
++ (void)getAuthorization:(AuthDataBlock)success failure:(FailureBlock)failure {
+    [[self sharedInstance] getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        BDKLPAuthorizationData *authData = [BDKLPAuthorizationData modelWithDictionary:responseObject];
+        success(authData);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error, operation.response.statusCode);
     }];

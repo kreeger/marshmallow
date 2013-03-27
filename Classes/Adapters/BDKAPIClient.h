@@ -4,7 +4,7 @@
 
 typedef void (^FailureBlock)(NSError *error, NSInteger responseCode);
 typedef void (^SuccessBlock)(id responseObject);
-typedef void (^ArraySuccessBlock)(NSArray *result);
+typedef void (^ArrayBlock)(NSArray *result);
 typedef void (^EmptyBlock)(void);
 
 /** A generic interface for API clients.
