@@ -75,6 +75,26 @@
     }];
 }
 
++ (void)highlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure
+{
+    NSString *path = NSStringWithFormat(@"messages/%@/star", messageId);
+    [[self sharedInstance] postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error, operation.response.statusCode);
+    }];
+}
+
++ (void)unhighlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure
+{
+    NSString *path = NSStringWithFormat(@"messages/%@/star", messageId);
+    [[self sharedInstance] deletePath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error, operation.response.statusCode);
+    }];
+}
+
 #pragma mark - Room methods
 
 + (void)getRooms:(ArrayBlock)success failure:(FailureBlock)failure
