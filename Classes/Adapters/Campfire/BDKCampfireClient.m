@@ -8,6 +8,8 @@
 @interface BDKCampfireClient ()
 
 + (void)getRoomsForPath:(NSString *)path success:(ArrayBlock)success failure:(FailureBlock)failure;
++ (void)getMessagesForPath:(NSString *)path params:(NSDictionary *)params
+                   success:(ArrayBlock)success failure:(FailureBlock)failure;
 
 @end
 
@@ -50,11 +52,24 @@
 
 #pragma mark - Message methods
 
++ (void)getMessagesForPath:(NSString *)path params:(NSDictionary *)params
+                   success:(ArrayBlock)success failure:(FailureBlock)failure
+{
+    [[self sharedInstance] getPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *messages = [responseObject map:^BDKCFMessage *(NSDictionary *message) {
+            return [BDKCFMessage modelWithDictionary:message];
+        }];
+        success(messages);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error, operation.response.statusCode);
+    }];
+}
+
 + (void)postMessage:(BDKCFMessage *)message toRoom:(NSNumber *)roomId
             success:(MessageBlock)success failure:(FailureBlock)failure
 {
-    NSString *path = NSStringWithFormat(@"rooms/%@/speak", roomId);
-    [[self sharedInstance] postPath:path parameters:message.asApiBody success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *path = NSStringWithFormat(@"room/%@/speak", roomId);
+    [[self sharedInstance] postPath:path parameters:message.asApiData success:^(AFHTTPRequestOperation *operation, id responseObject) {
         BDKCFMessage *message = [BDKCFMessage modelWithDictionary:responseObject];
         success(message);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -64,15 +79,7 @@
 
 + (void)getMessagesForRoom:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure
 {
-    NSString *path = NSStringWithFormat(@"rooms/%@", roomId);
-    [[self sharedInstance] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *messages = [responseObject map:^BDKCFMessage *(NSDictionary *message) {
-            return [BDKCFMessage modelWithDictionary:message];
-        }];
-        success(messages);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
-    }];
+    [self getMessagesForPath:NSStringWithFormat(@"room/%@", roomId) params:nil success:success failure:failure];
 }
 
 + (void)highlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure
@@ -97,16 +104,6 @@
 
 #pragma mark - Room methods
 
-+ (void)getRooms:(ArrayBlock)success failure:(FailureBlock)failure
-{
-    return [self getRoomsForPath:@"rooms" success:success failure:failure];
-}
-
-+ (void)getPresentRooms:(ArrayBlock)success failure:(FailureBlock)failure
-{
-    return [self getRoomsForPath:@"presence" success:success failure:failure];
-}
-
 + (void)getRoomsForPath:(NSString *)path success:(ArrayBlock)success failure:(FailureBlock)failure
 {
     [[self sharedInstance] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -119,15 +116,96 @@
     }];
 }
 
++ (void)getRooms:(ArrayBlock)success failure:(FailureBlock)failure
+{
+    return [self getRoomsForPath:@"rooms" success:success failure:failure];
+}
+
++ (void)getPresentRooms:(ArrayBlock)success failure:(FailureBlock)failure
+{
+    return [self getRoomsForPath:@"presence" success:success failure:failure];
+}
+
 + (void)getRoomForId:(NSNumber *)roomId success:(RoomBlock)success failure:(FailureBlock)failure
 {
-    NSString *path = NSStringWithFormat(@"rooms/%@", roomId);
+    NSString *path = NSStringWithFormat(@"room/%@", roomId);
     [[self sharedInstance] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         BDKCFRoom *room = [BDKCFRoom modelWithDictionary:responseObject];
         success(room);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error, operation.response.statusCode);
     }];
+}
+
++ (void)updateRoom:(BDKCFRoom *)room success:(EmptyBlock)success failure:(FailureBlock)failure
+{
+    NSString *path = NSStringWithFormat(@"room/%@", room.identifier);
+    [[self sharedInstance] putPath:path parameters:room.asApiData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error, operation.response.statusCode);
+    }];
+}
+
++ (void)joinRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure
+{
+    NSString *path = NSStringWithFormat(@"room/%@/join", roomId);
+    [[self sharedInstance] postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error, operation.response.statusCode);
+    }];
+}
+
++ (void)leaveRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure
+{
+    NSString *path = NSStringWithFormat(@"room/%@/leave", roomId);
+    [[self sharedInstance] postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error, operation.response.statusCode);
+    }];
+}
+
++ (void)lockRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure
+{
+    NSString *path = NSStringWithFormat(@"room/%@/lock", roomId);
+    [[self sharedInstance] postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error, operation.response.statusCode);
+    }];
+}
+
++ (void)unlockRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure
+{
+    NSString *path = NSStringWithFormat(@"room/%@/unlock", roomId);
+    [[self sharedInstance] postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error, operation.response.statusCode);
+    }];
+}
+
+#pragma mark - Search methods
+
++ (void)searchMessagesForQuery:(NSString *)query success:(ArrayBlock)success failure:(FailureBlock)failure
+{
+    [self getMessagesForPath:@"search" params:@{@"q": query.stringByUrlEncoding} success:success failure:failure];
+}
+
+#pragma mark - Transcript methods
+
++ (void)getTranscriptForTodayForRoomId:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure
+{
+    NSString *path = NSStringWithFormat(@"room/%@/transcript", roomId);
+    [self getMessagesForPath:path params:nil success:success failure:failure];
+}
+
++ (void)getTranscriptForRoomId:(NSNumber *)roomId date:(NSDate *)date success:(ArrayBlock)success failure:(FailureBlock)failure
+{
+    NSString *path = NSStringWithFormat(@"room/%@/transcript/%@/%@/%@", roomId, @(0), @(0), @(0));
+    [self getMessagesForPath:path params:nil success:success failure:failure];
 }
 
 #pragma mark - User methods

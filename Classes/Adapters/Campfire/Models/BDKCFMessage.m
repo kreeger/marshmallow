@@ -67,10 +67,10 @@
 
 #pragma mark - Properties
 
-- (NSDictionary *)asApiBody {
+- (NSDictionary *)asApiData {
     // TODO: Convert line breaks to &#xA;
-    return @{@"body": self.body,
-             @"type": [[[[self class] messageTypeMappings] allKeysForObject:@(self.type)] first]};
+    NSString *type = [[[[self class] messageTypeMappings] allKeysForObject:@(self.type)] first];
+    return @{@"message": @{@"body": self.body, @"type": type}};
 }
 
 @end

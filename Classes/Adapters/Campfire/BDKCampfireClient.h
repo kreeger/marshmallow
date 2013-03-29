@@ -44,7 +44,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
 
 #pragma mark - Transcript methods
 
-+ (void)getTranscriptForToday:(ArrayBlock)success failure:(FailureBlock)failure;
++ (void)getTranscriptForTodayForRoomId:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure;
 + (void)getTranscriptForDate:(NSDate *)date success:(ArrayBlock)success failure:(FailureBlock)failure;
 
 #pragma mark - Upload methods

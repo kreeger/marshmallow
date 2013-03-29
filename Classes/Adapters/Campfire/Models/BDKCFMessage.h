@@ -34,8 +34,6 @@ typedef enum {
 @property (nonatomic) BDKCFMessageType type;
 @property (nonatomic) BOOL starred;
 
-@property (readonly) NSDictionary *asApiBody;
-
 + (NSDictionary *)messageTypeMappings;
 + (id)messageWithBody:(NSString *)body type:(BDKCFMessageType)type;
 - (id)initWithBody:(NSString *)body type:(BDKCFMessageType)type;

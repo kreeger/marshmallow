@@ -4,6 +4,7 @@ PODS:
   - CocoaLumberjack (1.6)
   - EDColor (0.2.0)
   - ISO8601DateFormatter (0.6)
+  - Kiwi (2.0.6)
   - MagicalRecord (2.1)
   - ObjectiveSugar (0.6.2)
 
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - CocoaLumberjack (~> 1.6)
   - EDColor (~> 0.2.0)
   - ISO8601DateFormatter (~> 0.6)
+  - Kiwi
   - MagicalRecord (~> 2.1)
   - ObjectiveSugar (~> 0.6.2)
 
@@ -22,6 +24,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 0f2fa7090a23f13261072d882e017c688300efbe
   EDColor: ed4dec30508a1443971ba4148ed2ba9fdde45bc5
   ISO8601DateFormatter: dc05a2481edf49668d85d3ff8c466c32eb544780
+  Kiwi: 56082a80f942de4d10423d8d8a599ab30cf50228
   MagicalRecord: 64e7184c240087a45e9588a722eaf05b0ad837f7
   ObjectiveSugar: 50bcd329b18ab6da6457e1bf55be71acb7c39d44
 
