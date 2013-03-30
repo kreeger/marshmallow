@@ -1,4 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="BDKAccount" syncable="YES">
+        <attribute name="createdAt" attributeType="Date" syncable="YES"/>
+        <attribute name="identifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="ownerIdentifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="plan" attributeType="String" syncable="YES"/>
+        <attribute name="storage" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="subdomain" attributeType="String" syncable="YES"/>
+        <attribute name="timeZone" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="BDKIdentity" syncable="YES">
+        <attribute name="emailAddress" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastName" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="BDKLaunchpadAccount" syncable="YES">
+        <attribute name="hrefUrl" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="BDKMessage" syncable="YES">
+        <attribute name="body" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="roomIdentifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+        <attribute name="userIdentifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="BDKRoom" syncable="YES">
+        <attribute name="activeTokenValue" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" syncable="YES"/>
+        <attribute name="full" attributeType="Boolean" syncable="YES"/>
+        <attribute name="identifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="membershipLimit" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="openToGuests" attributeType="Boolean" syncable="YES"/>
+        <attribute name="topic" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="BDKUpload" syncable="YES">
+        <attribute name="byteSize" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="contentType" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" syncable="YES"/>
+        <attribute name="fullUrl" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="roomIdentifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userIdentifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="BDKUser" syncable="YES">
+        <attribute name="admin" attributeType="Boolean" syncable="YES"/>
+        <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" syncable="YES"/>
+        <attribute name="emailAddress" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="BDKAccount" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="BDKMessage" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="BDKRoom" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="BDKUpload" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="BDKUser" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="BDKIdentity" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="BDKLaunchpadAccount" positionX="160" positionY="192" width="128" height="105"/>
+    </elements>
 </model>
