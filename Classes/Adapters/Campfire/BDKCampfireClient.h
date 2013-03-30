@@ -21,21 +21,33 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
 
 #pragma mark - Message methods
 
-+ (void)postMessage:(BDKCFMessage *)message toRoom:(NSNumber *)roomId
-            success:(MessageBlock)success failure:(FailureBlock)failure;
++ (void)postMessage:(BDKCFMessage *)message
+             toRoom:(NSNumber *)roomId
+            success:(MessageBlock)success
+            failure:(FailureBlock)failure;
+
 + (void)getMessagesForRoom:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure;
+
 + (void)highlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure;
+
 + (void)unhighlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure;
 
 #pragma mark - Room methods
 
 + (void)getRooms:(ArrayBlock)success failure:(FailureBlock)failure;
+
 + (void)getPresentRooms:(ArrayBlock)success failure:(FailureBlock)failure;
+
 + (void)getRoomForId:(NSNumber *)roomId success:(RoomBlock)success failure:(FailureBlock)failure;
+
 + (void)updateRoom:(BDKCFRoom *)room success:(EmptyBlock)success failure:(FailureBlock)failure;
+
 + (void)joinRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
+
 + (void)leaveRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
+
 + (void)lockRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
+
 + (void)unlockRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
 
 #pragma mark - Search methods
@@ -45,18 +57,31 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
 #pragma mark - Transcript methods
 
 + (void)getTranscriptForTodayForRoomId:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure;
-+ (void)getTranscriptForDate:(NSDate *)date success:(ArrayBlock)success failure:(FailureBlock)failure;
 
-#pragma mark - Upload methods
++ (void)getTranscriptForRoomId:(NSNumber *)roomId
+                          date:(NSDate *)date
+                       success:(ArrayBlock)success
+                       failure:(FailureBlock)failure;
 
-+ (void)uploadFile:(NSData *)file toRoom:(NSNumber *)roomId success:(UploadBlock)success failure:(FailureBlock)failure;
+#pragma mark - File upload methods
+
++ (void)uploadFile:(NSData *)file
+          filename:(NSString *)filename
+            toRoom:(NSNumber *)roomId
+           success:(UploadBlock)success
+           failure:(FailureBlock)failure;
+
 + (void)getRecentUploadsForRoomId:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure;
-+ (void)getUploadForMessage:(NSNumber *)messageId inRoom:(NSNumber *)roomId
-                    success:(UploadBlock)success failure:(FailureBlock)failure;
+
++ (void)getUploadForMessageId:(NSNumber *)messageId
+                       inRoom:(NSNumber *)roomId
+                      success:(UploadBlock)success
+                      failure:(FailureBlock)failure;
 
 #pragma mark - User methods
 
 + (void)getUserForId:(NSNumber *)userId success:(UserBlock)success failure:(FailureBlock)failure;
+
 + (void)getCurrentUser:(UserBlock)success failure:(FailureBlock)failure;
 
 @end
