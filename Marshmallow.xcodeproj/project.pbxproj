@@ -461,6 +461,7 @@
 				C356BE9F16FF8F8300F7A031 /* Frameworks */,
 				C356BEA016FF8F8300F7A031 /* Resources */,
 				F1332C83A1964880BEEE1D76 /* Copy Pods Resources */,
+				C33108B217073C1D00459FC7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -564,6 +565,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-test-resources.sh\"\n";
+		};
+		C33108B217073C1D00459FC7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "/usr/local/bin/appledoc --project-name Marshmallow --project-company \"Ben Kreeger\" --company-id gr.kree --output ~/help --logformat xcode --ignore Pods --exit-threshold 2 .";
 		};
 		C356BEC516FF8F8300F7A031 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

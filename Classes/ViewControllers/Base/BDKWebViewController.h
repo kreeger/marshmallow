@@ -1,8 +1,15 @@
 #import "BDKViewController.h"
 
+/** A standard interface for an embedded web view. Defines self as a UIWebViewDelegate.
+ */
 @interface BDKWebViewController : BDKViewController <UIWebViewDelegate>
 
+/** The web view embedded in the controller's view with an identical frame.
+ */
 @property (strong, nonatomic) UIWebView *webView;
+
+/** The URL to be loaded when the view appears; this is set in an initializer.
+ */
 @property (readonly) NSURL *url;
 
 /** Creates an instance with a code identifier and a specific table view style.

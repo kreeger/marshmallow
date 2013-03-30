@@ -4,6 +4,9 @@
 #define kBDK37SignalsClientSecret @"37SignalsClientSecret"
 #define kBDK37SignalsRedirectURI @"37SignalsRedirectURI"
 
+/** A handy class to retrieve a plethora of API keys stored in a specific `plist` file.
+ *  NOTE: the file at `Resources/APIKeys.plist` must exist.
+ */
 @interface BDKAPIKeyManager : NSObject
 
 /** Grabs a singleton instance of the adapter.
