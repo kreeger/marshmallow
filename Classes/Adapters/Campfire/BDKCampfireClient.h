@@ -8,6 +8,8 @@ typedef void (^RoomBlock)(BDKCFRoom *room);
 typedef void (^MessageBlock)(BDKCFMessage *message);
 typedef void (^UploadBlock)(BDKCFUpload *upload);
 
+/** The big kahuna. This manages all inbound and outbound communication with 37signals' Campfire API.
+ */
 @interface BDKCampfireClient : BDKAPIClient
 
 /** Grabs a singleton instance of the adapter so manual requests can be made.
