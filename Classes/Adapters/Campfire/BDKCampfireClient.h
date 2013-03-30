@@ -13,25 +13,79 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
 @interface BDKCampfireClient : BDKAPIClient
 
 /** Grabs a singleton instance of the adapter so manual requests can be made.
- *  @returns singleton instance.
+ *  @returns A singleton instance.
  */
 + (id)sharedInstance;
 
 #pragma mark - Account methods
 
+/** Fetches info about the current account.
+ *  http://b.kree.gr/14wb8bK
+ *  
+ *  @param success A block to be called upon completion; contains a reference to the retrieved BDKCFAccount.
+ *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
+ */
 + (void)getCurrentAccount:(AccountBlock)success failure:(FailureBlock)failure;
 
 #pragma mark - Message methods
 
+/** Sends a new message with the currently authenticated user as the sender.
+ *  http://b.kree.gr/Z0b6Ry
+ *
+ *  @param message A message instance with a body and a message type.
+ *  @param roomId The Campfire API room identifier where the message will be posted.
+ *  @param success A block to be called upon completion; contains a reference to the full created BDKCFMessage.
+ *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
+ */
 + (void)postMessage:(BDKCFMessage *)message
              toRoom:(NSNumber *)roomId
             success:(MessageBlock)success
             failure:(FailureBlock)failure;
 
-+ (void)getMessagesForRoom:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure;
+/** Returns a collection of 100 recent messages in the room.
+ *  http://b.kree.gr/Z0bu2D
+ *
+ *  @param roomId The Campfire API room identifier for which to retrieve messages.
+ *  @param sinceMessageId The Campfire API message identifier after which messages should be retrieved. Can be nil.
+ *  @param success A block to be called upon completion; contains a list of BDKCFMessage instances.
+ *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
+ */
++ (void)getMessagesForRoom:(NSNumber *)roomId
+            sinceMessageId:(NSNumber *)sinceMessageId
+                   success:(ArrayBlock)success
+                   failure:(FailureBlock)failure;
 
+/** Returns a collection of recent messages in the room.
+ *  http://b.kree.gr/Z0bu2D
+ *
+ *  @param roomId The Campfire API room identifier for which to retrieve messages.
+ *  @param limit The maximum number of messages to retrieve; max is 100. Can be nil.
+ *  @param sinceMessageId The Campfire API message identifier after which messages should be retrieved. Can be nil.
+ *  @param success A block to be called upon completion; contains a list of BDKCFMessage instances.
+ *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
+ */
++ (void)getMessagesForRoom:(NSNumber *)roomId
+                     limit:(NSInteger)limit
+            sinceMessageId:(NSNumber *)sinceMessageId
+                   success:(ArrayBlock)success
+                   failure:(FailureBlock)failure;
+
+/** Marks a message to be highlighted in the room's transcript.
+ *  http://b.kree.gr/Z0dAiM
+ *
+ *  @param messageId the Campfire API of the message to highlight.
+ *  @param success A block to be called upon completion.
+ *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
+ */
 + (void)highlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure;
 
+/** Removes a "highlighted" status from a message in the room's transcript.
+ *  http://b.kree.gr/Z0dLe6
+ *
+ *  @param messageId the Campfire API of the message from which to remove the highlight.
+ *  @param success A block to be called upon completion.
+ *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
+ */
 + (void)unhighlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure;
 
 #pragma mark - Room methods

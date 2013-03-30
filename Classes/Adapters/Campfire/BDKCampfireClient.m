@@ -128,9 +128,24 @@
                             }];
 }
 
-+ (void)getMessagesForRoom:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure
++ (void)getMessagesForRoom:(NSNumber *)roomId
+            sinceMessageId:(NSNumber *)sinceMessageId
+                   success:(ArrayBlock)success
+                   failure:(FailureBlock)failure
 {
-    [self getMessagesForPath:NSStringWithFormat(@"room/%@", roomId) params:nil success:success failure:failure];
+    [self getMessagesForRoom:roomId limit:100 sinceMessageId:sinceMessageId success:success failure:failure];
+}
+
++ (void)getMessagesForRoom:(NSNumber *)roomId
+                     limit:(NSInteger)limit
+            sinceMessageId:(NSNumber *)sinceMessageId
+                   success:(ArrayBlock)success
+                   failure:(FailureBlock)failure
+{
+    if (limit > 100) limit = 100;
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"limit": @(limit)}];
+    if (sinceMessageId) params[@"since_message_id"] = sinceMessageId;
+    [self getMessagesForPath:NSStringWithFormat(@"room/%@", roomId) params:params success:success failure:failure];
 }
 
 + (void)highlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure
