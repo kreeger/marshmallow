@@ -52,6 +52,21 @@
 		C356BF2416FFAA5F00F7A031 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C356BF1E16FFAA5F00F7A031 /* RobotoCondensed-Regular.ttf */; };
 		C3632ECA17013A4A0028C794 /* BDKRoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3632EC917013A4A0028C794 /* BDKRoomsViewController.m */; };
 		C3632ECD17013A750028C794 /* UINavigationController+BDKKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3632ECC17013A750028C794 /* UINavigationController+BDKKit.m */; };
+		C36819DE17079DCB002C6742 /* BDKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819DD17079DCB002C6742 /* BDKModel.m */; };
+		C36819FC17079DE4002C6742 /* BDKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819E017079DE4002C6742 /* BDKAccount.m */; };
+		C36819FD17079DE4002C6742 /* BDKIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819E217079DE4002C6742 /* BDKIdentity.m */; };
+		C36819FE17079DE4002C6742 /* BDKLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819E417079DE4002C6742 /* BDKLaunchpadAccount.m */; };
+		C36819FF17079DE4002C6742 /* BDKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819E617079DE4002C6742 /* BDKMessage.m */; };
+		C3681A0017079DE4002C6742 /* BDKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819E817079DE4002C6742 /* BDKRoom.m */; };
+		C3681A0117079DE4002C6742 /* BDKUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819EA17079DE4002C6742 /* BDKUpload.m */; };
+		C3681A0217079DE4002C6742 /* BDKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819EC17079DE4002C6742 /* BDKUser.m */; };
+		C3681A0317079DE4002C6742 /* _BDKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819EF17079DE4002C6742 /* _BDKAccount.m */; };
+		C3681A0417079DE4002C6742 /* _BDKIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819F117079DE4002C6742 /* _BDKIdentity.m */; };
+		C3681A0517079DE4002C6742 /* _BDKLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819F317079DE4002C6742 /* _BDKLaunchpadAccount.m */; };
+		C3681A0617079DE4002C6742 /* _BDKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819F517079DE4002C6742 /* _BDKMessage.m */; };
+		C3681A0717079DE4002C6742 /* _BDKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819F717079DE4002C6742 /* _BDKRoom.m */; };
+		C3681A0817079DE4002C6742 /* _BDKUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819F917079DE4002C6742 /* _BDKUpload.m */; };
+		C3681A0917079DE4002C6742 /* _BDKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819FB17079DE4002C6742 /* _BDKUser.m */; };
 		C3FD9E4B16FFB7530099E595 /* BDKCampfireClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD9E4A16FFB7530099E595 /* BDKCampfireClient.m */; };
 		C3FD9E4E16FFB78D0099E595 /* BDKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FD9E4D16FFB78D0099E595 /* BDKAPIClient.m */; };
 		C3FD9E5016FFB7FC0099E595 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FD9E4F16FFB7FC0099E595 /* QuartzCore.framework */; };
@@ -144,6 +159,36 @@
 		C3632EC917013A4A0028C794 /* BDKRoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomsViewController.m; sourceTree = "<group>"; };
 		C3632ECB17013A750028C794 /* UINavigationController+BDKKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BDKKit.h"; sourceTree = "<group>"; };
 		C3632ECC17013A750028C794 /* UINavigationController+BDKKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+BDKKit.m"; sourceTree = "<group>"; };
+		C36819DC17079DCB002C6742 /* BDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKModel.h; sourceTree = "<group>"; };
+		C36819DD17079DCB002C6742 /* BDKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKModel.m; sourceTree = "<group>"; };
+		C36819DF17079DE4002C6742 /* BDKAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKAccount.h; sourceTree = "<group>"; };
+		C36819E017079DE4002C6742 /* BDKAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKAccount.m; sourceTree = "<group>"; };
+		C36819E117079DE4002C6742 /* BDKIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKIdentity.h; sourceTree = "<group>"; };
+		C36819E217079DE4002C6742 /* BDKIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKIdentity.m; sourceTree = "<group>"; };
+		C36819E317079DE4002C6742 /* BDKLaunchpadAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLaunchpadAccount.h; sourceTree = "<group>"; };
+		C36819E417079DE4002C6742 /* BDKLaunchpadAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLaunchpadAccount.m; sourceTree = "<group>"; };
+		C36819E517079DE4002C6742 /* BDKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKMessage.h; sourceTree = "<group>"; };
+		C36819E617079DE4002C6742 /* BDKMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKMessage.m; sourceTree = "<group>"; };
+		C36819E717079DE4002C6742 /* BDKRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoom.h; sourceTree = "<group>"; };
+		C36819E817079DE4002C6742 /* BDKRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoom.m; sourceTree = "<group>"; };
+		C36819E917079DE4002C6742 /* BDKUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKUpload.h; sourceTree = "<group>"; };
+		C36819EA17079DE4002C6742 /* BDKUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUpload.m; sourceTree = "<group>"; };
+		C36819EB17079DE4002C6742 /* BDKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKUser.h; sourceTree = "<group>"; };
+		C36819EC17079DE4002C6742 /* BDKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUser.m; sourceTree = "<group>"; };
+		C36819EE17079DE4002C6742 /* _BDKAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKAccount.h; sourceTree = "<group>"; };
+		C36819EF17079DE4002C6742 /* _BDKAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKAccount.m; sourceTree = "<group>"; };
+		C36819F017079DE4002C6742 /* _BDKIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKIdentity.h; sourceTree = "<group>"; };
+		C36819F117079DE4002C6742 /* _BDKIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKIdentity.m; sourceTree = "<group>"; };
+		C36819F217079DE4002C6742 /* _BDKLaunchpadAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKLaunchpadAccount.h; sourceTree = "<group>"; };
+		C36819F317079DE4002C6742 /* _BDKLaunchpadAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKLaunchpadAccount.m; sourceTree = "<group>"; };
+		C36819F417079DE4002C6742 /* _BDKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKMessage.h; sourceTree = "<group>"; };
+		C36819F517079DE4002C6742 /* _BDKMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKMessage.m; sourceTree = "<group>"; };
+		C36819F617079DE4002C6742 /* _BDKRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKRoom.h; sourceTree = "<group>"; };
+		C36819F717079DE4002C6742 /* _BDKRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKRoom.m; sourceTree = "<group>"; };
+		C36819F817079DE4002C6742 /* _BDKUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKUpload.h; sourceTree = "<group>"; };
+		C36819F917079DE4002C6742 /* _BDKUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKUpload.m; sourceTree = "<group>"; };
+		C36819FA17079DE4002C6742 /* _BDKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKUser.h; sourceTree = "<group>"; };
+		C36819FB17079DE4002C6742 /* _BDKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKUser.m; sourceTree = "<group>"; };
 		C3FD9E4916FFB7530099E595 /* BDKCampfireClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCampfireClient.h; sourceTree = "<group>"; };
 		C3FD9E4A16FFB7530099E595 /* BDKCampfireClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCampfireClient.m; sourceTree = "<group>"; };
 		C3FD9E4C16FFB78D0099E595 /* BDKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKAPIClient.h; sourceTree = "<group>"; };
@@ -313,6 +358,23 @@
 		C356BEE616FF93CA00F7A031 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				C36819ED17079DE4002C6742 /* Machine */,
+				C36819DF17079DE4002C6742 /* BDKAccount.h */,
+				C36819E017079DE4002C6742 /* BDKAccount.m */,
+				C36819E117079DE4002C6742 /* BDKIdentity.h */,
+				C36819E217079DE4002C6742 /* BDKIdentity.m */,
+				C36819E317079DE4002C6742 /* BDKLaunchpadAccount.h */,
+				C36819E417079DE4002C6742 /* BDKLaunchpadAccount.m */,
+				C36819E517079DE4002C6742 /* BDKMessage.h */,
+				C36819E617079DE4002C6742 /* BDKMessage.m */,
+				C36819DC17079DCB002C6742 /* BDKModel.h */,
+				C36819DD17079DCB002C6742 /* BDKModel.m */,
+				C36819E717079DE4002C6742 /* BDKRoom.h */,
+				C36819E817079DE4002C6742 /* BDKRoom.m */,
+				C36819E917079DE4002C6742 /* BDKUpload.h */,
+				C36819EA17079DE4002C6742 /* BDKUpload.m */,
+				C36819EB17079DE4002C6742 /* BDKUser.h */,
+				C36819EC17079DE4002C6742 /* BDKUser.m */,
 				C356BEE716FF93CA00F7A031 /* Marshmallow.xcdatamodeld */,
 			);
 			path = Data;
@@ -424,6 +486,27 @@
 				C3632EC917013A4A0028C794 /* BDKRoomsViewController.m */,
 			);
 			path = Lists;
+			sourceTree = "<group>";
+		};
+		C36819ED17079DE4002C6742 /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				C36819EE17079DE4002C6742 /* _BDKAccount.h */,
+				C36819EF17079DE4002C6742 /* _BDKAccount.m */,
+				C36819F017079DE4002C6742 /* _BDKIdentity.h */,
+				C36819F117079DE4002C6742 /* _BDKIdentity.m */,
+				C36819F217079DE4002C6742 /* _BDKLaunchpadAccount.h */,
+				C36819F317079DE4002C6742 /* _BDKLaunchpadAccount.m */,
+				C36819F417079DE4002C6742 /* _BDKMessage.h */,
+				C36819F517079DE4002C6742 /* _BDKMessage.m */,
+				C36819F617079DE4002C6742 /* _BDKRoom.h */,
+				C36819F717079DE4002C6742 /* _BDKRoom.m */,
+				C36819F817079DE4002C6742 /* _BDKUpload.h */,
+				C36819F917079DE4002C6742 /* _BDKUpload.m */,
+				C36819FA17079DE4002C6742 /* _BDKUser.h */,
+				C36819FB17079DE4002C6742 /* _BDKUser.m */,
+			);
+			path = Machine;
 			sourceTree = "<group>";
 		};
 		C3FD9E4716FFB73B0099E595 /* Adapters */ = {
@@ -640,6 +723,21 @@
 				C31776FE170288690010DE26 /* BDKCFRoom.m in Sources */,
 				C317770117028B870010DE26 /* BDKCFMessage.m in Sources */,
 				C317770617028F3F0010DE26 /* BDKCFAccount.m in Sources */,
+				C36819DE17079DCB002C6742 /* BDKModel.m in Sources */,
+				C36819FC17079DE4002C6742 /* BDKAccount.m in Sources */,
+				C36819FD17079DE4002C6742 /* BDKIdentity.m in Sources */,
+				C36819FE17079DE4002C6742 /* BDKLaunchpadAccount.m in Sources */,
+				C36819FF17079DE4002C6742 /* BDKMessage.m in Sources */,
+				C3681A0017079DE4002C6742 /* BDKRoom.m in Sources */,
+				C3681A0117079DE4002C6742 /* BDKUpload.m in Sources */,
+				C3681A0217079DE4002C6742 /* BDKUser.m in Sources */,
+				C3681A0317079DE4002C6742 /* _BDKAccount.m in Sources */,
+				C3681A0417079DE4002C6742 /* _BDKIdentity.m in Sources */,
+				C3681A0517079DE4002C6742 /* _BDKLaunchpadAccount.m in Sources */,
+				C3681A0617079DE4002C6742 /* _BDKMessage.m in Sources */,
+				C3681A0717079DE4002C6742 /* _BDKRoom.m in Sources */,
+				C3681A0817079DE4002C6742 /* _BDKUpload.m in Sources */,
+				C3681A0917079DE4002C6742 /* _BDKUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

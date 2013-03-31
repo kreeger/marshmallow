@@ -13,6 +13,8 @@
  */
 - (void)kickstartUserDefaults;
 
+- (void)refreshUserData;
+
 @end
 
 @implementation BDKAppDelegate
@@ -26,6 +28,7 @@
 
     // check if the user is logged in first
     if ([[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]) {
+        [self refreshUserData];
         [BDKLaunchpadClient getAuthorization:^(BDKLPAuthorizationData *authData) {
             NSArray *accounts = [authData.accounts select:^BOOL(BDKLPAccount *acc) {
                 return acc.type == BDKLPAccountTypeCampfire;
@@ -34,6 +37,7 @@
         } failure:^(NSError *error, NSInteger responseCode) {
             DDLogError(@"Error! %@.", error);
         }];
+        
         BDKRoomsViewController *vc = [BDKRoomsViewController vc];
         UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
         self.window.rootViewController = nav;
@@ -75,6 +79,11 @@
     NSDictionary *userDefaults = @{};
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaults];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)refreshUserData
+{
+
 }
 
 #pragma mark - Application's Documents directory
