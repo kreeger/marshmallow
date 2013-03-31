@@ -5,10 +5,10 @@
 #import "BDKModel.h"
 
 extern const struct BDKLaunchpadAccountAttributes {
-	__unsafe_unretained NSString *hrefUrl;
+	__unsafe_unretained NSString *href;
 	__unsafe_unretained NSString *identifier;
 	__unsafe_unretained NSString *name;
-	__unsafe_unretained NSString *type;
+	__unsafe_unretained NSString *product;
 } BDKLaunchpadAccountAttributes;
 
 extern const struct BDKLaunchpadAccountRelationships {
@@ -36,11 +36,11 @@ extern const struct BDKLaunchpadAccountFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* hrefUrl;
+@property (nonatomic, strong) NSString* href;
 
 
 
-//- (BOOL)validateHrefUrl:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateHref:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -70,11 +70,11 @@ extern const struct BDKLaunchpadAccountFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* type;
+@property (nonatomic, strong) NSString* product;
 
 
 
-//- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateProduct:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -90,8 +90,8 @@ extern const struct BDKLaunchpadAccountFetchedProperties {
 @interface _BDKLaunchpadAccount (CoreDataGeneratedPrimitiveAccessors)
 
 
-- (NSString*)primitiveHrefUrl;
-- (void)setPrimitiveHrefUrl:(NSString*)value;
+- (NSString*)primitiveHref;
+- (void)setPrimitiveHref:(NSString*)value;
 
 
 
@@ -111,8 +111,8 @@ extern const struct BDKLaunchpadAccountFetchedProperties {
 
 
 
-- (NSString*)primitiveType;
-- (void)setPrimitiveType:(NSString*)value;
+- (NSString*)primitiveProduct;
+- (void)setPrimitiveProduct:(NSString*)value;
 
 
 

@@ -32,8 +32,9 @@
 
 #pragma mark - Properties
 
-- (NSDictionary *)asApiData {
-    return @{@"room": @{@"name": self.name, @"topic": self.topic }};
+- (NSDictionary *)asApiData
+{
+    return @{@"room": @{@"name": self.name, @"topic": self.topic}};
 }
 
 @end

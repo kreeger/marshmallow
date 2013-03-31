@@ -6,6 +6,7 @@
 
 #import "BDKLaunchpadClient.h"
 #import "BDKLPModels.h"
+#import "BDKModels.h"
 
 @interface BDKAppDelegate ()
 
@@ -29,14 +30,6 @@
     // check if the user is logged in first
     if ([[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]) {
         [self refreshUserData];
-        [BDKLaunchpadClient getAuthorization:^(BDKLPAuthorizationData *authData) {
-            NSArray *accounts = [authData.accounts select:^BOOL(BDKLPAccount *acc) {
-                return acc.type == BDKLPAccountTypeCampfire;
-            }];
-            DDLogAPI(@"%@", accounts.first);
-        } failure:^(NSError *error, NSInteger responseCode) {
-            DDLogError(@"Error! %@.", error);
-        }];
         
         BDKRoomsViewController *vc = [BDKRoomsViewController vc];
         UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
@@ -83,7 +76,14 @@
 
 - (void)refreshUserData
 {
-
+    [BDKLaunchpadClient getAuthorization:^(BDKLPAuthorizationData *authData) {
+        [authData.accounts each:^(BDKLPAccount *account) {
+            [BDKLaunchpadAccount createOrUpdateWithModel:account inContext:[NSManagedObjectContext contextForCurrentThread]];
+        }];
+        DDLogData(@"Accounts %i, first %@.", [BDKLaunchpadAccount countOfEntities], [BDKLaunchpadAccount findFirst]);
+    } failure:^(NSError *error, NSInteger responseCode) {
+        DDLogError(@"Error! %@.", error);
+    }];
 }
 
 #pragma mark - Application's Documents directory

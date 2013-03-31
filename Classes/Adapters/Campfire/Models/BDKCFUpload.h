@@ -30,7 +30,7 @@
 
 /** The full URL where the file resides and can be retrieved.
  */
-@property (strong, nonatomic) NSURL *fullUrl;
+@property (strong, nonatomic) NSString *fullUrl;
 
 /** The date and time when the file was uploaded.
  */

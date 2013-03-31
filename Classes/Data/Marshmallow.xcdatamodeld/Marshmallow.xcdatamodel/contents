@@ -18,10 +18,10 @@
         <attribute name="lastName" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="BDKLaunchpadAccount" representedClassName="BDKLaunchpadAccount" syncable="YES">
-        <attribute name="hrefUrl" attributeType="String" syncable="YES"/>
+        <attribute name="href" attributeType="String" syncable="YES"/>
         <attribute name="identifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="type" attributeType="String" syncable="YES"/>
+        <attribute name="product" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="BDKMessage" representedClassName="BDKMessage" syncable="YES">
         <attribute name="body" attributeType="String" syncable="YES"/>

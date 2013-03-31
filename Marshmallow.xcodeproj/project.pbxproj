@@ -189,6 +189,7 @@
 		C36819F917079DE4002C6742 /* _BDKUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKUpload.m; sourceTree = "<group>"; };
 		C36819FA17079DE4002C6742 /* _BDKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKUser.h; sourceTree = "<group>"; };
 		C36819FB17079DE4002C6742 /* _BDKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKUser.m; sourceTree = "<group>"; };
+		C3681A0A1707CD8A002C6742 /* BDKModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKModels.h; sourceTree = "<group>"; };
 		C3FD9E4916FFB7530099E595 /* BDKCampfireClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCampfireClient.h; sourceTree = "<group>"; };
 		C3FD9E4A16FFB7530099E595 /* BDKCampfireClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCampfireClient.m; sourceTree = "<group>"; };
 		C3FD9E4C16FFB78D0099E595 /* BDKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKAPIClient.h; sourceTree = "<group>"; };
@@ -369,6 +370,7 @@
 				C36819E617079DE4002C6742 /* BDKMessage.m */,
 				C36819DC17079DCB002C6742 /* BDKModel.h */,
 				C36819DD17079DCB002C6742 /* BDKModel.m */,
+				C3681A0A1707CD8A002C6742 /* BDKModels.h */,
 				C36819E717079DE4002C6742 /* BDKRoom.h */,
 				C36819E817079DE4002C6742 /* BDKRoom.m */,
 				C36819E917079DE4002C6742 /* BDKUpload.h */,

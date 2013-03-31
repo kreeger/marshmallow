@@ -1,16 +1,31 @@
 #import "BDKModel.h"
+#import "BDKCFModel.h"
 
 @implementation BDKModel
 
-+ (id)modelWithBDKCFModel:(BDKCFModel *)model
++ (id)createOrUpdateWithModel:(BDKCFModel *)model inContext:(NSManagedObjectContext *)context
 {
-    return [[self alloc] initWithBDKCFModel:model];
+    unless (context) context = [NSManagedObjectContext defaultContext];
+    NSNumber *apiIdentifier = [model valueForKeyPath:@"apiIdentifier"];
+    BDKModel *found = [self findFirstByAttribute:@"apiIdentifier" withValue:apiIdentifier inContext:context];
+    if (found) {
+        [found updateWithBDKCFModel:model];
+        return found;
+    } else {
+        return [self modelWithBDKCFModel:model inContext:context];
+    }
 }
 
-- (id)initWithBDKCFModel:(BDKCFModel *)model
++ (id)modelWithBDKCFModel:(BDKCFModel *)model inContext:(NSManagedObjectContext *)context
 {
-    if ((self = [[self class] createEntity])) {
-        
+    return [[self alloc] initWithBDKCFModel:model inContext:context];
+}
+
+- (id)initWithBDKCFModel:(BDKCFModel *)model inContext:(NSManagedObjectContext *)context
+{
+    unless (context) context = [NSManagedObjectContext defaultContext];
+    if ((self = [[self class] createInContext:context])) {
+        [self updateWithBDKCFModel:model];
     }
     return self;
 }

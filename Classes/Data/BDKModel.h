@@ -6,19 +6,28 @@
  */
 @interface BDKModel : NSManagedObject
 
-/** Initializes this model with a BDKCFModel.
- *  @param model The BDKCFModel with which to create this model.
- *  @return an instance of self.
+/** The main method to call when dealing with a Core Data representation of an API model.
+ *  @param model the API model to use in looking up to see if it exists.
+ *  @param context the managed object context; can be nil (if so, the default is used).
+ *  @returns an instance of self.
  */
-+ (id)modelWithBDKCFModel:(BDKCFModel *)model;
++ (id)createOrUpdateWithModel:(BDKCFModel *)model inContext:(NSManagedObjectContext *)context;
 
 /** Initializes this model with a BDKCFModel.
  *  @param model The BDKCFModel with which to create this model.
- *  @return an instance of self.
+ *  @param context the managed object context; can be nil (if so, the default is used).
+ *  @returns an instance of self.
  */
-- (id)initWithBDKCFModel:(BDKCFModel *)model;
++ (id)modelWithBDKCFModel:(BDKCFModel *)model inContext:(NSManagedObjectContext *)context;
 
-/** Updates internal parameters with a BDKCFModel instance.
+/** Initializes this model with a BDKCFModel.
+ *  @param model The BDKCFModel with which to create this model.
+ *  @param context the managed object context; can be nil (if so, the default is used).
+ *  @returns an instance of self.
+ */
+- (id)initWithBDKCFModel:(BDKCFModel *)model inContext:(NSManagedObjectContext *)context;
+
+/** Updates internal parameters with a BDKCFModel instance; this must be implemented by child classes.
  *  @param model The BDKCFModel with which to update this model.
  */
 - (void)updateWithBDKCFModel:(BDKCFModel *)model;

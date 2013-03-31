@@ -1,15 +1,22 @@
 #import "BDKUser.h"
-
-
-@interface BDKUser ()
-
-// Private interface goes here.
-
-@end
-
+#import "BDKCFUser.h"
 
 @implementation BDKUser
 
-// Custom logic goes here.
+@dynamic userType;
+
+#pragma mark - Properties
+
++ (NSDictionary *)userTypeMappings
+{
+    return @{@"Member": @(BDKUserTypeMember),
+             @"Guest": @(BDKUserTypeGuest),};
+}
+
+- (BDKUserType)userType
+{
+    NSNumber *type = [[self class] userTypeMappings][self.type];
+    return type ? type.integerValue : BDKUserTypeUnknown;
+}
 
 @end

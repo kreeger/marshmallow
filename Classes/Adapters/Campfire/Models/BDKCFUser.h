@@ -1,10 +1,5 @@
 #import "BDKCFModel.h"
 
-typedef enum {
-    BDKCFUserTypeMember = 0,
-    BDKCFUserTypeGuest,
-} BDKCFUserType;
-
 /** A local repesentation of a Campfire user.
  */
 @interface BDKCFUser : BDKCFModel
@@ -29,12 +24,12 @@ typedef enum {
  */
 @property (strong, nonatomic) NSDate *createdAt;
 
-/** The user's presence status; can either be a `BDKCFUserTypeMember` or a `BDKCFUserTypeGuest`.
+/** The user's presence status.
  */
-@property (nonatomic) BDKCFUserType type;
+@property (strong, nonatomic) NSString *type;
 
 /** The URL pointing to the user's avatar image.
  */
-@property (strong, nonatomic) NSURL *avatarUrl;
+@property (strong, nonatomic) NSString *avatarUrl;
 
 @end

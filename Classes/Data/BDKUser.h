@@ -1,5 +1,21 @@
 #import "_BDKUser.h"
 
+typedef enum {
+    BDKUserTypeMember = 0,
+    BDKUserTypeGuest,
+    BDKUserTypeUnknown,
+} BDKUserType;
+
+/** A Core Data representation of a Campfire user.
+ */
 @interface BDKUser : _BDKUser {}
-// Custom logic goes here.
+
+/** The custom type enum value of the user; can be BDKUserTypeMember or BDKUserTypeGuest.
+ */
+@property (readonly) BDKUserType userType;
+
+/** A dictionary representation of internal BDKUserType names to the text names that come from the Campfire API.
+ */
++ (NSDictionary *)userTypeMappings;
+
 @end

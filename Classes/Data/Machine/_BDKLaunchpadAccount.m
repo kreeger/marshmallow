@@ -4,10 +4,10 @@
 #import "_BDKLaunchpadAccount.h"
 
 const struct BDKLaunchpadAccountAttributes BDKLaunchpadAccountAttributes = {
-	.hrefUrl = @"hrefUrl",
+	.href = @"href",
 	.identifier = @"identifier",
 	.name = @"name",
-	.type = @"type",
+	.product = @"product",
 };
 
 const struct BDKLaunchpadAccountRelationships BDKLaunchpadAccountRelationships = {
@@ -54,7 +54,7 @@ const struct BDKLaunchpadAccountFetchedProperties BDKLaunchpadAccountFetchedProp
 
 
 
-@dynamic hrefUrl;
+@dynamic href;
 
 
 
@@ -94,7 +94,7 @@ const struct BDKLaunchpadAccountFetchedProperties BDKLaunchpadAccountFetchedProp
 
 
 
-@dynamic type;
+@dynamic product;
 
 
 

@@ -9,38 +9,16 @@
     return @{@"id": @"identifier",
              @"room_id": @"roomIdentifier",
              @"user_id": @"userIdentifier",
-             @"body": @"body"};
+             @"body": @"body",
+             @"type": @"type"};
 }
 
-+ (NSDictionary *)messageTypeMappings
-{
-    return @{@"TextMessage": @(BDKCFMessageTypeText),
-             @"PasteMessage": @(BDKCFMessageTypePaste),
-             @"SoundMessage": @(BDKCFMessageTypeSound),
-             @"AdvertisementMessage": @(BDKCFMessageTypeAdvertisement),
-             @"AllowGuestsMessage": @(BDKCFMessageTypeAllowGuests),
-             @"DisallowGuestsMessage": @(BDKCFMessageTypeDisallowGuests),
-             @"IdleMessage": @(BDKCFMessageTypeIdle),
-             @"KickMessage": @(BDKCFMessageTypeKick),
-             @"LeaveMessage": @(BDKCFMessageTypeLeave),
-             @"EnterMessage": @(BDKCFMessageTypeEnter),
-             @"SystemMessage": @(BDKCFMessageTypeSystem),
-             @"TimestampMessage": @(BDKCFMessageTypeTimestamp),
-             @"TopicChangeMessage": @(BDKCFMessageTypeTopicChange),
-             @"UnidleMessage": @(BDKCFMessageTypeUnidle),
-             @"LockMessage": @(BDKCFMessageTypeLock),
-             @"UnlockMessage": @(BDKCFMessageTypeUnlock),
-             @"UploadMessage": @(BDKCFMessageTypeUpload),
-             @"ConferenceCreatedMessage": @(BDKCFMessageTypeConferenceCreated),
-             @"ConferenceFinishedMessage": @(BDKCFMessageTypeConferenceFinished)};
-}
-
-+ (id)messageWithBody:(NSString *)body type:(BDKCFMessageType)type
++ (id)messageWithBody:(NSString *)body type:(NSString *)type
 {
     return [[self alloc] initWithBody:body type:type];
 }
 
-- (id)initWithBody:(NSString *)body type:(BDKCFMessageType)type
+- (id)initWithBody:(NSString *)body type:(NSString *)type
 {
     if (self = [super init]) {
         _body = body;
@@ -56,9 +34,6 @@
         _createdAt = [formatter dateFromString:dictionary[@"created_at"]];
         formatter = nil;
 
-        _type = [[[self class] messageTypeMappings][dictionary[@"product"]] integerValue];
-        unless (_type) _type = BDKCFMessageTypeUnknown;
-
         _starred = [dictionary[@"starred"] isEqualToString:@"true"];
     }
 
@@ -67,10 +42,10 @@
 
 #pragma mark - Properties
 
-- (NSDictionary *)asApiData {
+- (NSDictionary *)asApiData
+{
     // TODO: Convert line breaks to &#xA;
-    NSString *type = [[[[self class] messageTypeMappings] allKeysForObject:@(self.type)] first];
-    return @{@"message": @{@"body": self.body, @"type": type}};
+    return @{@"message": @{@"body": self.body, @"type": self.type}};
 }
 
 @end
