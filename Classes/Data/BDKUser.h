@@ -14,6 +14,10 @@ typedef enum {
  */
 @property (readonly) BDKUserType userType;
 
+/** The actual-url version of this model's avatarUrl string.
+ */
+@property (readonly) NSURL *avatarUrlValue;
+
 /** A dictionary representation of internal BDKUserType names to the text names that come from the Campfire API.
  */
 + (NSDictionary *)userTypeMappings;

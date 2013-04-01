@@ -3,3 +3,4 @@
 #define kBDKUserDefaultAccessToken @"AccessToken"
 #define kBDKUserDefaultRefreshToken @"RefreshToken"
 #define kBDKUserDefaultTokenExpiresOn @"TokenExpiresOn"
+#define kBDKUserDefaultActiveAccountId @"ActiveAccountId"

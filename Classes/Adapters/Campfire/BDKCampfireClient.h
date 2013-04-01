@@ -12,11 +12,6 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  */
 @interface BDKCampfireClient : BDKAPIClient
 
-/** Grabs a singleton instance of the adapter so manual requests can be made.
- *  @returns A singleton instance.
- */
-+ (id)sharedInstance;
-
 #pragma mark - Account methods
 
 /** Fetches info about the current account.
@@ -25,7 +20,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains a reference to the retrieved BDKCFAccount.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)getCurrentAccount:(AccountBlock)success failure:(FailureBlock)failure;
+- (void)getCurrentAccount:(AccountBlock)success failure:(FailureBlock)failure;
 
 #pragma mark - Message methods
 
@@ -37,7 +32,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains a reference to the full created BDKCFMessage.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)postMessage:(BDKCFMessage *)message
+- (void)postMessage:(BDKCFMessage *)message
              toRoom:(NSNumber *)roomId
             success:(MessageBlock)success
             failure:(FailureBlock)failure;
@@ -50,7 +45,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains a list of BDKCFMessage instances.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)getMessagesForRoom:(NSNumber *)roomId
+- (void)getMessagesForRoom:(NSNumber *)roomId
             sinceMessageId:(NSNumber *)sinceMessageId
                    success:(ArrayBlock)success
                    failure:(FailureBlock)failure;
@@ -64,7 +59,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains a list of BDKCFMessage instances.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)getMessagesForRoom:(NSNumber *)roomId
+- (void)getMessagesForRoom:(NSNumber *)roomId
                      limit:(NSInteger)limit
             sinceMessageId:(NSNumber *)sinceMessageId
                    success:(ArrayBlock)success
@@ -77,7 +72,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)highlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure;
+- (void)highlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure;
 
 /** Removes a "highlighted" status from a message in the room's transcript.
  *  https://github.com/37signals/campfire-api/blob/master/sections/messages.md#unhighlight-message
@@ -86,7 +81,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)unhighlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure;
+- (void)unhighlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure;
 
 #pragma mark - Room methods
 
@@ -96,7 +91,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains a list of BDKCFRoom instances.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)getRooms:(ArrayBlock)success failure:(FailureBlock)failure;
+- (void)getRooms:(ArrayBlock)success failure:(FailureBlock)failure;
 
 /** Gets a list of rooms belonging to the current Campfire account in which the current user is present.
  *  https://github.com/37signals/campfire-api/blob/master/sections/rooms.md#get-rooms
@@ -104,7 +99,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains a list of BDKCFRoom instances.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)getPresentRooms:(ArrayBlock)success failure:(FailureBlock)failure;
+- (void)getPresentRooms:(ArrayBlock)success failure:(FailureBlock)failure;
 
 /** Gets a BDKCFRoom given its API identifier. This also includes a list of BDKCFUser instances currently in the room.
  *  https://github.com/37signals/campfire-api/blob/master/sections/rooms.md#get-room
@@ -113,7 +108,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains a full instance of a BDKCFRoom.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)getRoomForId:(NSNumber *)roomId success:(RoomBlock)success failure:(FailureBlock)failure;
+- (void)getRoomForId:(NSNumber *)roomId success:(RoomBlock)success failure:(FailureBlock)failure;
 
 /** Updates a room via the Campfire API, with the ability to change the name and/or topic. Current user must be an
  *  admin to change the room's name.
@@ -123,7 +118,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)updateRoom:(BDKCFRoom *)room success:(EmptyBlock)success failure:(FailureBlock)failure;
+- (void)updateRoom:(BDKCFRoom *)room success:(EmptyBlock)success failure:(FailureBlock)failure;
 
 /** POSTs to the Campfire API to join the current user to a room represented by the given room identifier.
  *  https://github.com/37signals/campfire-api/blob/master/sections/rooms.md#join-room
@@ -132,7 +127,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)joinRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
+- (void)joinRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
 
 /** POSTs to the Campfire API to remove the current user from a room represented by the given room identifier.
  *  https://github.com/37signals/campfire-api/blob/master/sections/rooms.md#leave-room
@@ -141,7 +136,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)leaveRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
+- (void)leaveRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
 
 /** Locks the room represented by the given API identifier; only an admin can do this.
  *  https://github.com/37signals/campfire-api/blob/master/sections/rooms.md#lock-room
@@ -150,7 +145,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)lockRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
+- (void)lockRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
 
 /** Unlocks the room represented by the given API identifier; only an admin can do this.
  *  https://github.com/37signals/campfire-api/blob/master/sections/rooms.md#unlock-room
@@ -159,7 +154,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)unlockRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
+- (void)unlockRoom:(NSNumber *)roomId success:(EmptyBlock)success failure:(FailureBlock)failure;
 
 #pragma mark - Search methods
 
@@ -170,7 +165,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains an array of BDKCFMessage instances.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)searchMessagesForQuery:(NSString *)query success:(ArrayBlock)success failure:(FailureBlock)failure;
+- (void)searchMessagesForQuery:(NSString *)query success:(ArrayBlock)success failure:(FailureBlock)failure;
 
 #pragma mark - Transcript methods
 
@@ -181,7 +176,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains an array of BDKCFMessage instances.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)getTranscriptForTodayForRoomId:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure;
+- (void)getTranscriptForTodayForRoomId:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure;
 
 /** Returns all BDKCFMesssage instances sent to a room on a specific date.
  *  https://github.com/37signals/campfire-api/blob/master/sections/transcripts.md#get-messages-for-a-specific-date
@@ -191,7 +186,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains an array of BDKCFMessage instances.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)getTranscriptForRoomId:(NSNumber *)roomId
+- (void)getTranscriptForRoomId:(NSNumber *)roomId
                           date:(NSDate *)date
                        success:(ArrayBlock)success
                        failure:(FailureBlock)failure;
@@ -208,7 +203,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains a full instance of the BDKCFUpload.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)uploadFile:(NSData *)file
+- (void)uploadFile:(NSData *)file
           filename:(NSString *)filename
             toRoom:(NSNumber *)roomId
            success:(UploadBlock)success
@@ -221,7 +216,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains an array of BDKCFUpload instances.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)getRecentUploadsForRoomId:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure;
+- (void)getRecentUploadsForRoomId:(NSNumber *)roomId success:(ArrayBlock)success failure:(FailureBlock)failure;
 
 /** Gets a single upload represented by a message identifier from a given Campfire room.
  *  https://github.com/37signals/campfire-api/blob/master/sections/uploads.md#get-upload
@@ -231,7 +226,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains an instance of BDKCFUpload.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)getUploadForMessageId:(NSNumber *)messageId
+- (void)getUploadForMessageId:(NSNumber *)messageId
                        inRoom:(NSNumber *)roomId
                       success:(UploadBlock)success
                       failure:(FailureBlock)failure;
@@ -245,7 +240,7 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains an instance of BDKCFUser.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)getUserForId:(NSNumber *)userId success:(UserBlock)success failure:(FailureBlock)failure;
+- (void)getUserForId:(NSNumber *)userId success:(UserBlock)success failure:(FailureBlock)failure;
 
 /** Gets the current user's information from the Campfire API.
  *  https://github.com/37signals/campfire-api/blob/master/sections/users.md#get-self
@@ -253,6 +248,6 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  *  @param success A block to be called upon completion; contains an instance of BDKCFUser.
  *  @param failure A block to be called upon failure; contains an NSError reference and the HTTP status code received.
  */
-+ (void)getCurrentUser:(UserBlock)success failure:(FailureBlock)failure;
+- (void)getCurrentUser:(UserBlock)success failure:(FailureBlock)failure;
 
 @end

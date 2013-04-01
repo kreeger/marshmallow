@@ -5,6 +5,7 @@
 #import <CocoaLumberjack/DDTTYLogger.h>
 
 #import "BDKLaunchpadClient.h"
+#import "BDKCampfireClient.h"
 #import "BDKLPModels.h"
 #import "BDKModels.h"
 
@@ -15,6 +16,8 @@
 - (void)kickstartUserDefaults;
 
 - (void)refreshUserData;
+
+- (void)setActiveAccount:(BDKLaunchpadAccount *)account;
 
 @end
 
@@ -78,12 +81,20 @@
 {
     [BDKLaunchpadClient getAuthorization:^(BDKLPAuthorizationData *authData) {
         [authData.accounts each:^(BDKLPAccount *account) {
-            [BDKLaunchpadAccount createOrUpdateWithModel:account inContext:[NSManagedObjectContext contextForCurrentThread]];
+            [BDKLaunchpadAccount createOrUpdateWithModel:account
+                                               inContext:[NSManagedObjectContext contextForCurrentThread]];
         }];
-        DDLogData(@"Accounts %i, first %@.", [BDKLaunchpadAccount countOfEntities], [BDKLaunchpadAccount findFirst]);
+        [self setActiveAccount:[BDKLaunchpadAccount findFirstByAttribute:@"product" withValue:@"campfire"]];
     } failure:^(NSError *error, NSInteger responseCode) {
         DDLogError(@"Error! %@.", error);
     }];
+}
+
+- (void)setActiveAccount:(BDKLaunchpadAccount *)account
+{
+    [[NSUserDefaults standardUserDefaults] setValue:account.identifier forKey:kBDKUserDefaultActiveAccountId];
+    DDLogData(@"Active account is now %@.", account.identifier);
+    self.campfireClient = [[BDKCampfireClient alloc] initWithBaseURL:account.hrefUrl];
 }
 
 #pragma mark - Application's Documents directory
