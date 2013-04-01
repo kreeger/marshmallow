@@ -6,8 +6,8 @@
 + (id)createOrUpdateWithModel:(BDKCFModel *)model inContext:(NSManagedObjectContext *)context
 {
     unless (context) context = [NSManagedObjectContext defaultContext];
-    NSNumber *apiIdentifier = [model valueForKeyPath:@"apiIdentifier"];
-    BDKModel *found = [self findFirstByAttribute:@"apiIdentifier" withValue:apiIdentifier inContext:context];
+    NSNumber *apiIdentifier = [model valueForKeyPath:@"identifier"];
+    BDKModel *found = [self findFirstByAttribute:@"identifier" withValue:apiIdentifier inContext:context];
     if (found) {
         [found updateWithBDKCFModel:model];
         return found;
