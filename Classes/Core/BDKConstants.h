@@ -7,3 +7,5 @@
 
 #define kBDKNotificationDidBeginChangingAccount @"DidBeginChangingAccount"
 #define kBDKNotificationDidFinishChangingAccount @"DidFinishChangingAccount"
+
+#define kBDKDateFormatCampfire @"yyyy/MM/dd HH:mm:ss ZZZZ"

@@ -1,8 +1,6 @@
 #import "BDKCFUser.h"
 #import "NSString+BDKKit.h"
 
-#import <ISO8601DateFormatter/ISO8601DateFormatter.h>
-
 
 @implementation BDKCFUser
 
@@ -19,7 +17,8 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
     if ((self = [super initWithDictionary:dictionary])) {
-        ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = kBDKDateFormatCampfire;
         _createdAt = [formatter dateFromString:dictionary[@"created_at"]];
         formatter = nil;
     }

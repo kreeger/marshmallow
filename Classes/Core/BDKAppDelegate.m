@@ -106,9 +106,7 @@
                     [BDKLaunchpadAccount createOrUpdateWithModel:account inContext:localContext];
                 }];
             } completion:^(BOOL success, NSError *error) {
-                if (success) {
-                    [self setActiveAccount:[BDKLaunchpadAccount findFirstByAttribute:@"product" withValue:@"campfire"]];
-                }
+                [self setActiveAccount:[BDKLaunchpadAccount findFirstByAttribute:@"product" withValue:@"campfire"]];
             }];
         } failure:^(NSError *error, NSInteger responseCode) {
             DDLogError(@"Error! %@.", error);
@@ -123,6 +121,7 @@
     NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken];
     DDLogData(@"Active account is now %@, token %@.", account.identifier, token);
     self.campfireClient = [[BDKCampfireClient alloc] initWithBaseURL:account.hrefUrl accessToken:token];
+    
     [self.campfireClient getRooms:^(NSArray *result) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
             [result each:^(BDKCFRoom *room) {
@@ -136,6 +135,24 @@
                 UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
                 self.window.rootViewController = nav;
             }
+        }];
+    } failure:^(NSError *error, NSInteger responseCode) {
+        DDLogError(@"Error! %@.", error);
+    }];
+    
+    [self.campfireClient getCurrentAccount:^(BDKCFAccount *account) {
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            BDKAccount *anAccount = [BDKAccount createOrUpdateWithModel:account inContext:localContext];
+            DDLogData(@"Account %@ saved.", anAccount.name);
+        }];
+    } failure:^(NSError *error, NSInteger responseCode) {
+        DDLogError(@"Error! %@.", error);
+    }];
+
+    [self.campfireClient getCurrentUser:^(BDKCFUser *user) {
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            BDKUser *aUser = [BDKUser createOrUpdateWithModel:user inContext:localContext];
+            DDLogData(@"User %@ saved.", aUser.name);
         }];
     } failure:^(NSError *error, NSInteger responseCode) {
         DDLogError(@"Error! %@.", error);

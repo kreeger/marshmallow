@@ -8,7 +8,7 @@
         <attribute name="plan" attributeType="String" syncable="YES"/>
         <attribute name="storage" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="subdomain" attributeType="String" syncable="YES"/>
-        <attribute name="timeZone" attributeType="String" syncable="YES"/>
+        <attribute name="timeZone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" attributeType="Date" syncable="YES"/>
     </entity>
     <entity name="BDKIdentity" representedClassName="BDKIdentity" syncable="YES">

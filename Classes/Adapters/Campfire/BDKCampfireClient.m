@@ -49,7 +49,6 @@
 - (void)getRoomsForPath:(NSString *)path success:(ArrayBlock)success failure:(FailureBlock)failure
 {
     [self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        DDLogAPI(@"Rooms response %@.", responseObject);
         NSArray *rooms = [responseObject[@"rooms"] map:^BDKCFRoom *(NSDictionary *room) {
             return [BDKCFRoom modelWithDictionary:room];
         }];
@@ -65,7 +64,7 @@
                    failure:(FailureBlock)failure
 {
     [self getPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *messages = [responseObject map:^BDKCFMessage *(NSDictionary *message) {
+        NSArray *messages = [responseObject[@"messages"] map:^BDKCFMessage *(NSDictionary *message) {
             return [BDKCFMessage modelWithDictionary:message];
         }];
         success(messages);
@@ -81,7 +80,7 @@
                   failure:(FailureBlock)failure
 {
     [self getPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *uploads = [responseObject map:^BDKCFUpload *(NSDictionary *upload) {
+        NSArray *uploads = [responseObject[@"uploads"] map:^BDKCFUpload *(NSDictionary *upload) {
             return [BDKCFUpload modelWithDictionary:upload];
         }];
         success(uploads);
@@ -96,7 +95,7 @@
 {
     NSString *path = @"account";
     [self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        BDKCFAccount *account = [BDKCFAccount modelWithDictionary:responseObject];
+        BDKCFAccount *account = [BDKCFAccount modelWithDictionary:responseObject[@"account"]];
         success(account);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error, operation.response.statusCode);
@@ -112,7 +111,7 @@
 {
     NSString *path = NSStringWithFormat(@"room/%@/speak", roomId);
     [self postPath:path parameters:message.asApiData success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        BDKCFMessage *message = [BDKCFMessage modelWithDictionary:responseObject];
+        BDKCFMessage *message = [BDKCFMessage modelWithDictionary:responseObject[@"message"]];
         success(message);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error, operation.response.statusCode);
@@ -175,7 +174,7 @@
 {
     NSString *path = NSStringWithFormat(@"room/%@", roomId);
     [self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        BDKCFRoom *room = [BDKCFRoom modelWithDictionary:responseObject];
+        BDKCFRoom *room = [BDKCFRoom modelWithDictionary:responseObject[@"room"]];
         success(room);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error, operation.response.statusCode);
@@ -284,7 +283,7 @@
         NSLog(@"Sent %i of %lld bytes", written, totalToWrite);
     };
     void (^completionBlock)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *operation, id responseObject) {
-        BDKCFUpload *upload = [BDKCFUpload modelWithDictionary:responseObject];
+        BDKCFUpload *upload = [BDKCFUpload modelWithDictionary:responseObject[@"upload"]];
         success(upload);
     };
     void (^failureBlock)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -314,7 +313,7 @@
 {
     NSString *path = NSStringWithFormat(@"room/%@/messages/%@/upload", roomId, messageId);
     [self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        BDKCFUpload *upload = [BDKCFUpload modelWithDictionary:responseObject];
+        BDKCFUpload *upload = [BDKCFUpload modelWithDictionary:responseObject[@"upload"]];
         success(upload);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error, operation.response.statusCode);
@@ -327,7 +326,7 @@
 {
     NSString *path = NSStringWithFormat(@"users/%@", userId);
     [self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        BDKCFUser *user = [BDKCFUser modelWithDictionary:responseObject];
+        BDKCFUser *user = [BDKCFUser modelWithDictionary:responseObject[@"user"]];
         success(user);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error, operation.response.statusCode);
@@ -338,7 +337,7 @@
 {
     NSString *path = @"users/me";
     [self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        BDKCFUser *user = [BDKCFUser modelWithDictionary:responseObject];
+        BDKCFUser *user = [BDKCFUser modelWithDictionary:responseObject[@"user"]];
         success(user);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error, operation.response.statusCode);
