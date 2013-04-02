@@ -1,4 +1,5 @@
 #import "BDKLoginViewController.h"
+#import "BDKAppDelegate.h"
 #import "BDKLaunchpadClient.h"
 #import "BDKTextFieldCell.h"
 
@@ -47,7 +48,12 @@
             [[NSUserDefaults standardUserDefaults] setValue:refreshToken forKey:kBDKUserDefaultRefreshToken];
             [[NSUserDefaults standardUserDefaults] setValue:expiresOn forKey:kBDKUserDefaultTokenExpiresOn];
             [[NSUserDefaults standardUserDefaults] synchronize];
-        } failure:nil];
+            [(BDKAppDelegate *)[UIApplication sharedApplication].delegate refreshUserData];
+        } failure:^(NSError *error, NSInteger responseCode) {
+            [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription
+                                       delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
+            [self.webView reload];
+        }];
     }
     return YES;
 }

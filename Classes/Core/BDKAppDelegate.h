@@ -18,4 +18,6 @@
  */
 - (NSURL *)applicationDocumentsDirectory;
 
+- (void)refreshUserData;
+
 @end

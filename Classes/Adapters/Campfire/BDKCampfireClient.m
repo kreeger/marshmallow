@@ -23,6 +23,14 @@
 
 @implementation BDKCampfireClient
 
+- (id)initWithBaseURL:(NSURL *)url accessToken:(NSString *)accessToken
+{
+    if (self = [super initWithBaseURL:url]) {
+        [self setAuthorizationHeaderWithToken:accessToken];
+    }
+    return self;
+}
+
 #pragma mark - Initialization and singleton
 
 //NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken];
@@ -41,7 +49,8 @@
 - (void)getRoomsForPath:(NSString *)path success:(ArrayBlock)success failure:(FailureBlock)failure
 {
     [self getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *rooms = [responseObject map:^BDKCFRoom *(NSDictionary *room) {
+        DDLogAPI(@"Rooms response %@.", responseObject);
+        NSArray *rooms = [responseObject[@"rooms"] map:^BDKCFRoom *(NSDictionary *room) {
             return [BDKCFRoom modelWithDictionary:room];
         }];
         success(rooms);

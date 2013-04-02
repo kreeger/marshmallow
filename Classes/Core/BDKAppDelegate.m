@@ -2,11 +2,14 @@
 #import "BDKLoginViewController.h"
 #import "BDKRoomsViewController.h"
 #import "UINavigationController+BDKKit.h"
+
 #import <CocoaLumberjack/DDTTYLogger.h>
+#import <EDColor/UIColor+Crayola.h>
 
 #import "BDKLaunchpadClient.h"
 #import "BDKCampfireClient.h"
 #import "BDKLPModels.h"
+#import "BDKCFModels.h"
 #import "BDKModels.h"
 
 @interface BDKAppDelegate ()
@@ -15,7 +18,7 @@
  */
 - (void)kickstartUserDefaults;
 
-- (void)refreshUserData;
+- (void)configureLogging;
 
 - (void)setActiveAccount:(BDKLaunchpadAccount *)account;
 
@@ -28,7 +31,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [MagicalRecord setupAutoMigratingCoreDataStack];
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [self configureLogging];
 
     // check if the user is logged in first
     if ([[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]) {
@@ -77,24 +80,66 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (void)configureLogging {
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [DDTTYLogger sharedInstance].logFormatter = [[BDKLog alloc] init];
+    [DDTTYLogger sharedInstance].colorsEnabled = YES;
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithCrayola:@"Cornflower"]
+                                     backgroundColor:nil forFlag:LOG_FLAG_INFO];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithCrayola:@"Screamin' Green"]
+                                     backgroundColor:nil forFlag:LOG_FLAG_API];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithCrayola:@"Canary"]
+                                     backgroundColor:nil forFlag:LOG_FLAG_UI];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithCrayola:@"Tumbleweed"]
+                                     backgroundColor:nil forFlag:LOG_FLAG_DATA];
+}
+
 - (void)refreshUserData
 {
-    [BDKLaunchpadClient getAuthorization:^(BDKLPAuthorizationData *authData) {
-        [authData.accounts each:^(BDKLPAccount *account) {
-            [BDKLaunchpadAccount createOrUpdateWithModel:account
-                                               inContext:[NSManagedObjectContext contextForCurrentThread]];
+    NSNumber *accountId = [[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultActiveAccountId];
+    if (accountId && [BDKLaunchpadAccount countOfEntities] > 0) {
+        [self setActiveAccount:[BDKLaunchpadAccount findFirstByAttribute:@"identifier" withValue:accountId]];
+    } else {
+        [BDKLaunchpadClient getAuthorization:^(BDKLPAuthorizationData *authData) {
+            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+                [authData.accounts each:^(BDKLPAccount *account) {
+                    [BDKLaunchpadAccount createOrUpdateWithModel:account inContext:localContext];
+                }];
+            } completion:^(BOOL success, NSError *error) {
+                if (success) {
+                    [self setActiveAccount:[BDKLaunchpadAccount findFirstByAttribute:@"product" withValue:@"campfire"]];
+                }
+            }];
+        } failure:^(NSError *error, NSInteger responseCode) {
+            DDLogError(@"Error! %@.", error);
         }];
-        [self setActiveAccount:[BDKLaunchpadAccount findFirstByAttribute:@"product" withValue:@"campfire"]];
-    } failure:^(NSError *error, NSInteger responseCode) {
-        DDLogError(@"Error! %@.", error);
-    }];
+    }
 }
 
 - (void)setActiveAccount:(BDKLaunchpadAccount *)account
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidBeginChangingAccount object:nil];
     [[NSUserDefaults standardUserDefaults] setValue:account.identifier forKey:kBDKUserDefaultActiveAccountId];
-    DDLogData(@"Active account is now %@.", account.identifier);
-    self.campfireClient = [[BDKCampfireClient alloc] initWithBaseURL:account.hrefUrl];
+    NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken];
+    DDLogData(@"Active account is now %@, token %@.", account.identifier, token);
+    self.campfireClient = [[BDKCampfireClient alloc] initWithBaseURL:account.hrefUrl accessToken:token];
+    [self.campfireClient getRooms:^(NSArray *result) {
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            [result each:^(BDKCFRoom *room) {
+                [BDKRoom createOrUpdateWithModel:room inContext:localContext];
+            }];
+        } completion:^(BOOL success, NSError *error) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidFinishChangingAccount object:nil];
+            
+            if ([((UINavigationController *)self.window.rootViewController).topViewController isKindOfClass:[BDKLoginViewController class]]) {
+                BDKRoomsViewController *vc = [BDKRoomsViewController vc];
+                UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
+                self.window.rootViewController = nav;
+            }
+        }];
+    } failure:^(NSError *error, NSInteger responseCode) {
+        DDLogError(@"Error! %@.", error);
+    }];
 }
 
 #pragma mark - Application's Documents directory

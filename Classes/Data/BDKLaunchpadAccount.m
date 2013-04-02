@@ -1,5 +1,6 @@
 #import "BDKLaunchpadAccount.h"
 #import "BDKLPAccount.h"
+#import "NSString+BDKKit.h"
 
 @implementation BDKLaunchpadAccount
 
@@ -29,6 +30,11 @@
 {
     NSNumber *type = [[self class] accountTypeMappings][self.product];
     return type ? type.integerValue : BDKLaunchpadAccountTypeUnknown;
+}
+
+- (NSURL *)hrefUrl
+{
+    return self.href.urlValue;
 }
 
 @end

@@ -32,7 +32,7 @@
         <attribute name="userIdentifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="BDKRoom" representedClassName="BDKRoom" syncable="YES">
-        <attribute name="activeTokenValue" attributeType="String" syncable="YES"/>
+        <attribute name="activeTokenValue" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
         <attribute name="full" attributeType="Boolean" syncable="YES"/>
         <attribute name="identifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -63,11 +63,11 @@
     </entity>
     <elements>
         <element name="BDKAccount" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="BDKIdentity" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="BDKLaunchpadAccount" positionX="160" positionY="192" width="128" height="105"/>
         <element name="BDKMessage" positionX="160" positionY="192" width="128" height="135"/>
         <element name="BDKRoom" positionX="160" positionY="192" width="128" height="180"/>
         <element name="BDKUpload" positionX="160" positionY="192" width="128" height="165"/>
         <element name="BDKUser" positionX="160" positionY="192" width="128" height="150"/>
-        <element name="BDKIdentity" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="BDKLaunchpadAccount" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

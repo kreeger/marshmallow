@@ -12,6 +12,13 @@ typedef void (^UploadBlock)(BDKCFUpload *upload);
  */
 @interface BDKCampfireClient : BDKAPIClient
 
+/** Overrides the parent method of initializing with just a base URL and takes an OAuth access token along with it.
+ *  @param url The base URL with which to use inside of this API wrapper class.
+ *  @param accessToken A user's OAuth2-spec access token, to be sent with each call.
+ *  @returns An instance of self.
+ */
+- (id)initWithBaseURL:(NSURL *)url accessToken:(NSString *)accessToken;
+
 #pragma mark - Account methods
 
 /** Fetches info about the current account.

@@ -38,6 +38,7 @@
                              @"client_secret": [BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientSecret],
                              @"code": verificationCode.stringByUrlEncoding};
     [[self sharedInstance] postPath:@"token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        DDLogAPI(@"getAccessTokenForVerificationCode:success:failure: hit.");
         NSString *accessToken = responseObject[@"access_token"];
         [[self sharedInstance] setAuthorizationHeaderWithToken:accessToken];
         NSString *refreshToken = responseObject[@"refresh_token"];
@@ -51,6 +52,7 @@
 
 + (void)getAuthorization:(AuthDataBlock)success failure:(FailureBlock)failure {
     [[self sharedInstance] getPath:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        DDLogAPI(@"getAuthorization:failure: hit.");
         BDKLPAuthorizationData *authData = [BDKLPAuthorizationData modelWithDictionary:responseObject];
         success(authData);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
