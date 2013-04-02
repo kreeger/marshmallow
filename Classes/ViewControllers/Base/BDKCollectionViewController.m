@@ -1,9 +1,5 @@
 #import "BDKCollectionViewController.h"
 
-@interface BDKCollectionViewController ()
-
-@end
-
 @implementation BDKCollectionViewController
 
 - (void)loadView
@@ -17,6 +13,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (void)viewDidLayoutSubviews
+{
+    self.collectionView.frame = self.frame;
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,6 +35,8 @@
 {
     if (_collectionView) return _collectionView;
     _collectionView = [[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:self.flowLayout];
+    _collectionView.opaque = YES;
+    _collectionView.backgroundColor = [UIColor whiteColor];
     return _collectionView;
 }
 
