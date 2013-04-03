@@ -32,6 +32,9 @@
     
     [MagicalRecord setupAutoMigratingCoreDataStack];
     [self configureLogging];
+    
+    id proxy = [UINavigationBar appearance];
+    [proxy setTitleTextAttributes:@{UITextAttributeFont: [UIFont boldAppFontOfSize:20]}];
 
     // check if the user is logged in first
     if ([[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]) {

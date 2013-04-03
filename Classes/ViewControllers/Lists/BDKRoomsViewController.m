@@ -1,25 +1,121 @@
 #import "BDKRoomsViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
+#import "BDKRoom.h"
+
+#import "BDKRoomCollectionCell.h"
+
 @interface BDKRoomsViewController () <NSFetchedResultsControllerDelegate>
 
+@property (strong, nonatomic) NSFetchedResultsController *resultsController;
 @property (strong, nonatomic) NSMutableArray *objectChanges;
 @property (strong, nonatomic) NSMutableArray *sectionChanges;
+
+- (void)performFetch;
 
 @end
 
 @implementation BDKRoomsViewController
 
+@synthesize flowLayout = _flowLayout;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.objectChanges = [NSMutableArray array];
+    self.sectionChanges = [NSMutableArray array];
+
+    [self.collectionView registerClass:[BDKRoomCollectionCell class]
+            forCellWithReuseIdentifier:kBDKRoomCollectionCellId];
+    
     self.title = @"Rooms";
-	// Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(performFetch)
+                                                 name:kBDKNotificationDidFinishChangingAccount object:nil];
+    [self performFetch];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Properties
+
+- (NSFetchedResultsController *)resultsController
+{
+    if (_resultsController) return _resultsController;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"BDKRoom"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+    _resultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                             managedObjectContext:[NSManagedObjectContext defaultContext]
+                                                               sectionNameKeyPath:nil
+                                                                        cacheName:@"rooms"];
+    return _resultsController;
+}
+
+- (UICollectionViewFlowLayout *)flowLayout {
+    if (_flowLayout) return _flowLayout;
+    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    _flowLayout.itemSize = CGSizeMake(300, 44);
+    _flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    _flowLayout.minimumInteritemSpacing = 10;
+    _flowLayout.minimumLineSpacing = 10;
+    return _flowLayout;
+}
+
+#pragma mark - Methods
+
+- (void)performFetch
+{
+    NSError *error = nil;
+    BOOL success = [self.resultsController performFetch:&error];
+    if (!success) DDLogError(@"Encountered fetch error: %@, %@.", error, [error userInfo]);
+    [self.collectionView reloadData];
+    DDLogUI(@"Fetched with %i objects.", [self.resultsController.sections[0] numberOfObjects]);
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [self.resultsController.sections[section] numberOfObjects];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kBDKRoomCollectionCellId
+                                                                           forIndexPath:indexPath];
+    BDKRoom *room = (BDKRoom *)[self.resultsController objectAtIndexPath:indexPath];
+    ((BDKRoomCollectionCell *)cell).label.text = room.name;
+    DDLogUI(@"Rendering cell %@.", room.name);
+    return cell;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return self.resultsController.sections.count;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return;
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

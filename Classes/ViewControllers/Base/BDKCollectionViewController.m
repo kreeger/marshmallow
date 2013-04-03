@@ -36,6 +36,8 @@
     if (_collectionView) return _collectionView;
     _collectionView = [[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:self.flowLayout];
     _collectionView.opaque = YES;
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
     _collectionView.backgroundColor = [UIColor whiteColor];
     return _collectionView;
 }
@@ -45,6 +47,38 @@
     if (_flowLayout) return _flowLayout;
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
     return _flowLayout;
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 0;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+           viewForSupplementaryElementOfKind:(NSString *)kind
+                                 atIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return;
 }
 
 @end

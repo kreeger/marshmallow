@@ -67,6 +67,8 @@
 		C3681A0717079DE4002C6742 /* _BDKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819F717079DE4002C6742 /* _BDKRoom.m */; };
 		C3681A0817079DE4002C6742 /* _BDKUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819F917079DE4002C6742 /* _BDKUpload.m */; };
 		C3681A0917079DE4002C6742 /* _BDKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819FB17079DE4002C6742 /* _BDKUser.m */; };
+		C3966E9F170B9D2D00ED89B7 /* BDKRoomCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3966E9E170B9D2D00ED89B7 /* BDKRoomCollectionCell.m */; };
+		C3966EA2170BA96B00ED89B7 /* BDKGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3966EA1170BA96B00ED89B7 /* BDKGradientView.m */; };
 		C3EBE2CA1709FC1000B92281 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C01709FC1000B92281 /* Icon-72.png */; };
 		C3EBE2CB1709FC1000B92281 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C11709FC1000B92281 /* Icon-72@2x.png */; };
 		C3EBE2CC1709FC1000B92281 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C21709FC1000B92281 /* Icon-Small-50.png */; };
@@ -200,6 +202,10 @@
 		C36819FA17079DE4002C6742 /* _BDKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKUser.h; sourceTree = "<group>"; };
 		C36819FB17079DE4002C6742 /* _BDKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKUser.m; sourceTree = "<group>"; };
 		C3681A0A1707CD8A002C6742 /* BDKModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKModels.h; sourceTree = "<group>"; };
+		C3966E9D170B9D2D00ED89B7 /* BDKRoomCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoomCollectionCell.h; sourceTree = "<group>"; };
+		C3966E9E170B9D2D00ED89B7 /* BDKRoomCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomCollectionCell.m; sourceTree = "<group>"; };
+		C3966EA0170BA96B00ED89B7 /* BDKGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKGradientView.h; sourceTree = "<group>"; };
+		C3966EA1170BA96B00ED89B7 /* BDKGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKGradientView.m; sourceTree = "<group>"; };
 		C3EBE2C01709FC1000B92281 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		C3EBE2C11709FC1000B92281 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		C3EBE2C21709FC1000B92281 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -464,6 +470,8 @@
 			isa = PBXGroup;
 			children = (
 				C356BF0F16FFA4B600F7A031 /* Cells */,
+				C3966EA0170BA96B00ED89B7 /* BDKGradientView.h */,
+				C3966EA1170BA96B00ED89B7 /* BDKGradientView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -471,6 +479,8 @@
 		C356BF0F16FFA4B600F7A031 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				C3966E9D170B9D2D00ED89B7 /* BDKRoomCollectionCell.h */,
+				C3966E9E170B9D2D00ED89B7 /* BDKRoomCollectionCell.m */,
 				C356BF1016FFA4C800F7A031 /* BDKTextFieldCell.h */,
 				C356BF1116FFA4C800F7A031 /* BDKTextFieldCell.m */,
 			);
@@ -780,6 +790,8 @@
 				C3681A0717079DE4002C6742 /* _BDKRoom.m in Sources */,
 				C3681A0817079DE4002C6742 /* _BDKUpload.m in Sources */,
 				C3681A0917079DE4002C6742 /* _BDKUser.m in Sources */,
+				C3966E9F170B9D2D00ED89B7 /* BDKRoomCollectionCell.m in Sources */,
+				C3966EA2170BA96B00ED89B7 /* BDKGradientView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
