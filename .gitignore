@@ -22,3 +22,5 @@ Pods/
 # No-no files
 Resources/APIKeys.plist
 install.log
+Resources/Fonts
+
