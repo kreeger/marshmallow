@@ -35,6 +35,7 @@
     
     id proxy = [UINavigationBar appearance];
     [proxy setTitleTextAttributes:@{UITextAttributeFont: [UIFont boldAppFontOfSize:20]}];
+    [proxy setTintColor:[UIColor blackColor]];
 
     // check if the user is logged in first
     if ([[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]) {

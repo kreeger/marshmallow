@@ -41,10 +41,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>RobotoCondensed-Regular.ttf</string>
-		<string>RobotoCondensed-Light.ttf</string>
-		<string>RobotoCondensed-Bold.ttf</string>
-		<string>RobotoCondensed-Italic.ttf</string>
+		<string>Avenir Next.ttc</string>
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>

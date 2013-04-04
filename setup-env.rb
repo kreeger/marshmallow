@@ -20,5 +20,7 @@ puts "Installing other dependencies using Homebrew."
 system("brew install #{HOMEBREW_INSTALLS.join(' ')} >> #{logpath} 2>&1")
 puts "Building documentation."
 system("./Scripts/appledoc.rb >> #{logpath} 2>&1")
+puts "Copying fonts."
+system("./Scripts/copy_fonts.rb >> #{logpath} 2>&1")
 
 puts "\nAll done!"

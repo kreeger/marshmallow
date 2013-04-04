@@ -4,17 +4,17 @@
 
 + (UIFont *)boldAppFontOfSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"RobotoCondensed-Bold" size:size];
+    return [UIFont fontWithName:@"AvenirNext-Bold" size:size];
 }
 
 + (UIFont *)italicAppFontOfSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"RobotoCondensed-Italic" size:size];
+    return [UIFont fontWithName:@"AvenirNext-Italic" size:size];
 }
 
 + (UIFont *)appFontOfSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"RobotoCondensed-Regular" size:size];
+    return [UIFont fontWithName:@"AvenirNext-Regular" size:size];
 }
 
 @end
