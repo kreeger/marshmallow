@@ -2,6 +2,7 @@
 
 #import "BDKGradientView.h"
 #import <QuartzCore/QuartzCore.h>
+#import <BDKGeometry/BDKGeometry.h>
 
 #import "UIFont+App.h"
 
@@ -29,7 +30,7 @@
 
 - (void)layoutSubviews
 {
-    self.label.frame = CGRectInset(self.contentView.frame, 10, 10);
+    [self.label centerInView:self direction:BDKGeometryCenterVertically];
 }
 
 #pragma mark - Properties
@@ -39,10 +40,7 @@
     if (_label) return _label;
     _label = [[UILabel alloc] initWithFrame:CGRectInset(self.contentView.frame, 10, 10)];
     _label.backgroundColor = [UIColor clearColor];
-    _label.shadowColor = [UIColor colorWithWhite:0.75 alpha:1];
-    _label.shadowOffset = CGSizeMake(0, 1);
-    _label.contentMode = UIViewContentModeCenter;
-    _label.font = [UIFont boldAppFontOfSize:20];
+    _label.font = [UIFont boldAppFontOfSize:19];
     _label.textColor = [UIColor colorWithWhite:0.15 alpha:1];
     return _label;
 }

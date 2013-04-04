@@ -4,7 +4,7 @@
 
 + (UIFont *)boldAppFontOfSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"AvenirNext-Bold" size:size];
+    return [UIFont fontWithName:@"AvenirNext-DemiBold" size:size];
 }
 
 + (UIFont *)italicAppFontOfSize:(CGFloat)size

@@ -64,6 +64,7 @@
 		C3966E9F170B9D2D00ED89B7 /* BDKRoomCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3966E9E170B9D2D00ED89B7 /* BDKRoomCollectionCell.m */; };
 		C3966EA2170BA96B00ED89B7 /* BDKGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3966EA1170BA96B00ED89B7 /* BDKGradientView.m */; };
 		C3C5FF0F170E3DE700BE92B9 /* Avenir Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C3C5FF0E170E3DE600BE92B9 /* Avenir Next.ttc */; };
+		C3C5FF15170E408700BE92B9 /* BDKRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF14170E408700BE92B9 /* BDKRoomViewController.m */; };
 		C3EBE2CA1709FC1000B92281 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C01709FC1000B92281 /* Icon-72.png */; };
 		C3EBE2CB1709FC1000B92281 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C11709FC1000B92281 /* Icon-72@2x.png */; };
 		C3EBE2CC1709FC1000B92281 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C21709FC1000B92281 /* Icon-Small-50.png */; };
@@ -196,6 +197,8 @@
 		C3966EA0170BA96B00ED89B7 /* BDKGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKGradientView.h; sourceTree = "<group>"; };
 		C3966EA1170BA96B00ED89B7 /* BDKGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKGradientView.m; sourceTree = "<group>"; };
 		C3C5FF0E170E3DE600BE92B9 /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
+		C3C5FF13170E408700BE92B9 /* BDKRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoomViewController.h; sourceTree = "<group>"; };
+		C3C5FF14170E408700BE92B9 /* BDKRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomViewController.m; sourceTree = "<group>"; };
 		C3EBE2C01709FC1000B92281 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		C3EBE2C11709FC1000B92281 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		C3EBE2C21709FC1000B92281 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -501,6 +504,8 @@
 		C3632EC717013A160028C794 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
+				C3C5FF13170E408700BE92B9 /* BDKRoomViewController.h */,
+				C3C5FF14170E408700BE92B9 /* BDKRoomViewController.m */,
 				C3632EC817013A4A0028C794 /* BDKRoomsViewController.h */,
 				C3632EC917013A4A0028C794 /* BDKRoomsViewController.m */,
 			);
@@ -772,6 +777,7 @@
 				C3681A0917079DE4002C6742 /* _BDKUser.m in Sources */,
 				C3966E9F170B9D2D00ED89B7 /* BDKRoomCollectionCell.m in Sources */,
 				C3966EA2170BA96B00ED89B7 /* BDKGradientView.m in Sources */,
+				C3C5FF15170E408700BE92B9 /* BDKRoomViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

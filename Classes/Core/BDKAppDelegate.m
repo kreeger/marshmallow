@@ -37,6 +37,9 @@
     [proxy setTitleTextAttributes:@{UITextAttributeFont: [UIFont boldAppFontOfSize:20]}];
     [proxy setTintColor:[UIColor blackColor]];
 
+    proxy = [UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil];
+    [proxy setTitleTextAttributes:@{UITextAttributeFont: [UIFont appFontOfSize:13]} forState:UIControlStateNormal];
+
     // check if the user is logged in first
     if ([[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]) {
         [self refreshUserData];
