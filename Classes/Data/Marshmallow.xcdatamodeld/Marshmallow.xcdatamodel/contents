@@ -24,12 +24,13 @@
         <attribute name="product" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="BDKMessage" representedClassName="BDKMessage" syncable="YES">
-        <attribute name="body" attributeType="String" syncable="YES"/>
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="roomIdentifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="starred" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="type" attributeType="String" syncable="YES"/>
-        <attribute name="userIdentifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userIdentifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="BDKRoom" representedClassName="BDKRoom" syncable="YES">
         <attribute name="activeTokenValue" optional="YES" attributeType="String" syncable="YES"/>
@@ -65,7 +66,7 @@
         <element name="BDKAccount" positionX="160" positionY="192" width="128" height="180"/>
         <element name="BDKIdentity" positionX="160" positionY="192" width="128" height="105"/>
         <element name="BDKLaunchpadAccount" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="BDKMessage" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="BDKMessage" positionX="160" positionY="192" width="128" height="150"/>
         <element name="BDKRoom" positionX="160" positionY="192" width="128" height="180"/>
         <element name="BDKUpload" positionX="160" positionY="192" width="128" height="165"/>
         <element name="BDKUser" positionX="160" positionY="192" width="128" height="150"/>

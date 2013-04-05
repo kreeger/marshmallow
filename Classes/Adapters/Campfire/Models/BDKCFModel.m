@@ -17,7 +17,8 @@
     if ((self = [super init])) {
         [[dictionary allKeys] each:^(NSString *key) {
             unless ([[self class] apiMappingHash][key]) return;
-            [self setValue:dictionary[key] forKeyPath:[[self class] apiMappingHash][key]];
+            id value = dictionary[key];// == (id)[NSNull null] ? nil : dictionary[key];
+            [self setValue:value forKeyPath:[[self class] apiMappingHash][key]];
         }];
     }
 

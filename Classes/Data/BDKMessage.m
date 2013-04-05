@@ -4,13 +4,13 @@
 @implementation BDKMessage
 
 @dynamic messageType;
-
 - (void)updateWithBDKCFModel:(BDKCFModel *)model
 {
     BDKCFMessage *message = (BDKCFMessage *)model;
     NSArray *attributes = @[@"identifier", @"roomIdentifier", @"userIdentifier", @"body", @"createdAt", @"type",
                             @"starred"];
     [attributes each:^(NSString *attribute) {
+        if ((NSNull *)[message valueForKeyPath:attribute] == [NSNull null]) return;
         [self setValue:[message valueForKeyPath:attribute] forKeyPath:attribute];
     }];
 }

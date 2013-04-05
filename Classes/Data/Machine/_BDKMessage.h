@@ -9,6 +9,7 @@ extern const struct BDKMessageAttributes {
 	__unsafe_unretained NSString *createdAt;
 	__unsafe_unretained NSString *identifier;
 	__unsafe_unretained NSString *roomIdentifier;
+	__unsafe_unretained NSString *starred;
 	__unsafe_unretained NSString *type;
 	__unsafe_unretained NSString *userIdentifier;
 } BDKMessageAttributes;
@@ -18,6 +19,7 @@ extern const struct BDKMessageRelationships {
 
 extern const struct BDKMessageFetchedProperties {
 } BDKMessageFetchedProperties;
+
 
 
 
@@ -88,6 +90,20 @@ extern const struct BDKMessageFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* starred;
+
+
+
+@property BOOL starredValue;
+- (BOOL)starredValue;
+- (void)setStarredValue:(BOOL)value_;
+
+//- (BOOL)validateStarred:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* type;
 
 
@@ -148,6 +164,15 @@ extern const struct BDKMessageFetchedProperties {
 
 - (int32_t)primitiveRoomIdentifierValue;
 - (void)setPrimitiveRoomIdentifierValue:(int32_t)value_;
+
+
+
+
+- (NSNumber*)primitiveStarred;
+- (void)setPrimitiveStarred:(NSNumber*)value;
+
+- (BOOL)primitiveStarredValue;
+- (void)setPrimitiveStarredValue:(BOOL)value_;
 
 
 

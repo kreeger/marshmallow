@@ -133,6 +133,7 @@
                 [BDKRoom createOrUpdateWithModel:room inContext:localContext];
             }];
         } completion:^(BOOL success, NSError *error) {
+            DDLogData(@"%i rooms.", [BDKRoom countOfEntities]);
             [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidFinishChangingAccount object:nil];
             
             if ([((UINavigationController *)self.window.rootViewController).topViewController isKindOfClass:[BDKLoginViewController class]]) {

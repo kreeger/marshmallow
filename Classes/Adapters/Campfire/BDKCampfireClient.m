@@ -19,6 +19,10 @@
                   success:(ArrayBlock)success
                   failure:(FailureBlock)failure;
 
+- (void)handleFailureForOperation:(AFHTTPRequestOperation *)operation
+                            error:(NSError *)error
+                         callback:(FailureBlock)callback;
+
 @end
 
 @implementation BDKCampfireClient
@@ -54,7 +58,7 @@
         }];
         success(rooms);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -69,7 +73,7 @@
         }];
         success(messages);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -85,8 +89,17 @@
         }];
         success(uploads);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
+}
+
+- (void)handleFailureForOperation:(AFHTTPRequestOperation *)operation
+                            error:(NSError *)error
+                         callback:(FailureBlock)callback
+{
+    DDLogWarn(@"API failure %i, %@.", operation.response.statusCode, error.localizedDescription);
+    callback(error, operation.response.statusCode);
+    callback = nil;
 }
 
 #pragma mark - Account methods
@@ -98,7 +111,7 @@
         BDKCFAccount *account = [BDKCFAccount modelWithDictionary:responseObject[@"account"]];
         success(account);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -114,7 +127,7 @@
         BDKCFMessage *message = [BDKCFMessage modelWithDictionary:responseObject[@"message"]];
         success(message);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -135,7 +148,7 @@
     if (limit > 100) limit = 100;
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"limit": @(limit)}];
     if (sinceMessageId) params[@"since_message_id"] = sinceMessageId;
-    [self getMessagesForPath:NSStringWithFormat(@"room/%@", roomId) params:params success:success failure:failure];
+    [self getMessagesForPath:NSStringWithFormat(@"room/%@/recent", roomId) params:params success:success failure:failure];
 }
 
 - (void)highlightMessage:(NSNumber *)messageId success:(EmptyBlock)success failure:(FailureBlock)failure
@@ -144,7 +157,7 @@
     [self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -154,7 +167,7 @@
     [self deletePath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -177,7 +190,7 @@
         BDKCFRoom *room = [BDKCFRoom modelWithDictionary:responseObject[@"room"]];
         success(room);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -187,7 +200,7 @@
     [self putPath:path parameters:room.asApiData success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -198,7 +211,7 @@
            success:^(AFHTTPRequestOperation *operation, id responseObject) {
                success();
            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-               failure(error, operation.response.statusCode);
+               [self handleFailureForOperation:operation error:error callback:failure];
            }];
 }
 
@@ -208,7 +221,7 @@
     [self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -218,7 +231,7 @@
     [self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -228,7 +241,7 @@
     [self postPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -287,7 +300,7 @@
         success(upload);
     };
     void (^failureBlock)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     };
 
     NSString *path = NSStringWithFormat(@"room/%@/uploads", roomId);
@@ -316,7 +329,7 @@
         BDKCFUpload *upload = [BDKCFUpload modelWithDictionary:responseObject[@"upload"]];
         success(upload);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -329,7 +342,7 @@
         BDKCFUser *user = [BDKCFUser modelWithDictionary:responseObject[@"user"]];
         success(user);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 
@@ -340,7 +353,7 @@
         BDKCFUser *user = [BDKCFUser modelWithDictionary:responseObject[@"user"]];
         success(user);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error, operation.response.statusCode);
+        [self handleFailureForOperation:operation error:error callback:failure];
     }];
 }
 

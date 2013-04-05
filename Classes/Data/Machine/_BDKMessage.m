@@ -8,6 +8,7 @@ const struct BDKMessageAttributes BDKMessageAttributes = {
 	.createdAt = @"createdAt",
 	.identifier = @"identifier",
 	.roomIdentifier = @"roomIdentifier",
+	.starred = @"starred",
 	.type = @"type",
 	.userIdentifier = @"userIdentifier",
 };
@@ -51,6 +52,11 @@ const struct BDKMessageFetchedProperties BDKMessageFetchedProperties = {
 	}
 	if ([key isEqualToString:@"roomIdentifierValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"roomIdentifier"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"starredValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"starred"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -126,6 +132,32 @@ const struct BDKMessageFetchedProperties BDKMessageFetchedProperties = {
 
 - (void)setPrimitiveRoomIdentifierValue:(int32_t)value_ {
 	[self setPrimitiveRoomIdentifier:[NSNumber numberWithInt:value_]];
+}
+
+
+
+
+
+@dynamic starred;
+
+
+
+- (BOOL)starredValue {
+	NSNumber *result = [self starred];
+	return [result boolValue];
+}
+
+- (void)setStarredValue:(BOOL)value_ {
+	[self setStarred:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveStarredValue {
+	NSNumber *result = [self primitiveStarred];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveStarredValue:(BOOL)value_ {
+	[self setPrimitiveStarred:[NSNumber numberWithBool:value_]];
 }
 
 

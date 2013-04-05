@@ -9,6 +9,7 @@
     NSArray *attributes = @[@"identifier", @"name", @"topic", @"membershipLimit", @"full", @"openToGuests",
                             @"activeTokenValue", @"createdAt", @"updatedAt"];
     [attributes each:^(NSString *attribute) {
+        if ((NSNull *)[room valueForKeyPath:attribute] == [NSNull null]) return;
         [self setValue:[room valueForKeyPath:attribute] forKeyPath:attribute];
     }];
 

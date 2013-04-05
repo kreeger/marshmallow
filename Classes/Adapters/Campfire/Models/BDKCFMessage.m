@@ -34,7 +34,7 @@
         _createdAt = [formatter dateFromString:dictionary[@"created_at"]];
         formatter = nil;
 
-        _starred = [dictionary[@"starred"] isEqualToString:@"true"];
+        _starred = [dictionary[@"starred"] boolValue];
     }
 
     return self;

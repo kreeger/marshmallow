@@ -1,4 +1,5 @@
 #import "BDKViewController.h"
+#import "BDKAppDelegate.h"
 
 #import "BDKUser.h"
 
@@ -83,6 +84,11 @@
 - (BDKUser *)currentUser
 {
     return self.currentUserId ? [BDKUser findFirstByAttribute:@"identifier" withValue:self.currentUserId] : nil;
+}
+
+- (BDKCampfireClient *)campfireClient
+{
+    return ((BDKAppDelegate *)[UIApplication sharedApplication].delegate).campfireClient;
 }
 
 - (CGRect)frame
