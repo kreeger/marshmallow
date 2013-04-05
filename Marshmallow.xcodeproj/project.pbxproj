@@ -65,6 +65,8 @@
 		C3966EA2170BA96B00ED89B7 /* BDKGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3966EA1170BA96B00ED89B7 /* BDKGradientView.m */; };
 		C3C5FF0F170E3DE700BE92B9 /* Avenir Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C3C5FF0E170E3DE600BE92B9 /* Avenir Next.ttc */; };
 		C3C5FF15170E408700BE92B9 /* BDKRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF14170E408700BE92B9 /* BDKRoomViewController.m */; };
+		C3C5FF18170E5D7200BE92B9 /* BDKMarshmallowAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF17170E5D7200BE92B9 /* BDKMarshmallowAppearance.m */; };
+		C3C5FF1B170E62AC00BE92B9 /* BDKUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF1A170E62AC00BE92B9 /* BDKUserViewController.m */; };
 		C3EBE2CA1709FC1000B92281 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C01709FC1000B92281 /* Icon-72.png */; };
 		C3EBE2CB1709FC1000B92281 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C11709FC1000B92281 /* Icon-72@2x.png */; };
 		C3EBE2CC1709FC1000B92281 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C21709FC1000B92281 /* Icon-Small-50.png */; };
@@ -199,6 +201,11 @@
 		C3C5FF0E170E3DE600BE92B9 /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
 		C3C5FF13170E408700BE92B9 /* BDKRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoomViewController.h; sourceTree = "<group>"; };
 		C3C5FF14170E408700BE92B9 /* BDKRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomViewController.m; sourceTree = "<group>"; };
+		C3C5FF16170E5D7200BE92B9 /* BDKMarshmallowAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKMarshmallowAppearance.h; sourceTree = "<group>"; };
+		C3C5FF17170E5D7200BE92B9 /* BDKMarshmallowAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKMarshmallowAppearance.m; sourceTree = "<group>"; };
+		C3C5FF19170E62AC00BE92B9 /* BDKUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKUserViewController.h; sourceTree = "<group>"; };
+		C3C5FF1A170E62AC00BE92B9 /* BDKUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUserViewController.m; sourceTree = "<group>"; };
+		C3C5FF1F170E69B600BE92B9 /* BDKTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTypedefs.h; sourceTree = "<group>"; };
 		C3EBE2C01709FC1000B92281 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		C3EBE2C11709FC1000B92281 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		C3EBE2C21709FC1000B92281 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -369,6 +376,9 @@
 				C3FD9E5B16FFBCCD0099E595 /* BDKConstants.h */,
 				C356BEF816FF971300F7A031 /* BDKLog.h */,
 				C356BEF916FF971300F7A031 /* BDKLog.m */,
+				C3C5FF16170E5D7200BE92B9 /* BDKMarshmallowAppearance.h */,
+				C3C5FF17170E5D7200BE92B9 /* BDKMarshmallowAppearance.m */,
+				C3C5FF1F170E69B600BE92B9 /* BDKTypedefs.h */,
 				C356BEE416FF93CA00F7A031 /* main.m */,
 				C356BEE516FF93CA00F7A031 /* Prefix.pch */,
 			);
@@ -455,6 +465,8 @@
 			children = (
 				C356BF0B16FFA02D00F7A031 /* BDKLoginViewController.h */,
 				C356BF0C16FFA02D00F7A031 /* BDKLoginViewController.m */,
+				C3C5FF19170E62AC00BE92B9 /* BDKUserViewController.h */,
+				C3C5FF1A170E62AC00BE92B9 /* BDKUserViewController.m */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -778,6 +790,8 @@
 				C3966E9F170B9D2D00ED89B7 /* BDKRoomCollectionCell.m in Sources */,
 				C3966EA2170BA96B00ED89B7 /* BDKGradientView.m in Sources */,
 				C3C5FF15170E408700BE92B9 /* BDKRoomViewController.m in Sources */,
+				C3C5FF18170E5D7200BE92B9 /* BDKMarshmallowAppearance.m in Sources */,
+				C3C5FF1B170E62AC00BE92B9 /* BDKUserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,8 @@
 #import "BDKAppDelegate.h"
 #import "BDKLoginViewController.h"
 #import "BDKRoomsViewController.h"
+#import "BDKMarshmallowAppearance.h"
+
 #import "UINavigationController+BDKKit.h"
 
 #import <CocoaLumberjack/DDTTYLogger.h>
@@ -31,14 +33,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [MagicalRecord setupAutoMigratingCoreDataStack];
-    [self configureLogging];
     
-    id proxy = [UINavigationBar appearance];
-    [proxy setTitleTextAttributes:@{UITextAttributeFont: [UIFont boldAppFontOfSize:20]}];
-    [proxy setTintColor:[UIColor blackColor]];
+    [self configureLogging];
 
-    proxy = [UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil];
-    [proxy setTitleTextAttributes:@{UITextAttributeFont: [UIFont appFontOfSize:13]} forState:UIControlStateNormal];
+    [BDKMarshmallowAppearance setApplicationAppearance];
 
     // check if the user is logged in first
     if ([[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]) {
@@ -149,8 +147,7 @@
     
     [self.campfireClient getCurrentAccount:^(BDKCFAccount *account) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            BDKAccount *anAccount = [BDKAccount createOrUpdateWithModel:account inContext:localContext];
-            DDLogData(@"Account %@ saved.", anAccount.name);
+            [BDKAccount createOrUpdateWithModel:account inContext:localContext];
         }];
     } failure:^(NSError *error, NSInteger responseCode) {
         DDLogError(@"Error! %@.", error);
@@ -158,8 +155,9 @@
 
     [self.campfireClient getCurrentUser:^(BDKCFUser *user) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            BDKUser *aUser = [BDKUser createOrUpdateWithModel:user inContext:localContext];
-            DDLogData(@"User %@ saved.", aUser.name);
+            [BDKUser createOrUpdateWithModel:user inContext:localContext];
+            [[NSUserDefaults standardUserDefaults] setValue:user.identifier forKey:kBDKUserDefaultCurrentUserId];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }];
     } failure:^(NSError *error, NSInteger responseCode) {
         DDLogError(@"Error! %@.", error);

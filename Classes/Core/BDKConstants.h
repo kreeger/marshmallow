@@ -4,6 +4,7 @@
 #define kBDKUserDefaultRefreshToken @"RefreshToken"
 #define kBDKUserDefaultTokenExpiresOn @"TokenExpiresOn"
 #define kBDKUserDefaultActiveAccountId @"ActiveAccountId"
+#define kBDKUserDefaultCurrentUserId @"CurrentUserId"
 
 #define kBDKNotificationDidBeginChangingAccount @"DidBeginChangingAccount"
 #define kBDKNotificationDidFinishChangingAccount @"DidFinishChangingAccount"

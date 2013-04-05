@@ -1,5 +1,8 @@
 #import "BDKRoomsViewController.h"
 #import "BDKRoomViewController.h"
+#import "BDKUserViewController.h"
+
+#import "UINavigationController+BDKKit.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -10,6 +13,7 @@
 @interface BDKRoomsViewController ()
 
 @property (strong, nonatomic) NSArray *rooms;
+@property (strong, nonatomic) UIBarButtonItem *profileBarButton;
 
 /** Loads up the necessary data into the collection view.
  */
@@ -20,6 +24,15 @@
  *  @returns A room object.
  */
 - (BDKRoom *)roomForIndexPath:(NSIndexPath *)indexPath;
+
+/** Fired when the profile button is tapped.
+ *  @param sender The sender of the event.
+ */
+- (void)profileBarButtonTapped:(UIBarButtonItem *)sender;
+
+/** Loads the profile controller.
+ */
+- (void)presentProfileController;
 
 @end
 
@@ -35,6 +48,7 @@
             forCellWithReuseIdentifier:kBDKRoomCollectionCellId];
     
     self.title = @"Rooms";
+    self.navigationItem.leftBarButtonItem = self.profileBarButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -59,7 +73,8 @@
 
 #pragma mark - Properties
 
-- (UICollectionViewFlowLayout *)flowLayout {
+- (UICollectionViewFlowLayout *)flowLayout
+{
     if (_flowLayout) return _flowLayout;
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _flowLayout.itemSize = CGSizeMake(302, 44);
@@ -67,6 +82,15 @@
     _flowLayout.minimumInteritemSpacing = 5;
     _flowLayout.minimumLineSpacing = 5;
     return _flowLayout;
+}
+
+- (UIBarButtonItem *)profileBarButton
+{
+    if (_profileBarButton) return _profileBarButton;
+    _profileBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile"
+                                                         style:UIBarButtonItemStyleBordered
+                                                        target:self action:@selector(profileBarButtonTapped:)];
+    return _profileBarButton;
 }
 
 #pragma mark - Methods
@@ -79,6 +103,19 @@
 - (BDKRoom *)roomForIndexPath:(NSIndexPath *)indexPath
 {
     return self.rooms[indexPath.row];
+}
+
+- (void)profileBarButtonTapped:(UIBarButtonItem *)sender
+{
+    [self presentProfileController];
+}
+
+- (void)presentProfileController
+{
+    BDKUserViewController *userVC = [BDKUserViewController vcWithBDKUser:self.currentUser];
+    userVC.modalDismissalBlock = ^{ [self dismissViewControllerAnimated:YES completion:nil]; };
+    UINavigationController *nav = [UINavigationController controllerWithRootViewController:userVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark - UICollectionViewDataSource

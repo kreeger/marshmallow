@@ -26,6 +26,7 @@
 // Internal
 #import "BDKLog.h"
 #import "BDKConstants.h"
+#import "BDKTypedefs.h"
 #import "UIFont+App.h"
 
 static const int ddLogLevel = LOG_LEVEL_INFO | LOG_FLAG_CUSTOM;

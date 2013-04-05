@@ -20,6 +20,14 @@
     self.collectionView.frame = self.frame;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[self.collectionView indexPathsForSelectedItems] each:^(NSIndexPath *path) {
+        [self.collectionView deselectItemAtIndexPath:path animated:YES];
+    }];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
