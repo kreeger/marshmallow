@@ -1,8 +1,6 @@
 # Marshmallow
 
-The state of Campfire clients on iOS kinda sucks. There's the official client, which is the only viable option, but it's iPhone only. There's Sparks, which is broken (has been for a really long time). And that's literally it.
-
-Now that I know the name of the game (and the game is Cocoa Touch), I'm writing my own damn client.
+I'm writing my own Campfire client. Here it is.
 
 ## Introducing...
 
