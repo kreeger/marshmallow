@@ -6,5 +6,7 @@
 	<string>insert-client-key</string>
 	<key>37SignalsClientSecret</key>
 	<string>insert-client-secret</string>
+	<key>37SignalsRedirectURI</key>
+	<string>setup://your-callback-redirect-uri/right-here</string>
 </dict>
 </plist>
