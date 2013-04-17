@@ -12,8 +12,6 @@ system("echo > #{logpath}")
 puts "\nSetting up prerequisites."
 puts "Installing bundled gems."
 system("bundle install >> #{logpath}")
-# puts "Setting up custom CocoaPods repository."
-# system("pod repo add custom-cocoapods git://github.com/kreeger/custom-cocoapods.git > #{logpath} 2>&1")
 puts "Installing listed pods."
 system("pod install >> #{logpath} 2>&1")
 puts "Installing other dependencies using Homebrew."
@@ -22,5 +20,7 @@ puts "Building documentation."
 system("./Scripts/appledoc.rb >> #{logpath} 2>&1")
 puts "Copying fonts."
 system("./Scripts/copy_fonts.rb >> #{logpath} 2>&1")
+puts "Setting up APIKeys.plist."
+system("./Scripts/reset_plists.rb >> #{logpath} 2>&1")
 
-puts "\nAll done!"
+puts "\nAll done! Make sure you setup your 37Signals OAuth keys in Resources/APIKeys.plist."
