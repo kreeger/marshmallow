@@ -9,6 +9,9 @@ pod 'EDColor', '~> 0.2.0'
 pod 'AFNetworking', '~> 1.2.0'
 pod 'ISO8601DateFormatter', '~> 0.6'
 
+# pod 'BDKThirtySeven', local: '~/Code/kreeger/BDKThirtySeven'
+pod 'BDKThirtySeven', git: 'git://github.com/kreeger/BDKThirtySeven.git'
+
 target :test, exclusive: true do
   link_with 'MarshmallowTests'
   pod 'Kiwi'

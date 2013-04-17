@@ -8,6 +8,7 @@
 #import <CocoaLumberjack/DDTTYLogger.h>
 #import <EDColor/UIColor+Crayola.h>
 
+#import "BDKAPIKeyManager.h"
 #import "BDKLaunchpadClient.h"
 #import "BDKCampfireClient.h"
 #import "BDKLPModels.h"
@@ -20,7 +21,13 @@
  */
 - (void)kickstartUserDefaults;
 
+/** Configures CocoaLumberjack.
+ */
 - (void)configureLogging;
+
+/** Sets up our common Launchpad instance with the proper OAuth keys.
+ */
+- (void)configureLaunchpadClient;
 
 - (void)setActiveAccount:(BDKLaunchpadAccount *)account;
 
@@ -35,6 +42,7 @@
     [MagicalRecord setupAutoMigratingCoreDataStack];
     
     [self configureLogging];
+    [self configureLaunchpadClient];
 
     [BDKMarshmallowAppearance setApplicationAppearance];
 
@@ -85,7 +93,8 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)configureLogging {
+- (void)configureLogging
+{
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [DDTTYLogger sharedInstance].logFormatter = [[BDKLog alloc] init];
     [DDTTYLogger sharedInstance].colorsEnabled = YES;
@@ -97,6 +106,13 @@
                                      backgroundColor:nil forFlag:LOG_FLAG_UI];
     [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithCrayola:@"Tumbleweed"]
                                      backgroundColor:nil forFlag:LOG_FLAG_DATA];
+}
+
+- (void)configureLaunchpadClient
+{
+    [BDKLaunchpadClient setClientId:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientKey]
+                       clientSecret:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientSecret]
+                        redirectUri:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsRedirectURI]];
 }
 
 - (void)refreshUserData
@@ -134,9 +150,11 @@
             }];
         } completion:^(BOOL success, NSError *error) {
             DDLogData(@"%i rooms.", [BDKRoom countOfEntities]);
-            [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidFinishChangingAccount object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidFinishChangingAccount
+                                                                object:nil];
             
-            if ([((UINavigationController *)self.window.rootViewController).topViewController isKindOfClass:[BDKLoginViewController class]]) {
+            if ([((UINavigationController *)self.window.rootViewController).topViewController
+                 isKindOfClass:[BDKLoginViewController class]]) {
                 BDKRoomsViewController *vc = [BDKRoomsViewController vc];
                 UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
                 self.window.rootViewController = nav;
