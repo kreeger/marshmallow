@@ -10,6 +10,7 @@
         <attribute name="subdomain" attributeType="String" syncable="YES"/>
         <attribute name="timeZone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" attributeType="Date" syncable="YES"/>
+        <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BDKRoom" inverseName="account" inverseEntity="BDKRoom" syncable="YES"/>
     </entity>
     <entity name="BDKIdentity" representedClassName="BDKIdentity" syncable="YES">
         <attribute name="emailAddress" attributeType="String" syncable="YES"/>
@@ -42,6 +43,7 @@
         <attribute name="openToGuests" attributeType="Boolean" syncable="YES"/>
         <attribute name="topic" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" attributeType="Date" syncable="YES"/>
+        <relationship name="account" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BDKAccount" inverseName="rooms" inverseEntity="BDKAccount" syncable="YES"/>
     </entity>
     <entity name="BDKUpload" representedClassName="BDKUpload" syncable="YES">
         <attribute name="byteSize" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -63,11 +65,11 @@
         <attribute name="type" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BDKAccount" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="BDKAccount" positionX="160" positionY="192" width="128" height="195"/>
         <element name="BDKIdentity" positionX="160" positionY="192" width="128" height="105"/>
         <element name="BDKLaunchpadAccount" positionX="160" positionY="192" width="128" height="105"/>
         <element name="BDKMessage" positionX="160" positionY="192" width="128" height="150"/>
-        <element name="BDKRoom" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="BDKRoom" positionX="160" positionY="192" width="128" height="195"/>
         <element name="BDKUpload" positionX="160" positionY="192" width="128" height="165"/>
         <element name="BDKUser" positionX="160" positionY="192" width="128" height="150"/>
     </elements>

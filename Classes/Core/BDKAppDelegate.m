@@ -127,7 +127,10 @@
                     [BDKLaunchpadAccount createOrUpdateWithModel:account inContext:localContext];
                 }];
             } completion:^(BOOL success, NSError *error) {
-                [self setActiveAccount:[BDKLaunchpadAccount findFirstByAttribute:@"product" withValue:@"campfire"]];
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"product = %@", @"campfire"];
+                NSArray *accounts = [BDKLaunchpadAccount findAllWithPredicate:predicate];
+                // I need a dictionary with an adapter for each account
+                [self setActiveAccount:accounts[0]];
             }];
         } failure:^(NSError *error, NSInteger responseCode) {
             DDLogError(@"Error! %@.", error);
@@ -142,31 +145,37 @@
     NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken];
     DDLogData(@"Active account is now %@, token %@.", account.identifier, token);
     self.campfireClient = [[BDKCampfireClient alloc] initWithBaseURL:account.hrefUrl accessToken:token];
-    
-    [self.campfireClient getRooms:^(NSArray *result) {
-        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            [result each:^(BDKCFRoom *room) {
-                [BDKRoom createOrUpdateWithModel:room inContext:localContext];
-            }];
-        } completion:^(BOOL success, NSError *error) {
-            DDLogData(@"%i rooms.", [BDKRoom countOfEntities]);
-            [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidFinishChangingAccount
-                                                                object:nil];
-            
-            if ([((UINavigationController *)self.window.rootViewController).topViewController
-                 isKindOfClass:[BDKLoginViewController class]]) {
-                BDKRoomsViewController *vc = [BDKRoomsViewController vc];
-                UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
-                self.window.rootViewController = nav;
-            }
-        }];
-    } failure:^(NSError *error, NSInteger responseCode) {
-        DDLogError(@"Error! %@.", error);
-    }];
-    
+
+    __block NSNumber *accountId = nil;
     [self.campfireClient getCurrentAccount:^(BDKCFAccount *account) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            [BDKAccount createOrUpdateWithModel:account inContext:localContext];
+            BDKAccount *anAccount = [BDKAccount createOrUpdateWithModel:account inContext:localContext];
+            accountId = anAccount.identifier;
+        } completion:^(BOOL success, NSError *error) {
+            [self.campfireClient getRooms:^(NSArray *result) {
+                [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+                    BDKAccount *account = [BDKAccount findFirstByAttribute:@"identifier"
+                                                                 withValue:accountId
+                                                                 inContext:localContext];
+                    [result each:^(BDKCFRoom *room) {
+                        BDKRoom *aRoom = [BDKRoom createOrUpdateWithModel:room inContext:localContext];
+                        aRoom.account = account;
+                    }];
+                } completion:^(BOOL success, NSError *error) {
+                    DDLogData(@"%i rooms.", [BDKRoom countOfEntities]);
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidFinishChangingAccount
+                                                                        object:nil];
+
+                    if ([((UINavigationController *)self.window.rootViewController).topViewController
+                         isKindOfClass:[BDKLoginViewController class]]) {
+                        BDKRoomsViewController *vc = [BDKRoomsViewController vc];
+                        UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
+                        self.window.rootViewController = nav;
+                    }
+                }];
+            } failure:^(NSError *error, NSInteger responseCode) {
+                DDLogError(@"Error! %@.", error);
+            }];
         }];
     } failure:^(NSError *error, NSInteger responseCode) {
         DDLogError(@"Error! %@.", error);

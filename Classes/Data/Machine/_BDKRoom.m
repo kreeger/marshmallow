@@ -16,6 +16,7 @@ const struct BDKRoomAttributes BDKRoomAttributes = {
 };
 
 const struct BDKRoomRelationships BDKRoomRelationships = {
+	.account = @"account",
 };
 
 const struct BDKRoomFetchedProperties BDKRoomFetchedProperties = {
@@ -212,6 +213,10 @@ const struct BDKRoomFetchedProperties BDKRoomFetchedProperties = {
 
 
 
+
+@dynamic account;
+
+	
 
 
 

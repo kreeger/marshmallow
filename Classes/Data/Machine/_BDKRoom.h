@@ -17,11 +17,13 @@ extern const struct BDKRoomAttributes {
 } BDKRoomAttributes;
 
 extern const struct BDKRoomRelationships {
+	__unsafe_unretained NSString *account;
 } BDKRoomRelationships;
 
 extern const struct BDKRoomFetchedProperties {
 } BDKRoomFetchedProperties;
 
+@class BDKAccount;
 
 
 
@@ -152,6 +154,13 @@ extern const struct BDKRoomFetchedProperties {
 
 
 
+@property (nonatomic, strong) BDKAccount *account;
+
+//- (BOOL)validateAccount:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
@@ -226,6 +235,11 @@ extern const struct BDKRoomFetchedProperties {
 - (void)setPrimitiveUpdatedAt:(NSDate*)value;
 
 
+
+
+
+- (BDKAccount*)primitiveAccount;
+- (void)setPrimitiveAccount:(BDKAccount*)value;
 
 
 @end

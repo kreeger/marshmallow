@@ -12,7 +12,7 @@
 
 @interface BDKRoomsViewController ()
 
-@property (strong, nonatomic) NSArray *rooms;
+@property (strong, nonatomic) NSFetchedResultsController *resultsController;
 @property (strong, nonatomic) UIBarButtonItem *profileBarButton;
 
 /** Loads up the necessary data into the collection view.
@@ -38,14 +38,11 @@
 
 @implementation BDKRoomsViewController
 
-@synthesize flowLayout = _flowLayout;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self.collectionView registerClass:[BDKRoomCollectionCell class]
-            forCellWithReuseIdentifier:kBDKRoomCollectionCellId];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"GenericCell"];
     
     self.title = @"Rooms";
     self.navigationItem.leftBarButtonItem = self.profileBarButton;
@@ -57,6 +54,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(performFetch)
                                                  name:kBDKNotificationDidFinishChangingAccount object:nil];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     [self performFetch];
 }
 
@@ -69,20 +67,12 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    unless (self.view.superview) {
+        self.resultsController = nil;
+    }
 }
 
 #pragma mark - Properties
-
-- (UICollectionViewFlowLayout *)flowLayout
-{
-    if (_flowLayout) return _flowLayout;
-    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _flowLayout.itemSize = CGSizeMake(302, 44);
-    _flowLayout.sectionInset = UIEdgeInsetsMake(9, 9, 9, 9);
-    _flowLayout.minimumInteritemSpacing = 5;
-    _flowLayout.minimumLineSpacing = 5;
-    return _flowLayout;
-}
 
 - (UIBarButtonItem *)profileBarButton
 {
@@ -93,16 +83,30 @@
     return _profileBarButton;
 }
 
+- (NSFetchedResultsController *)resultsController
+{
+    if (_resultsController) return _resultsController;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BDKRoom"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+    request.fetchBatchSize = 30;
+    _resultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                             managedObjectContext:[NSManagedObjectContext defaultContext]
+                                                               sectionNameKeyPath:@"account.name"
+                                                                        cacheName:nil];
+    return _resultsController;
+}
+
 #pragma mark - Methods
 
 - (void)performFetch
 {
-    self.rooms = [BDKRoom findAll];
+    [self.resultsController performFetch:nil];
+    [self.tableView reloadData];
 }
 
 - (BDKRoom *)roomForIndexPath:(NSIndexPath *)indexPath
 {
-    return self.rooms[indexPath.row];
+    return [self.resultsController objectAtIndexPath:indexPath];
 }
 
 - (void)profileBarButtonTapped:(UIBarButtonItem *)sender
@@ -113,25 +117,36 @@
 - (void)presentProfileController
 {
     BDKUserViewController *userVC = [BDKUserViewController vcWithBDKUser:self.currentUser];
-    userVC.modalDismissalBlock = ^{ [self dismissViewControllerAnimated:YES completion:nil]; };
+    userVC.modalDismissalBlock = ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    };
     UINavigationController *nav = [UINavigationController controllerWithRootViewController:userVC];
     [self presentViewController:nav animated:YES completion:nil];
 }
 
-#pragma mark - UICollectionViewDataSource
+#pragma mark - UITableViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.rooms count];
+    return [self.resultsController.sections count];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    BDKRoomCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kBDKRoomCollectionCellId
-                                                                           forIndexPath:indexPath];
+    return [self.resultsController.sections[section] name];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.resultsController.sections[section] numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenericCell" forIndexPath:indexPath];
     BDKRoom *room = [self roomForIndexPath:indexPath];
-    cell.label.text = room.name;
+    cell.textLabel.text = room.name;
+    cell.textLabel.font = [UIFont boldAppFontOfSize:18];
     return cell;
 }
 
@@ -140,11 +155,12 @@
     return 1;
 }
 
-#pragma mark - UICollectionViewDelegate
+#pragma mark - UITableViewDelegate
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BDKRoomViewController *roomVC = [BDKRoomViewController vcWithRoom:[self roomForIndexPath:indexPath]];
     [self.navigationController pushViewController:roomVC animated:YES];
 }
+
 @end

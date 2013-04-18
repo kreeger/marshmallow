@@ -16,6 +16,7 @@ const struct BDKAccountAttributes BDKAccountAttributes = {
 };
 
 const struct BDKAccountRelationships BDKAccountRelationships = {
+	.rooms = @"rooms",
 };
 
 const struct BDKAccountFetchedProperties BDKAccountFetchedProperties = {
@@ -188,6 +189,10 @@ const struct BDKAccountFetchedProperties BDKAccountFetchedProperties = {
 
 
 
+
+@dynamic rooms;
+
+	
 
 
 

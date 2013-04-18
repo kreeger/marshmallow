@@ -12,7 +12,7 @@
 
 /** The messages to be displayed in the room.
  */
-@property (strong, nonatomic) NSArray *messages;
+@property (strong, nonatomic) NSFetchedResultsController *resultsController;
 
 /** An initializer that takes a BDKRoom and sets everything up all nice.
  *  @param room The room to be displayed in this view controller.
@@ -29,8 +29,6 @@
 @end
 
 @implementation BDKRoomViewController
-
-@synthesize room = _room, flowLayout = _flowLayout;
 
 + (id)vcWithRoom:(BDKRoom *)room
 {
@@ -49,10 +47,8 @@
 {
     [super viewDidLoad];
 
-    [self.collectionView registerClass:[BDKRoomCollectionCell class]
-            forCellWithReuseIdentifier:kBDKRoomCollectionCellId];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"GenericCell"];
     
-    self.messages = [NSArray array];
     self.title = self.room.name;
 }
 
@@ -66,11 +62,8 @@
                 [messageIds addObject:[[BDKMessage createOrUpdateWithModel:message inContext:localContext] identifier]];
             }];
         } completion:^(BOOL success, NSError *error) {
-            self.messages = [BDKMessage findAllWithIdentifiers:messageIds
-                                                      sortedBy:@"createdAt"
-                                                     ascending:NO
-                                                     inContext:[NSManagedObjectContext defaultContext]];
-            [self.collectionView reloadData];
+            [self.resultsController performFetch:nil];
+            [self.tableView reloadData];
         }];
     } failure:^(NSError *error, NSInteger responseCode) {
         DDLogError(@"Error %i getting messages. %@", responseCode, error);
@@ -84,46 +77,48 @@
 
 #pragma mark - Properties
 
-- (UICollectionViewFlowLayout *)flowLayout
+- (NSFetchedResultsController *)resultsController
 {
-    if (_flowLayout) return _flowLayout;
-    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _flowLayout.itemSize = CGSizeMake(302, 88);
-    _flowLayout.sectionInset = UIEdgeInsetsMake(9, 9, 9, 9);
-    _flowLayout.minimumInteritemSpacing = 5;
-    _flowLayout.minimumLineSpacing = 5;
-    return _flowLayout;
+    if (_resultsController) return _resultsController;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BDKMessage"];
+    request.predicate = [NSPredicate predicateWithFormat:@"roomIdentifier = %@", self.room.identifier];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
+    request.fetchBatchSize = 30;
+    _resultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                             managedObjectContext:[NSManagedObjectContext defaultContext]
+                                                               sectionNameKeyPath:nil
+                                                                        cacheName:nil];
+    return _resultsController;
 }
 
 #pragma mark - Methods
 
 - (BDKMessage *)messageForIndexPath:(NSIndexPath *)indexPath
 {
-    return self.messages[indexPath.row];
+    return [self.resultsController objectAtIndexPath:indexPath];
 }
 
-#pragma mark - UICollectionViewDataSource
+#pragma mark - UITableViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.messages count];
+    return [self.resultsController.sections count];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    BDKRoomCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kBDKRoomCollectionCellId
-                                                                            forIndexPath:indexPath];
+    return [self.resultsController.sections[section] numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenericCell" forIndexPath:indexPath];
     BDKMessage *message = [self messageForIndexPath:indexPath];
-    cell.label.text = message.body;
+    cell.textLabel.text = message.body;
+    cell.textLabel.font = [UIFont appFontOfSize:12];
     return cell;
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
-
-#pragma mark - UICollectionViewDelegate
+#pragma mark - UITableViewDelegate
 
 @end
