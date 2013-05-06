@@ -14,10 +14,8 @@
  */
 @property (strong, nonatomic) IFBKAccountsManager *accountsManager;
 
-/** A shortcut to get the path to Marshmallow's documents directory.
+/** Talks to Campfire and Launchpad account managers to refresh the local data set.
  */
-- (NSURL *)applicationDocumentsDirectory;
-
 - (void)refreshUserData;
 
 @end

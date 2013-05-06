@@ -3,8 +3,6 @@
 
 #import "IFBKUser.h"
 
-#import <EDColor/UIColor+Crayola.h>
-
 @interface BDKViewController ()
 
 /** Internal method for calling a stored modal dismissal block.
@@ -45,7 +43,7 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.view.backgroundColor = [UIColor colorWithCrayola:@"Atomic Tangerine"];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewDidLoad
