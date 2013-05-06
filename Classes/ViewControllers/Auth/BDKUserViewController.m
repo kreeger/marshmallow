@@ -1,5 +1,5 @@
 #import "BDKUserViewController.h"
-#import "BDKUser.h"
+#import "IFBKUser.h"
 
 @interface BDKUserViewController ()
 
@@ -7,7 +7,7 @@
  *  @param user The user with which to initialize this view controller.
  *  @returns An instance of self.
  */
-- (id)initWithBDKUser:(BDKUser *)user;
+- (id)initWithIFBKUser:(IFBKUser *)user;
 
 @end
 
@@ -15,12 +15,12 @@
 
 @synthesize user = _user;
 
-+ (id)vcWithBDKUser:(BDKUser *)user
++ (id)vcWithIFBKUser:(IFBKUser *)user
 {
-    return [[self alloc] initWithBDKUser:user];
+    return [[self alloc] initWithIFBKUser:user];
 }
 
-- (id)initWithBDKUser:(BDKUser *)user
+- (id)initWithIFBKUser:(IFBKUser *)user
 {
     if (self = [super initWithIdentifier:NSStringWithFormat(@"user:%@", user.name)]) {
         _user = user;

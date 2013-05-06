@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		2285529B29D246ADA43EBE3B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C838434D40344DB6ACBA0934 /* libPods.a */; };
 		4D1EBD03ABAE4629ABC4EC25 /* libPods-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20E63516F4164473AAF796D7 /* libPods-test.a */; };
+		C32BC6ED17261EDD00DA5D88 /* IFBKModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6EB17261EDD00DA5D88 /* IFBKModel.xcdatamodeld */; };
+		C32BC6F81726210700DA5D88 /* _IFBKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6EF1726210700DA5D88 /* _IFBKAccount.m */; };
+		C32BC6F91726210700DA5D88 /* _IFBKIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6F11726210700DA5D88 /* _IFBKIdentity.m */; };
+		C32BC6FA1726210700DA5D88 /* _IFBKLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6F31726210700DA5D88 /* _IFBKLaunchpadAccount.m */; };
+		C32BC6FB1726210700DA5D88 /* _IFBKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6F51726210700DA5D88 /* _IFBKRoom.m */; };
+		C32BC6FC1726210700DA5D88 /* _IFBKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6F71726210700DA5D88 /* _IFBKUser.m */; };
+		C32BC7071726211F00DA5D88 /* IFBKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6FE1726211E00DA5D88 /* IFBKAccount.m */; };
+		C32BC7081726211F00DA5D88 /* IFBKIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC7001726211E00DA5D88 /* IFBKIdentity.m */; };
+		C32BC7091726211F00DA5D88 /* IFBKLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC7021726211E00DA5D88 /* IFBKLaunchpadAccount.m */; };
+		C32BC70A1726211F00DA5D88 /* IFBKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC7041726211F00DA5D88 /* IFBKRoom.m */; };
+		C32BC70B1726211F00DA5D88 /* IFBKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC7061726211F00DA5D88 /* IFBKUser.m */; };
+		C340EE83172605E6002795F0 /* IFBKAccountsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C340EE82172605E6002795F0 /* IFBKAccountsManager.m */; };
 		C356BEA616FF8F8300F7A031 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA516FF8F8300F7A031 /* UIKit.framework */; };
 		C356BEA816FF8F8300F7A031 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA716FF8F8300F7A031 /* Foundation.framework */; };
 		C356BEAA16FF8F8300F7A031 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA916FF8F8300F7A031 /* CoreGraphics.framework */; };
@@ -21,7 +33,6 @@
 		C356BED716FF8F8300F7A031 /* MarshmallowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C356BED616FF8F8300F7A031 /* MarshmallowTests.m */; };
 		C356BEF016FF93CA00F7A031 /* BDKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C356BEE316FF93CA00F7A031 /* BDKAppDelegate.m */; };
 		C356BEF116FF93CA00F7A031 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C356BEE416FF93CA00F7A031 /* main.m */; };
-		C356BEF216FF93CA00F7A031 /* Marshmallow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C356BEE716FF93CA00F7A031 /* Marshmallow.xcdatamodeld */; };
 		C356BEF316FF93CA00F7A031 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C356BEEA16FF93CA00F7A031 /* Default-568h@2x.png */; };
 		C356BEF416FF93CA00F7A031 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C356BEEB16FF93CA00F7A031 /* Default.png */; };
 		C356BEF516FF93CA00F7A031 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C356BEEC16FF93CA00F7A031 /* Default@2x.png */; };
@@ -37,21 +48,7 @@
 		C356BF1616FFA6B100F7A031 /* UIFont+App.m in Sources */ = {isa = PBXBuildFile; fileRef = C356BF1516FFA6B100F7A031 /* UIFont+App.m */; };
 		C3632ECA17013A4A0028C794 /* BDKRoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3632EC917013A4A0028C794 /* BDKRoomsViewController.m */; };
 		C3632ECD17013A750028C794 /* UINavigationController+BDKKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3632ECC17013A750028C794 /* UINavigationController+BDKKit.m */; };
-		C36819DE17079DCB002C6742 /* BDKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819DD17079DCB002C6742 /* BDKModel.m */; };
-		C36819FC17079DE4002C6742 /* BDKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819E017079DE4002C6742 /* BDKAccount.m */; };
-		C36819FD17079DE4002C6742 /* BDKIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819E217079DE4002C6742 /* BDKIdentity.m */; };
-		C36819FE17079DE4002C6742 /* BDKLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819E417079DE4002C6742 /* BDKLaunchpadAccount.m */; };
-		C36819FF17079DE4002C6742 /* BDKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819E617079DE4002C6742 /* BDKMessage.m */; };
-		C3681A0017079DE4002C6742 /* BDKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819E817079DE4002C6742 /* BDKRoom.m */; };
-		C3681A0117079DE4002C6742 /* BDKUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819EA17079DE4002C6742 /* BDKUpload.m */; };
-		C3681A0217079DE4002C6742 /* BDKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819EC17079DE4002C6742 /* BDKUser.m */; };
-		C3681A0317079DE4002C6742 /* _BDKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819EF17079DE4002C6742 /* _BDKAccount.m */; };
-		C3681A0417079DE4002C6742 /* _BDKIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819F117079DE4002C6742 /* _BDKIdentity.m */; };
-		C3681A0517079DE4002C6742 /* _BDKLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819F317079DE4002C6742 /* _BDKLaunchpadAccount.m */; };
-		C3681A0617079DE4002C6742 /* _BDKMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819F517079DE4002C6742 /* _BDKMessage.m */; };
-		C3681A0717079DE4002C6742 /* _BDKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819F717079DE4002C6742 /* _BDKRoom.m */; };
-		C3681A0817079DE4002C6742 /* _BDKUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819F917079DE4002C6742 /* _BDKUpload.m */; };
-		C3681A0917079DE4002C6742 /* _BDKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819FB17079DE4002C6742 /* _BDKUser.m */; };
+		C36819DE17079DCB002C6742 /* IFBKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819DD17079DCB002C6742 /* IFBKModel.m */; };
 		C3966E9F170B9D2D00ED89B7 /* BDKRoomCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3966E9E170B9D2D00ED89B7 /* BDKRoomCollectionCell.m */; };
 		C3966EA2170BA96B00ED89B7 /* BDKGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3966EA1170BA96B00ED89B7 /* BDKGradientView.m */; };
 		C3C5FF0F170E3DE700BE92B9 /* Avenir Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C3C5FF0E170E3DE600BE92B9 /* Avenir Next.ttc */; };
@@ -90,6 +87,29 @@
 /* Begin PBXFileReference section */
 		20E63516F4164473AAF796D7 /* libPods-test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-test.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACAE2580D4154BEE81C50205 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		C32BC6EC17261EDD00DA5D88 /* IFBKModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IFBKModel.xcdatamodel; sourceTree = "<group>"; };
+		C32BC6EE1726210700DA5D88 /* _IFBKAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _IFBKAccount.h; sourceTree = "<group>"; };
+		C32BC6EF1726210700DA5D88 /* _IFBKAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _IFBKAccount.m; sourceTree = "<group>"; };
+		C32BC6F01726210700DA5D88 /* _IFBKIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _IFBKIdentity.h; sourceTree = "<group>"; };
+		C32BC6F11726210700DA5D88 /* _IFBKIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _IFBKIdentity.m; sourceTree = "<group>"; };
+		C32BC6F21726210700DA5D88 /* _IFBKLaunchpadAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _IFBKLaunchpadAccount.h; sourceTree = "<group>"; };
+		C32BC6F31726210700DA5D88 /* _IFBKLaunchpadAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _IFBKLaunchpadAccount.m; sourceTree = "<group>"; };
+		C32BC6F41726210700DA5D88 /* _IFBKRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _IFBKRoom.h; sourceTree = "<group>"; };
+		C32BC6F51726210700DA5D88 /* _IFBKRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _IFBKRoom.m; sourceTree = "<group>"; };
+		C32BC6F61726210700DA5D88 /* _IFBKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _IFBKUser.h; sourceTree = "<group>"; };
+		C32BC6F71726210700DA5D88 /* _IFBKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _IFBKUser.m; sourceTree = "<group>"; };
+		C32BC6FD1726211E00DA5D88 /* IFBKAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKAccount.h; sourceTree = "<group>"; };
+		C32BC6FE1726211E00DA5D88 /* IFBKAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKAccount.m; sourceTree = "<group>"; };
+		C32BC6FF1726211E00DA5D88 /* IFBKIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKIdentity.h; sourceTree = "<group>"; };
+		C32BC7001726211E00DA5D88 /* IFBKIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKIdentity.m; sourceTree = "<group>"; };
+		C32BC7011726211E00DA5D88 /* IFBKLaunchpadAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKLaunchpadAccount.h; sourceTree = "<group>"; };
+		C32BC7021726211E00DA5D88 /* IFBKLaunchpadAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKLaunchpadAccount.m; sourceTree = "<group>"; };
+		C32BC7031726211F00DA5D88 /* IFBKRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKRoom.h; sourceTree = "<group>"; };
+		C32BC7041726211F00DA5D88 /* IFBKRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKRoom.m; sourceTree = "<group>"; };
+		C32BC7051726211F00DA5D88 /* IFBKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKUser.h; sourceTree = "<group>"; };
+		C32BC7061726211F00DA5D88 /* IFBKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKUser.m; sourceTree = "<group>"; };
+		C340EE81172605E6002795F0 /* IFBKAccountsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKAccountsManager.h; sourceTree = "<group>"; };
+		C340EE82172605E6002795F0 /* IFBKAccountsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKAccountsManager.m; sourceTree = "<group>"; };
 		C356BEA216FF8F8300F7A031 /* Marshmallow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C356BEA516FF8F8300F7A031 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C356BEA716FF8F8300F7A031 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,7 +125,6 @@
 		C356BEE316FF93CA00F7A031 /* BDKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKAppDelegate.m; sourceTree = "<group>"; };
 		C356BEE416FF93CA00F7A031 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C356BEE516FF93CA00F7A031 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		C356BEE816FF93CA00F7A031 /* Marshmallow.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Marshmallow.xcdatamodel; sourceTree = "<group>"; };
 		C356BEEA16FF93CA00F7A031 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C356BEEB16FF93CA00F7A031 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		C356BEEC16FF93CA00F7A031 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -131,37 +150,9 @@
 		C3632EC917013A4A0028C794 /* BDKRoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomsViewController.m; sourceTree = "<group>"; };
 		C3632ECB17013A750028C794 /* UINavigationController+BDKKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BDKKit.h"; sourceTree = "<group>"; };
 		C3632ECC17013A750028C794 /* UINavigationController+BDKKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+BDKKit.m"; sourceTree = "<group>"; };
-		C36819DC17079DCB002C6742 /* BDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKModel.h; sourceTree = "<group>"; };
-		C36819DD17079DCB002C6742 /* BDKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKModel.m; sourceTree = "<group>"; };
-		C36819DF17079DE4002C6742 /* BDKAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKAccount.h; sourceTree = "<group>"; };
-		C36819E017079DE4002C6742 /* BDKAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKAccount.m; sourceTree = "<group>"; };
-		C36819E117079DE4002C6742 /* BDKIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKIdentity.h; sourceTree = "<group>"; };
-		C36819E217079DE4002C6742 /* BDKIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKIdentity.m; sourceTree = "<group>"; };
-		C36819E317079DE4002C6742 /* BDKLaunchpadAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLaunchpadAccount.h; sourceTree = "<group>"; };
-		C36819E417079DE4002C6742 /* BDKLaunchpadAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLaunchpadAccount.m; sourceTree = "<group>"; };
-		C36819E517079DE4002C6742 /* BDKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKMessage.h; sourceTree = "<group>"; };
-		C36819E617079DE4002C6742 /* BDKMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKMessage.m; sourceTree = "<group>"; };
-		C36819E717079DE4002C6742 /* BDKRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoom.h; sourceTree = "<group>"; };
-		C36819E817079DE4002C6742 /* BDKRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoom.m; sourceTree = "<group>"; };
-		C36819E917079DE4002C6742 /* BDKUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKUpload.h; sourceTree = "<group>"; };
-		C36819EA17079DE4002C6742 /* BDKUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUpload.m; sourceTree = "<group>"; };
-		C36819EB17079DE4002C6742 /* BDKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKUser.h; sourceTree = "<group>"; };
-		C36819EC17079DE4002C6742 /* BDKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUser.m; sourceTree = "<group>"; };
-		C36819EE17079DE4002C6742 /* _BDKAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKAccount.h; sourceTree = "<group>"; };
-		C36819EF17079DE4002C6742 /* _BDKAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKAccount.m; sourceTree = "<group>"; };
-		C36819F017079DE4002C6742 /* _BDKIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKIdentity.h; sourceTree = "<group>"; };
-		C36819F117079DE4002C6742 /* _BDKIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKIdentity.m; sourceTree = "<group>"; };
-		C36819F217079DE4002C6742 /* _BDKLaunchpadAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKLaunchpadAccount.h; sourceTree = "<group>"; };
-		C36819F317079DE4002C6742 /* _BDKLaunchpadAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKLaunchpadAccount.m; sourceTree = "<group>"; };
-		C36819F417079DE4002C6742 /* _BDKMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKMessage.h; sourceTree = "<group>"; };
-		C36819F517079DE4002C6742 /* _BDKMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKMessage.m; sourceTree = "<group>"; };
-		C36819F617079DE4002C6742 /* _BDKRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKRoom.h; sourceTree = "<group>"; };
-		C36819F717079DE4002C6742 /* _BDKRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKRoom.m; sourceTree = "<group>"; };
-		C36819F817079DE4002C6742 /* _BDKUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKUpload.h; sourceTree = "<group>"; };
-		C36819F917079DE4002C6742 /* _BDKUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKUpload.m; sourceTree = "<group>"; };
-		C36819FA17079DE4002C6742 /* _BDKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _BDKUser.h; sourceTree = "<group>"; };
-		C36819FB17079DE4002C6742 /* _BDKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _BDKUser.m; sourceTree = "<group>"; };
-		C3681A0A1707CD8A002C6742 /* BDKModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKModels.h; sourceTree = "<group>"; };
+		C36819DC17079DCB002C6742 /* IFBKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKModel.h; sourceTree = "<group>"; };
+		C36819DD17079DCB002C6742 /* IFBKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKModel.m; sourceTree = "<group>"; };
+		C3681A0A1707CD8A002C6742 /* IFBKModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKModels.h; sourceTree = "<group>"; };
 		C3966E9D170B9D2D00ED89B7 /* BDKRoomCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoomCollectionCell.h; sourceTree = "<group>"; };
 		C3966E9E170B9D2D00ED89B7 /* BDKRoomCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomCollectionCell.m; sourceTree = "<group>"; };
 		C3966EA0170BA96B00ED89B7 /* BDKGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKGradientView.h; sourceTree = "<group>"; };
@@ -230,6 +221,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C340EE80172605B3002795F0 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C340EE81172605E6002795F0 /* IFBKAccountsManager.h */,
+				C340EE82172605E6002795F0 /* IFBKAccountsManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		C356BE9916FF8F8300F7A031 = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +297,7 @@
 				C356BF1316FFA6A300F7A031 /* Categories */,
 				C356BEE116FF93CA00F7A031 /* Core */,
 				C356BEE616FF93CA00F7A031 /* Data */,
+				C340EE80172605B3002795F0 /* Managers */,
 				C356BEFB16FF990800F7A031 /* ViewControllers */,
 				C356BF0E16FFA4B600F7A031 /* Views */,
 			);
@@ -323,25 +324,21 @@
 		C356BEE616FF93CA00F7A031 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				C32BC6FD1726211E00DA5D88 /* IFBKAccount.h */,
+				C32BC6FE1726211E00DA5D88 /* IFBKAccount.m */,
+				C32BC6FF1726211E00DA5D88 /* IFBKIdentity.h */,
+				C32BC7001726211E00DA5D88 /* IFBKIdentity.m */,
+				C32BC7011726211E00DA5D88 /* IFBKLaunchpadAccount.h */,
+				C32BC7021726211E00DA5D88 /* IFBKLaunchpadAccount.m */,
+				C32BC7031726211F00DA5D88 /* IFBKRoom.h */,
+				C32BC7041726211F00DA5D88 /* IFBKRoom.m */,
+				C32BC7051726211F00DA5D88 /* IFBKUser.h */,
+				C32BC7061726211F00DA5D88 /* IFBKUser.m */,
 				C36819ED17079DE4002C6742 /* Machine */,
-				C36819DF17079DE4002C6742 /* BDKAccount.h */,
-				C36819E017079DE4002C6742 /* BDKAccount.m */,
-				C36819E117079DE4002C6742 /* BDKIdentity.h */,
-				C36819E217079DE4002C6742 /* BDKIdentity.m */,
-				C36819E317079DE4002C6742 /* BDKLaunchpadAccount.h */,
-				C36819E417079DE4002C6742 /* BDKLaunchpadAccount.m */,
-				C36819E517079DE4002C6742 /* BDKMessage.h */,
-				C36819E617079DE4002C6742 /* BDKMessage.m */,
-				C36819DC17079DCB002C6742 /* BDKModel.h */,
-				C36819DD17079DCB002C6742 /* BDKModel.m */,
-				C3681A0A1707CD8A002C6742 /* BDKModels.h */,
-				C36819E717079DE4002C6742 /* BDKRoom.h */,
-				C36819E817079DE4002C6742 /* BDKRoom.m */,
-				C36819E917079DE4002C6742 /* BDKUpload.h */,
-				C36819EA17079DE4002C6742 /* BDKUpload.m */,
-				C36819EB17079DE4002C6742 /* BDKUser.h */,
-				C36819EC17079DE4002C6742 /* BDKUser.m */,
-				C356BEE716FF93CA00F7A031 /* Marshmallow.xcdatamodeld */,
+				C36819DC17079DCB002C6742 /* IFBKModel.h */,
+				C36819DD17079DCB002C6742 /* IFBKModel.m */,
+				C3681A0A1707CD8A002C6742 /* IFBKModels.h */,
+				C32BC6EB17261EDD00DA5D88 /* IFBKModel.xcdatamodeld */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -462,20 +459,16 @@
 		C36819ED17079DE4002C6742 /* Machine */ = {
 			isa = PBXGroup;
 			children = (
-				C36819EE17079DE4002C6742 /* _BDKAccount.h */,
-				C36819EF17079DE4002C6742 /* _BDKAccount.m */,
-				C36819F017079DE4002C6742 /* _BDKIdentity.h */,
-				C36819F117079DE4002C6742 /* _BDKIdentity.m */,
-				C36819F217079DE4002C6742 /* _BDKLaunchpadAccount.h */,
-				C36819F317079DE4002C6742 /* _BDKLaunchpadAccount.m */,
-				C36819F417079DE4002C6742 /* _BDKMessage.h */,
-				C36819F517079DE4002C6742 /* _BDKMessage.m */,
-				C36819F617079DE4002C6742 /* _BDKRoom.h */,
-				C36819F717079DE4002C6742 /* _BDKRoom.m */,
-				C36819F817079DE4002C6742 /* _BDKUpload.h */,
-				C36819F917079DE4002C6742 /* _BDKUpload.m */,
-				C36819FA17079DE4002C6742 /* _BDKUser.h */,
-				C36819FB17079DE4002C6742 /* _BDKUser.m */,
+				C32BC6EE1726210700DA5D88 /* _IFBKAccount.h */,
+				C32BC6EF1726210700DA5D88 /* _IFBKAccount.m */,
+				C32BC6F01726210700DA5D88 /* _IFBKIdentity.h */,
+				C32BC6F11726210700DA5D88 /* _IFBKIdentity.m */,
+				C32BC6F21726210700DA5D88 /* _IFBKLaunchpadAccount.h */,
+				C32BC6F31726210700DA5D88 /* _IFBKLaunchpadAccount.m */,
+				C32BC6F41726210700DA5D88 /* _IFBKRoom.h */,
+				C32BC6F51726210700DA5D88 /* _IFBKRoom.m */,
+				C32BC6F61726210700DA5D88 /* _IFBKUser.h */,
+				C32BC6F71726210700DA5D88 /* _IFBKUser.m */,
 			);
 			path = Machine;
 			sourceTree = "<group>";
@@ -629,7 +622,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "/usr/local/bin/appledoc --project-name Marshmallow --project-company \"Ben Kreeger\" --company-id gr.kree --output ~/help --logformat xcode --ignore Pods --exit-threshold 2 .";
+			shellScript = "/opt/boxen/homebrew/bin/appledoc --project-name Marshmallow --project-company \"Ben Kreeger\" --company-id gr.kree --output ~/help --logformat xcode --ignore Pods --exit-threshold 2 .";
 		};
 		C356BEC516FF8F8300F7A031 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -667,7 +660,6 @@
 			files = (
 				C356BEF016FF93CA00F7A031 /* BDKAppDelegate.m in Sources */,
 				C356BEF116FF93CA00F7A031 /* main.m in Sources */,
-				C356BEF216FF93CA00F7A031 /* Marshmallow.xcdatamodeld in Sources */,
 				C356BEFA16FF971300F7A031 /* BDKLog.m in Sources */,
 				C356BEFF16FF998E00F7A031 /* BDKViewController.m in Sources */,
 				C356BF0616FF9BC600F7A031 /* BDKCollectionViewController.m in Sources */,
@@ -680,26 +672,24 @@
 				C3FD9E6216FFEACC0099E595 /* BDKAPIKeyManager.m in Sources */,
 				C3632ECA17013A4A0028C794 /* BDKRoomsViewController.m in Sources */,
 				C3632ECD17013A750028C794 /* UINavigationController+BDKKit.m in Sources */,
-				C36819DE17079DCB002C6742 /* BDKModel.m in Sources */,
-				C36819FC17079DE4002C6742 /* BDKAccount.m in Sources */,
-				C36819FD17079DE4002C6742 /* BDKIdentity.m in Sources */,
-				C36819FE17079DE4002C6742 /* BDKLaunchpadAccount.m in Sources */,
-				C36819FF17079DE4002C6742 /* BDKMessage.m in Sources */,
-				C3681A0017079DE4002C6742 /* BDKRoom.m in Sources */,
-				C3681A0117079DE4002C6742 /* BDKUpload.m in Sources */,
-				C3681A0217079DE4002C6742 /* BDKUser.m in Sources */,
-				C3681A0317079DE4002C6742 /* _BDKAccount.m in Sources */,
-				C3681A0417079DE4002C6742 /* _BDKIdentity.m in Sources */,
-				C3681A0517079DE4002C6742 /* _BDKLaunchpadAccount.m in Sources */,
-				C3681A0617079DE4002C6742 /* _BDKMessage.m in Sources */,
-				C3681A0717079DE4002C6742 /* _BDKRoom.m in Sources */,
-				C3681A0817079DE4002C6742 /* _BDKUpload.m in Sources */,
-				C3681A0917079DE4002C6742 /* _BDKUser.m in Sources */,
+				C36819DE17079DCB002C6742 /* IFBKModel.m in Sources */,
 				C3966E9F170B9D2D00ED89B7 /* BDKRoomCollectionCell.m in Sources */,
 				C3966EA2170BA96B00ED89B7 /* BDKGradientView.m in Sources */,
 				C3C5FF15170E408700BE92B9 /* BDKRoomViewController.m in Sources */,
 				C3C5FF18170E5D7200BE92B9 /* BDKMarshmallowAppearance.m in Sources */,
 				C3C5FF1B170E62AC00BE92B9 /* BDKUserViewController.m in Sources */,
+				C340EE83172605E6002795F0 /* IFBKAccountsManager.m in Sources */,
+				C32BC6ED17261EDD00DA5D88 /* IFBKModel.xcdatamodeld in Sources */,
+				C32BC6F81726210700DA5D88 /* _IFBKAccount.m in Sources */,
+				C32BC6F91726210700DA5D88 /* _IFBKIdentity.m in Sources */,
+				C32BC6FA1726210700DA5D88 /* _IFBKLaunchpadAccount.m in Sources */,
+				C32BC6FB1726210700DA5D88 /* _IFBKRoom.m in Sources */,
+				C32BC6FC1726210700DA5D88 /* _IFBKUser.m in Sources */,
+				C32BC7071726211F00DA5D88 /* IFBKAccount.m in Sources */,
+				C32BC7081726211F00DA5D88 /* IFBKIdentity.m in Sources */,
+				C32BC7091726211F00DA5D88 /* IFBKLaunchpadAccount.m in Sources */,
+				C32BC70A1726211F00DA5D88 /* IFBKRoom.m in Sources */,
+				C32BC70B1726211F00DA5D88 /* IFBKUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,7 +796,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Core/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -819,7 +809,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Core/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -894,13 +884,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C356BEE716FF93CA00F7A031 /* Marshmallow.xcdatamodeld */ = {
+		C32BC6EB17261EDD00DA5D88 /* IFBKModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C356BEE816FF93CA00F7A031 /* Marshmallow.xcdatamodel */,
+				C32BC6EC17261EDD00DA5D88 /* IFBKModel.xcdatamodel */,
 			);
-			currentVersion = C356BEE816FF93CA00F7A031 /* Marshmallow.xcdatamodel */;
-			path = Marshmallow.xcdatamodeld;
+			currentVersion = C32BC6EC17261EDD00DA5D88 /* IFBKModel.xcdatamodel */;
+			path = IFBKModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

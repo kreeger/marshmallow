@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@class BDKUser, BDKCampfireClient;
+@class IFBKUser, BDKCampfireClient;
 
 /** A base implementation of a view controller; not much to see here.
  */
@@ -24,11 +24,7 @@
 
 /** A reference to the current user.
  */
-@property (readonly) BDKUser *currentUser;
-
-/** A handy reference to the App Delegate's Campfire Client class.
- */
-@property (readonly) BDKCampfireClient *campfireClient;
+@property (readonly) IFBKUser *currentUser;
 
 @property (readonly) CGRect frame;
 @property (readonly) CGRect bounds;

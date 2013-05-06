@@ -4,9 +4,8 @@
 
 #import "BDKCampfireClient.h"
 #import "BDKCFRoom.h"
-#import "BDKRoom.h"
+#import "IFBKRoom.h"
 #import "BDKCFMessage.h"
-#import "BDKMessage.h"
 
 @interface BDKRoomViewController ()
 
@@ -14,28 +13,28 @@
  */
 @property (strong, nonatomic) NSFetchedResultsController *resultsController;
 
-/** An initializer that takes a BDKRoom and sets everything up all nice.
+/** An initializer that takes a IFBKRoom and sets everything up all nice.
  *  @param room The room to be displayed in this view controller.
  *  @returns An instance of self.
  */
-- (id)initWithRoom:(BDKRoom *)room;
+- (id)initWithRoom:(IFBKRoom *)room;
 
 /** Gets the message associated with a given index path.
  *  @param indexPath The index path for which to retrieve the message.
  *  @returns A message.
  */
-- (BDKMessage *)messageForIndexPath:(NSIndexPath *)indexPath;
+- (BDKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
 @implementation BDKRoomViewController
 
-+ (id)vcWithRoom:(BDKRoom *)room
++ (id)vcWithRoom:(IFBKRoom *)room
 {
     return [[self alloc] initWithRoom:room];
 }
 
-- (id)initWithRoom:(BDKRoom *)room
+- (id)initWithRoom:(IFBKRoom *)room
 {
     if (self = [super initWithIdentifier:room.name]) {
         _room = room;
@@ -55,19 +54,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSMutableArray *messageIds = [NSMutableArray array];
-    [self.campfireClient getMessagesForRoom:self.room.identifier sinceMessageId:nil success:^(NSArray *result) {
-        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            [result each:^(BDKCFMessage *message) {
-                [messageIds addObject:[[BDKMessage createOrUpdateWithModel:message inContext:localContext] identifier]];
-            }];
-        } completion:^(BOOL success, NSError *error) {
-            [self.resultsController performFetch:nil];
-            [self.tableView reloadData];
-        }];
-    } failure:^(NSError *error, NSInteger responseCode) {
-        DDLogError(@"Error %i getting messages. %@", responseCode, error);
-    }];
+//    NSMutableArray *messageIds = [NSMutableArray array];
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,7 +80,7 @@
 
 #pragma mark - Methods
 
-- (BDKMessage *)messageForIndexPath:(NSIndexPath *)indexPath
+- (BDKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath
 {
     return [self.resultsController objectAtIndexPath:indexPath];
 }
@@ -113,7 +100,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenericCell" forIndexPath:indexPath];
-    BDKMessage *message = [self messageForIndexPath:indexPath];
+    BDKCFMessage *message = [self messageForIndexPath:indexPath];
     cell.textLabel.text = message.body;
     cell.textLabel.font = [UIFont appFontOfSize:12];
     return cell;

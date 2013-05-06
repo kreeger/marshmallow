@@ -6,7 +6,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "BDKRoom.h"
+#import "IFBKRoom.h"
 
 #import "BDKRoomCollectionCell.h"
 
@@ -19,11 +19,11 @@
  */
 - (void)performFetch;
 
-/** Gets a BDKRoom given the index path.
+/** Gets an IFBKRoom given the index path.
  *  @param indexPath the index path to use when finding the room (the `row` property will be used).
  *  @returns A room object.
  */
-- (BDKRoom *)roomForIndexPath:(NSIndexPath *)indexPath;
+- (IFBKRoom *)roomForIndexPath:(NSIndexPath *)indexPath;
 
 /** Fired when the profile button is tapped.
  *  @param sender The sender of the event.
@@ -86,7 +86,7 @@
 - (NSFetchedResultsController *)resultsController
 {
     if (_resultsController) return _resultsController;
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BDKRoom"];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"IFBKRoom"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     request.fetchBatchSize = 30;
     _resultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
@@ -104,7 +104,7 @@
     [self.tableView reloadData];
 }
 
-- (BDKRoom *)roomForIndexPath:(NSIndexPath *)indexPath
+- (IFBKRoom *)roomForIndexPath:(NSIndexPath *)indexPath
 {
     return [self.resultsController objectAtIndexPath:indexPath];
 }
@@ -116,7 +116,7 @@
 
 - (void)presentProfileController
 {
-    BDKUserViewController *userVC = [BDKUserViewController vcWithBDKUser:self.currentUser];
+    BDKUserViewController *userVC = [BDKUserViewController vcWithIFBKUser:self.currentUser];
     userVC.modalDismissalBlock = ^{
         [self dismissViewControllerAnimated:YES completion:nil];
     };
@@ -144,7 +144,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenericCell" forIndexPath:indexPath];
-    BDKRoom *room = [self roomForIndexPath:indexPath];
+    IFBKRoom *room = [self roomForIndexPath:indexPath];
     cell.textLabel.text = room.name;
     cell.textLabel.font = [UIFont boldAppFontOfSize:18];
     return cell;

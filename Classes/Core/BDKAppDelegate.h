@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@class BDKCampfireClient;
+@class IFBKAccountsManager;
 
 /** The Marshmallow application delegate. Not much to see here.
  */
@@ -10,9 +10,9 @@
  */
 @property (strong, nonatomic) UIWindow *window;
 
-/** An instance of the Campfire API client.
+/** An instance of the Accounts manager.
  */
-@property (strong, nonatomic) BDKCampfireClient *campfireClient;
+@property (strong, nonatomic) IFBKAccountsManager *accountsManager;
 
 /** A shortcut to get the path to Marshmallow's documents directory.
  */

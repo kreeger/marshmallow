@@ -1,7 +1,7 @@
 #import "BDKViewController.h"
 #import "BDKAppDelegate.h"
 
-#import "BDKUser.h"
+#import "IFBKUser.h"
 
 #import <EDColor/UIColor+Crayola.h>
 
@@ -81,14 +81,9 @@
     return [[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultCurrentUserId];
 }
 
-- (BDKUser *)currentUser
+- (IFBKUser *)currentUser
 {
-    return self.currentUserId ? [BDKUser findFirstByAttribute:@"identifier" withValue:self.currentUserId] : nil;
-}
-
-- (BDKCampfireClient *)campfireClient
-{
-    return ((BDKAppDelegate *)[UIApplication sharedApplication].delegate).campfireClient;
+    return self.currentUserId ? [IFBKUser findFirstByAttribute:@"identifier" withValue:self.currentUserId] : nil;
 }
 
 - (CGRect)frame

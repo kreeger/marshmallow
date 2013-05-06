@@ -7,13 +7,10 @@
 
 #import <CocoaLumberjack/DDTTYLogger.h>
 #import <EDColor/UIColor+Crayola.h>
+#import <CrittercismSDK/Crittercism.h>
 
 #import "BDKAPIKeyManager.h"
-#import "BDKLaunchpadClient.h"
-#import "BDKCampfireClient.h"
-#import "BDKLPModels.h"
-#import "BDKCFModels.h"
-#import "BDKModels.h"
+#import "IFBKAccountsManager.h"
 
 @interface BDKAppDelegate ()
 
@@ -27,9 +24,7 @@
 
 /** Sets up our common Launchpad instance with the proper OAuth keys.
  */
-- (void)configureLaunchpadClient;
-
-- (void)setActiveAccount:(BDKLaunchpadAccount *)account;
+- (void)configureAccountsManager;
 
 @end
 
@@ -38,16 +33,17 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+    [Crittercism enableWithAppID:@"5180531c5f7216216f000003"];
     [MagicalRecord setupAutoMigratingCoreDataStack];
     
     [self configureLogging];
-    [self configureLaunchpadClient];
+    [self configureAccountsManager];
 
     [BDKMarshmallowAppearance setApplicationAppearance];
 
     // check if the user is logged in first
     if ([[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]) {
+        [self.accountsManager setAccessToken:[[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]];
         [self refreshUserData];
         
         BDKRoomsViewController *vc = [BDKRoomsViewController vc];
@@ -55,6 +51,13 @@
         self.window.rootViewController = nav;
     } else {
         BDKLoginViewController *vc = [BDKLoginViewController vc];
+        vc.userDidLoginBlock = ^(NSString *accessToken) {
+            [self refreshUserData];
+            // transition this mofo a little better
+            BDKRoomsViewController *vc = [BDKRoomsViewController vc];
+            UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
+            self.window.rootViewController = nav;
+        };
         UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
         self.window.rootViewController = nav;
     }
@@ -86,6 +89,15 @@
 
 #pragma mark - Methods
 
+- (void)configureAccountsManager
+{
+    self.accountsManager = [[IFBKAccountsManager alloc] init];
+    [self.accountsManager configureLaunchpadWithClientId:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientKey]
+                                            clientSecret:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientSecret]
+                                             redirectUri:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsRedirectURI]];
+}
+
+
 - (void)kickstartUserDefaults
 {
     NSDictionary *userDefaults = @{};
@@ -108,87 +120,22 @@
                                      backgroundColor:nil forFlag:LOG_FLAG_DATA];
 }
 
-- (void)configureLaunchpadClient
-{
-    [BDKLaunchpadClient setClientId:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientKey]
-                       clientSecret:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientSecret]
-                        redirectUri:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsRedirectURI]];
-}
-
 - (void)refreshUserData
 {
-    NSNumber *accountId = [[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultActiveAccountId];
-    if (accountId && [BDKLaunchpadAccount countOfEntities] > 0) {
-        [self setActiveAccount:[BDKLaunchpadAccount findFirstByAttribute:@"identifier" withValue:accountId]];
-    } else {
-        [BDKLaunchpadClient getAuthorization:^(BDKLPAuthorizationData *authData) {
-            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-                [authData.accounts each:^(BDKLPAccount *account) {
-                    [BDKLaunchpadAccount createOrUpdateWithModel:account inContext:localContext];
-                }];
-            } completion:^(BOOL success, NSError *error) {
-                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"product = %@", @"campfire"];
-                NSArray *accounts = [BDKLaunchpadAccount findAllWithPredicate:predicate];
-                // I need a dictionary with an adapter for each account
-                [self setActiveAccount:accounts[0]];
+    [self.accountsManager setAccessToken:[[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]];
+    [self.accountsManager refreshTokenAndAccounts:^{
+        [self.accountsManager getAccountData:^(NSArray *accounts) {
+            DDLogAPI(@"Accounts!!! %@", accounts);
+            [self.accountsManager getRooms:^(NSDictionary *rooms) {
+                DDLogAPI(@"ROOMS!!! %@", rooms);
+            } failure:^(NSError *error) {
+                DDLogWarn(@"Error! %@", error);
             }];
-        } failure:^(NSError *error, NSInteger responseCode) {
-            DDLogError(@"Error! %@.", error);
+        } failure:^(NSError *error) {
+            DDLogWarn(@"Error! %@", error);
         }];
-    }
-}
-
-- (void)setActiveAccount:(BDKLaunchpadAccount *)account
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidBeginChangingAccount object:nil];
-    [[NSUserDefaults standardUserDefaults] setValue:account.identifier forKey:kBDKUserDefaultActiveAccountId];
-    NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken];
-    DDLogData(@"Active account is now %@, token %@.", account.identifier, token);
-    self.campfireClient = [[BDKCampfireClient alloc] initWithBaseURL:account.hrefUrl accessToken:token];
-
-    __block NSNumber *accountId = nil;
-    [self.campfireClient getCurrentAccount:^(BDKCFAccount *account) {
-        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            BDKAccount *anAccount = [BDKAccount createOrUpdateWithModel:account inContext:localContext];
-            accountId = anAccount.identifier;
-        } completion:^(BOOL success, NSError *error) {
-            [self.campfireClient getRooms:^(NSArray *result) {
-                [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-                    BDKAccount *account = [BDKAccount findFirstByAttribute:@"identifier"
-                                                                 withValue:accountId
-                                                                 inContext:localContext];
-                    [result each:^(BDKCFRoom *room) {
-                        BDKRoom *aRoom = [BDKRoom createOrUpdateWithModel:room inContext:localContext];
-                        aRoom.account = account;
-                    }];
-                } completion:^(BOOL success, NSError *error) {
-                    DDLogData(@"%i rooms.", [BDKRoom countOfEntities]);
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidFinishChangingAccount
-                                                                        object:nil];
-
-                    if ([((UINavigationController *)self.window.rootViewController).topViewController
-                         isKindOfClass:[BDKLoginViewController class]]) {
-                        BDKRoomsViewController *vc = [BDKRoomsViewController vc];
-                        UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
-                        self.window.rootViewController = nav;
-                    }
-                }];
-            } failure:^(NSError *error, NSInteger responseCode) {
-                DDLogError(@"Error! %@.", error);
-            }];
-        }];
-    } failure:^(NSError *error, NSInteger responseCode) {
-        DDLogError(@"Error! %@.", error);
-    }];
-
-    [self.campfireClient getCurrentUser:^(BDKCFUser *user) {
-        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            [BDKUser createOrUpdateWithModel:user inContext:localContext];
-            [[NSUserDefaults standardUserDefaults] setValue:user.identifier forKey:kBDKUserDefaultCurrentUserId];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }];
-    } failure:^(NSError *error, NSInteger responseCode) {
-        DDLogError(@"Error! %@.", error);
+    } failure:^(NSError *error) {
+        //
     }];
 }
 
