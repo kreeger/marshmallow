@@ -9,10 +9,6 @@
 
 @interface BDKRoomViewController ()
 
-/** The messages to be displayed in the room.
- */
-@property (strong, nonatomic) NSFetchedResultsController *resultsController;
-
 /** An initializer that takes a IFBKRoom and sets everything up all nice.
  *  @param room The room to be displayed in this view controller.
  *  @returns An instance of self.
@@ -62,39 +58,23 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Properties
-
-- (NSFetchedResultsController *)resultsController
-{
-    if (_resultsController) return _resultsController;
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BDKMessage"];
-    request.predicate = [NSPredicate predicateWithFormat:@"roomIdentifier = %@", self.room.identifier];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
-    request.fetchBatchSize = 30;
-    _resultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                             managedObjectContext:[NSManagedObjectContext defaultContext]
-                                                               sectionNameKeyPath:nil
-                                                                        cacheName:nil];
-    return _resultsController;
-}
-
 #pragma mark - Methods
 
 - (BDKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.resultsController objectAtIndexPath:indexPath];
+    return nil;
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.resultsController.sections count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.resultsController.sections[section] numberOfObjects];
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

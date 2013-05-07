@@ -79,16 +79,16 @@
     }
 }
 
-- (void)getRooms:(void (^)(NSDictionary *rooms))completion failure:(void (^)(NSError *error))failure {
+- (void)getRooms:(void (^)(NSArray *rooms))completion failure:(void (^)(NSError *error))failure {
     NSInteger count = [self.campfireAccounts count];
-    NSMutableDictionary *campfireRooms = [NSMutableDictionary dictionaryWithCapacity:count];
+    NSMutableArray *campfireRooms = [NSMutableArray arrayWithCapacity:count];
     for (IFBKAccount *account in self.campfireAccounts) {
         BDKCampfireClient *campfire = [BDKCampfireClient clientWithBaseURL:[account apiUrl]];
         [campfire setBearerToken:self.accessToken];
         [campfire getRooms:^(NSArray *result) {
-            [campfireRooms addEntriesFromDictionary:@{account.name: result}];
+            [campfireRooms addObject:@{@"title": account.name, @"rooms": result}];
             if (completion && count == [campfireRooms count]) {
-                self.rooms = [NSDictionary dictionaryWithDictionary:campfireRooms];
+                self.rooms = [NSArray arrayWithArray:campfireRooms];
                 completion(self.rooms);
             }
         } failure:^(NSError *error, NSInteger responseCode) {

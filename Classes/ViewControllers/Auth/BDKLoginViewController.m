@@ -7,13 +7,15 @@
 
 @interface BDKLoginViewController ()
 
+@property (nonatomic) BOOL authWasSubmitted;
+
 @end
 
 @implementation BDKLoginViewController
 
 - (id)init {
     if (self = [super initWithIdentifier:@"login"]) {
-
+        _authWasSubmitted = NO;
     }
     return self;
 }
@@ -36,8 +38,11 @@
 - (BOOL)webView:(UIWebView *)webView
     shouldStartLoadWithRequest:(NSURLRequest *)request
     navigationType:(UIWebViewNavigationType)navigationType {
-    if (navigationType == UIWebViewNavigationTypeFormSubmitted && [request.URL.absoluteString hasPrefix:@"marshmallow://"]) {
+    if (navigationType == UIWebViewNavigationTypeFormSubmitted &&
+        [request.URL.absoluteString hasPrefix:@"marshmallow://"] &&
+        !self.authWasSubmitted) {
         // Don't know if I like this shitty way of doing things.
+        self.authWasSubmitted = YES;
         NSString *authCode = [request.URL.absoluteString split:@"="][1];
         DDLogUI(@"Request %@, nav type %i. Auth code %@.", request, navigationType, authCode);
         [BDKLaunchpadClient getAccessTokenForVerificationCode:authCode success:^(NSString *accessToken, NSString *refreshToken, NSDate *expiresOn) {

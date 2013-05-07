@@ -12,9 +12,9 @@
  */
 @property (strong, nonatomic) NSArray *campfireAccounts;
 
-/** A dictionary of Campfire rooms, with account names as keys.
+/** An array of dictionaries for Campfire rooms, with account names as keys.
  */
-@property (strong, nonatomic) NSDictionary *rooms;
+@property (strong, nonatomic) NSArray *rooms;
 
 /** Sets up the Launchpad adapters with the proper OAuth keys.
  *
@@ -46,6 +46,6 @@
  *  @param completion Will be passed the list of rooms upon completion.
  *  @param failure Will be passed an error upon failure.
  */
-- (void)getRooms:(void (^)(NSDictionary *rooms))completion failure:(void (^)(NSError *error))failure;
+- (void)getRooms:(void (^)(NSArray *rooms))completion failure:(void (^)(NSError *error))failure;
 
 @end

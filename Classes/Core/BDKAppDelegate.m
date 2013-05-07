@@ -114,9 +114,8 @@
     [self.accountsManager setAccessToken:[[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]];
     [self.accountsManager refreshTokenAndAccounts:^{
         [self.accountsManager getAccountData:^(NSArray *accounts) {
-            DDLogAPI(@"Accounts!!! %@", accounts);
-            [self.accountsManager getRooms:^(NSDictionary *rooms) {
-                DDLogAPI(@"ROOMS!!! %@", rooms);
+            [self.accountsManager getRooms:^(NSArray *rooms) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidReloadRooms object:self];
             } failure:^(NSError *error) {
                 DDLogWarn(@"Error! %@", error);
             }];

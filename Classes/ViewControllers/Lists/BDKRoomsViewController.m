@@ -1,10 +1,9 @@
 #import "BDKRoomsViewController.h"
 #import "BDKRoomViewController.h"
 #import "BDKUserViewController.h"
-
+#import "BDKAppDelegate.h"
+#import "IFBKAccountsManager.h"
 #import "UINavigationController+BDKKit.h"
-
-#import <QuartzCore/QuartzCore.h>
 
 #import "IFBKRoom.h"
 
@@ -12,7 +11,7 @@
 
 @interface BDKRoomsViewController ()
 
-@property (strong, nonatomic) NSFetchedResultsController *resultsController;
+@property (weak, nonatomic) NSArray *rooms;
 @property (strong, nonatomic) UIBarButtonItem *profileBarButton;
 
 /** Loads up the necessary data into the collection view.
@@ -53,7 +52,7 @@
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(performFetch)
-                                                 name:kBDKNotificationDidFinishChangingAccount object:nil];
+                                                 name:kBDKNotificationDidReloadRooms object:nil];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     [self performFetch];
 }
@@ -68,7 +67,7 @@
 {
     [super didReceiveMemoryWarning];
     unless (self.view.superview) {
-        self.resultsController = nil;
+        _rooms = nil;
     }
 }
 
@@ -83,30 +82,17 @@
     return _profileBarButton;
 }
 
-- (NSFetchedResultsController *)resultsController
-{
-    if (_resultsController) return _resultsController;
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"IFBKRoom"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
-    request.fetchBatchSize = 30;
-    _resultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                             managedObjectContext:[NSManagedObjectContext defaultContext]
-                                                               sectionNameKeyPath:@"account.name"
-                                                                        cacheName:nil];
-    return _resultsController;
-}
-
 #pragma mark - Methods
 
 - (void)performFetch
 {
-    [self.resultsController performFetch:nil];
+    self.rooms = ((BDKAppDelegate *)[[UIApplication sharedApplication] delegate]).accountsManager.rooms;
     [self.tableView reloadData];
 }
 
 - (IFBKRoom *)roomForIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.resultsController objectAtIndexPath:indexPath];
+    return self.rooms[indexPath.section][@"rooms"][indexPath.row];
 }
 
 - (void)profileBarButtonTapped:(UIBarButtonItem *)sender
@@ -128,17 +114,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.resultsController.sections count];
+    return [self.rooms count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [self.resultsController.sections[section] name];
+    return self.rooms[section][@"title"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.resultsController.sections[section] numberOfObjects];
+    return [self.rooms[section][@"rooms"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

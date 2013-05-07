@@ -7,5 +7,4 @@
 #define kBDKUserDefaultActiveAccountId @"ActiveAccountId"
 #define kBDKUserDefaultCurrentUserId @"CurrentUserId"
 
-#define kBDKNotificationDidBeginChangingAccount @"DidBeginChangingAccount"
-#define kBDKNotificationDidFinishChangingAccount @"DidFinishChangingAccount"
+#define kBDKNotificationDidReloadRooms @"DidReloadRooms"
