@@ -3,17 +3,18 @@
 #import "BDKRoomCollectionCell.h"
 
 #import "BDKCampfireClient.h"
+#import "IFBKRoomManager.h"
+
 #import "BDKCFRoom.h"
-#import "IFBKRoom.h"
 #import "BDKCFMessage.h"
 
 @interface BDKRoomViewController ()
 
-/** An initializer that takes a IFBKRoom and sets everything up all nice.
- *  @param room The room to be displayed in this view controller.
+/** An initializer that takes a IFBKRoomManager and sets everything up all nice.
+ *  @param roomManager The room manager to be userd in this view controller.
  *  @returns An instance of self.
  */
-- (id)initWithRoom:(IFBKRoom *)room;
+- (id)initWithRoomManager:(IFBKRoomManager *)roomManager;
 
 /** Gets the message associated with a given index path.
  *  @param indexPath The index path for which to retrieve the message.
@@ -25,60 +26,52 @@
 
 @implementation BDKRoomViewController
 
-+ (id)vcWithRoom:(IFBKRoom *)room
-{
-    return [[self alloc] initWithRoom:room];
+@synthesize roomManager = _roomManager;
+
++ (id)vcWithRoomManager:(IFBKRoomManager *)roomManager {
+    return [[self alloc] initWithRoomManager:roomManager];
 }
 
-- (id)initWithRoom:(IFBKRoom *)room
-{
-    if (self = [super initWithIdentifier:room.name]) {
-        _room = room;
+- (id)initWithRoomManager:(IFBKRoomManager *)roomManager {
+    if (self = [super initWithIdentifier:roomManager.room.name]) {
+        _roomManager = roomManager;
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = self.roomManager.room.name;
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"GenericCell"];
-    
-    self.title = self.room.name;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    NSMutableArray *messageIds = [NSMutableArray array];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Methods
 
-- (BDKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath
-{
+- (BDKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath {
     return nil;
 }
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenericCell" forIndexPath:indexPath];
     BDKCFMessage *message = [self messageForIndexPath:indexPath];
     cell.textLabel.text = message.body;

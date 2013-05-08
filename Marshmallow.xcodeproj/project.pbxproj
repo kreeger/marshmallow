@@ -13,12 +13,10 @@
 		C32BC6F81726210700DA5D88 /* _IFBKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6EF1726210700DA5D88 /* _IFBKAccount.m */; };
 		C32BC6F91726210700DA5D88 /* _IFBKIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6F11726210700DA5D88 /* _IFBKIdentity.m */; };
 		C32BC6FA1726210700DA5D88 /* _IFBKLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6F31726210700DA5D88 /* _IFBKLaunchpadAccount.m */; };
-		C32BC6FB1726210700DA5D88 /* _IFBKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6F51726210700DA5D88 /* _IFBKRoom.m */; };
 		C32BC6FC1726210700DA5D88 /* _IFBKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6F71726210700DA5D88 /* _IFBKUser.m */; };
 		C32BC7071726211F00DA5D88 /* IFBKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6FE1726211E00DA5D88 /* IFBKAccount.m */; };
 		C32BC7081726211F00DA5D88 /* IFBKIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC7001726211E00DA5D88 /* IFBKIdentity.m */; };
 		C32BC7091726211F00DA5D88 /* IFBKLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC7021726211E00DA5D88 /* IFBKLaunchpadAccount.m */; };
-		C32BC70A1726211F00DA5D88 /* IFBKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC7041726211F00DA5D88 /* IFBKRoom.m */; };
 		C32BC70B1726211F00DA5D88 /* IFBKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC7061726211F00DA5D88 /* IFBKUser.m */; };
 		C340EE83172605E6002795F0 /* IFBKAccountsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C340EE82172605E6002795F0 /* IFBKAccountsManager.m */; };
 		C356BEA616FF8F8300F7A031 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA516FF8F8300F7A031 /* UIKit.framework */; };
@@ -55,6 +53,7 @@
 		C3C5FF15170E408700BE92B9 /* BDKRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF14170E408700BE92B9 /* BDKRoomViewController.m */; };
 		C3C5FF18170E5D7200BE92B9 /* BDKMarshmallowAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF17170E5D7200BE92B9 /* BDKMarshmallowAppearance.m */; };
 		C3C5FF1B170E62AC00BE92B9 /* BDKUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF1A170E62AC00BE92B9 /* BDKUserViewController.m */; };
+		C3E64194173B0D4800F37DEC /* IFBKRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E64193173B0D4800F37DEC /* IFBKRoomManager.m */; };
 		C3EBE2CA1709FC1000B92281 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C01709FC1000B92281 /* Icon-72.png */; };
 		C3EBE2CB1709FC1000B92281 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C11709FC1000B92281 /* Icon-72@2x.png */; };
 		C3EBE2CC1709FC1000B92281 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C21709FC1000B92281 /* Icon-Small-50.png */; };
@@ -94,8 +93,6 @@
 		C32BC6F11726210700DA5D88 /* _IFBKIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _IFBKIdentity.m; sourceTree = "<group>"; };
 		C32BC6F21726210700DA5D88 /* _IFBKLaunchpadAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _IFBKLaunchpadAccount.h; sourceTree = "<group>"; };
 		C32BC6F31726210700DA5D88 /* _IFBKLaunchpadAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _IFBKLaunchpadAccount.m; sourceTree = "<group>"; };
-		C32BC6F41726210700DA5D88 /* _IFBKRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _IFBKRoom.h; sourceTree = "<group>"; };
-		C32BC6F51726210700DA5D88 /* _IFBKRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _IFBKRoom.m; sourceTree = "<group>"; };
 		C32BC6F61726210700DA5D88 /* _IFBKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _IFBKUser.h; sourceTree = "<group>"; };
 		C32BC6F71726210700DA5D88 /* _IFBKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _IFBKUser.m; sourceTree = "<group>"; };
 		C32BC6FD1726211E00DA5D88 /* IFBKAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKAccount.h; sourceTree = "<group>"; };
@@ -104,8 +101,6 @@
 		C32BC7001726211E00DA5D88 /* IFBKIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKIdentity.m; sourceTree = "<group>"; };
 		C32BC7011726211E00DA5D88 /* IFBKLaunchpadAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKLaunchpadAccount.h; sourceTree = "<group>"; };
 		C32BC7021726211E00DA5D88 /* IFBKLaunchpadAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKLaunchpadAccount.m; sourceTree = "<group>"; };
-		C32BC7031726211F00DA5D88 /* IFBKRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKRoom.h; sourceTree = "<group>"; };
-		C32BC7041726211F00DA5D88 /* IFBKRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKRoom.m; sourceTree = "<group>"; };
 		C32BC7051726211F00DA5D88 /* IFBKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKUser.h; sourceTree = "<group>"; };
 		C32BC7061726211F00DA5D88 /* IFBKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKUser.m; sourceTree = "<group>"; };
 		C340EE81172605E6002795F0 /* IFBKAccountsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKAccountsManager.h; sourceTree = "<group>"; };
@@ -165,6 +160,8 @@
 		C3C5FF19170E62AC00BE92B9 /* BDKUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKUserViewController.h; sourceTree = "<group>"; };
 		C3C5FF1A170E62AC00BE92B9 /* BDKUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUserViewController.m; sourceTree = "<group>"; };
 		C3C5FF1F170E69B600BE92B9 /* BDKTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTypedefs.h; sourceTree = "<group>"; };
+		C3E64192173B0D4800F37DEC /* IFBKRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKRoomManager.h; sourceTree = "<group>"; };
+		C3E64193173B0D4800F37DEC /* IFBKRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKRoomManager.m; sourceTree = "<group>"; };
 		C3EBE2C01709FC1000B92281 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		C3EBE2C11709FC1000B92281 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		C3EBE2C21709FC1000B92281 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -226,6 +223,8 @@
 			children = (
 				C340EE81172605E6002795F0 /* IFBKAccountsManager.h */,
 				C340EE82172605E6002795F0 /* IFBKAccountsManager.m */,
+				C3E64192173B0D4800F37DEC /* IFBKRoomManager.h */,
+				C3E64193173B0D4800F37DEC /* IFBKRoomManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -330,8 +329,6 @@
 				C32BC7001726211E00DA5D88 /* IFBKIdentity.m */,
 				C32BC7011726211E00DA5D88 /* IFBKLaunchpadAccount.h */,
 				C32BC7021726211E00DA5D88 /* IFBKLaunchpadAccount.m */,
-				C32BC7031726211F00DA5D88 /* IFBKRoom.h */,
-				C32BC7041726211F00DA5D88 /* IFBKRoom.m */,
 				C32BC7051726211F00DA5D88 /* IFBKUser.h */,
 				C32BC7061726211F00DA5D88 /* IFBKUser.m */,
 				C36819ED17079DE4002C6742 /* Machine */,
@@ -465,8 +462,6 @@
 				C32BC6F11726210700DA5D88 /* _IFBKIdentity.m */,
 				C32BC6F21726210700DA5D88 /* _IFBKLaunchpadAccount.h */,
 				C32BC6F31726210700DA5D88 /* _IFBKLaunchpadAccount.m */,
-				C32BC6F41726210700DA5D88 /* _IFBKRoom.h */,
-				C32BC6F51726210700DA5D88 /* _IFBKRoom.m */,
 				C32BC6F61726210700DA5D88 /* _IFBKUser.h */,
 				C32BC6F71726210700DA5D88 /* _IFBKUser.m */,
 			);
@@ -683,13 +678,12 @@
 				C32BC6F81726210700DA5D88 /* _IFBKAccount.m in Sources */,
 				C32BC6F91726210700DA5D88 /* _IFBKIdentity.m in Sources */,
 				C32BC6FA1726210700DA5D88 /* _IFBKLaunchpadAccount.m in Sources */,
-				C32BC6FB1726210700DA5D88 /* _IFBKRoom.m in Sources */,
 				C32BC6FC1726210700DA5D88 /* _IFBKUser.m in Sources */,
 				C32BC7071726211F00DA5D88 /* IFBKAccount.m in Sources */,
 				C32BC7081726211F00DA5D88 /* IFBKIdentity.m in Sources */,
 				C32BC7091726211F00DA5D88 /* IFBKLaunchpadAccount.m in Sources */,
-				C32BC70A1726211F00DA5D88 /* IFBKRoom.m in Sources */,
 				C32BC70B1726211F00DA5D88 /* IFBKUser.m in Sources */,
+				C3E64194173B0D4800F37DEC /* IFBKRoomManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

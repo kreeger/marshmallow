@@ -23,17 +23,6 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="product" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="IFBKRoom" representedClassName="IFBKRoom" syncable="YES">
-        <attribute name="activeTokenValue" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="full" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="membershipLimit" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="openToGuests" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="topic" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
-    </entity>
     <entity name="IFBKUser" representedClassName="IFBKUser" syncable="YES">
         <attribute name="admin" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -48,6 +37,5 @@
         <element name="IFBKIdentity" positionX="160" positionY="192" width="128" height="105"/>
         <element name="IFBKLaunchpadAccount" positionX="160" positionY="192" width="128" height="105"/>
         <element name="IFBKUser" positionX="160" positionY="192" width="128" height="150"/>
-        <element name="IFBKRoom" positionX="160" positionY="192" width="128" height="180"/>
     </elements>
 </model>

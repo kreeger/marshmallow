@@ -2,12 +2,15 @@
 #import "BDKRoomViewController.h"
 #import "BDKUserViewController.h"
 #import "BDKAppDelegate.h"
-#import "IFBKAccountsManager.h"
-#import "UINavigationController+BDKKit.h"
 
-#import "IFBKRoom.h"
+#import "IFBKAccountsManager.h"
+#import "IFBKRoomManager.h"
+
+#import "BDKCFRoom.h"
 
 #import "BDKRoomCollectionCell.h"
+
+#import "UINavigationController+BDKKit.h"
 
 @interface BDKRoomsViewController ()
 
@@ -18,11 +21,11 @@
  */
 - (void)performFetch;
 
-/** Gets an IFBKRoom given the index path.
+/** Gets an BDKCFRoom given the index path.
  *  @param indexPath the index path to use when finding the room (the `row` property will be used).
  *  @returns A room object.
  */
-- (IFBKRoom *)roomForIndexPath:(NSIndexPath *)indexPath;
+- (BDKCFRoom *)roomForIndexPath:(NSIndexPath *)indexPath;
 
 /** Fired when the profile button is tapped.
  *  @param sender The sender of the event.
@@ -90,7 +93,7 @@
     [self.tableView reloadData];
 }
 
-- (IFBKRoom *)roomForIndexPath:(NSIndexPath *)indexPath
+- (BDKCFRoom *)roomForIndexPath:(NSIndexPath *)indexPath
 {
     return self.rooms[indexPath.section][@"rooms"][indexPath.row];
 }
@@ -130,7 +133,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenericCell" forIndexPath:indexPath];
-    IFBKRoom *room = [self roomForIndexPath:indexPath];
+    BDKCFRoom *room = [self roomForIndexPath:indexPath];
     cell.textLabel.text = room.name;
     cell.textLabel.font = [UIFont boldAppFontOfSize:18];
     return cell;
@@ -145,7 +148,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BDKRoomViewController *roomVC = [BDKRoomViewController vcWithRoom:[self roomForIndexPath:indexPath]];
+    BDKCFRoom *room = [self roomForIndexPath:indexPath];
+    IFBKRoomManager *roomManager = [IFBKRoomManager roomManagerWithRoom:room];
+    BDKRoomViewController *roomVC = [BDKRoomViewController vcWithRoomManager:roomManager];
     [self.navigationController pushViewController:roomVC animated:YES];
 }
 

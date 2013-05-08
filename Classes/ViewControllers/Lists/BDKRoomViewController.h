@@ -1,19 +1,19 @@
 #import "BDKTableViewController.h"
 
-@class IFBKRoom;
+@class IFBKRoomManager;
 
 /** Displays a Campfire room with messages.
  */
 @interface BDKRoomViewController : BDKTableViewController
 
-/** The room displayed by this view controller.
+/** The room manager used by this view controller.
  */
-@property (readonly) IFBKRoom *room;
+@property (readonly) IFBKRoomManager *roomManager;
 
-/** An initializer that takes a BDKRoom and sets everything up all nice.
- *  @param room The room to be displayed in this view controller.
+/** An initializer that takes a IFBKRoomManager and sets everything up all nice.
+ *  @param roomManager The room manager to be userd in this view controller.
  *  @returns An instance of self.
  */
-+ (id)vcWithRoom:(IFBKRoom *)room;
++ (id)vcWithRoomManager:(IFBKRoomManager *)roomManager;
 
 @end
