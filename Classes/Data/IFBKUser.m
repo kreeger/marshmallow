@@ -8,7 +8,7 @@
 - (void)updateWithBDKCFModel:(BDKCFModel *)model
 {
     BDKCFUser *user = (BDKCFUser *)model;
-    NSArray *attributes = @[@"identifier", @"name", @"emailAddress", @"admin", @"createdAt", @"type", @"avatarUrl"];
+    NSArray *attributes = @[@"identifier", @"name", @"emailAddress", @"admin", @"createdAt", @"type", @"avatarUrl", @"apiAuthToken"];
     [attributes each:^(NSString *attribute) {
         [self setValue:[user valueForKeyPath:attribute] forKeyPath:attribute];
     }];

@@ -16,6 +16,7 @@ const struct IFBKAccountAttributes IFBKAccountAttributes = {
 };
 
 const struct IFBKAccountRelationships IFBKAccountRelationships = {
+	.launchpadAccount = @"launchpadAccount",
 };
 
 const struct IFBKAccountFetchedProperties IFBKAccountFetchedProperties = {
@@ -188,6 +189,10 @@ const struct IFBKAccountFetchedProperties IFBKAccountFetchedProperties = {
 
 
 
+
+@dynamic launchpadAccount;
+
+	
 
 
 

@@ -15,7 +15,6 @@
 		C32BC6FA1726210700DA5D88 /* _IFBKLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6F31726210700DA5D88 /* _IFBKLaunchpadAccount.m */; };
 		C32BC6FC1726210700DA5D88 /* _IFBKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6F71726210700DA5D88 /* _IFBKUser.m */; };
 		C32BC7071726211F00DA5D88 /* IFBKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC6FE1726211E00DA5D88 /* IFBKAccount.m */; };
-		C32BC7081726211F00DA5D88 /* IFBKIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC7001726211E00DA5D88 /* IFBKIdentity.m */; };
 		C32BC7091726211F00DA5D88 /* IFBKLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC7021726211E00DA5D88 /* IFBKLaunchpadAccount.m */; };
 		C32BC70B1726211F00DA5D88 /* IFBKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C32BC7061726211F00DA5D88 /* IFBKUser.m */; };
 		C340EE83172605E6002795F0 /* IFBKAccountsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C340EE82172605E6002795F0 /* IFBKAccountsManager.m */; };
@@ -97,8 +96,6 @@
 		C32BC6F71726210700DA5D88 /* _IFBKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _IFBKUser.m; sourceTree = "<group>"; };
 		C32BC6FD1726211E00DA5D88 /* IFBKAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKAccount.h; sourceTree = "<group>"; };
 		C32BC6FE1726211E00DA5D88 /* IFBKAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKAccount.m; sourceTree = "<group>"; };
-		C32BC6FF1726211E00DA5D88 /* IFBKIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKIdentity.h; sourceTree = "<group>"; };
-		C32BC7001726211E00DA5D88 /* IFBKIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKIdentity.m; sourceTree = "<group>"; };
 		C32BC7011726211E00DA5D88 /* IFBKLaunchpadAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKLaunchpadAccount.h; sourceTree = "<group>"; };
 		C32BC7021726211E00DA5D88 /* IFBKLaunchpadAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKLaunchpadAccount.m; sourceTree = "<group>"; };
 		C32BC7051726211F00DA5D88 /* IFBKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKUser.h; sourceTree = "<group>"; };
@@ -325,8 +322,6 @@
 			children = (
 				C32BC6FD1726211E00DA5D88 /* IFBKAccount.h */,
 				C32BC6FE1726211E00DA5D88 /* IFBKAccount.m */,
-				C32BC6FF1726211E00DA5D88 /* IFBKIdentity.h */,
-				C32BC7001726211E00DA5D88 /* IFBKIdentity.m */,
 				C32BC7011726211E00DA5D88 /* IFBKLaunchpadAccount.h */,
 				C32BC7021726211E00DA5D88 /* IFBKLaunchpadAccount.m */,
 				C32BC7051726211F00DA5D88 /* IFBKUser.h */,
@@ -680,7 +675,6 @@
 				C32BC6FA1726210700DA5D88 /* _IFBKLaunchpadAccount.m in Sources */,
 				C32BC6FC1726210700DA5D88 /* _IFBKUser.m in Sources */,
 				C32BC7071726211F00DA5D88 /* IFBKAccount.m in Sources */,
-				C32BC7081726211F00DA5D88 /* IFBKIdentity.m in Sources */,
 				C32BC7091726211F00DA5D88 /* IFBKLaunchpadAccount.m in Sources */,
 				C32BC70B1726211F00DA5D88 /* IFBKUser.m in Sources */,
 				C3E64194173B0D4800F37DEC /* IFBKRoomManager.m in Sources */,

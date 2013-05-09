@@ -37,13 +37,14 @@
     _accessToken = accessToken;
 }
 
-- (void)refreshTokenAndAccounts:(void (^)(void))completion failure:(void (^)(NSError *error))failure {
+- (void)refreshLaunchpadData:(void (^)(void))completion failure:(void (^)(NSError *error))failure {
     [BDKLaunchpadClient getAuthorization:^(BDKLPAuthorizationData *authData) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
             [authData.accounts each:^(BDKLPAccount *account) {
                 [IFBKLaunchpadAccount createOrUpdateWithModel:account inContext:localContext];
             }];
         } completion:^(BOOL success, NSError *error) {
+            // We only want Campfire ones!
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"product = %@", @"campfire"];
             self.launchpadAccounts = [IFBKLaunchpadAccount findAllWithPredicate:predicate];
             if (completion) completion();
@@ -57,13 +58,14 @@
 - (void)getAccountData:(void (^)(NSArray *accounts))completion failure:(void (^)(NSError *error))failure {
     NSInteger count = [self.launchpadAccounts count];
     NSMutableArray *campfireAccounts = [NSMutableArray arrayWithCapacity:count];
-    for (IFBKLaunchpadAccount *account in self.launchpadAccounts) {
+    for (IFBKLaunchpadAccount *lpAccount in self.launchpadAccounts) {
         __block NSNumber *identifier = nil;
-        BDKCampfireClient *campfire = [BDKCampfireClient clientWithBaseURL:account.hrefUrl];
+        BDKCampfireClient *campfire = [BDKCampfireClient clientWithBaseURL:lpAccount.hrefUrl];
         [campfire setBearerToken:self.accessToken];
         [campfire getCurrentAccount:^(BDKCFAccount *account) {
             [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
                 IFBKAccount *cAccount = [IFBKAccount createOrUpdateWithModel:account inContext:localContext];
+                cAccount.launchpadAccount = [lpAccount inContext:localContext];
                 identifier = cAccount.identifier;
             } completion:^(BOOL success, NSError *error) {
                 IFBKAccount *cAccount = [IFBKAccount findFirstByAttribute:@"identifier" withValue:identifier];
@@ -71,6 +73,32 @@
                 if (completion && count == [campfireAccounts count]) {
                     self.campfireAccounts = campfireAccounts;
                     completion(self.campfireAccounts);
+                }
+            }];
+        } failure:^(NSError *error, NSInteger responseCode) {
+            if (failure) failure(error);
+        }];
+    }
+}
+
+- (void)getCurrentUserData:(void (^)(NSArray *accounts))completion failure:(void (^)(NSError *error))failure {
+    NSInteger count = [self.launchpadAccounts count];
+    NSMutableArray *currentUsers = [NSMutableArray arrayWithCapacity:count];
+    for (IFBKLaunchpadAccount *account in self.launchpadAccounts) {
+        __block NSNumber *identifier = nil;
+        BDKCampfireClient *campfire = [BDKCampfireClient clientWithBaseURL:account.hrefUrl];
+        [campfire setBearerToken:self.accessToken];
+        [campfire getCurrentUser:^(BDKCFUser *user) {
+            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+                IFBKUser *cUser = [IFBKUser createOrUpdateWithModel:user inContext:localContext];
+                cUser.launchpadAccount = [account inContext:localContext];
+                identifier = cUser.identifier;
+            } completion:^(BOOL success, NSError *error) {
+                IFBKUser *cUser = [IFBKUser findFirstByAttribute:@"identifier" withValue:identifier];
+                [currentUsers addObject:cUser];
+                if (completion && count == [currentUsers count]) {
+                    self.campfireUsers = currentUsers;
+                    completion(self.campfireUsers);
                 }
             }];
         } failure:^(NSError *error, NSInteger responseCode) {

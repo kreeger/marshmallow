@@ -12,6 +12,10 @@
  */
 @property (strong, nonatomic) NSArray *campfireAccounts;
 
+/** The list of Campfire user profiles.
+ */
+@property (strong, nonatomic) NSArray *campfireUsers;
+
 /** An array of dictionaries for Campfire rooms, with account names as keys.
  */
 @property (strong, nonatomic) NSArray *rooms;
@@ -37,9 +41,21 @@
  *  @param completion Will be passed the list of rooms upon completion.
  *  @param failure Will be passed an error upon failure.
  */
-- (void)refreshTokenAndAccounts:(void (^)(void))completion failure:(void (^)(NSError *error))failure;
+- (void)refreshLaunchpadData:(void (^)(void))completion failure:(void (^)(NSError *error))failure;
 
+/** Initiates a remote fetch of the separate Campfire accounts available under the user's profile.
+ *
+ *  @param completion Will be passed the list of accounts upon completion.
+ *  @param failure Will be passed an error upon failure.
+ */
 - (void)getAccountData:(void (^)(NSArray *accounts))completion failure:(void (^)(NSError *error))failure;
+
+/** Initiates a remote fetch of the separate Campfire user profiles belonging to the user.
+ *
+ *  @param completion Will be passed the list of user profiles upon completion.
+ *  @param failure Will be passed an error upon failure.
+ */
+- (void)getCurrentUserData:(void (^)(NSArray *accounts))completion failure:(void (^)(NSError *error))failure;
 
 /** Initiates a remote fetch of the rooms belonging to each of the various accounts passed in.
  * 

@@ -5,14 +5,14 @@ PODS:
   - BDKThirtySeven (0.0.2):
     - AFNetworking (~> 1.2)
     - ISO8601DateFormatter (~> 0.6)
-    - yajl (~> 2.0.4)
+    - SBJson (~> 3.2)
   - CocoaLumberjack (1.6)
   - CrittercismSDK (3.5.1)
   - ISO8601DateFormatter (0.6)
   - Kiwi (2.0.6)
   - MagicalRecord (2.1)
   - ObjectiveSugar (0.6.2)
-  - yajl (2.0.4)
+  - SBJson (3.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.2.0)
@@ -38,13 +38,13 @@ SPEC CHECKSUMS:
   AFNetworking: 3cbae45f61a9f995cdbd56bd571223910d7f4e44
   BDKGeometry: fd858609d9f66d5999798378d8bcaf9b014b41b3
   BDKKit: 6270bcb68b96240b1e2235959c4c383331d9947b
-  BDKThirtySeven: 1d104d98946e68c418700025d1557a4c61ff08a1
+  BDKThirtySeven: d4b7cc6b2594cedd45d473133ed0446e21800f01
   CocoaLumberjack: 0f2fa7090a23f13261072d882e017c688300efbe
   CrittercismSDK: 1cd30b0bb1448494da29539a1cf490475288d1d1
   ISO8601DateFormatter: dc05a2481edf49668d85d3ff8c466c32eb544780
   Kiwi: 56082a80f942de4d10423d8d8a599ab30cf50228
   MagicalRecord: 64e7184c240087a45e9588a722eaf05b0ad837f7
   ObjectiveSugar: 50bcd329b18ab6da6457e1bf55be71acb7c39d44
-  yajl: 781986c88385a4337215a6026af0cb87df82732f
+  SBJson: 4971016670e7b3fa04a36d4e72ab0fb1ad3a9f69
 
 COCOAPODS: 0.19.1

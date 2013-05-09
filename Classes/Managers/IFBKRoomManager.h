@@ -17,4 +17,7 @@
  */
 + (id)roomManagerWithRoom:(BDKCFRoom *)room;
 
+
+- (void)startStreamingMessages;
+
 @end

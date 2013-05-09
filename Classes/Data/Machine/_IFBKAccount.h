@@ -17,11 +17,13 @@ extern const struct IFBKAccountAttributes {
 } IFBKAccountAttributes;
 
 extern const struct IFBKAccountRelationships {
+	__unsafe_unretained NSString *launchpadAccount;
 } IFBKAccountRelationships;
 
 extern const struct IFBKAccountFetchedProperties {
 } IFBKAccountFetchedProperties;
 
+@class IFBKLaunchpadAccount;
 
 
 
@@ -148,6 +150,13 @@ extern const struct IFBKAccountFetchedProperties {
 
 
 
+@property (nonatomic, strong) IFBKLaunchpadAccount *launchpadAccount;
+
+//- (BOOL)validateLaunchpadAccount:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
@@ -219,6 +228,11 @@ extern const struct IFBKAccountFetchedProperties {
 - (void)setPrimitiveUpdatedAt:(NSDate*)value;
 
 
+
+
+
+- (IFBKLaunchpadAccount*)primitiveLaunchpadAccount;
+- (void)setPrimitiveLaunchpadAccount:(IFBKLaunchpadAccount*)value;
 
 
 @end

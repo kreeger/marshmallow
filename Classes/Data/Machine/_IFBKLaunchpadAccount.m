@@ -11,6 +11,8 @@ const struct IFBKLaunchpadAccountAttributes IFBKLaunchpadAccountAttributes = {
 };
 
 const struct IFBKLaunchpadAccountRelationships IFBKLaunchpadAccountRelationships = {
+	.campfireAccounts = @"campfireAccounts",
+	.users = @"users",
 };
 
 const struct IFBKLaunchpadAccountFetchedProperties IFBKLaunchpadAccountFetchedProperties = {
@@ -100,6 +102,14 @@ const struct IFBKLaunchpadAccountFetchedProperties IFBKLaunchpadAccountFetchedPr
 
 
 
+
+@dynamic campfireAccounts;
+
+	
+
+@dynamic users;
+
+	
 
 
 

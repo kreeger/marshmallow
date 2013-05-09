@@ -12,11 +12,15 @@ extern const struct IFBKLaunchpadAccountAttributes {
 } IFBKLaunchpadAccountAttributes;
 
 extern const struct IFBKLaunchpadAccountRelationships {
+	__unsafe_unretained NSString *campfireAccounts;
+	__unsafe_unretained NSString *users;
 } IFBKLaunchpadAccountRelationships;
 
 extern const struct IFBKLaunchpadAccountFetchedProperties {
 } IFBKLaunchpadAccountFetchedProperties;
 
+@class IFBKAccount;
+@class IFBKUser;
 
 
 
@@ -80,6 +84,20 @@ extern const struct IFBKLaunchpadAccountFetchedProperties {
 
 
 
+@property (nonatomic, strong) IFBKAccount *campfireAccounts;
+
+//- (BOOL)validateCampfireAccounts:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) IFBKUser *users;
+
+//- (BOOL)validateUsers:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
@@ -115,6 +133,16 @@ extern const struct IFBKLaunchpadAccountFetchedProperties {
 - (void)setPrimitiveProduct:(NSString*)value;
 
 
+
+
+
+- (IFBKAccount*)primitiveCampfireAccounts;
+- (void)setPrimitiveCampfireAccounts:(IFBKAccount*)value;
+
+
+
+- (IFBKUser*)primitiveUsers;
+- (void)setPrimitiveUsers:(IFBKUser*)value;
 
 
 @end

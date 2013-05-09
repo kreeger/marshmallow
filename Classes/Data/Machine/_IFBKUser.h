@@ -6,6 +6,7 @@
 
 extern const struct IFBKUserAttributes {
 	__unsafe_unretained NSString *admin;
+	__unsafe_unretained NSString *apiAuthToken;
 	__unsafe_unretained NSString *avatarUrl;
 	__unsafe_unretained NSString *createdAt;
 	__unsafe_unretained NSString *emailAddress;
@@ -15,10 +16,13 @@ extern const struct IFBKUserAttributes {
 } IFBKUserAttributes;
 
 extern const struct IFBKUserRelationships {
+	__unsafe_unretained NSString *launchpadAccount;
 } IFBKUserRelationships;
 
 extern const struct IFBKUserFetchedProperties {
 } IFBKUserFetchedProperties;
+
+@class IFBKLaunchpadAccount;
 
 
 
@@ -51,6 +55,16 @@ extern const struct IFBKUserFetchedProperties {
 - (void)setAdminValue:(BOOL)value_;
 
 //- (BOOL)validateAdmin:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* apiAuthToken;
+
+
+
+//- (BOOL)validateApiAuthToken:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -120,6 +134,13 @@ extern const struct IFBKUserFetchedProperties {
 
 
 
+@property (nonatomic, strong) IFBKLaunchpadAccount *launchpadAccount;
+
+//- (BOOL)validateLaunchpadAccount:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
@@ -135,6 +156,12 @@ extern const struct IFBKUserFetchedProperties {
 
 - (BOOL)primitiveAdminValue;
 - (void)setPrimitiveAdminValue:(BOOL)value_;
+
+
+
+
+- (NSString*)primitiveApiAuthToken;
+- (void)setPrimitiveApiAuthToken:(NSString*)value;
 
 
 
@@ -176,6 +203,11 @@ extern const struct IFBKUserFetchedProperties {
 - (void)setPrimitiveType:(NSString*)value;
 
 
+
+
+
+- (IFBKLaunchpadAccount*)primitiveLaunchpadAccount;
+- (void)setPrimitiveLaunchpadAccount:(IFBKLaunchpadAccount*)value;
 
 
 @end

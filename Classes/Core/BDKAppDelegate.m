@@ -112,10 +112,14 @@
 
 - (void)refreshUserData {
     [self.accountsManager setAccessToken:[[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]];
-    [self.accountsManager refreshTokenAndAccounts:^{
+    [self.accountsManager refreshLaunchpadData:^{
         [self.accountsManager getAccountData:^(NSArray *accounts) {
-            [self.accountsManager getRooms:^(NSArray *rooms) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidReloadRooms object:self];
+            [self.accountsManager getCurrentUserData:^(NSArray *accounts) {
+                [self.accountsManager getRooms:^(NSArray *rooms) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidReloadRooms object:self];
+                } failure:^(NSError *error) {
+                    DDLogWarn(@"Error! %@", error);
+                }];
             } failure:^(NSError *error) {
                 DDLogWarn(@"Error! %@", error);
             }];

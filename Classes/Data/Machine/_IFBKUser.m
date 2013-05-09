@@ -5,6 +5,7 @@
 
 const struct IFBKUserAttributes IFBKUserAttributes = {
 	.admin = @"admin",
+	.apiAuthToken = @"apiAuthToken",
 	.avatarUrl = @"avatarUrl",
 	.createdAt = @"createdAt",
 	.emailAddress = @"emailAddress",
@@ -14,6 +15,7 @@ const struct IFBKUserAttributes IFBKUserAttributes = {
 };
 
 const struct IFBKUserRelationships IFBKUserRelationships = {
+	.launchpadAccount = @"launchpadAccount",
 };
 
 const struct IFBKUserFetchedProperties IFBKUserFetchedProperties = {
@@ -88,6 +90,13 @@ const struct IFBKUserFetchedProperties IFBKUserFetchedProperties = {
 
 
 
+@dynamic apiAuthToken;
+
+
+
+
+
+
 @dynamic avatarUrl;
 
 
@@ -148,6 +157,10 @@ const struct IFBKUserFetchedProperties IFBKUserFetchedProperties = {
 
 
 
+
+@dynamic launchpadAccount;
+
+	
 
 
 
