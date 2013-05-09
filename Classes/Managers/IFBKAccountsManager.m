@@ -114,7 +114,7 @@
         BDKCampfireClient *campfire = [BDKCampfireClient clientWithBaseURL:[account apiUrl]];
         [campfire setBearerToken:self.accessToken];
         [campfire getRooms:^(NSArray *result) {
-            [campfireRooms addObject:@{@"title": account.name, @"rooms": result}];
+            [campfireRooms addObject:@{@"account": account, @"rooms": result}];
             if (completion && count == [campfireRooms count]) {
                 self.rooms = [NSArray arrayWithArray:campfireRooms];
                 completion(self.rooms);

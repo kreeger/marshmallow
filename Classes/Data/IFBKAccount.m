@@ -1,5 +1,6 @@
 #import "IFBKAccount.h"
 #import "BDKCFAccount.h"
+#import "IFBKLaunchpadAccount.h"
 
 @implementation IFBKAccount
 
@@ -14,9 +15,12 @@
 
 #pragma mark - Properties
 
-- (NSURL *)apiUrl
-{
+- (NSURL *)apiUrl {
     return [NSURL URLWithString:[NSString stringWithFormat:@"https://%@.campfirenow.com", self.subdomain]];
+}
+
+- (IFBKUser *)user {
+    return self.launchpadAccount.user;
 }
 
 @end
