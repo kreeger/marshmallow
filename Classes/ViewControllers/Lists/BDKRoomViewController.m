@@ -49,11 +49,17 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.roomManager loadRecentHistory:^{
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        // pass for now
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.roomManager startStreamingMessages];
+    [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -68,7 +74,7 @@
 #pragma mark - Methods
 
 - (BDKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    return self.roomManager.messages[indexPath.row];
 }
 
 #pragma mark - UITableViewDataSource
@@ -78,14 +84,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [self.roomManager.messages count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenericCell" forIndexPath:indexPath];
     BDKCFMessage *message = [self messageForIndexPath:indexPath];
-    cell.textLabel.text = message.body;
-    cell.textLabel.font = [UIFont appFontOfSize:12];
+    if (![(NSNull *)message.body isEqual:[NSNull null]]) {
+        cell.textLabel.text = message.body;
+        cell.textLabel.font = [UIFont appFontOfSize:12];
+    }
     return cell;
 }
 

@@ -57,7 +57,8 @@
 
         // Initialize our regular API client.
         // TODO: Find a clean way to pass in the access token here. Save it to Core Data, most likely.
-        _apiClient = [[BDKCampfireClient alloc] initWithBaseURL:_user.launchpadAccount.hrefUrl accessToken:nil];
+        NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken];
+        _apiClient = [[BDKCampfireClient alloc] initWithBaseURL:_user.launchpadAccount.hrefUrl accessToken:token];
     }
     return self;
 }
@@ -65,6 +66,13 @@
 #pragma mark - Public methods
 
 - (void)loadRecentHistory:(void (^)(void))success failure:(void (^)(NSError *error))failure {
+    [self.apiClient getMessagesForRoom:self.room.identifier limit:100 sinceMessageId:nil success:^(NSArray *result) {
+        for (BDKCFMessage *message in result) {
+            [self processMessageFromAPI:message];
+        }
+    } failure:^(NSError *error, NSInteger responseCode) {
+        NSLog(@"Encountered error %i getting messages for room. Error: %@", responseCode, error);
+    }];
 }
 
 - (void)startStreamingMessages {
@@ -84,9 +92,9 @@
 
 - (void)processMessageFromAPI:(BDKCFMessage *)message {
     NSLog(@"Room manager received message type %@, body %@.", message.type, message.body);
-
     // TODO: Should always make sure this is sorted by timestamp!
     [self.messages addObject:message];
+    // TODO: Fire an event or block here. Maybe "receivedMessage?"
 }
 
 @end
