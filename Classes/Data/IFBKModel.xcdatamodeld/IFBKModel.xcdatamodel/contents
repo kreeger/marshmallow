@@ -16,6 +16,8 @@
         <attribute name="href" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="oAuthToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="oAuthTokenExpires" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="product" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="campfireAccount" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="IFBKAccount" inverseName="launchpadAccount" inverseEntity="IFBKAccount" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="IFBKUser" inverseName="launchpadAccount" inverseEntity="IFBKUser" syncable="YES"/>
@@ -33,7 +35,7 @@
     </entity>
     <elements>
         <element name="IFBKAccount" positionX="160" positionY="192" width="128" height="195"/>
-        <element name="IFBKLaunchpadAccount" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="IFBKLaunchpadAccount" positionX="160" positionY="192" width="128" height="165"/>
         <element name="IFBKUser" positionX="160" positionY="192" width="128" height="180"/>
     </elements>
 </model>

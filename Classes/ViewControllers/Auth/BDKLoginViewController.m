@@ -45,19 +45,8 @@
         self.authWasSubmitted = YES;
         NSString *authCode = [request.URL.absoluteString split:@"="][1];
         DDLogUI(@"Request %@, nav type %i. Auth code %@.", request, navigationType, authCode);
-        [BDKLaunchpadClient getAccessTokenForVerificationCode:authCode success:^(NSString *accessToken, NSString *refreshToken, NSDate *expiresOn) {
-            DDLogAPI(@"Token %@ expires %@.", accessToken, expiresOn);
-            [[NSUserDefaults standardUserDefaults] setValue:accessToken forKey:kBDKUserDefaultAccessToken];
-            [[NSUserDefaults standardUserDefaults] setValue:refreshToken forKey:kBDKUserDefaultRefreshToken];
-            [[NSUserDefaults standardUserDefaults] setValue:expiresOn forKey:kBDKUserDefaultTokenExpiresOn];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            self.userDidLoginBlock(accessToken);
-            self.userDidLoginBlock = nil;
-        } failure:^(NSError *error, NSInteger responseCode) {
-            [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription
-                                       delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
-            [self.webView reload];
-        }];
+        self.userGotAuthCodeBlock(authCode);
+        self.userGotAuthCodeBlock = nil;
         return NO;
     }
     return YES;

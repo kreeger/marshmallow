@@ -36,6 +36,17 @@
  */
 - (void)setAccessToken:(NSString *)accessToken;
 
+/** Calls the Launchpad API and trades in an authorization code for an OAuth token and expiration date; saves this
+ *  information to the IFBKLaunchpadAccount in the Core Data store.
+ *  @param authorizationCode The OAuth authorization code that came from the Launchpad page presented to the user after
+ *                           they login.
+ *  @param completion A block to be called upon completion.
+ *  @param failure A block to be called upon failure.
+ */
+- (void)tradeAuthTokenDataForAuthorizationCode:(NSString *)authorizationCode
+                                    completion:(void (^)(void))completion
+                                       failure:(void (^)(NSError *error))failure;
+
 /** Ensures the current access token is up-to-date and refreshes Launchpad accounts.
  *
  *  @param completion Will be passed the list of rooms upon completion.

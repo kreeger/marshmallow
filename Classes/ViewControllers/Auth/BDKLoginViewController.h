@@ -2,6 +2,6 @@
 
 @interface BDKLoginViewController : BDKWebViewController
 
-@property (copy, nonatomic) void (^userDidLoginBlock)(NSString *accessToken);
+@property (copy, nonatomic) void (^userGotAuthCodeBlock)(NSString *authCode);
 
 @end

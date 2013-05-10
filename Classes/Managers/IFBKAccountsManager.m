@@ -37,6 +37,20 @@
     _accessToken = accessToken;
 }
 
+- (void)tradeAuthTokenDataForAuthorizationCode:(NSString *)authorizationCode
+                                    completion:(void (^)(void))completion
+                                       failure:(void (^)(NSError *error))failure {
+    [BDKLaunchpadClient getAccessTokenForVerificationCode:authorizationCode success:^(NSString *accessToken, NSString *refreshToken, NSDate *expiresOn) {
+        // Do something else with these.
+        [[NSUserDefaults standardUserDefaults] setValue:accessToken forKey:kBDKUserDefaultAccessToken];
+        [[NSUserDefaults standardUserDefaults] setValue:refreshToken forKey:kBDKUserDefaultRefreshToken];
+        [[NSUserDefaults standardUserDefaults] setValue:expiresOn forKey:kBDKUserDefaultTokenExpiresOn];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } failure:^(NSError *error, NSInteger responseCode) {
+        if (failure) failure(error);
+    }];
+}
+
 - (void)refreshLaunchpadData:(void (^)(void))completion failure:(void (^)(NSError *error))failure {
     [BDKLaunchpadClient getAuthorization:^(BDKLPAuthorizationData *authData) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {

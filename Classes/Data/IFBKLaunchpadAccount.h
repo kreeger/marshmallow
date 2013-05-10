@@ -13,6 +13,8 @@ typedef enum {
  */
 @interface IFBKLaunchpadAccount : _IFBKLaunchpadAccount {}
 
+/** The API access URL for this Launchpad account.
+ */
 @property (readonly) NSURL *hrefUrl;
 @property (readonly) IFBKLaunchpadAccountType type;
 

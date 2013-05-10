@@ -49,12 +49,17 @@
         self.window.rootViewController = nav;
     } else {
         BDKLoginViewController *vc = [BDKLoginViewController vc];
-        vc.userDidLoginBlock = ^(NSString *accessToken) {
-            [self refreshUserData];
-            // transition this mofo a little better
-            BDKRoomsViewController *vc = [BDKRoomsViewController vc];
-            UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
-            self.window.rootViewController = nav;
+        vc.userGotAuthCodeBlock = ^(NSString *authCode) {
+            [self.accountsManager tradeAuthTokenDataForAuthorizationCode:authCode completion:^{
+                [self refreshUserData];
+
+                // transition this mofo a little better
+                BDKRoomsViewController *vc = [BDKRoomsViewController vc];
+                UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
+                self.window.rootViewController = nav;
+            } failure:^(NSError *error) {
+                DDLogError(@"Error trading auth token. %@.", error);
+            }];
         };
         UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
         self.window.rootViewController = nav;
