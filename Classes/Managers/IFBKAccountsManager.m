@@ -46,6 +46,7 @@
         [[NSUserDefaults standardUserDefaults] setValue:refreshToken forKey:kBDKUserDefaultRefreshToken];
         [[NSUserDefaults standardUserDefaults] setValue:expiresOn forKey:kBDKUserDefaultTokenExpiresOn];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        if (completion) completion();
     } failure:^(NSError *error, NSInteger responseCode) {
         if (failure) failure(error);
     }];
