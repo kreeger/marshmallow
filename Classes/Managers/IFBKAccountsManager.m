@@ -48,6 +48,7 @@
 - (NSString *)accessToken {
     if (_accessToken) return _accessToken;
     _accessToken = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultAccessToken];
+    [BDKLaunchpadClient setBearerToken:_accessToken];
     return _accessToken;
 }
 

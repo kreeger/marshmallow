@@ -50,10 +50,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"GenericCell"];
-    
     self.title = @"Rooms";
     self.navigationItem.leftBarButtonItem = self.profileBarButton;
+    [self.refreshControl beginRefreshing];
+}
+
+- (void)registerCellTypes {
+    [super registerCellTypes];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"GenericCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -89,9 +93,19 @@
 
 #pragma mark - Methods
 
+- (void)pullToRefreshPulled:(UIRefreshControl *)sender {
+    DDLogUI(@"Refresh pulled.");
+    [((BDKAppDelegate *)[[UIApplication sharedApplication] delegate]).accountsManager getRooms:^(NSArray *rooms) {
+        [self performFetch];
+    } failure:^(NSError *error) {
+        DDLogError(@"Failure getting rooms on pull-to-refresh. %@", error);
+    }];
+}
+
 - (void)performFetch {
     self.rooms = ((BDKAppDelegate *)[[UIApplication sharedApplication] delegate]).accountsManager.rooms;
     [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
 }
 
 - (BDKCFRoom *)roomForIndexPath:(NSIndexPath *)indexPath {
