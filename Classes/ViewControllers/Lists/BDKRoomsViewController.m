@@ -10,6 +10,7 @@
 #import "IFBKAccount.h"
 
 #import "BDKRoomCollectionCell.h"
+#import "BDKTableHeaderView.h"
 
 #import "UINavigationController+BDKKit.h"
 
@@ -137,6 +138,11 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return ((IFBKAccount *)self.rooms[section][@"account"]).name;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString *title = ((IFBKAccount *)self.rooms[section][@"account"]).name;
+    return [BDKTableHeaderView headerWithTitle:title width:self.tableView.frameHeight];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

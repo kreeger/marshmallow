@@ -13,6 +13,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import <QuartzCore/QuartzCore.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -22,6 +23,7 @@
 #import <MagicalRecord/CoreData+MagicalRecord.h>
 #import <CocoaLumberjack/DDLog.h>
 #import <ObjectiveSugar/ObjectiveSugar.h>
+#import <BDKGeometry/UIView+BDKGeometry.h>
 
 // Internal
 #import "BDKLog.h"
