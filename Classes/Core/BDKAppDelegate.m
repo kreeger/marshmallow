@@ -40,8 +40,7 @@
     [BDKMarshmallowAppearance setApplicationAppearance];
 
     // check if the user is logged in first
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]) {
-        [self.accountsManager setAccessToken:[[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]];
+    if (self.accountsManager.isLoggedIn) {
         [self refreshUserData];
         
         BDKRoomsViewController *vc = [BDKRoomsViewController vc];
@@ -116,7 +115,6 @@
 }
 
 - (void)refreshUserData {
-    [self.accountsManager setAccessToken:[[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken]];
     [self.accountsManager refreshLaunchpadData:^{
         [self.accountsManager getAccountData:^(NSArray *accounts) {
             [self.accountsManager getCurrentUserData:^(NSArray *accounts) {

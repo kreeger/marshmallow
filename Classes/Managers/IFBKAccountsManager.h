@@ -20,6 +20,10 @@
  */
 @property (strong, nonatomic) NSArray *rooms;
 
+/** If this account manager has an accessToken (and it's not too old) this returns true.
+ */
+@property (readonly) BOOL isLoggedIn;
+
 /** Sets up the Launchpad adapters with the proper OAuth keys.
  *
  *  @param clientId The OAuth client ID.
@@ -29,12 +33,6 @@
 - (void)configureLaunchpadWithClientId:(NSString *)clientId
                           clientSecret:(NSString *)clientSecret
                            redirectUri:(NSString *)redirectUri;
-
-/** Sets up the Launchpad adapter with the proper access token.
- *
- *  @param accessToken The OAuth access token for a user.
- */
-- (void)setAccessToken:(NSString *)accessToken;
 
 /** Calls the Launchpad API and trades in an authorization code for an OAuth token and expiration date; saves this
  *  information to the IFBKLaunchpadAccount in the Core Data store.

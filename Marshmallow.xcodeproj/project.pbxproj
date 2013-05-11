@@ -138,6 +138,7 @@
 		C356BF1116FFA4C800F7A031 /* BDKTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKTextFieldCell.m; sourceTree = "<group>"; };
 		C356BF1416FFA6B100F7A031 /* UIFont+App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+App.h"; sourceTree = "<group>"; };
 		C356BF1516FFA6B100F7A031 /* UIFont+App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+App.m"; sourceTree = "<group>"; };
+		C3586C02173EB7F400106BF0 /* IFBKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKConstants.h; sourceTree = "<group>"; };
 		C3632EC817013A4A0028C794 /* BDKRoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoomsViewController.h; sourceTree = "<group>"; };
 		C3632EC917013A4A0028C794 /* BDKRoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomsViewController.m; sourceTree = "<group>"; };
 		C3632ECB17013A750028C794 /* UINavigationController+BDKKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BDKKit.h"; sourceTree = "<group>"; };
@@ -313,6 +314,7 @@
 				C3C5FF1F170E69B600BE92B9 /* BDKTypedefs.h */,
 				C356BEE416FF93CA00F7A031 /* main.m */,
 				C356BEE516FF93CA00F7A031 /* Prefix.pch */,
+				C3586C02173EB7F400106BF0 /* IFBKConstants.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";

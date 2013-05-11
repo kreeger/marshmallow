@@ -8,6 +8,8 @@
 #import "IFBKUser.h"
 #import "IFBKLaunchpadAccount.h"
 
+#import "IFBKConstants.h"
+
 @interface IFBKRoomManager ()
 
 /** The streaming Campfire API for downloading messages in real-time.
@@ -57,7 +59,7 @@
 
         // Initialize our regular API client.
         // TODO: Find a clean way to pass in the access token here. Save it to Core Data, most likely.
-        NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultAccessToken];
+        NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultAccessToken];
         _apiClient = [[BDKCampfireClient alloc] initWithBaseURL:_user.launchpadAccount.hrefUrl accessToken:token];
     }
     return self;

@@ -37,7 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = [self.user.identifier isEqualToNumber:self.currentUserId] ? @"Me" : self.user.name;
+//    self.title = [self.user.identifier isEqualToNumber:self.currentUserId] ? @"Me" : self.user.name;
 }
 
 - (void)didReceiveMemoryWarning

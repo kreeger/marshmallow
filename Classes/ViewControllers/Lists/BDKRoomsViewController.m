@@ -107,7 +107,7 @@
 }
 
 - (void)presentProfileController {
-    BDKUserViewController *userVC = [BDKUserViewController vcWithIFBKUser:self.currentUser];
+    BDKUserViewController *userVC = [BDKUserViewController vcWithIFBKUser:nil];
     userVC.modalDismissalBlock = ^{
         [self dismissViewControllerAnimated:YES completion:nil];
     };

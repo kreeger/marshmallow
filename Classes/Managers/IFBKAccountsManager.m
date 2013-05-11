@@ -7,15 +7,27 @@
 #import "BDKCFModels.h"
 #import "IFBKModels.h"
 
+#import "IFBKConstants.h"
+
 @interface IFBKAccountsManager ()
 
 /** The OAuth access token, used for connecting to both Launchpad and the Campfire API.
  */
 @property (strong, nonatomic) NSString *accessToken;
 
+/** The OAuth refresh token, used for refreshing the accessToken with the Launchpad API.
+ */
+@property (strong, nonatomic) NSString *refreshToken;
+
+/** The date at which the current accessToken expires (and thus must be refreshed with the refreshToken).
+ */
+@property (strong, nonatomic) NSDate *expiresOn;
+
 @end
 
 @implementation IFBKAccountsManager
+
+@synthesize accessToken = _accessToken, refreshToken = _refreshToken, expiresOn = _expiresOn;
 
 - (id)init {
     if (self = [super init]) {
@@ -24,7 +36,53 @@
     return self;
 }
 
-#pragma mark - Setup methods
+#pragma mark - Public properties
+
+- (BOOL)isLoggedIn {
+    // TODO: also check expiresOn (if less than today, return false)
+    return self.accessToken != nil;
+}
+
+#pragma mark - Private properties
+
+- (NSString *)accessToken {
+    if (_accessToken) return _accessToken;
+    _accessToken = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultAccessToken];
+    return _accessToken;
+}
+
+- (void)setAccessToken:(NSString *)accessToken {
+    [[NSUserDefaults standardUserDefaults] setValue:accessToken forKey:kIFBKUserDefaultAccessToken];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [BDKLaunchpadClient setBearerToken:accessToken];
+    _accessToken = accessToken;
+}
+
+- (NSString *)refreshToken {
+    if (_refreshToken) return _refreshToken;
+    _refreshToken = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultRefreshToken];
+    return _refreshToken;
+}
+
+- (void)setRefreshToken:(NSString *)refreshToken {
+    [[NSUserDefaults standardUserDefaults] setValue:refreshToken forKey:kIFBKUserDefaultRefreshToken];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    _refreshToken = refreshToken;
+}
+
+- (NSDate *)expiresOn {
+    if (_expiresOn) return _expiresOn;
+    _expiresOn = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultTokenExpiresOn];
+    return _expiresOn;
+}
+
+- (void)setExpiresOn:(NSDate *)expiresOn {
+    [[NSUserDefaults standardUserDefaults] setValue:expiresOn forKey:kIFBKUserDefaultTokenExpiresOn];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    _expiresOn = expiresOn;
+}
+
+#pragma mark - Public methods
 
 - (void)configureLaunchpadWithClientId:(NSString *)clientId
                           clientSecret:(NSString *)clientSecret
@@ -32,20 +90,15 @@
     [BDKLaunchpadClient setClientId:clientId clientSecret:clientSecret redirectUri:redirectUri];
 }
 
-- (void)setAccessToken:(NSString *)accessToken {
-    [BDKLaunchpadClient setBearerToken:accessToken];
-    _accessToken = accessToken;
-}
-
 - (void)tradeAuthTokenDataForAuthorizationCode:(NSString *)authorizationCode
                                     completion:(void (^)(void))completion
                                        failure:(void (^)(NSError *error))failure {
+    NSLog(@"Trading auth code %@.", authorizationCode);
     [BDKLaunchpadClient getAccessTokenForVerificationCode:authorizationCode success:^(NSString *accessToken, NSString *refreshToken, NSDate *expiresOn) {
         // Do something else with these.
-        [[NSUserDefaults standardUserDefaults] setValue:accessToken forKey:kBDKUserDefaultAccessToken];
-        [[NSUserDefaults standardUserDefaults] setValue:refreshToken forKey:kBDKUserDefaultRefreshToken];
-        [[NSUserDefaults standardUserDefaults] setValue:expiresOn forKey:kBDKUserDefaultTokenExpiresOn];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        self.accessToken = accessToken;
+        self.refreshToken = refreshToken;
+        self.expiresOn = expiresOn;
         if (completion) completion();
     } failure:^(NSError *error, NSInteger responseCode) {
         if (failure) failure(error);

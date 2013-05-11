@@ -44,7 +44,6 @@
         // Don't know if I like this shitty way of doing things.
         self.authWasSubmitted = YES;
         NSString *authCode = [request.URL.absoluteString split:@"="][1];
-        DDLogUI(@"Request %@, nav type %i. Auth code %@.", request, navigationType, authCode);
         self.userGotAuthCodeBlock(authCode);
         self.userGotAuthCodeBlock = nil;
         return NO;

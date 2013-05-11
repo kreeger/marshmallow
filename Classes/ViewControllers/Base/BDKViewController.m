@@ -13,8 +13,6 @@
 
 @implementation BDKViewController
 
-@synthesize currentUser = _currentUser;
-
 + (id)vc
 {
     return [[self alloc] init];
@@ -67,22 +65,11 @@
     [super didReceiveMemoryWarning];
     unless (self.view.superview) {
         _identifier = nil;
-        _currentUser = nil;
         _modalDismissalBlock = nil;
     }
 }
 
 #pragma mark - Properties
-
-- (NSNumber *)currentUserId
-{
-    return [[NSUserDefaults standardUserDefaults] valueForKey:kBDKUserDefaultCurrentUserId];
-}
-
-- (IFBKUser *)currentUser
-{
-    return self.currentUserId ? [IFBKUser findFirstByAttribute:@"identifier" withValue:self.currentUserId] : nil;
-}
 
 - (CGRect)frame
 {

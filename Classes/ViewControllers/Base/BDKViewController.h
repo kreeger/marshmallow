@@ -18,14 +18,6 @@
  */
 @property (copy, nonatomic) VoidBlock modalDismissalBlock;
 
-/** A handy reference to the current user's identifier.
- */
-@property (readonly) NSNumber *currentUserId;
-
-/** A reference to the current user.
- */
-@property (readonly) IFBKUser *currentUser;
-
 @property (readonly) CGRect frame;
 @property (readonly) CGRect bounds;
 
