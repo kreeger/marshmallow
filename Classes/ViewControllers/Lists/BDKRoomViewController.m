@@ -1,6 +1,6 @@
 #import "BDKRoomViewController.h"
 
-#import "BDKRoomCollectionCell.h"
+#import "BDKMessageCell.h"
 
 #import "BDKCampfireClient.h"
 #import "IFBKRoomManager.h"
@@ -35,6 +35,10 @@
 - (id)initWithRoomManager:(IFBKRoomManager *)roomManager {
     if (self = [super initWithIdentifier:roomManager.room.name]) {
         _roomManager = roomManager;
+        __weak BDKRoomViewController *unretainedSelf = self;
+        _roomManager.didReceiveMessageBlock = ^(BDKCFMessage *message) {
+            [unretainedSelf.tableView reloadData];
+        };
     }
     return self;
 }
@@ -43,14 +47,16 @@
     [super viewDidLoad];
     
     self.title = self.roomManager.room.name;
+}
 
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"GenericCell"];
+- (void)registerCellTypes {
+    [self.tableView registerClass:[BDKMessageCell class] forCellReuseIdentifier:kBDKMessageCellID];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.roomManager loadRecentHistory:^{
-        [self.tableView reloadData];
+        //
     } failure:^(NSError *error) {
         // pass for now
     }];
@@ -87,13 +93,11 @@
     return [self.roomManager.messages count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenericCell" forIndexPath:indexPath];
+- (BDKMessageCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    BDKMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:kBDKMessageCellID forIndexPath:indexPath];
     BDKCFMessage *message = [self messageForIndexPath:indexPath];
-    if (![(NSNull *)message.body isEqual:[NSNull null]]) {
-        cell.textLabel.text = message.body;
-        cell.textLabel.font = [UIFont appFontOfSize:12];
-    }
+    DDLogUI(@"Setting message %@ // %@ for index path %@.", message.identifier, message.body, indexPath);
+    cell.message = message;
     return cell;
 }
 

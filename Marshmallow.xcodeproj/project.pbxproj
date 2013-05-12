@@ -47,6 +47,7 @@
 		C3632ECA17013A4A0028C794 /* BDKRoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3632EC917013A4A0028C794 /* BDKRoomsViewController.m */; };
 		C3632ECD17013A750028C794 /* UINavigationController+BDKKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3632ECC17013A750028C794 /* UINavigationController+BDKKit.m */; };
 		C36819DE17079DCB002C6742 /* IFBKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C36819DD17079DCB002C6742 /* IFBKModel.m */; };
+		C38AF3E81740539100A633D6 /* BDKMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C38AF3E71740539100A633D6 /* BDKMessageCell.m */; };
 		C3966E9F170B9D2D00ED89B7 /* BDKRoomCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3966E9E170B9D2D00ED89B7 /* BDKRoomCollectionCell.m */; };
 		C3966EA2170BA96B00ED89B7 /* BDKGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3966EA1170BA96B00ED89B7 /* BDKGradientView.m */; };
 		C3C5FF0F170E3DE700BE92B9 /* Avenir Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C3C5FF0E170E3DE600BE92B9 /* Avenir Next.ttc */; };
@@ -149,6 +150,8 @@
 		C36819DC17079DCB002C6742 /* IFBKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKModel.h; sourceTree = "<group>"; };
 		C36819DD17079DCB002C6742 /* IFBKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKModel.m; sourceTree = "<group>"; };
 		C3681A0A1707CD8A002C6742 /* IFBKModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKModels.h; sourceTree = "<group>"; };
+		C38AF3E61740539100A633D6 /* BDKMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKMessageCell.h; sourceTree = "<group>"; };
+		C38AF3E71740539100A633D6 /* BDKMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKMessageCell.m; sourceTree = "<group>"; };
 		C3966E9D170B9D2D00ED89B7 /* BDKRoomCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoomCollectionCell.h; sourceTree = "<group>"; };
 		C3966E9E170B9D2D00ED89B7 /* BDKRoomCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomCollectionCell.m; sourceTree = "<group>"; };
 		C3966EA0170BA96B00ED89B7 /* BDKGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKGradientView.h; sourceTree = "<group>"; };
@@ -415,6 +418,8 @@
 		C356BF0F16FFA4B600F7A031 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				C38AF3E61740539100A633D6 /* BDKMessageCell.h */,
+				C38AF3E71740539100A633D6 /* BDKMessageCell.m */,
 				C3966E9D170B9D2D00ED89B7 /* BDKRoomCollectionCell.h */,
 				C3966E9E170B9D2D00ED89B7 /* BDKRoomCollectionCell.m */,
 				C356BF1016FFA4C800F7A031 /* BDKTextFieldCell.h */,
@@ -686,6 +691,7 @@
 				C32BC70B1726211F00DA5D88 /* IFBKUser.m in Sources */,
 				C3E64194173B0D4800F37DEC /* IFBKRoomManager.m in Sources */,
 				C3586C05173EE32500106BF0 /* BDKTableHeaderView.m in Sources */,
+				C38AF3E81740539100A633D6 /* BDKMessageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

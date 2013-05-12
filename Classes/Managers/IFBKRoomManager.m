@@ -4,6 +4,7 @@
 #import <BDKThirtySeven/BDKCampfireClient.h>
 #import <BDKThirtySeven/BDKCFRoom.h>
 #import <BDKThirtySeven/BDKCFMessage.h>
+#import <ObjectiveSugar/ObjectiveSugar.h>
 
 #import "IFBKUser.h"
 #import "IFBKLaunchpadAccount.h"
@@ -55,6 +56,8 @@
         __weak IFBKRoomManager *unretainedSelf = self;
         [_streamingClient setMessageReceivedBlock:^(BDKCFMessage *message) {
             [unretainedSelf processMessageFromAPI:message];
+            if (unretainedSelf.didReceiveMessageBlock)
+                unretainedSelf.didReceiveMessageBlock(message);
         }];
 
         // Initialize our regular API client.
@@ -65,13 +68,33 @@
     return self;
 }
 
+#pragma mark - Properties
+
+- (void)setDidReceiveMessageBlock:(void (^)(BDKCFMessage *))didReceiveMessageBlock {
+    _didReceiveMessageBlock = didReceiveMessageBlock;
+    __weak IFBKRoomManager *unretainedSelf = self;
+    [self.streamingClient setMessageReceivedBlock:^(BDKCFMessage *message) {
+        [unretainedSelf processMessageFromAPI:message];
+        unretainedSelf.didReceiveMessageBlock(message);
+    }];
+}
+
 #pragma mark - Public methods
 
 - (void)loadRecentHistory:(void (^)(void))success failure:(void (^)(NSError *error))failure {
-    [self.apiClient getMessagesForRoom:self.room.identifier limit:100 sinceMessageId:nil success:^(NSArray *result) {
+    [self loadHistorySinceMessageId:nil success:success failure:failure];
+}
+
+- (void)loadHistorySinceMessageId:(NSNumber *)messageId
+                          success:(void (^)(void))success
+                          failure:(void (^)(NSError *))failure {
+    [self.apiClient getMessagesForRoom:self.room.identifier sinceMessageId:messageId success:^(NSArray *result) {
+        BDKCFMessage *lastMessage = nil;
         for (BDKCFMessage *message in result) {
             [self processMessageFromAPI:message];
+            lastMessage = message;
         }
+        if (self.didReceiveMessageBlock) self.didReceiveMessageBlock(lastMessage);
     } failure:^(NSError *error, NSInteger responseCode) {
         NSLog(@"Encountered error %i getting messages for room. Error: %@", responseCode, error);
     }];
@@ -93,10 +116,15 @@
 #pragma mark - Private methods
 
 - (void)processMessageFromAPI:(BDKCFMessage *)message {
-    NSLog(@"Room manager received message type %@, body %@.", message.type, message.body);
-    // TODO: Should always make sure this is sorted by timestamp!
-    [self.messages addObject:message];
-    // TODO: Fire an event or block here. Maybe "receivedMessage?"
+    if ([self.messages containsObject:message]) {
+        [self.messages replaceObjectAtIndex:[self.messages indexOfObject:message] withObject:message];
+    } else {
+        [self.messages addObject:message];
+    }
+    DDLogAPI(@"Added a message %@.", message.identifier);
+//    [self.messages sortUsingComparator:^NSComparisonResult(BDKCFMessage *message1, BDKCFMessage *message2) {
+//        return [message1.createdAt compare:message2.createdAt];
+//    }];
 }
 
 @end
