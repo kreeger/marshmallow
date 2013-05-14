@@ -94,6 +94,7 @@
             [self processMessageFromAPI:message];
             lastMessage = message;
         }
+        DDLogAPI(@"Loaded %i messages from API.", [self.messages count]);
         if (self.didReceiveMessageBlock) self.didReceiveMessageBlock(lastMessage);
     } failure:^(NSError *error, NSInteger responseCode) {
         NSLog(@"Encountered error %i getting messages for room. Error: %@", responseCode, error);
@@ -121,10 +122,9 @@
     } else {
         [self.messages addObject:message];
     }
-    DDLogAPI(@"Added a message %@.", message.identifier);
-//    [self.messages sortUsingComparator:^NSComparisonResult(BDKCFMessage *message1, BDKCFMessage *message2) {
-//        return [message1.createdAt compare:message2.createdAt];
-//    }];
+    //[self.messages sortUsingComparator:^NSComparisonResult(BDKCFMessage *message1, BDKCFMessage *message2) {
+    //    return [message1.createdAt compare:message2.createdAt];
+    //}];
 }
 
 @end

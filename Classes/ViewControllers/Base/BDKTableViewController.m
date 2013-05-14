@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView addSubview:self.refreshControl];
+    if (self.pullToRefreshEnabled) [self.tableView addSubview:self.refreshControl];
     [self registerCellTypes];
 	// Do any additional setup after loading the view.
 }

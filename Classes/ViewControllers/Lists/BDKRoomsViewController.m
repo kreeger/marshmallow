@@ -50,7 +50,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.pullToRefreshEnabled = YES;
     self.title = @"Rooms";
     self.navigationItem.leftBarButtonItem = self.profileBarButton;
     [self.refreshControl beginRefreshing];

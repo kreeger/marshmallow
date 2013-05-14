@@ -65,7 +65,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.roomManager startStreamingMessages];
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -80,7 +80,8 @@
 #pragma mark - Methods
 
 - (BDKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath {
-    return self.roomManager.messages[indexPath.row];
+    BDKCFMessage *message = [self.roomManager.messages objectAtIndex:indexPath.row];
+    return message;
 }
 
 #pragma mark - UITableViewDataSource
@@ -99,6 +100,10 @@
     DDLogUI(@"Setting message %@ // %@ for index path %@.", message.identifier, message.body, indexPath);
     cell.message = message;
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
 }
 
 #pragma mark - UITableViewDelegate
