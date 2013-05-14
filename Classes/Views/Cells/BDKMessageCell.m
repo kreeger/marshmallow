@@ -51,10 +51,13 @@
 - (void)setMessage:(BDKCFMessage *)message {
     _message = message;
     if (!_message) return;
+    self.bodyLabel.text = nil;
+    self.timestampLabel.text = nil;
+    self.typeLabel.text = nil;
+    self.senderLabel.text = nil;
 
     NSDateFormatter *f = [[NSDateFormatter alloc] init];
     f.dateFormat = @"YYYY-mm-dd hh:mm:ss";
-    self.textLabel.text = nil;
     if (![(NSNull *)message.userIdentifier isEqual:[NSNull null]])
         self.senderLabel.text = [message.userIdentifier stringValue];
     self.timestampLabel.text = [f stringFromDate:message.createdAt];
