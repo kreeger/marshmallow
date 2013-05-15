@@ -8,6 +8,7 @@
 
 #import "BDKCFRoom.h"
 #import "IFBKAccount.h"
+#import "IFBKUser.h"
 
 #import "BDKRoomCollectionCell.h"
 #import "BDKTableHeaderView.h"
@@ -122,7 +123,9 @@
 }
 
 - (void)presentProfileController {
-    BDKUserViewController *userVC = [BDKUserViewController vcWithIFBKUser:nil];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"launchpadAccount != nil"];
+    IFBKUser *user = [IFBKUser findFirstWithPredicate:predicate];
+    BDKUserViewController *userVC = [BDKUserViewController vcWithUser:user];
     userVC.modalDismissalBlock = ^{
         [self dismissViewControllerAnimated:YES completion:nil];
     };

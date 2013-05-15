@@ -4,6 +4,8 @@
 
 @interface BDKMessageCell ()
 
+- (void)recalculateBodyLabelFrame;
+
 @end
 
 @implementation BDKMessageCell
@@ -38,11 +40,12 @@
     CGRectDivide(working, &frame, &working, 20, CGRectMinYEdge);
     self.senderLabel.frame = frame;
 
-    CGRectDivide(working, &frame, &working, 60, CGRectMinYEdge);
-    self.bodyLabel.frame = frame;
-
     CGRectDivide(working, &frame, &working, 20, CGRectMinYEdge);
     self.timestampLabel.frame = frame;
+
+    CGRectDivide(working, &frame, &working, 60, CGRectMinYEdge);
+    self.bodyLabel.frame = frame;
+    [self recalculateBodyLabelFrame];
     
 }
 
@@ -51,6 +54,7 @@
 - (void)setMessage:(BDKCFMessage *)message {
     _message = message;
     if (!_message) return;
+    
     self.bodyLabel.text = nil;
     self.timestampLabel.text = nil;
     self.typeLabel.text = nil;
@@ -65,6 +69,7 @@
 
     if (![(NSNull *)message.body isEqual:[NSNull null]]) {
         self.bodyLabel.text = message.body;
+        [self recalculateBodyLabelFrame];
     }
 }
 
@@ -82,7 +87,10 @@
     if (_bodyLabel) return _bodyLabel;
     _bodyLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _bodyLabel.font = [UIFont appFontOfSize:14];
+    _bodyLabel.contentMode = UIViewContentModeTopLeft;
     _bodyLabel.backgroundColor = [UIColor clearColor];
+    _bodyLabel.numberOfLines = 0;
+    _bodyLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _bodyLabel.layer.borderColor = [[UIColor redColor] CGColor];
     _bodyLabel.layer.borderWidth = 1;
     return _bodyLabel;
@@ -106,6 +114,15 @@
     _senderLabel.layer.borderColor = [[UIColor orangeColor] CGColor];
     _senderLabel.layer.borderWidth = 1;
     return _senderLabel;
+}
+
+#pragma mark - Methods
+
+- (void)recalculateBodyLabelFrame {
+    CGSize size = [self.bodyLabel.text sizeWithFont:self.bodyLabel.font
+                                  constrainedToSize:CGSizeMake(self.contentView.frame.size.width, CGFLOAT_MAX)
+                                      lineBreakMode:NSLineBreakByWordWrapping];
+    self.bodyLabel.frameHeight = size.height;
 }
 
 @end

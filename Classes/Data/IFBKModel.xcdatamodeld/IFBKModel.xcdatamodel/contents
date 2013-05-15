@@ -29,7 +29,7 @@
         <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="launchpadAccount" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="IFBKLaunchpadAccount" inverseName="user" inverseEntity="IFBKLaunchpadAccount" syncable="YES"/>
+        <relationship name="launchpadAccount" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="IFBKLaunchpadAccount" inverseName="user" inverseEntity="IFBKLaunchpadAccount" syncable="YES"/>
     </entity>
     <elements>
         <element name="IFBKAccount" positionX="160" positionY="192" width="128" height="195"/>

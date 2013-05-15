@@ -14,6 +14,10 @@ typedef enum {
  */
 @property (readonly) IFBKUserType userType;
 
+/** Returns `YES` if the user record is associated with a Launchpad account.
+ */
+@property (readonly) BOOL isCurrentUser;
+
 /** The actual-url version of this model's avatarUrl string.
  */
 @property (readonly) NSURL *avatarUrlValue;

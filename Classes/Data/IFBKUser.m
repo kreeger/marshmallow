@@ -5,8 +5,7 @@
 
 @dynamic userType;
 
-- (void)updateWithBDKCFModel:(BDKCFModel *)model
-{
+- (void)updateWithBDKCFModel:(BDKCFModel *)model {
     BDKCFUser *user = (BDKCFUser *)model;
     NSArray *attributes = @[@"identifier", @"name", @"emailAddress", @"admin", @"createdAt", @"type", @"avatarUrl", @"apiAuthToken"];
     [attributes each:^(NSString *attribute) {
@@ -16,20 +15,23 @@
 
 #pragma mark - Properties
 
-+ (NSDictionary *)userTypeMappings
-{
-    return @{@"Member": @(IFBKUserTypeMember),
-             @"Guest": @(IFBKUserTypeGuest),};
-}
-
-- (IFBKUserType)userType
-{
+- (IFBKUserType)userType {
     NSNumber *type = [[self class] userTypeMappings][self.type];
     return type ? [type integerValue] : IFBKUserTypeUnknown;
+}
+
+- (BOOL)isCurrentUser {
+    return self.launchpadAccount != nil;
 }
 
 - (NSURL *)avatarUrlValue {
     return [NSURL URLWithString:self.avatarUrl];
 }
+
++ (NSDictionary *)userTypeMappings {
+    return @{@"Member": @(IFBKUserTypeMember),
+             @"Guest": @(IFBKUserTypeGuest),};
+}
+
 
 @end

@@ -1,7 +1,5 @@
 #import "BDKViewController.h"
 
-@class IFBKUser;
-
 /** Presents data on a given user.
  */
 @interface BDKUserViewController : BDKViewController
@@ -10,10 +8,10 @@
  */
 @property (readonly) IFBKUser *user;
 
-/** Initializes the view controller for a user.
- *  @param user The user with which to initialize this view controller.
+/** Initializes the view controller for a user facade.
+ *  @param user The user for which to initialize this view controller.
  *  @returns An instance of self.
  */
-+ (id)vcWithIFBKUser:(IFBKUser *)user;
++ (id)vcWithUser:(IFBKUser *)user;
 
 @end
