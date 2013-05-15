@@ -17,7 +17,12 @@
 
 @interface BDKRoomsViewController ()
 
+/** A reference to the rooms presented by this view controller.
+ */
 @property (weak, nonatomic) NSArray *rooms;
+
+/** The toolbar button presenting the current user's profile.
+ */
 @property (strong, nonatomic) UIBarButtonItem *profileBarButton;
 
 /** Loads up the necessary data into the collection view.
@@ -123,8 +128,7 @@
 }
 
 - (void)presentProfileController {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"launchpadAccount != nil"];
-    IFBKUser *user = [IFBKUser findFirstWithPredicate:predicate];
+    IFBKUser *user = [IFBKUser findFirstWithPredicate:[NSPredicate predicateWithFormat:@"launchpadAccount != nil"]];
     BDKUserViewController *userVC = [BDKUserViewController vcWithUser:user];
     userVC.modalDismissalBlock = ^{
         [self dismissViewControllerAnimated:YES completion:nil];
