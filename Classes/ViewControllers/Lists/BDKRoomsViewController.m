@@ -6,7 +6,7 @@
 #import "IFBKAccountsManager.h"
 #import "IFBKRoomManager.h"
 
-#import "BDKCFRoom.h"
+#import "IFBKCFRoom.h"
 #import "IFBKAccount.h"
 #import "IFBKUser.h"
 
@@ -29,11 +29,11 @@
  */
 - (void)performFetch;
 
-/** Gets an BDKCFRoom given the index path.
+/** Gets an IFBKCFRoom given the index path.
  *  @param indexPath the index path to use when finding the room (the `row` property will be used).
  *  @returns A room object.
  */
-- (BDKCFRoom *)roomForIndexPath:(NSIndexPath *)indexPath;
+- (IFBKCFRoom *)roomForIndexPath:(NSIndexPath *)indexPath;
 
 /** Gets an IFBKAccount given the index path.
  *  @param indexPath the index path to use when finding the account (the `section` property will be used).
@@ -115,7 +115,7 @@
     [self.refreshControl endRefreshing];
 }
 
-- (BDKCFRoom *)roomForIndexPath:(NSIndexPath *)indexPath {
+- (IFBKCFRoom *)roomForIndexPath:(NSIndexPath *)indexPath {
     return self.rooms[indexPath.section][@"rooms"][indexPath.row];
 }
 
@@ -129,7 +129,7 @@
 
 - (void)presentProfileController {
     IFBKUser *user = [IFBKUser findFirstWithPredicate:[NSPredicate predicateWithFormat:@"launchpadAccount != nil"]];
-    BDKUserViewController *userVC = [BDKUserViewController vcWithUser:user];
+    BDKUserViewController *userVC = [BDKUserViewController vcWithIFBKUser:user];
     userVC.modalDismissalBlock = ^{
         [self dismissViewControllerAnimated:YES completion:nil];
     };
@@ -158,7 +158,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenericCell" forIndexPath:indexPath];
-    BDKCFRoom *room = [self roomForIndexPath:indexPath];
+    IFBKCFRoom *room = [self roomForIndexPath:indexPath];
     cell.textLabel.text = room.name;
     cell.textLabel.font = [UIFont boldAppFontOfSize:18];
     return cell;
@@ -167,7 +167,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    BDKCFRoom *room = [self roomForIndexPath:indexPath];
+    IFBKCFRoom *room = [self roomForIndexPath:indexPath];
     IFBKAccount *account = [self accountForIndexPath:indexPath];
     IFBKRoomManager *roomManager = [IFBKRoomManager roomManagerWithRoom:room user:account.user];
     BDKRoomViewController *roomVC = [BDKRoomViewController vcWithRoomManager:roomManager];

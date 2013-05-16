@@ -2,11 +2,12 @@
 
 #import "BDKMessageCell.h"
 
-#import "BDKCampfireClient.h"
 #import "IFBKRoomManager.h"
 
-#import "BDKCFRoom.h"
-#import "BDKCFMessage.h"
+#import <IFBKThirtySeven/IFBKCampfireClient.h>
+
+#import "IFBKCFRoom.h"
+#import "IFBKCFMessage.h"
 
 @interface BDKRoomViewController ()
 
@@ -20,7 +21,7 @@
  *  @param indexPath The index path for which to retrieve the message.
  *  @returns A message.
  */
-- (BDKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath;
+- (IFBKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -36,7 +37,7 @@
     if (self = [super initWithIdentifier:roomManager.room.name]) {
         _roomManager = roomManager;
         __weak BDKRoomViewController *unretainedSelf = self;
-        _roomManager.didReceiveMessageBlock = ^(BDKCFMessage *message) {
+        _roomManager.didReceiveMessageBlock = ^(IFBKCFMessage *message) {
             [unretainedSelf.tableView reloadData];
         };
     }
@@ -79,8 +80,8 @@
 
 #pragma mark - Methods
 
-- (BDKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath {
-    BDKCFMessage *message = [self.roomManager.messages objectAtIndex:indexPath.row];
+- (IFBKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath {
+    IFBKCFMessage *message = [self.roomManager.messages objectAtIndex:indexPath.row];
     return message;
 }
 
@@ -96,7 +97,7 @@
 
 - (BDKMessageCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BDKMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:kBDKMessageCellID forIndexPath:indexPath];
-    BDKCFMessage *message = [self messageForIndexPath:indexPath];
+    IFBKCFMessage *message = [self messageForIndexPath:indexPath];
     DDLogUI(@"Setting message %@ // %@ for index path %@.", message.identifier, message.body, indexPath);
     cell.message = message;
     return cell;

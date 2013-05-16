@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@class BDKCFRoom, IFBKUser, BDKCFMessage;
+@class IFBKCFRoom, IFBKUser, IFBKCFMessage;
 
 /** Handles uh, room stuff. Ask me later.
  */
@@ -8,7 +8,7 @@
 
 /** The room managed by this manager.
  */
-@property (readonly) BDKCFRoom *room;
+@property (readonly) IFBKCFRoom *room;
 
 /** The user profile used with this manager.
  */
@@ -20,7 +20,7 @@
 
 /** A block to be called upon message receipt; associated views should probably be reloaded.
  */
-@property (copy, nonatomic) void(^didReceiveMessageBlock)(BDKCFMessage *message);
+@property (copy, nonatomic) void(^didReceiveMessageBlock)(IFBKCFMessage *message);
 
 /** Initializes a version of this room manager with a given room and user.
  *
@@ -28,7 +28,7 @@
  *  @param user The user that has access to this room.
  *  @returns An instance of self.
  */
-+ (id)roomManagerWithRoom:(BDKCFRoom *)room user:(IFBKUser *)user;
++ (id)roomManagerWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user;
 
 /** Loads the most recent 100 messages in the room and stores them. Should be called upon entering the room.
  *

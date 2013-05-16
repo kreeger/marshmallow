@@ -1,5 +1,5 @@
 #import "IFBKModel.h"
-#import "BDKCFModel.h"
+#import "IFBKCFModel.h"
 
 @implementation IFBKModel
 
@@ -20,33 +20,33 @@
         return [self findAllWithPredicate:pred inContext:context];
 }
 
-+ (id)createOrUpdateWithModel:(BDKCFModel *)model inContext:(NSManagedObjectContext *)context
++ (id)createOrUpdateWithModel:(IFBKCFModel *)model inContext:(NSManagedObjectContext *)context
 {
     unless (context) context = [NSManagedObjectContext defaultContext];
     NSNumber *apiIdentifier = [model valueForKeyPath:@"identifier"];
     IFBKModel *found = [self findFirstByAttribute:@"identifier" withValue:apiIdentifier inContext:context];
     if (found) {
-        [found updateWithBDKCFModel:model];
+        [found updateWithIFBKCFModel:model];
         return found;
     } else {
-        return [self modelWithBDKCFModel:model inContext:context];
+        return [self modelWithIFBKCFModel:model inContext:context];
     }
 }
 
-+ (id)modelWithBDKCFModel:(BDKCFModel *)model inContext:(NSManagedObjectContext *)context
++ (id)modelWithIFBKCFModel:(IFBKCFModel *)model inContext:(NSManagedObjectContext *)context
 {
-    return [[self alloc] initWithBDKCFModel:model inContext:context];
+    return [[self alloc] initWithIFBKCFModel:model inContext:context];
 }
 
-- (id)initWithBDKCFModel:(BDKCFModel *)model inContext:(NSManagedObjectContext *)context
+- (id)initWithIFBKCFModel:(IFBKCFModel *)model inContext:(NSManagedObjectContext *)context
 {
     unless (context) context = [NSManagedObjectContext defaultContext];
     if ((self = [[self class] createInContext:context])) {
-        [self updateWithBDKCFModel:model];
+        [self updateWithIFBKCFModel:model];
     }
     return self;
 }
 
-- (void)updateWithBDKCFModel:(BDKCFModel *)model { }
+- (void)updateWithIFBKCFModel:(IFBKCFModel *)model { }
 
 @end

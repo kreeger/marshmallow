@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@class IFBKUser, BDKCampfireClient;
+@class IFBKUser, IFBKCampfireClient;
 
 /** A base implementation of a view controller; not much to see here.
  */

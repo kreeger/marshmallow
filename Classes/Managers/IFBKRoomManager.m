@@ -1,9 +1,9 @@
 #import "IFBKRoomManager.h"
 
-#import <BDKThirtySeven/BDKCampfireStreamingClient.h>
-#import <BDKThirtySeven/BDKCampfireClient.h>
-#import <BDKThirtySeven/BDKCFRoom.h>
-#import <BDKThirtySeven/BDKCFMessage.h>
+#import <IFBKThirtySeven/IFBKCampfireStreamingClient.h>
+#import <IFBKThirtySeven/IFBKCampfireClient.h>
+#import <IFBKThirtySeven/IFBKCFRoom.h>
+#import <IFBKThirtySeven/IFBKCFMessage.h>
 #import <ObjectiveSugar/ObjectiveSugar.h>
 
 #import "IFBKUser.h"
@@ -15,11 +15,11 @@
 
 /** The streaming Campfire API for downloading messages in real-time.
  */
-@property (strong, nonatomic) BDKCampfireStreamingClient *streamingClient;
+@property (strong, nonatomic) IFBKCampfireStreamingClient *streamingClient;
 
 /** The standard, non-streaming Campfire client.
  */
-@property (strong, nonatomic) BDKCampfireClient *apiClient;
+@property (strong, nonatomic) IFBKCampfireClient *apiClient;
 
 /** Initializes a version of this room manager with a given room and user.
  *
@@ -27,12 +27,12 @@
  *  @param user The user that has access to this room.
  *  @returns An instance of self.
  */
-- (id)initWithRoom:(BDKCFRoom *)room user:(IFBKUser *)user;
+- (id)initWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user;
 
 /** Handles an incoming message from the Campfire API (and saves it).
  *  @param message The incoming message object.
  */
-- (void)processMessageFromAPI:(BDKCFMessage *)message;
+- (void)processMessageFromAPI:(IFBKCFMessage *)message;
 
 @end
 
@@ -40,21 +40,21 @@
 
 @synthesize room = _room, user = _user;
 
-+ (id)roomManagerWithRoom:(BDKCFRoom *)room user:(IFBKUser *)user {
++ (id)roomManagerWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user {
     return [[self alloc] initWithRoom:room user:user];
 }
 
-- (id)initWithRoom:(BDKCFRoom *)room user:(IFBKUser *)user {
+- (id)initWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user {
     if (self = [super init]) {
         _room = room;
         _user = user;
         _messages = [NSMutableArray array];
 
         // Initialize our streaming client.
-        _streamingClient = [[BDKCampfireStreamingClient alloc] initWithRoomId:_room.identifier
+        _streamingClient = [[IFBKCampfireStreamingClient alloc] initWithRoomId:_room.identifier
                                                            authorizationToken:_user.apiAuthToken];
         __weak IFBKRoomManager *unretainedSelf = self;
-        [_streamingClient setMessageReceivedBlock:^(BDKCFMessage *message) {
+        [_streamingClient setMessageReceivedBlock:^(IFBKCFMessage *message) {
             [unretainedSelf processMessageFromAPI:message];
             if (unretainedSelf.didReceiveMessageBlock)
                 unretainedSelf.didReceiveMessageBlock(message);
@@ -63,17 +63,17 @@
         // Initialize our regular API client.
         // TODO: Find a clean way to pass in the access token here. Save it to Core Data, most likely.
         NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultAccessToken];
-        _apiClient = [[BDKCampfireClient alloc] initWithBaseURL:_user.launchpadAccount.hrefUrl accessToken:token];
+        _apiClient = [[IFBKCampfireClient alloc] initWithBaseURL:_user.launchpadAccount.hrefUrl accessToken:token];
     }
     return self;
 }
 
 #pragma mark - Properties
 
-- (void)setDidReceiveMessageBlock:(void (^)(BDKCFMessage *))didReceiveMessageBlock {
+- (void)setDidReceiveMessageBlock:(void (^)(IFBKCFMessage *))didReceiveMessageBlock {
     _didReceiveMessageBlock = didReceiveMessageBlock;
     __weak IFBKRoomManager *unretainedSelf = self;
-    [self.streamingClient setMessageReceivedBlock:^(BDKCFMessage *message) {
+    [self.streamingClient setMessageReceivedBlock:^(IFBKCFMessage *message) {
         [unretainedSelf processMessageFromAPI:message];
         unretainedSelf.didReceiveMessageBlock(message);
     }];
@@ -89,8 +89,8 @@
                           success:(void (^)(void))success
                           failure:(void (^)(NSError *))failure {
     [self.apiClient getMessagesForRoom:self.room.identifier sinceMessageId:messageId success:^(NSArray *result) {
-        BDKCFMessage *lastMessage = nil;
-        for (BDKCFMessage *message in result) {
+        IFBKCFMessage *lastMessage = nil;
+        for (IFBKCFMessage *message in result) {
             [self processMessageFromAPI:message];
             lastMessage = message;
         }
@@ -116,13 +116,13 @@
 
 #pragma mark - Private methods
 
-- (void)processMessageFromAPI:(BDKCFMessage *)message {
+- (void)processMessageFromAPI:(IFBKCFMessage *)message {
     if ([self.messages containsObject:message]) {
         [self.messages replaceObjectAtIndex:[self.messages indexOfObject:message] withObject:message];
     } else {
         [self.messages addObject:message];
     }
-    //[self.messages sortUsingComparator:^NSComparisonResult(BDKCFMessage *message1, BDKCFMessage *message2) {
+    //[self.messages sortUsingComparator:^NSComparisonResult(IFBKCFMessage *message1, IFBKCFMessage *message2) {
     //    return [message1.createdAt compare:message2.createdAt];
     //}];
 }

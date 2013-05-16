@@ -1,6 +1,6 @@
 #import "BDKMessageCell.h"
 
-#import <BDKThirtySeven/BDKCFMessage.h>
+#import <IFBKThirtySeven/IFBKCFMessage.h>
 
 @interface BDKMessageCell ()
 
@@ -51,7 +51,7 @@
 
 #pragma mark - Properties
 
-- (void)setMessage:(BDKCFMessage *)message {
+- (void)setMessage:(IFBKCFMessage *)message {
     _message = message;
     if (!_message) return;
     

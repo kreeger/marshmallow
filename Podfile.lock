@@ -2,49 +2,52 @@ PODS:
   - AFNetworking (1.2.0)
   - BDKGeometry (1.4.0)
   - BDKKit (0.0.1)
-  - BDKThirtySeven (0.0.2):
+  - CocoaLumberjack (1.6)
+  - CrittercismSDK (3.5.1)
+  - IFBKThirtySeven (0.0.3):
     - AFNetworking (~> 1.2)
     - ISO8601DateFormatter (~> 0.6)
     - SBJson (~> 3.2)
-  - CocoaLumberjack (1.6)
-  - CrittercismSDK (3.5.1)
   - ISO8601DateFormatter (0.6)
   - Kiwi (2.0.6)
   - MagicalRecord (2.1)
   - ObjectiveSugar (0.6.2)
   - SBJson (3.2)
+  - ViewDeck (2.2.11)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.2.0)
   - BDKGeometry (from `~/Code/kreeger/BDKGeometry`)
   - BDKKit (from `~/Code/kreeger/BDKKit`)
-  - BDKThirtySeven (from `~/Code/kreeger/BDKThirtySeven`)
   - CocoaLumberjack (~> 1.6)
-  - CrittercismSDK
+  - CrittercismSDK (~> 3.5.1)
+  - IFBKThirtySeven (from `~/Code/kreeger/IFBKThirtySeven`)
   - ISO8601DateFormatter (~> 0.6)
   - Kiwi
   - MagicalRecord (~> 2.1)
   - ObjectiveSugar (~> 0.6.2)
+  - ViewDeck (~> 2.2.11)
 
 EXTERNAL SOURCES:
   BDKGeometry:
     :path: ~/Code/kreeger/BDKGeometry
   BDKKit:
     :path: ~/Code/kreeger/BDKKit
-  BDKThirtySeven:
-    :path: ~/Code/kreeger/BDKThirtySeven
+  IFBKThirtySeven:
+    :path: ~/Code/kreeger/IFBKThirtySeven
 
 SPEC CHECKSUMS:
   AFNetworking: 3cbae45f61a9f995cdbd56bd571223910d7f4e44
   BDKGeometry: fd858609d9f66d5999798378d8bcaf9b014b41b3
   BDKKit: 6270bcb68b96240b1e2235959c4c383331d9947b
-  BDKThirtySeven: d4b7cc6b2594cedd45d473133ed0446e21800f01
   CocoaLumberjack: 0f2fa7090a23f13261072d882e017c688300efbe
   CrittercismSDK: 1cd30b0bb1448494da29539a1cf490475288d1d1
+  IFBKThirtySeven: 84ac0bbc306810f210c06874c1548f6b8e9d1680
   ISO8601DateFormatter: dc05a2481edf49668d85d3ff8c466c32eb544780
   Kiwi: 56082a80f942de4d10423d8d8a599ab30cf50228
   MagicalRecord: 64e7184c240087a45e9588a722eaf05b0ad837f7
   ObjectiveSugar: 50bcd329b18ab6da6457e1bf55be71acb7c39d44
-  SBJson: 4971016670e7b3fa04a36d4e72ab0fb1ad3a9f69
+  SBJson: e60b4dc22448c2ae1e754b523a4ab53408e85c8d
+  ViewDeck: b5eddc8559b0e47259ab7addbf2de6768061f139
 
 COCOAPODS: 0.19.1

@@ -1,10 +1,9 @@
 #import "IFBKAccountsManager.h"
 
-#import "BDKLaunchpadClient.h"
-#import "BDKCampfireClient.h"
+#import <IFBKThirtySeven/IFBKThirtySeven.h>
 
-#import "BDKLPModels.h"
-#import "BDKCFModels.h"
+#import "IFBKLPModels.h"
+#import "IFBKCFModels.h"
 #import "IFBKModels.h"
 
 #import "IFBKConstants.h"
@@ -48,14 +47,14 @@
 - (NSString *)accessToken {
     if (_accessToken) return _accessToken;
     _accessToken = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultAccessToken];
-    [BDKLaunchpadClient setBearerToken:_accessToken];
+    [IFBKLaunchpadClient setBearerToken:_accessToken];
     return _accessToken;
 }
 
 - (void)setAccessToken:(NSString *)accessToken {
     [[NSUserDefaults standardUserDefaults] setValue:accessToken forKey:kIFBKUserDefaultAccessToken];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [BDKLaunchpadClient setBearerToken:accessToken];
+    [IFBKLaunchpadClient setBearerToken:accessToken];
     _accessToken = accessToken;
 }
 
@@ -88,14 +87,14 @@
 - (void)configureLaunchpadWithClientId:(NSString *)clientId
                           clientSecret:(NSString *)clientSecret
                            redirectUri:(NSString *)redirectUri {
-    [BDKLaunchpadClient setClientId:clientId clientSecret:clientSecret redirectUri:redirectUri];
+    [IFBKLaunchpadClient setClientId:clientId clientSecret:clientSecret redirectUri:redirectUri];
 }
 
 - (void)tradeAuthTokenDataForAuthorizationCode:(NSString *)authorizationCode
                                     completion:(void (^)(void))completion
                                        failure:(void (^)(NSError *error))failure {
     NSLog(@"Trading auth code %@.", authorizationCode);
-    [BDKLaunchpadClient getAccessTokenForVerificationCode:authorizationCode success:^(NSString *accessToken, NSString *refreshToken, NSDate *expiresOn) {
+    [IFBKLaunchpadClient getAccessTokenForVerificationCode:authorizationCode success:^(NSString *accessToken, NSString *refreshToken, NSDate *expiresOn) {
         // Do something else with these.
         self.accessToken = accessToken;
         self.refreshToken = refreshToken;
@@ -107,9 +106,9 @@
 }
 
 - (void)refreshLaunchpadData:(void (^)(void))completion failure:(void (^)(NSError *error))failure {
-    [BDKLaunchpadClient getAuthorization:^(BDKLPAuthorizationData *authData) {
+    [IFBKLaunchpadClient getAuthorization:^(IFBKLPAuthorizationData *authData) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            [authData.accounts each:^(BDKLPAccount *account) {
+            [authData.accounts each:^(IFBKLPAccount *account) {
                 [IFBKLaunchpadAccount createOrUpdateWithModel:account inContext:localContext];
             }];
         } completion:^(BOOL success, NSError *error) {
@@ -129,9 +128,9 @@
     NSMutableArray *campfireAccounts = [NSMutableArray arrayWithCapacity:count];
     for (IFBKLaunchpadAccount *lpAccount in self.launchpadAccounts) {
         __block NSNumber *identifier = nil;
-        BDKCampfireClient *campfire = [BDKCampfireClient clientWithBaseURL:lpAccount.hrefUrl];
+        IFBKCampfireClient *campfire = [IFBKCampfireClient clientWithBaseURL:lpAccount.hrefUrl];
         [campfire setBearerToken:self.accessToken];
-        [campfire getCurrentAccount:^(BDKCFAccount *account) {
+        [campfire getCurrentAccount:^(IFBKCFAccount *account) {
             [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
                 IFBKAccount *cAccount = [IFBKAccount createOrUpdateWithModel:account inContext:localContext];
                 cAccount.launchpadAccount = [lpAccount inContext:localContext];
@@ -155,9 +154,9 @@
     NSMutableArray *currentUsers = [NSMutableArray arrayWithCapacity:count];
     for (IFBKLaunchpadAccount *account in self.launchpadAccounts) {
         __block NSNumber *identifier = nil;
-        BDKCampfireClient *campfire = [BDKCampfireClient clientWithBaseURL:account.hrefUrl];
+        IFBKCampfireClient *campfire = [IFBKCampfireClient clientWithBaseURL:account.hrefUrl];
         [campfire setBearerToken:self.accessToken];
-        [campfire getCurrentUser:^(BDKCFUser *user) {
+        [campfire getCurrentUser:^(IFBKCFUser *user) {
             [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
                 IFBKUser *cUser = [IFBKUser createOrUpdateWithModel:user inContext:localContext];
                 cUser.launchpadAccount = [account inContext:localContext];
@@ -180,7 +179,7 @@
     NSInteger count = [self.campfireAccounts count];
     NSMutableArray *campfireRooms = [NSMutableArray arrayWithCapacity:count];
     for (IFBKAccount *account in self.campfireAccounts) {
-        BDKCampfireClient *campfire = [BDKCampfireClient clientWithBaseURL:[account apiUrl]];
+        IFBKCampfireClient *campfire = [IFBKCampfireClient clientWithBaseURL:[account apiUrl]];
         [campfire setBearerToken:self.accessToken];
         [campfire getRooms:^(NSArray *result) {
             [campfireRooms addObject:@{@"account": account, @"rooms": result}];

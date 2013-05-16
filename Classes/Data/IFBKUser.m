@@ -1,12 +1,12 @@
 #import "IFBKUser.h"
-#import "BDKCFUser.h"
+#import "IFBKCFUser.h"
 
 @implementation IFBKUser
 
 @dynamic userType;
 
-- (void)updateWithBDKCFModel:(BDKCFModel *)model {
-    BDKCFUser *user = (BDKCFUser *)model;
+- (void)updateWithIFBKCFModel:(IFBKCFModel *)model {
+    IFBKCFUser *user = (IFBKCFUser *)model;
     NSArray *attributes = @[@"identifier", @"name", @"emailAddress", @"admin", @"createdAt", @"type", @"avatarUrl", @"apiAuthToken"];
     [attributes each:^(NSString *attribute) {
         [self setValue:[user valueForKeyPath:attribute] forKeyPath:attribute];

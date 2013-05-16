@@ -1,7 +1,8 @@
 #import "BDKLoginViewController.h"
 #import "BDKAppDelegate.h"
-#import "BDKLaunchpadClient.h"
 #import "BDKTextFieldCell.h"
+
+#import <IFBKThirtySeven/IFBKLaunchpadClient.h>
 
 #import "NSString+BDKKit.h"
 
@@ -23,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Login";
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[BDKLaunchpadClient launchpadURL]]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[IFBKLaunchpadClient launchpadURL]]];
 }
 
 - (void)didReceiveMemoryWarning {

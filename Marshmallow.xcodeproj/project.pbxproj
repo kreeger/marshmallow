@@ -165,7 +165,7 @@
 		C3C5FF1A170E62AC00BE92B9 /* BDKUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUserViewController.m; sourceTree = "<group>"; };
 		C3C5FF1F170E69B600BE92B9 /* BDKTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTypedefs.h; sourceTree = "<group>"; };
 		C3E64192173B0D4800F37DEC /* IFBKRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKRoomManager.h; sourceTree = "<group>"; };
-		C3E64193173B0D4800F37DEC /* IFBKRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKRoomManager.m; sourceTree = "<group>"; };
+		C3E64193173B0D4800F37DEC /* IFBKRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = IFBKRoomManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C3EBE2C01709FC1000B92281 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		C3EBE2C11709FC1000B92281 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		C3EBE2C21709FC1000B92281 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -624,7 +624,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "/opt/boxen/homebrew/bin/appledoc --project-name Marshmallow --project-company \"Ben Kreeger\" --company-id gr.kree --output ~/help --logformat xcode --ignore Pods --exit-threshold 2 .";
+			shellScript = "/usr/local/bin/appledoc --project-name Marshmallow --project-company \"Ben Kreeger\" --company-id gr.kree --output ~/help --logformat xcode --ignore Pods --exit-threshold 2 .";
 		};
 		C356BEC516FF8F8300F7A031 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -1,11 +1,11 @@
 #import "IFBKAccount.h"
-#import "BDKCFAccount.h"
+#import "IFBKCFAccount.h"
 #import "IFBKLaunchpadAccount.h"
 
 @implementation IFBKAccount
 
-- (void)updateWithBDKCFModel:(BDKCFModel *)model {
-    BDKCFAccount *account = (BDKCFAccount *)model;
+- (void)updateWithIFBKCFModel:(IFBKCFModel *)model {
+    IFBKCFAccount *account = (IFBKCFAccount *)model;
     NSArray *attributes = @[@"identifier", @"name", @"subdomain", @"plan", @"ownerIdentifier", @"storage",
                             @"createdAt", @"updatedAt"];
     [attributes each:^(NSString *attribute) {

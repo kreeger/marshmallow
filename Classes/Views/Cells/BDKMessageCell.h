@@ -2,13 +2,13 @@
 
 #define kBDKMessageCellID @"BDKMessageCell"
 
-@class BDKCFMessage;
+@class IFBKCFMessage;
 
 /** A table view cell intended to represent a message in a room.
  */
 @interface BDKMessageCell : UITableViewCell
 
-@property (strong, nonatomic) BDKCFMessage *message;
+@property (strong, nonatomic) IFBKCFMessage *message;
 @property (readonly) UILabel *typeLabel;
 @property (readonly) UILabel *bodyLabel;
 @property (readonly) UILabel *timestampLabel;

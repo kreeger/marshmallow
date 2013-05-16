@@ -12,6 +12,6 @@
  *  @param user The user for which to initialize this view controller.
  *  @returns An instance of self.
  */
-+ (id)vcWithUser:(IFBKUser *)user;
++ (id)vcWithIFBKUser:(IFBKUser *)user;
 
 @end

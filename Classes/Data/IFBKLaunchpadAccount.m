@@ -1,13 +1,13 @@
 #import "IFBKLaunchpadAccount.h"
-#import "BDKLPAccount.h"
+#import "IFBKLPAccount.h"
 
 @implementation IFBKLaunchpadAccount
 
 @dynamic type, hrefUrl;
 
-- (void)updateWithBDKCFModel:(BDKCFModel *)model
+- (void)updateWithIFBKCFModel:(IFBKCFModel *)model
 {
-    BDKLPAccount *account = (BDKLPAccount *)model;
+    IFBKLPAccount *account = (IFBKLPAccount *)model;
     NSArray *attributes = @[@"identifier", @"href", @"name", @"product"];
     [attributes each:^(NSString *attribute) {
         [self setValue:[account valueForKeyPath:attribute] forKeyPath:attribute];
