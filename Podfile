@@ -13,6 +13,8 @@ pod 'CrittercismSDK', '~> 3.5.1'
 
 pod 'IFBKThirtySeven', path: '~/Code/kreeger/IFBKThirtySeven'
 # pod 'IFBKThirtySeven', git: 'git://github.com/kreeger/IFBKThirtySeven.git'
+# pod 'IFBKSharedComponents', path: '~/Code/kreeger/IFBKSharedComponents'
+# pod 'IFBKSharedComponents', git: 'git://github.com/kreeger/IFBKSharedComponents.git'
 
 target :test, exclusive: true do
   link_with 'MarshmallowTests'
