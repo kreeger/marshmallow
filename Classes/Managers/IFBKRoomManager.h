@@ -49,11 +49,36 @@
                           failure:(void (^)(NSError *error))failure;
 
 /** Fires up the streaming client.
+ *
+ *  @param success A block to be called upon success.
+ *  @param failure A block to be called upon failure.
  */
-- (void)startStreamingMessages;
+- (void)startStreamingMessages:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 /** Kills the streaming client.
  */
 - (void)stopStreamingMessages;
+
+/** Locks or unlocks this room, based on the boolean flag passed in.
+ *
+ *  @param isLocked if `YES`, the room will get locked. If `NO`, the room will get unlocked.
+ *  @param success A block to be called upon success.
+ *  @param failure A block to be called upon failure.
+ */
+- (void)toggleRoomLock:(BOOL)isLocked success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+
+/** Enters the room.
+ *
+ *  @param success A block to be called upon success.
+ *  @param failure A block to be called upon failure.
+ */
+- (void)joinRoom:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+
+/** Leaves the room.
+ *
+ *  @param success A block to be called upon success.
+ *  @param failure A block to be called upon failure.
+ */
+- (void)leaveRoom:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 @end

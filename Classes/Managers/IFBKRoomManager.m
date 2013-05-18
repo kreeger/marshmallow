@@ -101,17 +101,39 @@
     }];
 }
 
-- (void)startStreamingMessages {
-    [self.streamingClient openConnectionWithSuccess:^{
-        NSLog(@"Streaming connection opened.");
-    } failure:^(NSError *error) {
-        NSLog(@"Error! %@.", error);
-    }];
+- (void)startStreamingMessages:(void (^)(void))success failure:(void (^)(NSError *error))failure {
+    [self.streamingClient openConnectionWithSuccess:success failure:failure];
 }
 
 - (void)stopStreamingMessages {
     [self.streamingClient closeConnection];
     NSLog(@"Streaming connection closed.");
+}
+
+- (void)toggleRoomLock:(BOOL)isLocked success:(void (^)(void))success failure:(void (^)(NSError *error))failure {
+    void (^failureBlock)(NSError *, NSInteger) = ^(NSError *error, NSInteger responseCode) {
+        if (failure) failure(error);
+    };
+    
+    if (isLocked) {
+        [self.apiClient lockRoom:self.room.identifier success:success failure:failureBlock];
+    } else {
+        [self.apiClient unlockRoom:self.room.identifier success:success failure:failureBlock];
+    }
+}
+
+- (void)joinRoom:(void (^)(void))success failure:(void (^)(NSError *error))failure {
+    void (^failureBlock)(NSError *, NSInteger) = ^(NSError *error, NSInteger responseCode) {
+        if (failure) failure(error);
+    };
+    [self.apiClient joinRoom:self.room.identifier success:success failure:failureBlock];
+}
+
+- (void)leaveRoom:(void (^)(void))success failure:(void (^)(NSError *error))failure {
+    void (^failureBlock)(NSError *, NSInteger) = ^(NSError *error, NSInteger responseCode) {
+        if (failure) failure(error);
+    };
+    [self.apiClient leaveRoom:self.room.identifier success:success failure:failureBlock];
 }
 
 #pragma mark - Private methods

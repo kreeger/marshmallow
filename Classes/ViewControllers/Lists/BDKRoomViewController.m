@@ -65,8 +65,19 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.roomManager startStreamingMessages];
-//    [self.tableView reloadData];
+
+    // TODO: Don't join if room is already "joined" to.
+    [self.roomManager joinRoom:^{
+        DDLogAPI(@"Room joined.");
+    } failure:^(NSError *error) {
+        DDLogWarn(@"Failed to join room. %@.", error);
+    }];
+    
+    [self.roomManager startStreamingMessages:^{
+        DDLogAPI(@"Began streaming.");
+    } failure:^(NSError *error) {
+        DDLogWarn(@"Could not start streaming. %@", error.localizedDescription);
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
