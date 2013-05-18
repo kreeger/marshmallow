@@ -73,4 +73,8 @@
  */
 - (void)getRooms:(void (^)(NSArray *rooms))completion failure:(void (^)(NSError *error))failure;
 
+/** Removes the current user record and all tokens.
+ */
+- (void)signout;
+
 @end

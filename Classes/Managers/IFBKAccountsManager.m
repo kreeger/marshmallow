@@ -193,4 +193,13 @@
     }
 }
 
+- (void)signout {
+    self.accessToken = nil;
+    self.refreshToken = nil;
+    self.expiresOn = nil;
+    [IFBKUser truncateAll];
+    [IFBKAccount truncateAll];
+    [IFBKLaunchpadAccount truncateAll];
+}
+
 @end

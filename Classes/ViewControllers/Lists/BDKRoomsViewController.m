@@ -133,6 +133,10 @@
     userVC.modalDismissalBlock = ^{
         [self dismissViewControllerAnimated:YES completion:nil];
     };
+    userVC.userTappedLogoutBlock = ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [(BDKAppDelegate *)[[UIApplication sharedApplication] delegate] signoutCurrentUser];
+    };
     UINavigationController *nav = [UINavigationController controllerWithRootViewController:userVC];
     [self presentViewController:nav animated:YES completion:nil];
 }

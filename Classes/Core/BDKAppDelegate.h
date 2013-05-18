@@ -18,4 +18,8 @@
  */
 - (void)refreshUserData;
 
+/** Removes the saved user and redirects back to the login controller.
+ */
+- (void)signoutCurrentUser;
+
 @end

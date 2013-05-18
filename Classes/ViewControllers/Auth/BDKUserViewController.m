@@ -13,6 +13,10 @@
  */
 @property (strong, nonatomic) UIBarButtonItem *cancelButton;
 
+/** The logout button.
+ */
+@property (strong, nonatomic) UIBarButtonItem *logoutButton;
+
 /** Initializes the view controller for a user facade.
  *  @param user The user with which to initialize this view controller.
  *  @returns An instance of self.
@@ -23,6 +27,11 @@
  *  @param sender The sender of the event.
  */
 - (void)cancelButtonTapped:(UIBarButtonItem *)sender;
+
+/** Fired when a user taps the logout button.
+ *  @param sender The sender of the event.
+ */
+- (void)logoutButtonTapped:(UIBarButtonItem *)sender;
 
 @end
 
@@ -54,6 +63,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self.view addSubview:self.placardView];
     self.navigationItem.leftBarButtonItem = self.cancelButton;
+    self.navigationItem.rightBarButtonItem = self.logoutButton;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,11 +85,27 @@
     return _cancelButton;
 }
 
+- (UIBarButtonItem *)logoutButton {
+    if (_logoutButton) return _logoutButton;
+    _logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logoutButtonTapped:)];
+    return _logoutButton;
+}
+
 #pragma mark - Actions
 
 - (void)cancelButtonTapped:(UIBarButtonItem *)sender {
-    if (self.modalDismissalBlock) self.modalDismissalBlock();
-    self.modalDismissalBlock = nil;
+    if (self.modalDismissalBlock) {
+        self.modalDismissalBlock();
+        self.modalDismissalBlock = nil;
+    }
 }
+
+- (void)logoutButtonTapped:(UIBarButtonItem *)sender {
+    if (self.userTappedLogoutBlock) {
+        self.userTappedLogoutBlock();
+        self.userTappedLogoutBlock = nil;
+    }
+}
+
 
 @end

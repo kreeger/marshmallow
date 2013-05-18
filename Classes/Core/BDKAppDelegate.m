@@ -25,6 +25,10 @@
  */
 - (void)configureAccountsManager;
 
+/** Presents the login view controller as the main center view controller.
+ */
+- (void)setLoginControllerAsCenter;
+
 @end
 
 @implementation BDKAppDelegate
@@ -47,21 +51,7 @@
         UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
         self.window.rootViewController = nav;
     } else {
-        BDKLoginViewController *vc = [BDKLoginViewController vc];
-        vc.userGotAuthCodeBlock = ^(NSString *authCode) {
-            [self.accountsManager tradeAuthTokenDataForAuthorizationCode:authCode completion:^{
-                [self refreshUserData];
-
-                // transition this mofo a little better
-                BDKRoomsViewController *vc = [BDKRoomsViewController vc];
-                UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
-                self.window.rootViewController = nav;
-            } failure:^(NSError *error) {
-                DDLogError(@"Error trading auth token. %@.", error);
-            }];
-        };
-        UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
-        self.window.rootViewController = nav;
+        [self setLoginControllerAsCenter];
     }
 
     [self.window makeKeyAndVisible];
@@ -93,6 +83,23 @@
                                              redirectUri:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsRedirectURI]];
 }
 
+- (void)setLoginControllerAsCenter {
+    BDKLoginViewController *vc = [BDKLoginViewController vc];
+    vc.userGotAuthCodeBlock = ^(NSString *authCode) {
+        [self.accountsManager tradeAuthTokenDataForAuthorizationCode:authCode completion:^{
+            [self refreshUserData];
+
+            // transition this mofo a little better
+            BDKRoomsViewController *vc = [BDKRoomsViewController vc];
+            UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
+            self.window.rootViewController = nav;
+        } failure:^(NSError *error) {
+            DDLogError(@"Error trading auth token. %@.", error);
+        }];
+    };
+    UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
+    self.window.rootViewController = nav;
+}
 
 - (void)kickstartUserDefaults {
     NSDictionary *userDefaults = @{};
@@ -132,6 +139,11 @@
     } failure:^(NSError *error) {
         //
     }];
+}
+
+- (void)signoutCurrentUser {
+    [self.accountsManager signout];
+    [self setLoginControllerAsCenter];
 }
 
 @end
