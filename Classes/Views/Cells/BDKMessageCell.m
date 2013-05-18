@@ -1,8 +1,13 @@
 #import "BDKMessageCell.h"
+#import "BDKCellBackground.h"
 
 #import <IFBKThirtySeven/IFBKCFMessage.h>
 
 @interface BDKMessageCell ()
+
+/** The frame where cell content actually belongs.
+ */
+@property (readonly) CGRect insetFrame;
 
 - (void)recalculateBodyLabelFrame;
 
@@ -10,10 +15,12 @@
 
 @implementation BDKMessageCell
 
-@synthesize typeLabel = _typeLabel, bodyLabel = _bodyLabel, timestampLabel = _timestampLabel, senderLabel = _senderLabel;
+@synthesize typeLabel = _typeLabel, bodyLabel = _bodyLabel, timestampLabel = _timestampLabel, senderLabel = _senderLabel, cellBack = _cellBack;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.contentView.clipsToBounds = YES;
+        [self.contentView addSubview:self.cellBack];
         [self.contentView addSubview:self.senderLabel];
         [self.contentView addSubview:self.timestampLabel];
         [self.contentView addSubview:self.bodyLabel];
@@ -30,8 +37,37 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    switch (self.backPosition) {
+        case BDKMessageCellPositionSingle:
+            self.cellBack.frame = self.contentView.frame;
+            break;
+        case BDKMessageCellPositionTop: {
+            CGRect rect = self.contentView.frame;
+            rect.size.height += 10;
+            self.cellBack.frame = rect;
+            break;
+        }
+        case BDKMessageCellPositionMiddle: {
+            CGRect rect = self.contentView.frame;
+            rect.size.height += 20;
+            rect.origin.y = -10;
+            self.cellBack.frame = rect;
+            break;
+        }
+        case BDKMessageCellPositionBottom: {
+            CGRect rect = self.contentView.frame;
+            rect.size.height += 10;
+            rect.origin.y = -10;
+            self.cellBack.frame = rect;
+            break;
+        }
+        default:
+            self.cellBack.frame = self.contentView.frame;
+            break;
+    }
+    CGRect working = self.insetFrame;
+
     
-    CGRect working = self.contentView.frame;
     CGRect frame = CGRectNull;
     
     CGRectDivide(working, &frame, &working, 20, CGRectMinYEdge);
@@ -78,8 +114,6 @@
     _typeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _typeLabel.font = [UIFont appFontOfSize:12];
     _typeLabel.backgroundColor = [UIColor clearColor];
-    _typeLabel.layer.borderColor = [[UIColor greenColor] CGColor];
-    _typeLabel.layer.borderWidth = 1;
     return _typeLabel;
 }
 
@@ -101,8 +135,6 @@
     _timestampLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _timestampLabel.font = [UIFont appFontOfSize:12];
     _timestampLabel.backgroundColor = [UIColor clearColor];
-    _timestampLabel.layer.borderColor = [[UIColor blueColor] CGColor];
-    _timestampLabel.layer.borderWidth = 1;
     return _timestampLabel;
 }
 
@@ -111,9 +143,22 @@
     _senderLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _senderLabel.font = [UIFont appFontOfSize:12];
     _senderLabel.backgroundColor = [UIColor clearColor];
-    _senderLabel.layer.borderColor = [[UIColor orangeColor] CGColor];
-    _senderLabel.layer.borderWidth = 1;
     return _senderLabel;
+}
+
+- (BDKCellBackground *)cellBack {
+    if (_cellBack) return _cellBack;
+    _cellBack = [[BDKCellBackground alloc] initWithFrame:self.contentView.frame];
+    return _cellBack;
+}
+
+- (CGRect)insetFrame {
+    return CGRectInset(self.contentView.frame, 10, 10);
+}
+
+- (void)setBackPosition:(BDKMessageCellPosition)backPosition {
+    _backPosition = backPosition;
+    [self setNeedsLayout];
 }
 
 #pragma mark - Methods

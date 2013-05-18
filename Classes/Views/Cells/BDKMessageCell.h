@@ -2,7 +2,14 @@
 
 #define kBDKMessageCellID @"BDKMessageCell"
 
-@class IFBKCFMessage;
+typedef enum {
+    BDKMessageCellPositionSingle = 0,
+    BDKMessageCellPositionTop,
+    BDKMessageCellPositionMiddle,
+    BDKMessageCellPositionBottom,
+} BDKMessageCellPosition;
+
+@class IFBKCFMessage, BDKCellBackground;
 
 /** A table view cell intended to represent a message in a room.
  */
@@ -13,5 +20,10 @@
 @property (readonly) UILabel *bodyLabel;
 @property (readonly) UILabel *timestampLabel;
 @property (readonly) UILabel *senderLabel;
+@property (readonly) BDKCellBackground *cellBack;
+
+/** Configures the background layout of the cell.
+ */
+@property (nonatomic) BDKMessageCellPosition backPosition;
 
 @end

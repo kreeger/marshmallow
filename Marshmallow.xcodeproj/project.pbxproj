@@ -52,6 +52,7 @@
 		C3966E9F170B9D2D00ED89B7 /* BDKRoomCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3966E9E170B9D2D00ED89B7 /* BDKRoomCollectionCell.m */; };
 		C3966EA2170BA96B00ED89B7 /* BDKGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3966EA1170BA96B00ED89B7 /* BDKGradientView.m */; };
 		C397ED701746F08B00CDEBE3 /* BDKUserPlacard.m in Sources */ = {isa = PBXBuildFile; fileRef = C397ED6F1746F08B00CDEBE3 /* BDKUserPlacard.m */; };
+		C397ED73174718DF00CDEBE3 /* BDKCellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = C397ED72174718DF00CDEBE3 /* BDKCellBackground.m */; };
 		C3C5FF0F170E3DE700BE92B9 /* Avenir Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C3C5FF0E170E3DE600BE92B9 /* Avenir Next.ttc */; };
 		C3C5FF15170E408700BE92B9 /* BDKRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF14170E408700BE92B9 /* BDKRoomViewController.m */; };
 		C3C5FF18170E5D7200BE92B9 /* BDKMarshmallowAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF17170E5D7200BE92B9 /* BDKMarshmallowAppearance.m */; };
@@ -161,6 +162,8 @@
 		C3966EA1170BA96B00ED89B7 /* BDKGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKGradientView.m; sourceTree = "<group>"; };
 		C397ED6E1746F08B00CDEBE3 /* BDKUserPlacard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKUserPlacard.h; sourceTree = "<group>"; };
 		C397ED6F1746F08B00CDEBE3 /* BDKUserPlacard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUserPlacard.m; sourceTree = "<group>"; };
+		C397ED71174718DF00CDEBE3 /* BDKCellBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCellBackground.h; sourceTree = "<group>"; };
+		C397ED72174718DF00CDEBE3 /* BDKCellBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCellBackground.m; sourceTree = "<group>"; };
 		C3C5FF0E170E3DE600BE92B9 /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
 		C3C5FF13170E408700BE92B9 /* BDKRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoomViewController.h; sourceTree = "<group>"; };
 		C3C5FF14170E408700BE92B9 /* BDKRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomViewController.m; sourceTree = "<group>"; };
@@ -425,6 +428,8 @@
 			isa = PBXGroup;
 			children = (
 				C356BF0F16FFA4B600F7A031 /* Cells */,
+				C397ED71174718DF00CDEBE3 /* BDKCellBackground.h */,
+				C397ED72174718DF00CDEBE3 /* BDKCellBackground.m */,
 				C3966EA0170BA96B00ED89B7 /* BDKGradientView.h */,
 				C3966EA1170BA96B00ED89B7 /* BDKGradientView.m */,
 				C3586C03173EE32500106BF0 /* BDKTableHeaderView.h */,
@@ -698,6 +703,7 @@
 				C32489EE1745A2B30067B83B /* IFBKAccountsManager.m in Sources */,
 				C32489EF1745A2B30067B83B /* IFBKRoomManager.m in Sources */,
 				C397ED701746F08B00CDEBE3 /* BDKUserPlacard.m in Sources */,
+				C397ED73174718DF00CDEBE3 /* BDKCellBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

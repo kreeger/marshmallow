@@ -46,7 +46,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.title = self.roomManager.room.name;
 }
 
@@ -100,6 +100,7 @@
     IFBKCFMessage *message = [self messageForIndexPath:indexPath];
     DDLogUI(@"Setting message %@ // %@ for index path %@.", message.identifier, message.body, indexPath);
     cell.message = message;
+    cell.backPosition = BDKMessageCellPositionTop;
     return cell;
 }
 
