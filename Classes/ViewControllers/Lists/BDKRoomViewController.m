@@ -8,6 +8,7 @@
 
 #import "IFBKCFRoom.h"
 #import "IFBKCFMessage.h"
+#import "IFBKUser.h"
 
 @interface BDKRoomViewController ()
 
@@ -16,12 +17,6 @@
  *  @returns An instance of self.
  */
 - (id)initWithRoomManager:(IFBKRoomManager *)roomManager;
-
-/** Gets the message associated with a given index path.
- *  @param indexPath The index path for which to retrieve the message.
- *  @returns A message.
- */
-- (IFBKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -89,13 +84,6 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Methods
-
-- (IFBKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath {
-    IFBKCFMessage *message = [self.roomManager messageAtIndexPath:indexPath];
-    return message;
-}
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -106,11 +94,17 @@
     return [[self.roomManager messagesForSection:section] count];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [[self.roomManager userForSection:section] name];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 24;
+}
+
 - (BDKMessageCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BDKMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:kBDKMessageCellID forIndexPath:indexPath];
-    IFBKCFMessage *message = [self messageForIndexPath:indexPath];
-    DDLogUI(@"Setting message %@ // %@ for index path %@.", message.identifier, message.body, indexPath);
-    cell.message = message;
+    cell.message = [self.roomManager messageAtIndexPath:indexPath];
     cell.backPosition = BDKMessageCellPositionTop;
     return cell;
 }

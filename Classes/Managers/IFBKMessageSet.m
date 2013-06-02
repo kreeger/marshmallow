@@ -15,6 +15,13 @@
  */
 - (NSString *)keyStringForMessage:(IFBKCFMessage *)message;
 
+/** Determines the user ID stored in the key string and returns it.
+ *
+ *  @param section The section for which to retrieve the user from the key string.
+ *  @returns A string that identifies the user (for use in database lookups).
+ */
+- (NSString *)userIdStringFromSection:(NSInteger)section;
+
 @end
 
 @implementation IFBKMessageSet
@@ -26,7 +33,7 @@
 #pragma mark - Properties
 
 - (NSString *)mostRecentUserId {
-    return [[[self.sortedKeys lastObject] componentsSeparatedByString:@"-"] lastObject];
+    return [self userIdStringFromSection:(self.count - 1)];
 }
 
 #pragma mark - Public methods
@@ -51,8 +58,8 @@
 
 - (IFBKUser *)userForSection:(NSInteger)section {
     if ([[self sortedKeys] count]) {
-        NSString *userId = self.sortedKeys[section];
-        return [IFBKUser findFirstByAttribute:@"identifier" withValue:userId];
+        NSString *userId = [self userIdStringFromSection:section];
+        return [userId isEqualToString:@"0"] ? nil : [IFBKUser findFirstByAttribute:@"identifier" withValue:userId];
     } else {
         return nil;
     }
@@ -72,6 +79,10 @@
 - (NSString *)keyStringForMessage:(IFBKCFMessage *)message {
     NSNumber *identifier = [(NSNull *)message.userIdentifier isEqual:[NSNull null]] ? @0 : message.userIdentifier;
     return [@[message.identifier, identifier] componentsJoinedByString:@"-"];
+}
+
+- (NSString *)userIdStringFromSection:(NSInteger)section {
+    return [self.sortedKeys count] ? [[self.sortedKeys[section] componentsSeparatedByString:@"-"] lastObject] : nil;
 }
 
 @end
