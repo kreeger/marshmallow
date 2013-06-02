@@ -20,13 +20,13 @@
 
 /** The date at which the current accessToken expires (and thus must be refreshed with the refreshToken).
  */
-@property (strong, nonatomic) NSDate *expiresOn;
+@property (strong, nonatomic) NSDate *expiresAt;
 
 @end
 
 @implementation IFBKAccountsManager
 
-@synthesize accessToken = _accessToken, refreshToken = _refreshToken, expiresOn = _expiresOn;
+@synthesize accessToken = _accessToken, refreshToken = _refreshToken, expiresAt = _expiresAt;
 
 - (id)init {
     if (self = [super init]) {
@@ -38,7 +38,6 @@
 #pragma mark - Public properties
 
 - (BOOL)isLoggedIn {
-    // TODO: also check expiresOn (if less than today, return false)
     return self.accessToken != nil;
 }
 
@@ -70,16 +69,16 @@
     _refreshToken = refreshToken;
 }
 
-- (NSDate *)expiresOn {
-    if (_expiresOn) return _expiresOn;
-    _expiresOn = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultTokenExpiresOn];
-    return _expiresOn;
+- (NSDate *)expiresAt {
+    if (_expiresAt) return _expiresAt;
+    _expiresAt = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultTokenExpiresAt];
+    return _expiresAt;
 }
 
-- (void)setExpiresOn:(NSDate *)expiresOn {
-    [[NSUserDefaults standardUserDefaults] setValue:expiresOn forKey:kIFBKUserDefaultTokenExpiresOn];
+- (void)setExpiresAt:(NSDate *)expiresAt {
+    [[NSUserDefaults standardUserDefaults] setValue:expiresAt forKey:kIFBKUserDefaultTokenExpiresAt];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    _expiresOn = expiresOn;
+    _expiresAt = expiresAt;
 }
 
 #pragma mark - Public methods
@@ -94,33 +93,48 @@
                                     completion:(void (^)(void))completion
                                        failure:(void (^)(NSError *error))failure {
     NSLog(@"Trading auth code %@.", authorizationCode);
-    [IFBKLaunchpadClient getAccessTokenForVerificationCode:authorizationCode success:^(NSString *accessToken, NSString *refreshToken, NSDate *expiresOn) {
-        // Do something else with these.
-        self.accessToken = accessToken;
-        self.refreshToken = refreshToken;
-        self.expiresOn = expiresOn;
-        if (completion) completion();
-    } failure:^(NSError *error, NSInteger responseCode) {
-        if (failure) failure(error);
-    }];
+    [IFBKLaunchpadClient getAccessTokenForVerificationCode:authorizationCode
+                                                   success:^(NSString *accessToken, NSString *refreshToken, NSDate *expiresAt) {
+                                                       // Do something else with these.
+                                                       self.accessToken = accessToken;
+                                                       self.refreshToken = refreshToken;
+                                                       self.expiresAt = expiresAt;
+                                                       if (completion) completion();
+                                                   } failure:^(NSError *error, NSInteger responseCode) {
+                                                       if (failure) failure(error);
+                                                   }];
 }
 
 - (void)refreshLaunchpadData:(void (^)(void))completion failure:(void (^)(NSError *error))failure {
-    [IFBKLaunchpadClient getAuthorization:^(IFBKLPAuthorizationData *authData) {
-        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            [authData.accounts each:^(IFBKLPAccount *account) {
-                [IFBKLaunchpadAccount createOrUpdateWithModel:account inContext:localContext];
+    // TODO: also check expiresOn is less than today
+    __block void (^refreshBlock)(void) = ^{
+        [IFBKLaunchpadClient getAuthorization:^(IFBKLPAuthorizationData *authData) {
+            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+                [authData.accounts each:^(IFBKLPAccount *account) {
+                    [IFBKLaunchpadAccount createOrUpdateWithModel:account inContext:localContext];
+                }];
+            } completion:^(BOOL success, NSError *error) {
+                // We only want Campfire ones!
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"product = %@", @"campfire"];
+                self.launchpadAccounts = [IFBKLaunchpadAccount findAllWithPredicate:predicate];
+                if (completion) completion();
             }];
-        } completion:^(BOOL success, NSError *error) {
-            // We only want Campfire ones!
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"product = %@", @"campfire"];
-            self.launchpadAccounts = [IFBKLaunchpadAccount findAllWithPredicate:predicate];
-            if (completion) completion();
+        } failure:^(NSError *error, NSInteger responseCode) {
+            NSLog(@"Error! %@.", error);
+            if (failure) failure(error);
         }];
-    } failure:^(NSError *error, NSInteger responseCode) {
-        DDLogError(@"Error! %@.", error);
-        if (failure) failure(error);
-    }];
+    };
+
+    if ([self.expiresAt compare:[NSDate date]] == NSOrderedAscending) {
+        [IFBKLaunchpadClient refreshAccessTokenWithRefreshToken:self.refreshToken
+                                                        success:^(NSString *accessToken, NSDate *expiresAt) {
+                                                            self.accessToken = accessToken;
+                                                            self.expiresAt = expiresAt;
+                                                            refreshBlock();
+                                                        } failure:^(NSError *error, NSInteger responseCode) {
+                                                            if (failure) failure(error);
+                                                        }];
+    } else refreshBlock();
 }
 
 - (void)getAccountData:(void (^)(NSArray *accounts))completion failure:(void (^)(NSError *error))failure {
@@ -196,7 +210,7 @@
 - (void)signout {
     self.accessToken = nil;
     self.refreshToken = nil;
-    self.expiresOn = nil;
+    self.expiresAt = nil;
     [IFBKUser truncateAll];
     [IFBKAccount truncateAll];
     [IFBKLaunchpadAccount truncateAll];

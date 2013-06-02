@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@class IFBKCFRoom, IFBKUser, IFBKCFMessage;
+@class IFBKCFRoom, IFBKUser, IFBKCFMessage, IFBKMessageSet;
 
 /** Handles uh, room stuff. Ask me later.
  */
@@ -16,7 +16,7 @@
 
 /** The messages loaded for the room.
  */
-@property (readonly) NSMutableArray *messages;
+@property (readonly) IFBKMessageSet *messages;
 
 /** A block to be called upon message receipt; associated views should probably be reloaded.
  */

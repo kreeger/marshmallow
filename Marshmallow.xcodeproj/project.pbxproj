@@ -57,6 +57,8 @@
 		C3C5FF15170E408700BE92B9 /* BDKRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF14170E408700BE92B9 /* BDKRoomViewController.m */; };
 		C3C5FF18170E5D7200BE92B9 /* BDKMarshmallowAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF17170E5D7200BE92B9 /* BDKMarshmallowAppearance.m */; };
 		C3C5FF1B170E62AC00BE92B9 /* BDKUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF1A170E62AC00BE92B9 /* BDKUserViewController.m */; };
+		C3D8ACE5175AAF1500B3B0E3 /* IFBKOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D8ACE4175AAF1500B3B0E3 /* IFBKOrderedDictionary.m */; };
+		C3D8ACE8175AB25900B3B0E3 /* IFBKMessageSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D8ACE7175AB25900B3B0E3 /* IFBKMessageSet.m */; };
 		C3EBE2CA1709FC1000B92281 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C01709FC1000B92281 /* Icon-72.png */; };
 		C3EBE2CB1709FC1000B92281 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C11709FC1000B92281 /* Icon-72@2x.png */; };
 		C3EBE2CC1709FC1000B92281 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = C3EBE2C21709FC1000B92281 /* Icon-Small-50.png */; };
@@ -172,6 +174,10 @@
 		C3C5FF19170E62AC00BE92B9 /* BDKUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKUserViewController.h; sourceTree = "<group>"; };
 		C3C5FF1A170E62AC00BE92B9 /* BDKUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUserViewController.m; sourceTree = "<group>"; };
 		C3C5FF1F170E69B600BE92B9 /* BDKTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTypedefs.h; sourceTree = "<group>"; };
+		C3D8ACE3175AAF1500B3B0E3 /* IFBKOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKOrderedDictionary.h; sourceTree = "<group>"; };
+		C3D8ACE4175AAF1500B3B0E3 /* IFBKOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKOrderedDictionary.m; sourceTree = "<group>"; };
+		C3D8ACE6175AB25900B3B0E3 /* IFBKMessageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKMessageSet.h; sourceTree = "<group>"; };
+		C3D8ACE7175AB25900B3B0E3 /* IFBKMessageSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKMessageSet.m; sourceTree = "<group>"; };
 		C3EBE2C01709FC1000B92281 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		C3EBE2C11709FC1000B92281 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		C3EBE2C21709FC1000B92281 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -266,6 +272,8 @@
 			children = (
 				C32489E11745A2B30067B83B /* IFBKAccountsManager.h */,
 				C32489E21745A2B30067B83B /* IFBKAccountsManager.m */,
+				C3D8ACE6175AB25900B3B0E3 /* IFBKMessageSet.h */,
+				C3D8ACE7175AB25900B3B0E3 /* IFBKMessageSet.m */,
 				C32489E31745A2B30067B83B /* IFBKRoomManager.h */,
 				C32489E41745A2B30067B83B /* IFBKRoomManager.m */,
 			);
@@ -357,6 +365,8 @@
 				C3C5FF16170E5D7200BE92B9 /* BDKMarshmallowAppearance.h */,
 				C3C5FF17170E5D7200BE92B9 /* BDKMarshmallowAppearance.m */,
 				C3C5FF1F170E69B600BE92B9 /* BDKTypedefs.h */,
+				C3D8ACE3175AAF1500B3B0E3 /* IFBKOrderedDictionary.h */,
+				C3D8ACE4175AAF1500B3B0E3 /* IFBKOrderedDictionary.m */,
 				C356BEE416FF93CA00F7A031 /* main.m */,
 				C356BEE516FF93CA00F7A031 /* Prefix.pch */,
 				C3586C02173EB7F400106BF0 /* IFBKConstants.h */,
@@ -704,6 +714,8 @@
 				C32489EF1745A2B30067B83B /* IFBKRoomManager.m in Sources */,
 				C397ED701746F08B00CDEBE3 /* BDKUserPlacard.m in Sources */,
 				C397ED73174718DF00CDEBE3 /* BDKCellBackground.m in Sources */,
+				C3D8ACE5175AAF1500B3B0E3 /* IFBKOrderedDictionary.m in Sources */,
+				C3D8ACE8175AB25900B3B0E3 /* IFBKMessageSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

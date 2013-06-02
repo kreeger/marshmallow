@@ -9,6 +9,8 @@
 #import "IFBKUser.h"
 #import "IFBKLaunchpadAccount.h"
 
+#import "IFBKMessageSet.h"
+
 #import "IFBKConstants.h"
 
 @interface IFBKRoomManager ()
@@ -29,11 +31,6 @@
  */
 - (id)initWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user;
 
-/** Handles an incoming message from the Campfire API (and saves it).
- *  @param message The incoming message object.
- */
-- (void)processMessageFromAPI:(IFBKCFMessage *)message;
-
 @end
 
 @implementation IFBKRoomManager
@@ -48,16 +45,15 @@
     if (self = [super init]) {
         _room = room;
         _user = user;
-        _messages = [NSMutableArray array];
+        _messages = [IFBKMessageSet messageSet];
 
         // Initialize our streaming client.
         _streamingClient = [[IFBKCampfireStreamingClient alloc] initWithRoomId:_room.identifier
                                                            authorizationToken:_user.apiAuthToken];
         __weak IFBKRoomManager *unretainedSelf = self;
         [_streamingClient setMessageReceivedBlock:^(IFBKCFMessage *message) {
-            [unretainedSelf processMessageFromAPI:message];
-            if (unretainedSelf.didReceiveMessageBlock)
-                unretainedSelf.didReceiveMessageBlock(message);
+            [unretainedSelf.messages addMessage:message];
+            if (unretainedSelf.didReceiveMessageBlock) unretainedSelf.didReceiveMessageBlock(message);
         }];
 
         // Initialize our regular API client.
@@ -74,7 +70,7 @@
     _didReceiveMessageBlock = didReceiveMessageBlock;
     __weak IFBKRoomManager *unretainedSelf = self;
     [self.streamingClient setMessageReceivedBlock:^(IFBKCFMessage *message) {
-        [unretainedSelf processMessageFromAPI:message];
+        [unretainedSelf.messages addMessage:message];
         unretainedSelf.didReceiveMessageBlock(message);
     }];
 }
@@ -91,7 +87,7 @@
     [self.apiClient getMessagesForRoom:self.room.identifier sinceMessageId:messageId success:^(NSArray *result) {
         IFBKCFMessage *lastMessage = nil;
         for (IFBKCFMessage *message in result) {
-            [self processMessageFromAPI:message];
+            [self.messages addMessage:message];
             lastMessage = message;
         }
         DDLogAPI(@"Loaded %i messages from API.", [self.messages count]);
@@ -134,19 +130,6 @@
         if (failure) failure(error);
     };
     [self.apiClient leaveRoom:self.room.identifier success:success failure:failureBlock];
-}
-
-#pragma mark - Private methods
-
-- (void)processMessageFromAPI:(IFBKCFMessage *)message {
-    if ([self.messages containsObject:message]) {
-        [self.messages replaceObjectAtIndex:[self.messages indexOfObject:message] withObject:message];
-    } else {
-        [self.messages addObject:message];
-    }
-    //[self.messages sortUsingComparator:^NSComparisonResult(IFBKCFMessage *message1, IFBKCFMessage *message2) {
-    //    return [message1.createdAt compare:message2.createdAt];
-    //}];
 }
 
 @end
