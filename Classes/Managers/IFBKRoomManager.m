@@ -132,4 +132,20 @@
     [self.apiClient leaveRoom:self.room.identifier success:success failure:failureBlock];
 }
 
+- (IFBKCFMessage *)messageAtIndexPath:(NSIndexPath *)indexPath {
+    return [self.messages messageAtIndexPath:indexPath];
+}
+
+- (IFBKUser *)userForSection:(NSInteger)section {
+    return [self.messages userForSection:section];
+}
+
+- (NSArray *)messagesForSection:(NSInteger)section {
+    return [self.messages messagesForSection:section];
+}
+
+- (NSInteger)numberOfMessageSections {
+    return [self.messages count];
+}
+
 @end

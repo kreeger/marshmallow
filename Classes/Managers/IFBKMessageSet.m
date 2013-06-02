@@ -34,12 +34,13 @@
 - (void)addMessage:(IFBKCFMessage *)message {
     // If most recent key (user) is the same as this message's sender, then add this message to the key's array value.
     // TODO: guard against -[NSNull stringValue]: unrecognized selector sent to instance
-    if ([[message.userIdentifier stringValue] isEqualToString:self.mostRecentUserId]) {
+    NSNumber *identifier = [(NSNull *)message.userIdentifier isEqual:[NSNull null]] ? @0 : message.userIdentifier;
+    if ([[identifier stringValue] isEqualToString:self.mostRecentUserId]) {
         [self[[self.sortedKeys lastObject]] addObject:message];
     } else {
         // Otherwise, append a new key to the messages ordered dictionary with a fresh mutable array with this message
         //     at the beginning of it.
-        [self addEntriesFromDictionary:@{[self keyStringForMessage:message]: @[message]}];
+        [self addEntriesFromDictionary:@{[self keyStringForMessage:message]: [NSMutableArray arrayWithArray:@[message]]}];
     }
 }
 
@@ -69,7 +70,8 @@
 #pragma mark - Private methods
 
 - (NSString *)keyStringForMessage:(IFBKCFMessage *)message {
-    return [@[message.identifier, message.userIdentifier] componentsJoinedByString:@"-"];
+    NSNumber *identifier = [(NSNull *)message.userIdentifier isEqual:[NSNull null]] ? @0 : message.userIdentifier;
+    return [@[message.identifier, identifier] componentsJoinedByString:@"-"];
 }
 
 @end

@@ -9,8 +9,6 @@
 #import "IFBKCFRoom.h"
 #import "IFBKCFMessage.h"
 
-#import "IFBKMessageSet.h"
-
 @interface BDKRoomViewController ()
 
 /** An initializer that takes a IFBKRoomManager and sets everything up all nice.
@@ -94,18 +92,18 @@
 #pragma mark - Methods
 
 - (IFBKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath {
-    IFBKCFMessage *message = [self.roomManager.messages messageAtIndexPath:indexPath];
+    IFBKCFMessage *message = [self.roomManager messageAtIndexPath:indexPath];
     return message;
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [self.roomManager numberOfMessageSections];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[self.roomManager.messages messagesForSection:section] count];
+    return [[self.roomManager messagesForSection:section] count];
 }
 
 - (BDKMessageCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
