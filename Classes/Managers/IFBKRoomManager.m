@@ -6,6 +6,7 @@
 #import <IFBKThirtySeven/IFBKCFMessage.h>
 #import <ObjectiveSugar/ObjectiveSugar.h>
 
+#import "IFBKCFUser.h"
 #import "IFBKUser.h"
 #import "IFBKLaunchpadAccount.h"
 
@@ -77,23 +78,33 @@
 
 #pragma mark - Public methods
 
-- (void)loadRecentHistory:(void (^)(void))success failure:(void (^)(NSError *error))failure {
+- (void)loadRoomAndHistory:(void (^)(void))success failure:(void (^)(NSError *error))failure {
     [self loadHistorySinceMessageId:nil success:success failure:failure];
 }
 
 - (void)loadHistorySinceMessageId:(NSNumber *)messageId
                           success:(void (^)(void))success
                           failure:(void (^)(NSError *))failure {
-    [self.apiClient getMessagesForRoom:self.room.identifier sinceMessageId:messageId success:^(NSArray *result) {
-        IFBKCFMessage *lastMessage = nil;
-        for (IFBKCFMessage *message in result) {
-            [self.messages addMessage:message];
-            lastMessage = message;
-        }
-        DDLogAPI(@"Loaded %i messages from API.", [self.messages count]);
-        if (self.didReceiveMessageBlock) self.didReceiveMessageBlock(lastMessage);
+    [self.apiClient getRoomForId:self.room.identifier success:^(IFBKCFRoom *room) {
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            for (IFBKCFUser *user in room.users) {
+                [IFBKUser createOrUpdateWithModel:user inContext:localContext];
+            }
+        } completion:^(BOOL success, NSError *error) {
+            [self.apiClient getMessagesForRoom:self.room.identifier sinceMessageId:messageId success:^(NSArray *result) {
+                IFBKCFMessage *lastMessage = nil;
+                for (IFBKCFMessage *message in result) {
+                    [self.messages addMessage:message];
+                    lastMessage = message;
+                }
+                DDLogAPI(@"Loaded %i messages from API.", [self.messages count]);
+                if (self.didReceiveMessageBlock) self.didReceiveMessageBlock(lastMessage);
+            } failure:^(NSError *error, NSInteger responseCode) {
+                NSLog(@"Encountered error %i getting messages for room. Error: %@", responseCode, error);
+            }];
+        }];
     } failure:^(NSError *error, NSInteger responseCode) {
-        NSLog(@"Encountered error %i getting messages for room. Error: %@", responseCode, error);
+        NSLog(@"Encountered error %i getting room data. Error: %@", responseCode, error);
     }];
 }
 

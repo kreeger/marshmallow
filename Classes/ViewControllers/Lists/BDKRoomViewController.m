@@ -51,7 +51,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.roomManager loadRecentHistory:^{
+    [self.roomManager loadRoomAndHistory:^{
         //
     } failure:^(NSError *error) {
         // pass for now

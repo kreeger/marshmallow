@@ -30,12 +30,13 @@
  */
 + (id)roomManagerWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user;
 
-/** Loads the most recent 100 messages in the room and stores them. Should be called upon entering the room.
+/** Loads the most recent 100 messages in the room and stores them, along with full room data (with users).
+ *  Should be called upon entering the room.
  *
  *  @param success A block to be called upon success.
  *  @param failure A block to be called upon failure.
  */
-- (void)loadRecentHistory:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)loadRoomAndHistory:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 /** Loads the most recent messages available in the room since a particular message and stores them. Should be called
  *  periodically if streaming is not being used.
