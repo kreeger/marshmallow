@@ -35,6 +35,9 @@
         __weak BDKRoomViewController *unretainedSelf = self;
         _roomManager.didReceiveMessageBlock = ^(IFBKCFMessage *message) {
             [unretainedSelf.tableView reloadData];
+            // TODO: don't do this if the user isn't at max-y content offset (if they're currently scrolled-up)
+            [unretainedSelf.tableView scrollToRowAtIndexPath:[unretainedSelf.roomManager maxIndexPath]
+                                            atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         };
     }
     return self;

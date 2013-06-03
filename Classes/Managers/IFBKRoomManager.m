@@ -83,6 +83,15 @@
     }];
 }
 
+- (NSInteger)numberOfMessageSections {
+    return [self.messages count];
+}
+
+- (NSIndexPath *)maxIndexPath {
+    NSInteger maxSection = (self.numberOfMessageSections - 1);
+    return [NSIndexPath indexPathForRow:([[self messagesForSection:maxSection] count] - 1) inSection:maxSection];
+}
+
 #pragma mark - Public methods
 
 - (void)loadRoomAndHistory:(void (^)(void))success failure:(void (^)(NSError *error))failure {
@@ -171,10 +180,6 @@
 
 - (NSArray *)messagesForSection:(NSInteger)section {
     return [self.messages messagesForSection:section];
-}
-
-- (NSInteger)numberOfMessageSections {
-    return [self.messages count];
 }
 
 #pragma mark - Private methods

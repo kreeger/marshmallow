@@ -18,6 +18,14 @@
  */
 @property (readonly) IFBKMessageSet *messages;
 
+/** The number of sections for the loaded messages.
+ */
+@property (readonly) NSInteger numberOfMessageSections;
+
+/** The maximum index path.
+ */
+@property (readonly) NSIndexPath *maxIndexPath;
+
 /** A block to be called upon message receipt; associated views should probably be reloaded.
  */
 @property (copy, nonatomic) void(^didReceiveMessageBlock)(IFBKCFMessage *message);
@@ -102,11 +110,5 @@
  *  @returns The array of messages at that section.
  */
 - (NSArray *)messagesForSection:(NSInteger)section;
-
-/** Gets the number of sections for the loaded messages.
- *
- *  @returns The number of sections.
- */
-- (NSInteger)numberOfMessageSections;
 
 @end
