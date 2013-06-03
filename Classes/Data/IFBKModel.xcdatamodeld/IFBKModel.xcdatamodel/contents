@@ -21,14 +21,14 @@
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="IFBKUser" inverseName="launchpadAccount" inverseEntity="IFBKUser" syncable="YES"/>
     </entity>
     <entity name="IFBKUser" representedClassName="IFBKUser" syncable="YES">
-        <attribute name="admin" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="apiAuthToken" attributeType="String" syncable="YES"/>
+        <attribute name="admin" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="apiAuthToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="emailAddress" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" syncable="YES"/>
+        <attribute name="emailAddress" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
         <relationship name="launchpadAccount" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="IFBKLaunchpadAccount" inverseName="user" inverseEntity="IFBKLaunchpadAccount" syncable="YES"/>
     </entity>
     <elements>
