@@ -1,6 +1,7 @@
 #import "BDKRoomViewController.h"
 
 #import "BDKMessageCell.h"
+#import "BDKTableHeaderView.h"
 
 #import "IFBKRoomManager.h"
 
@@ -98,8 +99,10 @@
     return [[self.roomManager userForSection:section] name];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 24;
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString *title = [[self.roomManager userForSection:section] name];
+    title = title ? title : @"System";
+    return [BDKTableHeaderView headerWithTitle:title width:self.tableView.frameHeight];
 }
 
 - (BDKMessageCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

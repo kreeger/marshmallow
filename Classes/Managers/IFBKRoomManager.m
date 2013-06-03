@@ -8,6 +8,7 @@
 
 #import "IFBKCFUser.h"
 #import "IFBKUser.h"
+
 #import "IFBKLaunchpadAccount.h"
 
 #import "IFBKMessageSet.h"
@@ -31,6 +32,12 @@
  *  @returns An instance of self.
  */
 - (id)initWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user;
+
+/** Fetches the latest API data for a set of users.
+ *  
+ *  @param users The set of users.
+ */
+- (void)handleDataForUsers:(NSArray *)users;
 
 @end
 
@@ -88,15 +95,22 @@
     [self.apiClient getRoomForId:self.room.identifier success:^(IFBKCFRoom *room) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
             for (IFBKCFUser *user in room.users) {
+                DDLogAPI(@"Pre-creating user %@.", user.name);
                 [IFBKUser createOrUpdateWithModel:user inContext:localContext];
             }
         } completion:^(BOOL success, NSError *error) {
             [self.apiClient getMessagesForRoom:self.room.identifier sinceMessageId:messageId success:^(NSArray *result) {
                 IFBKCFMessage *lastMessage = nil;
+                NSMutableArray *users = [NSMutableArray array];
                 for (IFBKCFMessage *message in result) {
                     [self.messages addMessage:message];
+                    if (![(NSNull *)message.userIdentifier isEqual:[NSNull null]] &&
+                        ![users containsObject:message.userIdentifier]) {
+                        [users addObject:message.userIdentifier];
+                    }
                     lastMessage = message;
                 }
+                [self handleDataForUsers:users];
                 DDLogAPI(@"Loaded %i messages from API.", [self.messages count]);
                 if (self.didReceiveMessageBlock) self.didReceiveMessageBlock(lastMessage);
             } failure:^(NSError *error, NSInteger responseCode) {
@@ -148,7 +162,11 @@
 }
 
 - (IFBKUser *)userForSection:(NSInteger)section {
-    return [self.messages userForSection:section];
+    NSString *userIdString = [self.messages userIdStringFromSection:section];
+    if (![userIdString isEqualToString:@"0"]) {
+        return [IFBKUser findFirstByAttribute:@"identifier" withValue:userIdString];
+    }
+    return nil;
 }
 
 - (NSArray *)messagesForSection:(NSInteger)section {
@@ -157,6 +175,37 @@
 
 - (NSInteger)numberOfMessageSections {
     return [self.messages count];
+}
+
+#pragma mark - Private methods
+
+- (void)handleDataForUsers:(NSArray *)users {
+    
+    NSMutableArray *usersToFetch = [NSMutableArray arrayWithCapacity:[users count]];
+    for (NSNumber *userId in users) {
+        IFBKUser *found = [IFBKUser findFirstByAttribute:@"identifier" withValue:userId];
+        if (!found) [usersToFetch addObject:userId];
+    }
+
+    void (^databaseHitBlock)(NSArray *) = ^(NSArray *userArray) {
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            for (IFBKCFUser *user in userArray) [IFBKUser createOrUpdateWithModel:user inContext:localContext];
+        }];
+    };
+
+    NSMutableArray *fetched = [NSMutableArray arrayWithCapacity:[usersToFetch count]];
+    __block int attemptCount = 0;
+    for (NSNumber *userId in usersToFetch) {
+        [self.apiClient getUserForId:userId success:^(IFBKCFUser *user) {
+            attemptCount++;
+            [fetched addObject:user];
+            if (attemptCount == [usersToFetch count]) databaseHitBlock(fetched);
+        } failure:^(NSError *error, NSInteger responseCode) {
+            attemptCount++;
+            NSLog(@"Failed getting user with error %@.", error);
+            if (attemptCount == [usersToFetch count]) databaseHitBlock(fetched);
+        }];
+    }
 }
 
 @end

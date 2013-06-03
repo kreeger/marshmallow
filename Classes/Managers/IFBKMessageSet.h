@@ -25,12 +25,12 @@
  */
 - (IFBKCFMessage *)messageAtIndexPath:(NSIndexPath *)indexPath;
 
-/** Gets the user belonging to the messages at a given section.
+/** Determines the user ID stored in the key string and returns it.
  *
- *  @param section The section for which to retrieve the user.
- *  @returns The user object for that section.
+ *  @param section The section for which to retrieve the user from the key string.
+ *  @returns A string that identifies the user (for use in database lookups).
  */
-- (IFBKUser *)userForSection:(NSInteger)section;
+- (NSString *)userIdStringFromSection:(NSInteger)section;
 
 /** Gets the array of messages for a given section.
  *

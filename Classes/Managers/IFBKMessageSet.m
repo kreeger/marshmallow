@@ -15,13 +15,6 @@
  */
 - (NSString *)keyStringForMessage:(IFBKCFMessage *)message;
 
-/** Determines the user ID stored in the key string and returns it.
- *
- *  @param section The section for which to retrieve the user from the key string.
- *  @returns A string that identifies the user (for use in database lookups).
- */
-- (NSString *)userIdStringFromSection:(NSInteger)section;
-
 @end
 
 @implementation IFBKMessageSet
@@ -54,15 +47,6 @@
 - (IFBKCFMessage *)messageAtIndexPath:(NSIndexPath *)indexPath {
     NSArray *messages = [self messagesForSection:indexPath.section];
     return [messages count] ? messages[indexPath.row] : nil;
-}
-
-- (IFBKUser *)userForSection:(NSInteger)section {
-    if ([[self sortedKeys] count]) {
-        NSString *userId = [self userIdStringFromSection:section];
-        return [userId isEqualToString:@"0"] ? nil : [IFBKUser findFirstByAttribute:@"identifier" withValue:userId];
-    } else {
-        return nil;
-    }
 }
 
 - (NSArray *)messagesForSection:(NSInteger)section {
