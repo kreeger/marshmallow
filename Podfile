@@ -8,7 +8,6 @@ pod 'ViewDeck', '~> 2.2.11'
 pod 'BDKGeometry', git: 'git://github.com/kreeger/BDKGeometry.git'
 pod 'BDKKit', git: 'git://github.com/kreeger/BDKKit.git'
 pod 'AFNetworking', '~> 1.2.0'
-pod 'ISO8601DateFormatter', '~> 0.6'
 pod 'CrittercismSDK', '~> 3.5.1'
 
 pod 'IFBKThirtySeven', path: '~/Code/kreeger/IFBKThirtySeven'

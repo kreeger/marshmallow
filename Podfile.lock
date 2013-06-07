@@ -6,9 +6,7 @@ PODS:
   - CrittercismSDK (3.5.1)
   - IFBKThirtySeven (0.0.3):
     - AFNetworking (~> 1.2)
-    - ISO8601DateFormatter (~> 0.6)
     - SBJson (~> 3.2)
-  - ISO8601DateFormatter (0.6)
   - Kiwi (2.0.6)
   - MagicalRecord (2.1)
   - ObjectiveSugar (0.6.2)
@@ -22,7 +20,6 @@ DEPENDENCIES:
   - CocoaLumberjack (~> 1.6)
   - CrittercismSDK (~> 3.5.1)
   - IFBKThirtySeven (from `~/Code/kreeger/IFBKThirtySeven`)
-  - ISO8601DateFormatter (~> 0.6)
   - Kiwi
   - MagicalRecord (~> 2.1)
   - ObjectiveSugar (~> 0.6.2)
@@ -42,8 +39,7 @@ SPEC CHECKSUMS:
   BDKKit: c9102a6e72fabe77a895c0d80796fb689472153b
   CocoaLumberjack: 0f2fa7090a23f13261072d882e017c688300efbe
   CrittercismSDK: 1cd30b0bb1448494da29539a1cf490475288d1d1
-  IFBKThirtySeven: 84ac0bbc306810f210c06874c1548f6b8e9d1680
-  ISO8601DateFormatter: 077ce9d8cfba171bc1ced6cba0d2ae4aefab7619
+  IFBKThirtySeven: 5d5f888e0661adfced2fe75e0a88e31365a03cd7
   Kiwi: 56082a80f942de4d10423d8d8a599ab30cf50228
   MagicalRecord: 64e7184c240087a45e9588a722eaf05b0ad837f7
   ObjectiveSugar: 50bcd329b18ab6da6457e1bf55be71acb7c39d44
