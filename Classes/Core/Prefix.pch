@@ -10,26 +10,14 @@
 
 #ifdef __OBJC__
 
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-#import <QuartzCore/QuartzCore.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-// Third-party
+// Logging
 #define MR_SHORTHAND
 #define MR_ENABLE_ACTIVE_RECORD_LOGGING 0
-#import <MagicalRecord/CoreData+MagicalRecord.h>
 #import <CocoaLumberjack/DDLog.h>
-#import <ObjectiveSugar/ObjectiveSugar.h>
-#import <BDKGeometry/UIView+BDKGeometry.h>
-
-// Internal
 #import "BDKLog.h"
-#import "BDKConstants.h"
-#import "BDKTypedefs.h"
-#import "UIFont+App.h"
 
 static const int ddLogLevel = LOG_LEVEL_INFO | LOG_FLAG_CUSTOM;
 

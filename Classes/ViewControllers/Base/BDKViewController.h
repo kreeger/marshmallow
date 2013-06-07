@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import "BDKTypedefs.h"
 
 @class IFBKUser, IFBKCampfireClient;
 

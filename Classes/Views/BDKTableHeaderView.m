@@ -1,5 +1,10 @@
 #import "BDKTableHeaderView.h"
+
 #import "BDKGradientView.h"
+
+#import <BDKGeometry/BDKGeometry.h>
+
+#import "UIFont+App.h"
 
 @interface BDKTableHeaderView ()
 

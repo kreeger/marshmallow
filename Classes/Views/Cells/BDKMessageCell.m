@@ -1,7 +1,11 @@
 #import "BDKMessageCell.h"
 #import "BDKCellBackground.h"
 
+#import <QuartzCore/QuartzCore.h>
 #import <IFBKThirtySeven/IFBKCFMessage.h>
+#import <BDKGeometry/BDKGeometry.h>
+
+#import "UIFont+App.h"
 
 @interface BDKMessageCell ()
 

@@ -5,6 +5,7 @@
 
 #import "IFBKAccountsManager.h"
 #import "IFBKRoomManager.h"
+#import "BDKConstants.h"
 
 #import "IFBKCFRoom.h"
 #import "IFBKAccount.h"
@@ -13,7 +14,11 @@
 #import "BDKRoomCollectionCell.h"
 #import "BDKTableHeaderView.h"
 
-#import "UINavigationController+BDKKit.h"
+#import <BDKGeometry/BDKGeometry.h>
+#import <BDKKit/UINavigationController+BDKKit.h>
+#import <MagicalRecord/CoreData+MagicalRecord.h>
+
+#import "UIFont+App.h"
 
 @interface BDKRoomsViewController ()
 
@@ -83,7 +88,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    unless (self.view.superview) {
+    if (!self.view.superview) {
         _rooms = nil;
     }
 }

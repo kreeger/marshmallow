@@ -1,19 +1,19 @@
 #import "IFBKRoomManager.h"
 
+#import "IFBKConstants.h"
+
+#import "IFBKCFUser.h"
+#import "IFBKUser.h"
+#import "IFBKLaunchpadAccount.h"
+#import "IFBKMessageSet.h"
+
 #import <IFBKThirtySeven/IFBKCampfireStreamingClient.h>
 #import <IFBKThirtySeven/IFBKCampfireClient.h>
 #import <IFBKThirtySeven/IFBKCFRoom.h>
 #import <IFBKThirtySeven/IFBKCFMessage.h>
 #import <ObjectiveSugar/ObjectiveSugar.h>
-
-#import "IFBKCFUser.h"
-#import "IFBKUser.h"
-
-#import "IFBKLaunchpadAccount.h"
-
-#import "IFBKMessageSet.h"
-
-#import "IFBKConstants.h"
+#import <MagicalRecord/MagicalRecord.h>
+#import <MagicalRecord/CoreData+MagicalRecord.h>
 
 @interface IFBKRoomManager ()
 
@@ -166,8 +166,8 @@
     [self.apiClient leaveRoom:self.room.identifier success:success failure:failureBlock];
 }
 
-- (IFBKCFMessage *)messageAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.messages messageAtIndexPath:indexPath];
+- (IFBKCFMessage *)messageAtSection:(NSInteger)section row:(NSInteger)row {
+    return [self.messages messageAtSection:section row:row];
 }
 
 - (IFBKUser *)userForSection:(NSInteger)section {

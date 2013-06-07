@@ -1,6 +1,8 @@
 #import "IFBKModel.h"
 #import "IFBKCFModel.h"
 
+#import <MagicalRecord/CoreData+MagicalRecord.h>
+
 @implementation IFBKModel
 
 + (id)findAllWithIdentifiers:(NSArray *)identifiers inContext:(NSManagedObjectContext *)context
@@ -22,7 +24,7 @@
 
 + (id)createOrUpdateWithModel:(IFBKCFModel *)model inContext:(NSManagedObjectContext *)context
 {
-    unless (context) context = [NSManagedObjectContext defaultContext];
+    if (!context) context = [NSManagedObjectContext defaultContext];
     NSNumber *apiIdentifier = [model valueForKeyPath:@"identifier"];
     IFBKModel *found = [self findFirstByAttribute:@"identifier" withValue:apiIdentifier inContext:context];
     if (found) {
@@ -40,7 +42,7 @@
 
 - (id)initWithIFBKCFModel:(IFBKCFModel *)model inContext:(NSManagedObjectContext *)context
 {
-    unless (context) context = [NSManagedObjectContext defaultContext];
+    if (!context) context = [NSManagedObjectContext defaultContext];
     if ((self = [[self class] createInContext:context])) {
         [self updateWithIFBKCFModel:model];
     }

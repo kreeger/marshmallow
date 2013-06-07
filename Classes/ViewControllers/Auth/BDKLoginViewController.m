@@ -3,8 +3,8 @@
 #import "BDKTextFieldCell.h"
 
 #import <IFBKThirtySeven/IFBKLaunchpadClient.h>
-
-#import "NSString+BDKKit.h"
+#import <BDKKit/NSString+BDKKit.h>
+#import <ObjectiveSugar/NSString+ObjectiveSugar.h>
 
 @interface BDKLoginViewController ()
 

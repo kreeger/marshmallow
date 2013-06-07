@@ -1,6 +1,6 @@
 PODS:
   - AFNetworking (1.2.0)
-  - BDKGeometry (1.4.0)
+  - BDKGeometry (1.4.1)
   - BDKKit (0.0.1)
   - CocoaLumberjack (1.6)
   - CrittercismSDK (3.5.1)
@@ -38,16 +38,16 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 3cbae45f61a9f995cdbd56bd571223910d7f4e44
-  BDKGeometry: fd858609d9f66d5999798378d8bcaf9b014b41b3
-  BDKKit: 6270bcb68b96240b1e2235959c4c383331d9947b
+  BDKGeometry: 1ae35fd834b3f394359ed9e5148b62e4bef14e54
+  BDKKit: c9102a6e72fabe77a895c0d80796fb689472153b
   CocoaLumberjack: 0f2fa7090a23f13261072d882e017c688300efbe
   CrittercismSDK: 1cd30b0bb1448494da29539a1cf490475288d1d1
   IFBKThirtySeven: 84ac0bbc306810f210c06874c1548f6b8e9d1680
-  ISO8601DateFormatter: dc05a2481edf49668d85d3ff8c466c32eb544780
+  ISO8601DateFormatter: 077ce9d8cfba171bc1ced6cba0d2ae4aefab7619
   Kiwi: 56082a80f942de4d10423d8d8a599ab30cf50228
   MagicalRecord: 64e7184c240087a45e9588a722eaf05b0ad837f7
   ObjectiveSugar: 50bcd329b18ab6da6457e1bf55be71acb7c39d44
   SBJson: e60b4dc22448c2ae1e754b523a4ab53408e85c8d
   ViewDeck: b5eddc8559b0e47259ab7addbf2de6768061f139
 
-COCOAPODS: 0.19.1
+COCOAPODS: 0.20.2

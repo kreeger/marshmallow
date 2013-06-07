@@ -8,9 +8,9 @@
     IFBKCFAccount *account = (IFBKCFAccount *)model;
     NSArray *attributes = @[@"identifier", @"name", @"subdomain", @"plan", @"ownerIdentifier", @"storage",
                             @"createdAt", @"updatedAt"];
-    [attributes each:^(NSString *attribute) {
+    for (NSString *attribute in attributes) {
         [self setValue:[account valueForKeyPath:attribute] forKeyPath:attribute];
-    }];
+    }
 }
 
 #pragma mark - Properties

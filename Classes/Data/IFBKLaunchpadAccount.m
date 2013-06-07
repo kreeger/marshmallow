@@ -9,9 +9,9 @@
 {
     IFBKLPAccount *account = (IFBKLPAccount *)model;
     NSArray *attributes = @[@"identifier", @"href", @"name", @"product"];
-    [attributes each:^(NSString *attribute) {
+    for (NSString *attribute in attributes) {
         [self setValue:[account valueForKeyPath:attribute] forKeyPath:attribute];
-    }];
+    }
 }
 
 #pragma mark - Properties

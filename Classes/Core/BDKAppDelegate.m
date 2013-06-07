@@ -1,15 +1,17 @@
 #import "BDKAppDelegate.h"
+
 #import "BDKLoginViewController.h"
 #import "BDKRoomsViewController.h"
+
 #import "BDKMarshmallowAppearance.h"
+#import "BDKAPIKeyManager.h"
+#import "BDKConstants.h"
+#import "IFBKAccountsManager.h"
 
-#import "UINavigationController+BDKKit.h"
-
+#import <BDKKit/UINavigationController+BDKKit.h>
 #import <CocoaLumberjack/DDTTYLogger.h>
 #import <CrittercismSDK/Crittercism.h>
-
-#import "BDKAPIKeyManager.h"
-#import "IFBKAccountsManager.h"
+#import <MagicalRecord/MagicalRecord+Setup.h>
 
 @interface BDKAppDelegate ()
 

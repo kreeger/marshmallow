@@ -92,10 +92,11 @@
 
 /** Gets a message for a given section and row - in other words, an `NSIndexPath`.
  *
- *  @param indexPath The index path for which to store the message.
+ *  @param section The section for the index path for which to store the message.
+ *  @param row The row in the second.
  *  @returns The Campfire message.
  */
-- (IFBKCFMessage *)messageAtIndexPath:(NSIndexPath *)indexPath;
+- (IFBKCFMessage *)messageAtSection:(NSInteger)section row:(NSInteger)row;
 
 /** Gets the user belonging to the messages at a given section.
  *

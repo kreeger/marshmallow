@@ -44,7 +44,7 @@
 }
 
 - (id)initWithIFBKUser:(IFBKUser *)user {
-    if (self = [super initWithIdentifier:NSStringWithFormat(@"user:%@", user.name)]) {
+    if (self = [super initWithIdentifier:[NSString stringWithFormat:@"user:%@", user.name]]) {
         _user = user;
     }
     return self;

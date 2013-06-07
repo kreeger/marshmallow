@@ -1,5 +1,7 @@
 #import "BDKCollectionViewController.h"
 
+#import <ObjectiveSugar/NSArray+ObjectiveSugar.h>
+
 @implementation BDKCollectionViewController
 
 - (void)loadView {
@@ -26,7 +28,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    unless (self.view.superview) {
+    if (!self.view.superview) {
         _collectionView = nil;
         _flowLayout = nil;
     }

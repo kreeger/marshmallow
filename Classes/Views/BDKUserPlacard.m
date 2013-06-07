@@ -3,6 +3,9 @@
 #import "IFBKUser.h"
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <BDKGeometry/BDKGeometry.h>
+
+#import "UIFont+App.h"
 
 @interface BDKUserPlacard ()
 

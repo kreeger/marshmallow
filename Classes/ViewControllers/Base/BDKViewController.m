@@ -63,7 +63,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    unless (self.view.superview) {
+    if (!self.view.superview) {
         _identifier = nil;
         _modalDismissalBlock = nil;
     }
@@ -85,7 +85,7 @@
 
 - (void)callModalDismissalBlock
 {
-    unless (self.modalDismissalBlock) return;
+    if (!self.modalDismissalBlock) return;
     self.modalDismissalBlock();
     self.modalDismissalBlock = nil;
 }

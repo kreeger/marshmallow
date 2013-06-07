@@ -44,9 +44,9 @@
     }
 }
 
-- (IFBKCFMessage *)messageAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray *messages = [self messagesForSection:indexPath.section];
-    return [messages count] ? messages[indexPath.row] : nil;
+- (IFBKCFMessage *)messageAtSection:(NSInteger)section row:(NSInteger)row {
+    NSArray *messages = [self messagesForSection:section];
+    return [messages count] ? messages[row] : nil;
 }
 
 - (NSArray *)messagesForSection:(NSInteger)section {

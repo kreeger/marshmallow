@@ -8,9 +8,9 @@
 - (void)updateWithIFBKCFModel:(IFBKCFModel *)model {
     IFBKCFUser *user = (IFBKCFUser *)model;
     NSArray *attributes = @[@"identifier", @"name", @"emailAddress", @"admin", @"createdAt", @"type", @"avatarUrl", @"apiAuthToken"];
-    [attributes each:^(NSString *attribute) {
+    for (NSString *attribute in attributes) {
         [self setValue:[user valueForKeyPath:attribute] forKeyPath:attribute];
-    }];
+    }
 }
 
 #pragma mark - Properties

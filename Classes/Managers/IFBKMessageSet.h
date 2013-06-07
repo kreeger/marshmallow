@@ -1,3 +1,5 @@
+#import <Foundation/Foundation.h>
+
 #import "IFBKOrderedDictionary.h"
 
 @class IFBKCFMessage, IFBKUser;
@@ -18,12 +20,14 @@
  */
 - (void)addMessage:(IFBKCFMessage *)message;
 
-/** Gets a message for a given section and row - in other words, an `NSIndexPath`.
+/** Gets a message for a given section and row - in other words, an `NSIndexPath`. This is pulled into section/row
+ *  to reduce dependencies on UIKit.
  *  
- *  @param indexPath The index path for which to store the message.
+ *  @param section The section of the index path for which to store the message.
+ *  @param row The row in the section.
  *  @returns The Campfire message.
  */
-- (IFBKCFMessage *)messageAtIndexPath:(NSIndexPath *)indexPath;
+- (IFBKCFMessage *)messageAtSection:(NSInteger)section row:(NSInteger)row;
 
 /** Determines the user ID stored in the key string and returns it.
  *

@@ -1,15 +1,16 @@
 #import "BDKRoomViewController.h"
 
-#import "BDKMessageCell.h"
-#import "BDKTableHeaderView.h"
-
 #import "IFBKRoomManager.h"
 
-#import <IFBKThirtySeven/IFBKCampfireClient.h>
+#import "BDKMessageCell.h"
+#import "BDKTableHeaderView.h"
 
 #import "IFBKCFRoom.h"
 #import "IFBKCFMessage.h"
 #import "IFBKUser.h"
+
+#import <IFBKThirtySeven/IFBKCampfireClient.h>
+#import <BDKGeometry/BDKGeometry.h>
 
 @interface BDKRoomViewController ()
 
@@ -110,7 +111,7 @@
 
 - (BDKMessageCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BDKMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:kBDKMessageCellID forIndexPath:indexPath];
-    cell.message = [self.roomManager messageAtIndexPath:indexPath];
+    cell.message = [self.roomManager messageAtSection:indexPath.section row:indexPath.row];
     cell.backPosition = BDKMessageCellPositionTop;
     return cell;
 }

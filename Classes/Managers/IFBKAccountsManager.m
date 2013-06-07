@@ -1,12 +1,14 @@
 #import "IFBKAccountsManager.h"
 
-#import <IFBKThirtySeven/IFBKThirtySeven.h>
+#import "IFBKConstants.h"
 
 #import "IFBKLPModels.h"
 #import "IFBKCFModels.h"
 #import "IFBKModels.h"
 
-#import "IFBKConstants.h"
+#import <IFBKThirtySeven/IFBKThirtySeven.h>
+#import <MagicalRecord/CoreData+MagicalRecord.h>
+#import <MagicalRecord/MagicalRecord.h>
 
 @interface IFBKAccountsManager ()
 
@@ -110,9 +112,9 @@
     __block void (^refreshBlock)(void) = ^{
         [IFBKLaunchpadClient getAuthorization:^(IFBKLPAuthorizationData *authData) {
             [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-                [authData.accounts each:^(IFBKLPAccount *account) {
+                for (IFBKCFAccount *account in authData.accounts) {
                     [IFBKLaunchpadAccount createOrUpdateWithModel:account inContext:localContext];
-                }];
+                }
             } completion:^(BOOL success, NSError *error) {
                 // We only want Campfire ones!
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"product = %@", @"campfire"];

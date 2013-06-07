@@ -3,6 +3,8 @@
 #import <BDKGeometry/BDKGeometry.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import "UIFont+App.h"
+
 @interface BDKTextFieldCell ()
 
 - (void)customizeTextLabel;
