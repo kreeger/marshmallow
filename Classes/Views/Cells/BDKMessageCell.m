@@ -40,37 +40,8 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-//    switch (self.backPosition) {
-//        case BDKMessageCellPositionSingle:
-//            self.cellBack.frame = self.contentView.frame;
-//            break;
-//        case BDKMessageCellPositionTop: {
-//            CGRect rect = self.contentView.frame;
-//            rect.size.height += 10;
-//            self.cellBack.frame = rect;
-//            break;
-//        }
-//        case BDKMessageCellPositionMiddle: {
-//            CGRect rect = self.contentView.frame;
-//            rect.size.height += 20;
-//            rect.origin.y = -10;
-//            self.cellBack.frame = rect;
-//            break;
-//        }
-//        case BDKMessageCellPositionBottom: {
-//            CGRect rect = self.contentView.frame;
-//            rect.size.height += 10;
-//            rect.origin.y = -10;
-//            self.cellBack.frame = rect;
-//            break;
-//        }
-//        default:
-//            self.cellBack.frame = self.contentView.frame;
-//            break;
-//    }
-    CGRect working = self.insetFrame;
-
     
+    CGRect working = self.insetFrame;
     CGRect frame = CGRectNull;
     
     CGRectDivide(working, &frame, &working, 20, CGRectMinYEdge);
@@ -94,10 +65,8 @@
     self.bodyLabel.text = nil;
     self.timestampLabel.text = nil;
     self.typeLabel.text = nil;
-
-    NSDateFormatter *f = [[NSDateFormatter alloc] init];
-    f.dateFormat = @"YYYY-mm-dd hh:mm:ss";
-    self.timestampLabel.text = [f stringFromDate:message.createdAt];
+    
+    self.timestampLabel.text = message.createdAtDisplay;
     self.typeLabel.text = message.type;
 
     if (![(NSNull *)message.body isEqual:[NSNull null]]) {

@@ -17,8 +17,8 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 1.2.0)
-  - BDKGeometry (from `~/Code/kreeger/BDKGeometry`)
-  - BDKKit (from `~/Code/kreeger/BDKKit`)
+  - BDKGeometry (from `git://github.com/kreeger/BDKGeometry.git`)
+  - BDKKit (from `git://github.com/kreeger/BDKKit.git`)
   - CocoaLumberjack (~> 1.6)
   - CrittercismSDK (~> 3.5.1)
   - IFBKThirtySeven (from `~/Code/kreeger/IFBKThirtySeven`)
@@ -30,9 +30,9 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   BDKGeometry:
-    :path: ~/Code/kreeger/BDKGeometry
+    :git: git://github.com/kreeger/BDKGeometry.git
   BDKKit:
-    :path: ~/Code/kreeger/BDKKit
+    :git: git://github.com/kreeger/BDKKit.git
   IFBKThirtySeven:
     :path: ~/Code/kreeger/IFBKThirtySeven
 
