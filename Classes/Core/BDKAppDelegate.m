@@ -10,7 +10,6 @@
 
 #import <BDKKit/UINavigationController+BDKKit.h>
 #import <CocoaLumberjack/DDTTYLogger.h>
-#import <CrittercismSDK/Crittercism.h>
 #import <MagicalRecord/MagicalRecord+Setup.h>
 
 @interface BDKAppDelegate ()
@@ -37,7 +36,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [Crittercism enableWithAppID:@"5180531c5f7216216f000003"];
     [MagicalRecord setupAutoMigratingCoreDataStack];
     
     [self configureLogging];

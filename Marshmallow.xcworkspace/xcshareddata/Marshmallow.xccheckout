@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>00AE40E1-77C0-4B32-AF91-47A60DDF0387</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Marshmallow</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>80605870-7D15-40F6-B81B-046C97B820CD</key>
+		<string>ssh://github.com/kreeger/IFBKThirtySeven.git</string>
+		<key>BE7A8611-5492-4C94-BCD8-3BBB98D3F07A</key>
+		<string>ssh://github.com/kreeger/marshmallow.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Marshmallow.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>80605870-7D15-40F6-B81B-046C97B820CD</key>
+		<string>../../IFBKThirtySeven</string>
+		<key>BE7A8611-5492-4C94-BCD8-3BBB98D3F07A</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/kreeger/marshmallow.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BE7A8611-5492-4C94-BCD8-3BBB98D3F07A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BE7A8611-5492-4C94-BCD8-3BBB98D3F07A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>marshmallow</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>80605870-7D15-40F6-B81B-046C97B820CD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>IFBKThirtySeven</string>
+		</dict>
+	</array>
+</dict>
+</plist>

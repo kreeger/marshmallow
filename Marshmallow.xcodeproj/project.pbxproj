@@ -558,6 +558,11 @@
 				CLASSPREFIX = BDK;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Ben Kreeger";
+				TargetAttributes = {
+					C356BEA116FF8F8300F7A031 = {
+						DevelopmentTeam = E6DXP2JAM9;
+					};
+				};
 			};
 			buildConfigurationList = C356BE9D16FF8F8300F7A031 /* Build configuration list for PBXProject "Marshmallow" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -813,11 +818,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ACAE2580D4154BEE81C50205 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Core/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -826,11 +833,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ACAE2580D4154BEE81C50205 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Core/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
