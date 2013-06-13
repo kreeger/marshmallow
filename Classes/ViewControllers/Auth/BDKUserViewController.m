@@ -3,6 +3,9 @@
 #import "IFBKUser.h"
 #import "BDKUserPlacard.h"
 
+#import <BDKGeometry/BDKGeometry.h>
+#import <BDKKit/UIView+BDKKit.h>
+
 @interface BDKUserViewController ()
 
 /** The user's "37signals placard" view.
@@ -53,17 +56,32 @@
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view addSubview:self.placardView];
+    [self.placardView addBorderWithColor:[UIColor redColor] width:1];
+    [self defineConstraints];
     self.title = self.user.name;
 }
 
+- (void)defineConstraints {
+    NSDictionary *views = @{@"placardView": self.placardView};
+    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[placardView]" options:0 metrics:nil views:views];
+    NSArray *moreConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-20-[placardView]-|" options:0 metrics:nil views:views];
+    [self.view addConstraints:constraints];
+    [self.view addConstraints:moreConstraints];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
-    [self.view addSubview:self.placardView];
     self.navigationItem.leftBarButtonItem = self.cancelButton;
     self.navigationItem.rightBarButtonItem = self.logoutButton;
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,7 +92,8 @@
 
 - (BDKUserPlacard *)placardView {
     if (_placardView) return _placardView;
-    _placardView = [[BDKUserPlacard alloc] initWithFrame:CGRectMake(0, 0, 320, 116)];
+    _placardView = [[BDKUserPlacard alloc] init];
+    _placardView.translatesAutoresizingMaskIntoConstraints = NO;
     [_placardView setUser:self.user];
     return _placardView;
 }
@@ -106,6 +125,5 @@
         self.userTappedLogoutBlock = nil;
     }
 }
-
 
 @end

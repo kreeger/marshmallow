@@ -52,7 +52,7 @@
 - (UIWebView *)webView
 {
     if (_webView) return _webView;
-    _webView = [[UIWebView alloc] initWithFrame:self.frame];
+    _webView = [[UIWebView alloc] initWithFrame:self.bounds];
     _webView.delegate = self;
     return _webView;
 }

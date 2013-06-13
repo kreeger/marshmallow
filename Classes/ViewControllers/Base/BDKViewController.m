@@ -13,13 +13,11 @@
 
 @implementation BDKViewController
 
-+ (id)vc
-{
++ (id)vc {
     return [[self alloc] init];
 }
 
-+ (id)vcWithIdentifier:(NSString *)identifier
-{
++ (id)vcWithIdentifier:(NSString *)identifier {
     return [[self alloc] initWithIdentifier:identifier];
 }
 
@@ -30,28 +28,37 @@
     return self;
 }
 
-- (id)initWithIdentifier:(NSString *)identifier
-{
+- (id)initWithIdentifier:(NSString *)identifier {
     if (self = [super init]) {
         _identifier = identifier;
     }
     return self;
 }
 
-- (void)loadView
-{
-    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+- (void)loadView {
+    self.view = [[UIView alloc] init];
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)updateViewConstraints {
+    if (self.view.superview != nil && self.view.superview.constraints.count == 0) {
+        NSDictionary* views = @{@"view" : self.view};
+        [self.view.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|"
+                                                                                    options:0 metrics:0 views:views]];
+        [self.view.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|"
+                                                                                    options:0 metrics:0 views:views]];
+    }
+    [super updateViewConstraints];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     if (self.isModal) {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                                  style:UIBarButtonItemStyleBordered
@@ -60,8 +67,7 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     if (!self.view.superview) {
         _identifier = nil;
@@ -71,20 +77,17 @@
 
 #pragma mark - Properties
 
-- (CGRect)frame
-{
+- (CGRect)frame {
     return self.view.frame;
 }
 
-- (CGRect)bounds
-{
+- (CGRect)bounds {
     return self.view.bounds;
 }
 
 #pragma mark - Methods
 
-- (void)callModalDismissalBlock
-{
+- (void)callModalDismissalBlock {
     if (!self.modalDismissalBlock) return;
     self.modalDismissalBlock();
     self.modalDismissalBlock = nil;
@@ -93,8 +96,7 @@
 #pragma mark - Overrides
 
 - (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag
-                   completion:(void (^)(void))completion
-{
+                   completion:(void (^)(void))completion {
 
     if ([viewControllerToPresent isKindOfClass:[BDKViewController class]])
         ((BDKViewController *)viewControllerToPresent).isModal = YES;

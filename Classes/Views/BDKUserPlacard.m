@@ -27,9 +27,8 @@
 
 @synthesize nameLabel = _nameLabel, emailLabel = _emailLabel, avatarImageView = _avatarImageView;
 
-- (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self = [super initWithFrame:frame]) {
+- (id)init {
+    if (self = [super init]) {
         self.backgroundColor = [UIColor clearColor];
         [self addSubview:self.titleLabel];
         [self addSubview:self.avatarImageView];
@@ -70,7 +69,6 @@
 
     //// Frames
     CGRect frame = self.frame;
-
 
     //// Abstracted Attributes
     self.bodyRect = CGRectMake(CGRectGetMinX(frame) + 10, CGRectGetMinY(frame) + 10, CGRectGetWidth(frame) - 20, CGRectGetHeight(frame) - 20);

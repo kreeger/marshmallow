@@ -19,8 +19,7 @@
 }
 
 - (void)loadView {
-    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.view.backgroundColor = [UIColor whiteColor];
+    [super loadView];
     [self.view addSubview:self.tableView];
 }
 
@@ -31,9 +30,13 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    self.tableView.frame = self.view.frame;
+- (void)updateViewConstraints {
+    [super updateViewConstraints];
+    NSDictionary *views = @{@"tableView": self.tableView};
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|"
+                                                                      options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|"
+                                                                      options:0 metrics:nil views:views]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,9 +48,10 @@
 
 - (UITableView *)tableView {
     if (_tableView) return _tableView;
-    _tableView = [[UITableView alloc] initWithFrame:self.frame style:self.tableViewStyle];
+    _tableView = [[UITableView alloc] initWithFrame:self.bounds style:self.tableViewStyle];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.translatesAutoresizingMaskIntoConstraints = NO;
     return _tableView;
 }
 

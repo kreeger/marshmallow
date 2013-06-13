@@ -26,5 +26,4 @@
 + (id)vcWithIdentifier:(NSString *)identifier;
 - (id)initWithIdentifier:(NSString *)identifier;
 
-
 @end

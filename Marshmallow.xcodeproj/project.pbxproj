@@ -20,6 +20,7 @@
 		C32489ED1745A2B30067B83B /* _IFBKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C32489DF1745A2B30067B83B /* _IFBKUser.m */; };
 		C32489EE1745A2B30067B83B /* IFBKAccountsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C32489E21745A2B30067B83B /* IFBKAccountsManager.m */; };
 		C32489EF1745A2B30067B83B /* IFBKRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C32489E41745A2B30067B83B /* IFBKRoomManager.m */; };
+		C336B3F2176A1E9900353947 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C336B3F1176A1E9900353947 /* Media.xcassets */; };
 		C356BEA616FF8F8300F7A031 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA516FF8F8300F7A031 /* UIKit.framework */; };
 		C356BEA816FF8F8300F7A031 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA716FF8F8300F7A031 /* Foundation.framework */; };
 		C356BEAA16FF8F8300F7A031 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA916FF8F8300F7A031 /* CoreGraphics.framework */; };
@@ -112,6 +113,7 @@
 		C32489E21745A2B30067B83B /* IFBKAccountsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKAccountsManager.m; sourceTree = "<group>"; };
 		C32489E31745A2B30067B83B /* IFBKRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKRoomManager.h; sourceTree = "<group>"; };
 		C32489E41745A2B30067B83B /* IFBKRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKRoomManager.m; sourceTree = "<group>"; };
+		C336B3F1176A1E9900353947 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Marshmallow/Media.xcassets; sourceTree = "<group>"; };
 		C356BEA216FF8F8300F7A031 /* Marshmallow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C356BEA516FF8F8300F7A031 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C356BEA716FF8F8300F7A031 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -280,6 +282,7 @@
 		C356BE9916FF8F8300F7A031 = {
 			isa = PBXGroup;
 			children = (
+				C336B3F1176A1E9900353947 /* Media.xcassets */,
 				C356BEE016FF93CA00F7A031 /* Classes */,
 				C356BEE916FF93CA00F7A031 /* Resources */,
 				C356BECF16FF8F8300F7A031 /* MarshmallowTests */,
@@ -594,6 +597,7 @@
 				C356BF0216FF9ACD00F7A031 /* Podfile in Resources */,
 				C356BF0316FF9ACD00F7A031 /* readme.markdown in Resources */,
 				C3FD9E5F16FFBF710099E595 /* APIKeys.plist in Resources */,
+				C336B3F2176A1E9900353947 /* Media.xcassets in Resources */,
 				C3EBE2CA1709FC1000B92281 /* Icon-72.png in Resources */,
 				C3EBE2CB1709FC1000B92281 /* Icon-72@2x.png in Resources */,
 				C3EBE2CC1709FC1000B92281 /* Icon-Small-50.png in Resources */,
@@ -818,6 +822,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ACAE2580D4154BEE81C50205 /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Core/Prefix.pch;
@@ -833,6 +839,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ACAE2580D4154BEE81C50205 /* Pods.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Core/Prefix.pch;
