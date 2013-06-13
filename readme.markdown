@@ -1,3 +1,8 @@
+**Note*: I'm taking development of this app private due to adding iOS 7 support (and to keep from violating Apple's NDA).
+Once the NDA is lifted, I'll post my updated code. I apologize for any inconvenience this might cause... it kinda bums me
+out, but then again, I'm excited to be developing an application that supports the awesome new iOS 7 interface at launch.
+If you have any questions, hit me up on [App.net][3].
+
 # Marshmallow
 
 I'm writing my own Campfire client. Here it is.
