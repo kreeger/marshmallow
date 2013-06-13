@@ -3,7 +3,6 @@ PODS:
   - BDKGeometry (1.4.1)
   - BDKKit (0.0.1)
   - CocoaLumberjack (1.6)
-  - CrittercismSDK (3.5.1)
   - IFBKThirtySeven (0.0.3):
     - AFNetworking (~> 1.2)
     - SBJson (~> 3.2)
@@ -15,10 +14,9 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 1.2.0)
-  - BDKGeometry (from `git://github.com/kreeger/BDKGeometry.git`)
-  - BDKKit (from `git://github.com/kreeger/BDKKit.git`)
+  - BDKGeometry (from `https://github.com/kreeger/BDKGeometry.git`)
+  - BDKKit (from `https://github.com/kreeger/BDKKit.git`)
   - CocoaLumberjack (~> 1.6)
-  - CrittercismSDK (~> 3.5.1)
   - IFBKThirtySeven (from `~/Code/kreeger/IFBKThirtySeven`)
   - Kiwi
   - MagicalRecord (~> 2.1)
@@ -27,9 +25,9 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   BDKGeometry:
-    :git: git://github.com/kreeger/BDKGeometry.git
+    :git: https://github.com/kreeger/BDKGeometry.git
   BDKKit:
-    :git: git://github.com/kreeger/BDKKit.git
+    :git: https://github.com/kreeger/BDKKit.git
   IFBKThirtySeven:
     :path: ~/Code/kreeger/IFBKThirtySeven
 
@@ -38,7 +36,6 @@ SPEC CHECKSUMS:
   BDKGeometry: 1ae35fd834b3f394359ed9e5148b62e4bef14e54
   BDKKit: c9102a6e72fabe77a895c0d80796fb689472153b
   CocoaLumberjack: 0f2fa7090a23f13261072d882e017c688300efbe
-  CrittercismSDK: 1cd30b0bb1448494da29539a1cf490475288d1d1
   IFBKThirtySeven: 5d5f888e0661adfced2fe75e0a88e31365a03cd7
   Kiwi: 56082a80f942de4d10423d8d8a599ab30cf50228
   MagicalRecord: 64e7184c240087a45e9588a722eaf05b0ad837f7
