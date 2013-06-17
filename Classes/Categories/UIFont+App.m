@@ -4,22 +4,22 @@
 
 + (UIFont *)veryBoldAppFontOfSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"AvenirNext-Bold" size:size];
+    return [UIFont fontWithName:@"HelveticaNeue-Bold" size:size];
 }
 
 + (UIFont *)boldAppFontOfSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"AvenirNext-DemiBold" size:size];
+    return [UIFont fontWithName:@"HelveticaNeue-Medium" size:size];
 }
 
 + (UIFont *)italicAppFontOfSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"AvenirNext-Italic" size:size];
+    return [UIFont fontWithName:@"HelveticaNeue-Italic" size:size];
 }
 
 + (UIFont *)appFontOfSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"AvenirNext-Regular" size:size];
+    return [UIFont fontWithName:@"HelveticaNeue-Light" size:size];
 }
 
 @end

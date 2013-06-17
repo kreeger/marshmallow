@@ -20,7 +20,6 @@
 		C32489ED1745A2B30067B83B /* _IFBKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C32489DF1745A2B30067B83B /* _IFBKUser.m */; };
 		C32489EE1745A2B30067B83B /* IFBKAccountsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C32489E21745A2B30067B83B /* IFBKAccountsManager.m */; };
 		C32489EF1745A2B30067B83B /* IFBKRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C32489E41745A2B30067B83B /* IFBKRoomManager.m */; };
-		C336B3F2176A1E9900353947 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C336B3F1176A1E9900353947 /* Media.xcassets */; };
 		C356BEA616FF8F8300F7A031 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA516FF8F8300F7A031 /* UIKit.framework */; };
 		C356BEA816FF8F8300F7A031 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA716FF8F8300F7A031 /* Foundation.framework */; };
 		C356BEAA16FF8F8300F7A031 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C356BEA916FF8F8300F7A031 /* CoreGraphics.framework */; };
@@ -53,7 +52,7 @@
 		C3966E9F170B9D2D00ED89B7 /* BDKRoomCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3966E9E170B9D2D00ED89B7 /* BDKRoomCollectionCell.m */; };
 		C397ED701746F08B00CDEBE3 /* BDKUserPlacard.m in Sources */ = {isa = PBXBuildFile; fileRef = C397ED6F1746F08B00CDEBE3 /* BDKUserPlacard.m */; };
 		C397ED73174718DF00CDEBE3 /* BDKCellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = C397ED72174718DF00CDEBE3 /* BDKCellBackground.m */; };
-		C3C5FF0F170E3DE700BE92B9 /* Avenir Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C3C5FF0E170E3DE600BE92B9 /* Avenir Next.ttc */; };
+		C39B273A176FCA2400364E83 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C39B2739176FCA2400364E83 /* Media.xcassets */; };
 		C3C5FF15170E408700BE92B9 /* BDKRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF14170E408700BE92B9 /* BDKRoomViewController.m */; };
 		C3C5FF18170E5D7200BE92B9 /* BDKMarshmallowAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF17170E5D7200BE92B9 /* BDKMarshmallowAppearance.m */; };
 		C3C5FF1B170E62AC00BE92B9 /* BDKUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C5FF1A170E62AC00BE92B9 /* BDKUserViewController.m */; };
@@ -113,7 +112,6 @@
 		C32489E21745A2B30067B83B /* IFBKAccountsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKAccountsManager.m; sourceTree = "<group>"; };
 		C32489E31745A2B30067B83B /* IFBKRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKRoomManager.h; sourceTree = "<group>"; };
 		C32489E41745A2B30067B83B /* IFBKRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKRoomManager.m; sourceTree = "<group>"; };
-		C336B3F1176A1E9900353947 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Marshmallow/Media.xcassets; sourceTree = "<group>"; };
 		C356BEA216FF8F8300F7A031 /* Marshmallow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C356BEA516FF8F8300F7A031 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C356BEA716FF8F8300F7A031 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -165,7 +163,7 @@
 		C397ED6F1746F08B00CDEBE3 /* BDKUserPlacard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUserPlacard.m; sourceTree = "<group>"; };
 		C397ED71174718DF00CDEBE3 /* BDKCellBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCellBackground.h; sourceTree = "<group>"; };
 		C397ED72174718DF00CDEBE3 /* BDKCellBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCellBackground.m; sourceTree = "<group>"; };
-		C3C5FF0E170E3DE600BE92B9 /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
+		C39B2739176FCA2400364E83 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		C3C5FF13170E408700BE92B9 /* BDKRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoomViewController.h; sourceTree = "<group>"; };
 		C3C5FF14170E408700BE92B9 /* BDKRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomViewController.m; sourceTree = "<group>"; };
 		C3C5FF16170E5D7200BE92B9 /* BDKMarshmallowAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKMarshmallowAppearance.h; sourceTree = "<group>"; };
@@ -282,7 +280,6 @@
 		C356BE9916FF8F8300F7A031 = {
 			isa = PBXGroup;
 			children = (
-				C336B3F1176A1E9900353947 /* Media.xcassets */,
 				C356BEE016FF93CA00F7A031 /* Classes */,
 				C356BEE916FF93CA00F7A031 /* Resources */,
 				C356BECF16FF8F8300F7A031 /* MarshmallowTests */,
@@ -377,6 +374,7 @@
 		C356BEE916FF93CA00F7A031 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C39B2739176FCA2400364E83 /* Media.xcassets */,
 				C3EBE2C01709FC1000B92281 /* Icon-72.png */,
 				C3EBE2C11709FC1000B92281 /* Icon-72@2x.png */,
 				C3EBE2C21709FC1000B92281 /* Icon-Small-50.png */,
@@ -387,7 +385,6 @@
 				C3EBE2C71709FC1000B92281 /* Icon@2x.png */,
 				C3EBE2C81709FC1000B92281 /* iTunesArtwork.png */,
 				C3EBE2C91709FC1000B92281 /* iTunesArtwork@2x.png */,
-				C356BF1716FFAA5F00F7A031 /* Fonts */,
 				C356BEEA16FF93CA00F7A031 /* Default-568h@2x.png */,
 				C356BEEB16FF93CA00F7A031 /* Default.png */,
 				C356BEEC16FF93CA00F7A031 /* Default@2x.png */,
@@ -474,14 +471,6 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
-		C356BF1716FFAA5F00F7A031 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				C3C5FF0D170E3DE600BE92B9 /* Avenir Next */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		C3632EC717013A160028C794 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,14 +480,6 @@
 				C3632EC917013A4A0028C794 /* BDKRoomsViewController.m */,
 			);
 			path = Lists;
-			sourceTree = "<group>";
-		};
-		C3C5FF0D170E3DE600BE92B9 /* Avenir Next */ = {
-			isa = PBXGroup;
-			children = (
-				C3C5FF0E170E3DE600BE92B9 /* Avenir Next.ttc */,
-			);
-			path = "Avenir Next";
 			sourceTree = "<group>";
 		};
 		C3FD9E4716FFB73B0099E595 /* Adapters */ = {
@@ -521,7 +502,6 @@
 				C356BE9F16FF8F8300F7A031 /* Frameworks */,
 				C356BEA016FF8F8300F7A031 /* Resources */,
 				F1332C83A1964880BEEE1D76 /* Copy Pods Resources */,
-				C33108B217073C1D00459FC7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -597,9 +577,9 @@
 				C356BF0216FF9ACD00F7A031 /* Podfile in Resources */,
 				C356BF0316FF9ACD00F7A031 /* readme.markdown in Resources */,
 				C3FD9E5F16FFBF710099E595 /* APIKeys.plist in Resources */,
-				C336B3F2176A1E9900353947 /* Media.xcassets in Resources */,
 				C3EBE2CA1709FC1000B92281 /* Icon-72.png in Resources */,
 				C3EBE2CB1709FC1000B92281 /* Icon-72@2x.png in Resources */,
+				C39B273A176FCA2400364E83 /* Media.xcassets in Resources */,
 				C3EBE2CC1709FC1000B92281 /* Icon-Small-50.png in Resources */,
 				C3EBE2CD1709FC1000B92281 /* Icon-Small-50@2x.png in Resources */,
 				C3EBE2CE1709FC1000B92281 /* Icon-Small.png in Resources */,
@@ -608,7 +588,6 @@
 				C3EBE2D11709FC1000B92281 /* Icon@2x.png in Resources */,
 				C3EBE2D21709FC1000B92281 /* iTunesArtwork.png in Resources */,
 				C3EBE2D31709FC1000B92281 /* iTunesArtwork@2x.png in Resources */,
-				C3C5FF0F170E3DE700BE92B9 /* Avenir Next.ttc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,19 +615,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-test-resources.sh\"\n";
-		};
-		C33108B217073C1D00459FC7 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "/usr/local/bin/appledoc --project-name Marshmallow --project-company \"Ben Kreeger\" --company-id gr.kree --output ~/help --logformat xcode --ignore Pods --exit-threshold 2 .";
 		};
 		C356BEC516FF8F8300F7A031 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
