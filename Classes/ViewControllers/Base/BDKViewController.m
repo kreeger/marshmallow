@@ -35,25 +35,8 @@
     return self;
 }
 
-- (void)loadView {
-    self.view = [[UIView alloc] init];
-    self.view.translatesAutoresizingMaskIntoConstraints = NO;
-    self.view.backgroundColor = [UIColor whiteColor];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (void)updateViewConstraints {
-    if (self.view.superview != nil && self.view.superview.constraints.count == 0) {
-        NSDictionary* views = @{@"view" : self.view};
-        [self.view.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|"
-                                                                                    options:0 metrics:0 views:views]];
-        [self.view.superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|"
-                                                                                    options:0 metrics:0 views:views]];
-    }
-    [super updateViewConstraints];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

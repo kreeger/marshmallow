@@ -7,7 +7,7 @@ pod 'ObjectiveSugar', '~> 0.6.2'
 pod 'ViewDeck', '~> 2.2.11'
 pod 'BDKGeometry', git: 'https://github.com/kreeger/BDKGeometry.git'
 pod 'BDKKit', git: 'https://github.com/kreeger/BDKKit.git'
-pod 'AFNetworking', '~> 1.2.0'
+pod 'AFNetworking', '~> 1.3.1'
 # pod 'CrittercismSDK', '~> 3.5.1'
 
 pod 'IFBKThirtySeven', path: '~/Code/kreeger/IFBKThirtySeven'

@@ -4,6 +4,7 @@
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <BDKGeometry/BDKGeometry.h>
+#import <BDKKit/UIView+BDKKit.h>
 
 #import "UIFont+App.h"
 
@@ -30,10 +31,15 @@
 - (id)init {
     if (self = [super init]) {
         self.backgroundColor = [UIColor clearColor];
+        self.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.titleLabel];
         [self addSubview:self.avatarImageView];
         [self addSubview:self.nameLabel];
         [self addSubview:self.emailLabel];
+        
+        NSDictionary *views = @{@"title": self.titleLabel};//, @"avatar": self.avatarImageView, @"name": self.nameLabel, @"email": self.emailLabel};
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[title(20)]" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-10-[title]-10-|" options:0 metrics:nil views:views]];
     }
     return self;
 }
@@ -111,38 +117,42 @@
     CGColorSpaceRelease(colorSpace);
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.avatarImageView.frameOrigin = CGPointMake(22, 49);
-    CGRect working = CGRectMake(CGRectGetMaxX(self.avatarImageView.frame) + 12, CGRectGetMinY(self.avatarImageView.frame),
-                                230, 100);
-
-    CGSize size = [self.nameLabel.text sizeWithFont:self.nameLabel.font
-                                  constrainedToSize:working.size
-                                      lineBreakMode:NSLineBreakByWordWrapping];
-    CGRect labelFrame = CGRectNull;
-    CGRectDivide(working, &labelFrame, &working, size.height, CGRectMinYEdge);
-    self.nameLabel.frame = labelFrame;
-    size = [self.emailLabel.text sizeWithFont:self.emailLabel.font
-                            constrainedToSize:working.size
-                                lineBreakMode:NSLineBreakByWordWrapping];
-    CGRectDivide(working, &labelFrame, &working, size.height, CGRectMinYEdge);
-    self.emailLabel.frame = labelFrame;
-}
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    self.avatarImageView.frameOrigin = CGPointMake(22, 49);
+//    CGRect working = CGRectMake(CGRectGetMaxX(self.avatarImageView.frame) + 12, CGRectGetMinY(self.avatarImageView.frame),
+//                                230, 100);
+//
+//    CGSize size = [self.nameLabel.text sizeWithFont:self.nameLabel.font
+//                                  constrainedToSize:working.size
+//                                      lineBreakMode:NSLineBreakByWordWrapping];
+//    CGRect labelFrame = CGRectNull;
+//    CGRectDivide(working, &labelFrame, &working, size.height, CGRectMinYEdge);
+//    self.nameLabel.frame = labelFrame;
+//    size = [self.emailLabel.text sizeWithFont:self.emailLabel.font
+//                            constrainedToSize:working.size
+//                                lineBreakMode:NSLineBreakByWordWrapping];
+//    CGRectDivide(working, &labelFrame, &working, size.height, CGRectMinYEdge);
+//    self.emailLabel.frame = labelFrame;
+//}
 
 #pragma mark - Properties
+
+- (CGSize)intrinsicContentSize {
+    return CGSizeMake(320, 116);
+}
 
 - (void)setUser:(IFBKUser *)user {
     self.nameLabel.text = user.name;
     self.emailLabel.text = user.emailAddress;
     // AFNetworking this thing.
     [self.avatarImageView setImageWithURL:user.avatarUrlValue];
-    [self setNeedsLayout];
+    [self setNeedsUpdateConstraints];
 }
 
 - (UILabel *)nameLabel {
     if (_nameLabel) return _nameLabel;
-    _nameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _nameLabel = [[UILabel alloc] init];
     _nameLabel.font = [UIFont boldAppFontOfSize:14];
     _nameLabel.backgroundColor = [UIColor clearColor];
     return _nameLabel;
@@ -150,7 +160,7 @@
 
 - (UILabel *)emailLabel {
     if (_emailLabel) return _emailLabel;
-    _emailLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _emailLabel = [[UILabel alloc] init];
     _emailLabel.font = [UIFont appFontOfSize:16];
     _emailLabel.backgroundColor = [UIColor clearColor];
     return _emailLabel;
@@ -165,7 +175,8 @@
 
 - (UILabel *)titleLabel {
     if (_titleLabel) return _titleLabel;
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectInset(self.bannerRect, 12, 0)];
+    _titleLabel = [[UILabel alloc] init];
+    [_titleLabel addBorderWithColor:[UIColor redColor] width:1];
     _titleLabel.font = [UIFont boldAppFontOfSize:13];
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.textColor = [UIColor whiteColor];

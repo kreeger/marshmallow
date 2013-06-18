@@ -18,30 +18,22 @@
     return self;
 }
 
-- (void)loadView {
-    [super loadView];
-    [self.view addSubview:self.tableView];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (self.pullToRefreshEnabled) [self.tableView addSubview:self.refreshControl];
-    [self registerCellTypes];
-	// Do any additional setup after loading the view.
-}
-
-- (void)updateViewConstraints {
-    [super updateViewConstraints];
+    
+    [self.view addSubview:self.tableView];
     NSDictionary *views = @{@"tableView": self.tableView};
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|"
                                                                       options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|"
                                                                       options:0 metrics:nil views:views]];
+    
+    if (self.pullToRefreshEnabled) [self.tableView addSubview:self.refreshControl];
+    [self registerCellTypes];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Properties

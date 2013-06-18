@@ -104,12 +104,6 @@
     return _timestampLabel;
 }
 
-//- (BDKCellBackground *)cellBack {
-//    if (_cellBack) return _cellBack;
-//    _cellBack = [[BDKCellBackground alloc] initWithFrame:self.contentView.frame];
-//    return _cellBack;
-//}
-
 - (CGRect)insetFrame {
     return CGRectInset(self.contentView.frame, 10, 10);
 }
