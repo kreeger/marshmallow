@@ -156,11 +156,6 @@
     return ((IFBKAccount *)self.rooms[section][@"account"]).name;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSString *title = ((IFBKAccount *)self.rooms[section][@"account"]).name;
-    return [BDKTableHeaderView headerWithTitle:title width:self.tableView.frameHeight];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.rooms[section][@"rooms"] count];
 }

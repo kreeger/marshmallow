@@ -9,7 +9,7 @@ typedef enum {
     BDKMessageCellPositionBottom,
 } BDKMessageCellPosition;
 
-@class IFBKCFMessage, BDKCellBackground;
+@class IFBKCFMessage;
 
 /** A table view cell intended to represent a message in a room.
  */
@@ -19,10 +19,5 @@ typedef enum {
 @property (readonly) UILabel *typeLabel;
 @property (readonly) UILabel *bodyLabel;
 @property (readonly) UILabel *timestampLabel;
-@property (readonly) BDKCellBackground *cellBack;
-
-/** Configures the background layout of the cell.
- */
-@property (nonatomic) BDKMessageCellPosition backPosition;
 
 @end

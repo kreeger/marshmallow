@@ -103,16 +103,9 @@
     return [[self.roomManager userForSection:section] name];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSString *title = [[self.roomManager userForSection:section] name];
-    title = title ? title : @"System";
-    return [BDKTableHeaderView headerWithTitle:title width:self.tableView.frameHeight];
-}
-
 - (BDKMessageCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BDKMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:kBDKMessageCellID forIndexPath:indexPath];
     cell.message = [self.roomManager messageAtSection:indexPath.section row:indexPath.row];
-    cell.backPosition = BDKMessageCellPositionTop;
     return cell;
 }
 

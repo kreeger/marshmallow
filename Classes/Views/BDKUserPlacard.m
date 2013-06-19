@@ -37,9 +37,15 @@
         [self addSubview:self.nameLabel];
         [self addSubview:self.emailLabel];
         
-        NSDictionary *views = @{@"title": self.titleLabel};//, @"avatar": self.avatarImageView, @"name": self.nameLabel, @"email": self.emailLabel};
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[title(20)]" options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-10-[title]-10-|" options:0 metrics:nil views:views]];
+        NSDictionary *views = @{@"title": self.titleLabel, @"avatar": self.avatarImageView,
+                                @"name": self.nameLabel, @"email": self.emailLabel};
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[title(30)]" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-25-[title]-10-|" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-10-[avatar(45)]" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-14-[name]" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-20-[avatar(45)]-10-[name]" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[avatar]-10-[email]" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[name][email]" options:0 metrics:nil views:views]];
     }
     return self;
 }
@@ -152,7 +158,8 @@
 
 - (UILabel *)nameLabel {
     if (_nameLabel) return _nameLabel;
-    _nameLabel = [[UILabel alloc] init];
+    _nameLabel = [UILabel new];
+    _nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _nameLabel.font = [UIFont boldAppFontOfSize:14];
     _nameLabel.backgroundColor = [UIColor clearColor];
     return _nameLabel;
@@ -160,7 +167,8 @@
 
 - (UILabel *)emailLabel {
     if (_emailLabel) return _emailLabel;
-    _emailLabel = [[UILabel alloc] init];
+    _emailLabel = [UILabel new];
+    _emailLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _emailLabel.font = [UIFont appFontOfSize:16];
     _emailLabel.backgroundColor = [UIColor clearColor];
     return _emailLabel;
@@ -168,15 +176,16 @@
 
 - (UIImageView *)avatarImageView {
     if (_avatarImageView) return _avatarImageView;
-    _avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
+    _avatarImageView = [UIImageView new];
+    _avatarImageView.translatesAutoresizingMaskIntoConstraints = NO;
     _avatarImageView.backgroundColor = [UIColor clearColor];
     return _avatarImageView;
 }
 
 - (UILabel *)titleLabel {
     if (_titleLabel) return _titleLabel;
-    _titleLabel = [[UILabel alloc] init];
-    [_titleLabel addBorderWithColor:[UIColor redColor] width:1];
+    _titleLabel = [UILabel new];
+    _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _titleLabel.font = [UIFont boldAppFontOfSize:13];
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.textColor = [UIColor whiteColor];

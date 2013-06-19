@@ -56,17 +56,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.placardView];
-    self.title = self.user.name;
-}
-
-- (void)updateViewConstraints {
-    [super updateViewConstraints];
+    
     NSDictionary *views = @{@"placardView": self.placardView};
-    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[placardView]" options:0 metrics:nil views:views];
-    NSArray *moreConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[placardView]|" options:0 metrics:nil views:views];
-    [self.view addConstraints:constraints];
-    [self.view addConstraints:moreConstraints];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[placardView]" options:0 metrics:nil
+                                                                        views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[placardView]|" options:0 metrics:nil
+                                                                        views:views]];
+    
+    self.title = self.user.name;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,7 +85,7 @@
 
 - (BDKUserPlacard *)placardView {
     if (_placardView) return _placardView;
-    _placardView = [[BDKUserPlacard alloc] init];
+    _placardView = [BDKUserPlacard new];
     [_placardView setUser:self.user];
     return _placardView;
 }

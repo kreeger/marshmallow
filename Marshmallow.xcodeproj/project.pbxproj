@@ -404,13 +404,13 @@
 		C3A745CF1771220800168C01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C3A745D61771220800168C01 /* Cells */,
 				C3A745D01771220800168C01 /* BDKCellBackground.h */,
 				C3A745D11771220800168C01 /* BDKCellBackground.m */,
 				C3A745D21771220800168C01 /* BDKTableHeaderView.h */,
 				C3A745D31771220800168C01 /* BDKTableHeaderView.m */,
 				C3A745D41771220800168C01 /* BDKUserPlacard.h */,
 				C3A745D51771220800168C01 /* BDKUserPlacard.m */,
-				C3A745D61771220800168C01 /* Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
