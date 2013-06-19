@@ -4,19 +4,17 @@
 
 @implementation BDKCollectionViewController
 
-- (void)loadView {
-    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.collectionView];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)viewDidLayoutSubviews {
-    self.collectionView.frame = self.frame;
+    
+    [self.view addSubview:self.collectionView];
+    self.pullToRefreshEnabled = NO;
+    
+    NSDictionary *views = @{@"cV": self.collectionView};
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[cV]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[cV]|" options:0 metrics:nil views:views]];
+    
+    [self registerCellTypes];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -38,7 +36,7 @@
 
 - (UICollectionView *)collectionView {
     if (_collectionView) return _collectionView;
-    _collectionView = [[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:self.flowLayout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.flowLayout];
     _collectionView.opaque = YES;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
@@ -48,8 +46,34 @@
 
 - (UICollectionViewFlowLayout *)flowLayout {
     if (_flowLayout) return _flowLayout;
-    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    _flowLayout = [UICollectionViewFlowLayout new];
     return _flowLayout;
+}
+
+- (UIRefreshControl *)refreshControl {
+    if (_refreshControl) return _refreshControl;
+    _refreshControl = [[UIRefreshControl alloc] init];
+    [_refreshControl addTarget:self action:@selector(pullToRefreshPulled:) forControlEvents:UIControlEventValueChanged];
+    return _refreshControl;
+}
+
+- (void)setPullToRefreshEnabled:(BOOL)pullToRefreshEnabled {
+    if (pullToRefreshEnabled == _pullToRefreshEnabled) return;
+    if (pullToRefreshEnabled) {
+        if (!self.refreshControl.superview) [self.collectionView addSubview:self.refreshControl];
+    } else {
+        if (self.refreshControl.superview) [self.refreshControl removeFromSuperview];
+    }
+}
+
+#pragma mark - Methods
+
+- (void)registerCellTypes {
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
+}
+
+- (void)pullToRefreshPulled:(UIRefreshControl *)sender {
+    // This space intentionally left blank.
 }
 
 #pragma mark - UICollectionViewDataSource

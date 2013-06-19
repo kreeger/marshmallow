@@ -1,10 +1,10 @@
-#import "BDKTableViewController.h"
+#import "BDKCollectionViewController.h"
 
 @class IFBKRoomManager;
 
 /** Displays a Campfire room with messages.
  */
-@interface BDKRoomViewController : BDKTableViewController
+@interface BDKRoomViewController : BDKCollectionViewController
 
 /** The room manager used by this view controller.
  */
