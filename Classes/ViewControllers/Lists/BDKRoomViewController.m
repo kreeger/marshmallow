@@ -12,6 +12,10 @@
 
 #import <IFBKThirtySeven/IFBKCampfireClient.h>
 #import <BDKGeometry/BDKGeometry.h>
+#import <BDKKit/NSObject+BDKKit.h>
+
+#import "NSUserDefaults+App.h"
+#import "UIFont+App.h"
 
 @interface BDKRoomViewController ()
 
@@ -56,14 +60,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.roomManager.room.name;
-}
-
-- (void)registerCellTypes {
-    [self.collectionView registerClass:[BDKMessageCell class] forCellWithReuseIdentifier:kBDKMessageCellID];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    
     [self.roomManager loadRoomAndHistory:^{
         self.cellHeights = [NSMutableDictionary dictionaryWithCapacity:[self.roomManager.messages count]];
         [self.roomManager.messages enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *msgs, BOOL *stop) {
@@ -76,6 +73,10 @@
     } failure:^(NSError *error) {
         // pass for now
     }];
+}
+
+- (void)registerCellTypes {
+    [self.collectionView registerClass:[BDKMessageCell class] forCellWithReuseIdentifier:kBDKMessageCellID];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -107,7 +108,15 @@
 #pragma mark - Methods
 
 - (CGFloat)cellHeightForMessage:(IFBKCFMessage *)message {
-    return 80;
+    if ([message.body isNull]) return 30;
+    
+    UIFont *font;
+    if ([NSUserDefaults deviceIsiOS7]) font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    else font = [UIFont appFontOfSize:15];
+    CGSize size = [message.body sizeWithFont:font constrainedToSize:CGSizeMake(300, CGFLOAT_MAX)
+                               lineBreakMode:NSLineBreakByWordWrapping];
+    DDLogUI(@"Generated size %@.", NSStringFromCGSize(size));
+    return 30 + size.height;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -133,7 +142,8 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(320, 80);
+    IFBKCFMessage *message = [self.roomManager messageAtSection:indexPath.section row:indexPath.row];
+    return CGSizeMake(320, [self cellHeightForMessage:message]);
 }
 
 #pragma mark - UICollectionViewDelegate

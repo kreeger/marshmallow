@@ -11,13 +11,39 @@
 #import "UIFont+App.h"
 #import "NSUserDefaults+App.h"
 
+@interface BDKMessageCell ()
+
+- (void)setupCell;
+
+@end
+
 @implementation BDKMessageCell
 
 @synthesize typeLabel = _typeLabel, bodyLabel = _bodyLabel, timestampLabel = _timestampLabel;
 
-- (void)prepareForReuse {
-    [super prepareForReuse];
-    
+- (instancetype)init {
+    if (self = [super init]) {
+        [self setupCell];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setupCell];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self setupCell];
+    }
+    return self;
+}
+
+- (void)setupCell {
+    [self.contentView addBorderWithColor:[UIColor grayColor] width:1];
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
@@ -41,7 +67,16 @@
         make.trailing.equalTo(self.contentView).offset(-10);
         make.leading.equalTo(self.contentView).offset(10);
         make.top.equalTo(self.typeLabel.bottom).offset(5);
+        make.bottom.equalTo(self.contentView).offset(-10);
     }];
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+
+    self.bodyLabel.text = nil;
+    self.timestampLabel.text = nil;
+    self.typeLabel.text = nil;
 }
 
 #pragma mark - Properties
@@ -49,10 +84,6 @@
 - (void)setMessage:(IFBKCFMessage *)message {
     _message = message;
     if (!_message) return;
-    
-    self.bodyLabel.text = nil;
-    self.timestampLabel.text = nil;
-    self.typeLabel.text = nil;
     
     self.timestampLabel.text = message.createdAtDisplay;
     self.typeLabel.text = message.type;
@@ -87,8 +118,6 @@
     _bodyLabel.backgroundColor = [UIColor clearColor];
     _bodyLabel.numberOfLines = 0;
     _bodyLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    _bodyLabel.layer.borderColor = [[UIColor redColor] CGColor];
-    _bodyLabel.layer.borderWidth = 1;
     return _bodyLabel;
 }
 
