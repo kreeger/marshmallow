@@ -2,6 +2,7 @@
 
 #import "IFBKUser.h"
 
+#import <Masonry/Masonry.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <BDKGeometry/BDKGeometry.h>
 #import <BDKKit/UIView+BDKKit.h>
@@ -37,15 +38,29 @@
         [self addSubview:self.nameLabel];
         [self addSubview:self.emailLabel];
         
-        NSDictionary *views = @{@"title": self.titleLabel, @"avatar": self.avatarImageView,
-                                @"name": self.nameLabel, @"email": self.emailLabel};
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[title(30)]" options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-25-[title]-10-|" options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-10-[avatar(45)]" options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[title]-14-[name]" options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-20-[avatar(45)]-10-[name]" options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[avatar]-10-[email]" options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[name][email]" options:0 metrics:nil views:views]];
+        [self.titleLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(10);
+            make.leading.equalTo(self).offset(20);
+            make.trailing.equalTo(self).offset(10);
+            make.height.equalTo(@30);
+        }];
+        
+        [self.avatarImageView makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.titleLabel.bottom).offset(10);
+            make.leading.equalTo(self).offset(20);
+            make.width.equalTo(@45);
+            make.height.equalTo(@45);
+        }];
+        
+        [self.nameLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.titleLabel.bottom).offset(14);
+            make.leading.equalTo(self.avatarImageView.trailing).offset(10);
+        }];
+        
+        [self.emailLabel makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.nameLabel.bottom);
+            make.leading.equalTo(self.nameLabel);
+        }];
     }
     return self;
 }
@@ -122,25 +137,6 @@
     CGGradientRelease(bodyGradient);
     CGColorSpaceRelease(colorSpace);
 }
-
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//    self.avatarImageView.frameOrigin = CGPointMake(22, 49);
-//    CGRect working = CGRectMake(CGRectGetMaxX(self.avatarImageView.frame) + 12, CGRectGetMinY(self.avatarImageView.frame),
-//                                230, 100);
-//
-//    CGSize size = [self.nameLabel.text sizeWithFont:self.nameLabel.font
-//                                  constrainedToSize:working.size
-//                                      lineBreakMode:NSLineBreakByWordWrapping];
-//    CGRect labelFrame = CGRectNull;
-//    CGRectDivide(working, &labelFrame, &working, size.height, CGRectMinYEdge);
-//    self.nameLabel.frame = labelFrame;
-//    size = [self.emailLabel.text sizeWithFont:self.emailLabel.font
-//                            constrainedToSize:working.size
-//                                lineBreakMode:NSLineBreakByWordWrapping];
-//    CGRectDivide(working, &labelFrame, &working, size.height, CGRectMinYEdge);
-//    self.emailLabel.frame = labelFrame;
-//}
 
 #pragma mark - Properties
 

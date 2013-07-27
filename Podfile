@@ -1,10 +1,11 @@
-platform :ios, '7.0'
+platform :ios, '6.0'
 inhibit_all_warnings!
 
 pod 'MagicalRecord', '~> 2.1'
 pod 'CocoaLumberjack', '~> 1.6'
 pod 'ObjectiveSugar', '~> 0.6.2'
 pod 'ViewDeck', '~> 2.2.11'
+pod 'Masonry'
 pod 'BDKGeometry', path: '~/Code/kreeger/BDKGeometry'
 pod 'BDKKit', path: '~/Code/kreeger/BDKKit'
 pod 'AFNetworking', '~> 1.3.1'

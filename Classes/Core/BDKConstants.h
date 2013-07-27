@@ -1,4 +1,13 @@
-#define kBDKLaunchpadURL @"https://launchpad.37signals.com/authorization/new?type=web_server&client_id=%@&redirect_uri=%@"
-#define kBDKCampfireBaseURL @"https://%@.campfirenow.com"
+#import <Foundation/Foundation.h>
 
-#define kBDKNotificationDidReloadRooms @"DidReloadRooms"
+extern NSString * const kBDKDefaultsDeviceIsiOS7;
+
+extern NSString * const kBDKDefaultsDeviceIsPad;
+
+extern NSString * const kBDKDefaultsDeviceIs4Inch;
+
+extern NSString * const kBDKLaunchpadURL;
+
+extern NSString * const kBDKCampfireBaseURL;
+
+extern NSString * const kBDKNotificationDidReloadRooms;

@@ -19,6 +19,8 @@
 #import <CocoaLumberjack/DDLog.h>
 #import "BDKLog.h"
 
+#define MAS_SHORTHAND
+
 static const int ddLogLevel = LOG_LEVEL_INFO | LOG_FLAG_CUSTOM;
 
 #endif

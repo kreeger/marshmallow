@@ -1,6 +1,7 @@
 #import "BDKCollectionViewController.h"
 
 #import <ObjectiveSugar/NSArray+ObjectiveSugar.h>
+#import <Masonry/Masonry.h>
 
 @implementation BDKCollectionViewController
 
@@ -10,9 +11,9 @@
     [self.view addSubview:self.collectionView];
     self.pullToRefreshEnabled = NO;
     
-    NSDictionary *views = @{@"cV": self.collectionView};
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[cV]|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[cV]|" options:0 metrics:nil views:views]];
+    [self.collectionView makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     
     [self registerCellTypes];
 }

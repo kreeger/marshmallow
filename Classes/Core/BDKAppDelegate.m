@@ -11,6 +11,7 @@
 #import <BDKKit/UINavigationController+BDKKit.h>
 #import <CocoaLumberjack/DDTTYLogger.h>
 #import <MagicalRecord/MagicalRecord+Setup.h>
+#import <BDKKit/UIDevice+BDKKit.h>
 
 @interface BDKAppDelegate ()
 
@@ -38,6 +39,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [MagicalRecord setupAutoMigratingCoreDataStack];
     
+    [self kickstartUserDefaults];
     [self configureLogging];
     [self configureAccountsManager];
 
@@ -102,8 +104,13 @@
 }
 
 - (void)kickstartUserDefaults {
-    NSDictionary *userDefaults = @{};
+    NSDictionary *userDefaults = (@{
+                                    kBDKDefaultsDeviceIsiOS7: @([[UIApplication sharedApplication] respondsToSelector:@selector(setMinimumBackgroundFetchInterval:)]),
+                                    kBDKDefaultsDeviceIs4Inch: @([[UIDevice currentDevice] is4Inch]),
+                                    kBDKDefaultsDeviceIsPad: @([[UIDevice currentDevice] isPad]),
+                                    });
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaults];
+    [[NSUserDefaults standardUserDefaults] setValuesForKeysWithDictionary:userDefaults];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

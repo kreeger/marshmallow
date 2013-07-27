@@ -5,6 +5,7 @@
 
 #import <BDKGeometry/BDKGeometry.h>
 #import <BDKKit/UIView+BDKKit.h>
+#import <Masonry/Masonry.h>
 
 @interface BDKUserViewController ()
 
@@ -49,7 +50,8 @@
 - (id)initWithIFBKUser:(IFBKUser *)user {
     if (self = [super initWithIdentifier:[NSString stringWithFormat:@"user:%@", user.name]]) {
         _user = user;
-        self.edgesForExtendedLayout = UIExtendedEdgeNone;
+        if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
+            self.edgesForExtendedLayout = UIExtendedEdgeNone;
     }
     return self;
 }
@@ -59,11 +61,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.placardView];
     
-    NSDictionary *views = @{@"placardView": self.placardView};
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[placardView]" options:0 metrics:nil
-                                                                        views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[placardView]|" options:0 metrics:nil
-                                                                        views:views]];
+    [self.placardView makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view);
+        make.leading.equalTo(self.view);
+        make.trailing.equalTo(self.view);
+    }];
     
     self.title = self.user.name;
 }

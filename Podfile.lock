@@ -1,13 +1,14 @@
 PODS:
   - AFNetworking (1.3.1)
   - BDKGeometry (1.5.0)
-  - BDKKit (0.0.2)
+  - BDKKit (0.0.3)
   - CocoaLumberjack (1.6)
   - IFBKThirtySeven (0.0.3):
     - AFNetworking (~> 1.2)
     - SBJson (~> 3.2)
   - Kiwi (2.0.6)
   - MagicalRecord (2.1)
+  - Masonry (0.0.3)
   - ObjectiveSugar (0.6.2)
   - SBJson (3.2)
   - ViewDeck (2.2.11)
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - IFBKThirtySeven (from `~/Code/kreeger/IFBKThirtySeven`)
   - Kiwi
   - MagicalRecord (~> 2.1)
+  - Masonry
   - ObjectiveSugar (~> 0.6.2)
   - ViewDeck (~> 2.2.11)
 
@@ -32,15 +34,16 @@ EXTERNAL SOURCES:
     :path: ~/Code/kreeger/IFBKThirtySeven
 
 SPEC CHECKSUMS:
-  AFNetworking: 8f204b1ffb21a4ef0f36c83f1e4f052561626bea
+  AFNetworking: 9ec8aafb9269236a7630bd8d9838ce2ba30fa2a0
   BDKGeometry: c863e7996102bd42bdf182162381b9c26bbbba7f
-  BDKKit: 8aa084a7717f53298ac2315dacb00d46403acd2b
+  BDKKit: 76056bd1a83e829f8c1fc880a5da2fa73ffd00c7
   CocoaLumberjack: 0f2fa7090a23f13261072d882e017c688300efbe
   IFBKThirtySeven: 3df1fc0a957d9501222d53a56b0bc5bf94ef37a0
   Kiwi: 56082a80f942de4d10423d8d8a599ab30cf50228
   MagicalRecord: 64e7184c240087a45e9588a722eaf05b0ad837f7
+  Masonry: 5b49e4bb4c059aadb00deb1fef8e1af42afa42d8
   ObjectiveSugar: 50bcd329b18ab6da6457e1bf55be71acb7c39d44
   SBJson: e60b4dc22448c2ae1e754b523a4ab53408e85c8d
   ViewDeck: b5eddc8559b0e47259ab7addbf2de6768061f139
 
-COCOAPODS: 0.21.0.rc1
+COCOAPODS: 0.22.3

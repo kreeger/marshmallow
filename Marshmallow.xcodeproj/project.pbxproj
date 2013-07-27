@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		608C13B7566343508CBB7A98 /* libPods-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC2BC53E5024D20ABAE7725 /* libPods-test.a */; };
 		977A83DA44BF4856B496D110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D32A25C95D4495DB5765976 /* libPods.a */; };
+		C301AE6717A46EF400EDDDCB /* BDKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C301AE6617A46EF400EDDDCB /* BDKConstants.m */; };
+		C301AE6A17A4701600EDDDCB /* NSUserDefaults+App.m in Sources */ = {isa = PBXBuildFile; fileRef = C301AE6917A4701600EDDDCB /* NSUserDefaults+App.m */; };
 		C3A744E4177120E600168C01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E3177120E600168C01 /* Foundation.framework */; };
 		C3A744E6177120E600168C01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E5177120E600168C01 /* CoreGraphics.framework */; };
 		C3A744E8177120E600168C01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E7177120E600168C01 /* UIKit.framework */; };
@@ -87,6 +89,9 @@
 		1AC2BC53E5024D20ABAE7725 /* libPods-test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-test.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D32A25C95D4495DB5765976 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C410F094B444F2597282D33 /* Pods-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.xcconfig"; path = "Pods/Pods-test.xcconfig"; sourceTree = SOURCE_ROOT; };
+		C301AE6617A46EF400EDDDCB /* BDKConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKConstants.m; sourceTree = "<group>"; };
+		C301AE6817A4701600EDDDCB /* NSUserDefaults+App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+App.h"; sourceTree = "<group>"; };
+		C301AE6917A4701600EDDDCB /* NSUserDefaults+App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+App.m"; sourceTree = "<group>"; };
 		C3A744E0177120E600168C01 /* Marshmallow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A744E3177120E600168C01 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C3A744E5177120E600168C01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -280,6 +285,8 @@
 			children = (
 				C3A7458B1771220800168C01 /* NSString+BDKKit.h */,
 				C3A7458C1771220800168C01 /* NSString+BDKKit.m */,
+				C301AE6817A4701600EDDDCB /* NSUserDefaults+App.h */,
+				C301AE6917A4701600EDDDCB /* NSUserDefaults+App.m */,
 				C3A7458D1771220800168C01 /* UIFont+App.h */,
 				C3A7458E1771220800168C01 /* UIFont+App.m */,
 				C3A7458F1771220800168C01 /* UINavigationController+BDKKit.h */,
@@ -294,6 +301,7 @@
 				C3A745921771220800168C01 /* BDKAppDelegate.h */,
 				C3A745931771220800168C01 /* BDKAppDelegate.m */,
 				C3A745941771220800168C01 /* BDKConstants.h */,
+				C301AE6617A46EF400EDDDCB /* BDKConstants.m */,
 				C3A745951771220800168C01 /* BDKLog.h */,
 				C3A745961771220800168C01 /* BDKLog.m */,
 				C3A745971771220800168C01 /* BDKMarshmallowAppearance.h */,
@@ -661,6 +669,7 @@
 				C3A746001771220800168C01 /* IFBKModel.xcdatamodeld in Sources */,
 				C3A746121771220800168C01 /* BDKTableHeaderView.m in Sources */,
 				C3A7460E1771220800168C01 /* BDKWebViewController.m in Sources */,
+				C301AE6A17A4701600EDDDCB /* NSUserDefaults+App.m in Sources */,
 				C3A746141771220800168C01 /* BDKMessageCell.m in Sources */,
 				C3A745F91771220800168C01 /* BDKLog.m in Sources */,
 				C3A746131771220800168C01 /* BDKUserPlacard.m in Sources */,
@@ -678,6 +687,7 @@
 				C3A7460C1771220800168C01 /* BDKTableViewController.m in Sources */,
 				C3A746031771220800168C01 /* _IFBKIdentity.m in Sources */,
 				C3A746111771220800168C01 /* BDKCellBackground.m in Sources */,
+				C301AE6717A46EF400EDDDCB /* BDKConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,10 +794,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17092829C9394042BA983091 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ben Kreeger (G777HWKJ6F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Benjamin Kreeger (L2EUVVJNQG)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Core/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -797,10 +808,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17092829C9394042BA983091 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ben Kreeger (G777HWKJ6F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Benjamin Kreeger (L2EUVVJNQG)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Core/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
