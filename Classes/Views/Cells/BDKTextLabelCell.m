@@ -1,13 +1,13 @@
-#import "BDKDevelopmentCell.h"
+#import "BDKTextLabelCell.h"
 
 #import <Masonry/Masonry.h>
 
 #import "UIFont+App.h"
 #import "NSUserDefaults+App.h"
 
-NSString * const BDKDevelopmentCellID = @"BDKDevelopmentCell";
+NSString * const BDKTextLabelCellID = @"BDKTextLabelCell";
 
-@interface BDKDevelopmentCell ()
+@interface BDKTextLabelCell ()
 
 /**
  Common cell layout and initialization instructions.
@@ -16,7 +16,7 @@ NSString * const BDKDevelopmentCellID = @"BDKDevelopmentCell";
 
 @end
 
-@implementation BDKDevelopmentCell
+@implementation BDKTextLabelCell
 
 @synthesize bodyLabel = _bodyLabel;
 
@@ -49,7 +49,7 @@ NSString * const BDKDevelopmentCellID = @"BDKDevelopmentCell";
     
     [self.contentView addSubview:self.bodyLabel];
     [self.bodyLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.contentView);
+        make.edges.equalTo(self.contentView).with.insets(UIEdgeInsetsMake(0, 10, 0, 10));
     }];
 }
 

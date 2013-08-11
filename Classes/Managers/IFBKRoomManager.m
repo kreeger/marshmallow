@@ -11,7 +11,6 @@
 #import <IFBKThirtySeven/IFBKCampfireClient.h>
 #import <IFBKThirtySeven/IFBKCFRoom.h>
 #import <IFBKThirtySeven/IFBKCFMessage.h>
-#import <ObjectiveSugar/ObjectiveSugar.h>
 #import <MagicalRecord/MagicalRecord.h>
 #import <MagicalRecord/CoreData+MagicalRecord.h>
 
@@ -103,25 +102,28 @@
                           failure:(void (^)(NSError *))failure {
     [self.apiClient getRoomForId:self.room.identifier success:^(IFBKCFRoom *room) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            for (IFBKCFUser *user in room.users) {
+            [room.users enumerateObjectsUsingBlock:^(IFBKCFUser *user, NSUInteger idx, BOOL *stop) {
                 DDLogAPI(@"Pre-creating user %@.", user.name);
                 [IFBKUser createOrUpdateWithModel:user inContext:localContext];
-            }
+            }];
         } completion:^(BOOL success, NSError *error) {
             [self.apiClient getMessagesForRoom:self.room.identifier sinceMessageId:messageId success:^(NSArray *result) {
-                IFBKCFMessage *lastMessage = nil;
+                __block IFBKCFMessage *lastMessage = nil;
+                
                 NSMutableArray *users = [NSMutableArray array];
-                for (IFBKCFMessage *message in result) {
+                [result enumerateObjectsUsingBlock:^(IFBKCFMessage *message, NSUInteger idx, BOOL *stop) {
                     [self.messages addMessage:message];
                     if (![(NSNull *)message.userIdentifier isEqual:[NSNull null]] &&
                         ![users containsObject:message.userIdentifier]) {
                         [users addObject:message.userIdentifier];
                     }
                     lastMessage = message;
-                }
+                }];
+                
                 [self handleDataForUsers:users];
-                DDLogAPI(@"Loaded %i messages from API.", [self.messages count]);
-                if (self.didReceiveMessageBlock) self.didReceiveMessageBlock(lastMessage);
+                if (self.didReceiveMessageBlock) {
+                    self.didReceiveMessageBlock(lastMessage);
+                }
             } failure:^(NSError *error, NSInteger responseCode) {
                 NSLog(@"Encountered error %i getting messages for room. Error: %@", responseCode, error);
             }];
@@ -142,7 +144,9 @@
 
 - (void)toggleRoomLock:(BOOL)isLocked success:(void (^)(void))success failure:(void (^)(NSError *error))failure {
     void (^failureBlock)(NSError *, NSInteger) = ^(NSError *error, NSInteger responseCode) {
-        if (failure) failure(error);
+        if (failure) {
+            failure(error);
+        }
     };
     
     if (isLocked) {
@@ -154,14 +158,18 @@
 
 - (void)joinRoom:(void (^)(void))success failure:(void (^)(NSError *error))failure {
     void (^failureBlock)(NSError *, NSInteger) = ^(NSError *error, NSInteger responseCode) {
-        if (failure) failure(error);
+        if (failure) {
+            failure(error);
+        }
     };
     [self.apiClient joinRoom:self.room.identifier success:success failure:failureBlock];
 }
 
 - (void)leaveRoom:(void (^)(void))success failure:(void (^)(NSError *error))failure {
     void (^failureBlock)(NSError *, NSInteger) = ^(NSError *error, NSInteger responseCode) {
-        if (failure) failure(error);
+        if (failure) {
+            failure(error);
+        }
     };
     [self.apiClient leaveRoom:self.room.identifier success:success failure:failureBlock];
 }
@@ -187,30 +195,38 @@
 - (void)handleDataForUsers:(NSArray *)users {
     
     NSMutableArray *usersToFetch = [NSMutableArray arrayWithCapacity:[users count]];
-    for (NSNumber *userId in users) {
+    [users enumerateObjectsUsingBlock:^(NSNumber *userId, NSUInteger idx, BOOL *stop) {
         IFBKUser *found = [IFBKUser findFirstByAttribute:@"identifier" withValue:userId];
-        if (!found) [usersToFetch addObject:userId];
-    }
+        if (!found) {
+            [usersToFetch addObject:userId];
+        }
+    }];
 
     void (^databaseHitBlock)(NSArray *) = ^(NSArray *userArray) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            for (IFBKCFUser *user in userArray) [IFBKUser createOrUpdateWithModel:user inContext:localContext];
+            [userArray enumerateObjectsUsingBlock:^(IFBKCFUser *user, NSUInteger idx, BOOL *stop) {
+                [IFBKUser createOrUpdateWithModel:user inContext:localContext];
+            }];
         }];
     };
 
     NSMutableArray *fetched = [NSMutableArray arrayWithCapacity:[usersToFetch count]];
     __block int attemptCount = 0;
-    for (NSNumber *userId in usersToFetch) {
+    [usersToFetch enumerateObjectsUsingBlock:^(NSNumber *userId, NSUInteger idx, BOOL *stop) {
         [self.apiClient getUserForId:userId success:^(IFBKCFUser *user) {
             attemptCount++;
             [fetched addObject:user];
-            if (attemptCount == [usersToFetch count]) databaseHitBlock(fetched);
+            if (attemptCount == [usersToFetch count]) {
+                databaseHitBlock(fetched);
+            }
         } failure:^(NSError *error, NSInteger responseCode) {
             attemptCount++;
             NSLog(@"Failed getting user with error %@.", error);
-            if (attemptCount == [usersToFetch count]) databaseHitBlock(fetched);
+            if (attemptCount == [usersToFetch count]) {
+                databaseHitBlock(fetched);
+            }
         }];
-    }
+    }];
 }
 
 @end

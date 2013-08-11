@@ -9,7 +9,7 @@
 
 #import "BDKMessageCell.h"
 #import "BDKTimestampCell.h"
-#import "BDKDevelopmentCell.h"
+#import "BDKTextLabelCell.h"
 #import "BDKUserReusableView.h"
 
 #import <IFBKThirtySeven/IFBKCampfireClient.h>
@@ -88,7 +88,7 @@
 - (void)registerCellTypes {
     [self.collectionView registerClass:[BDKMessageCell class] forCellWithReuseIdentifier:BDKMessageCellID];
     [self.collectionView registerClass:[BDKTimestampCell class] forCellWithReuseIdentifier:BDKTimestampCellID];
-    [self.collectionView registerClass:[BDKDevelopmentCell class] forCellWithReuseIdentifier:BDKDevelopmentCellID];
+    [self.collectionView registerClass:[BDKTextLabelCell class] forCellWithReuseIdentifier:BDKTextLabelCellID];
     
     [self.collectionView registerClass:[BDKUserReusableView class]
             forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
@@ -126,7 +126,7 @@
 - (CGFloat)cellHeightForMessage:(IFBKCFMessage *)message {
     if ([message.body isNull]) return 30;
     
-    CGRect rect = [message.body boundingRectWithSize:CGSizeMake(250, CGFLOAT_MAX)
+    CGRect rect = [message.body boundingRectWithSize:CGSizeMake(240, CGFLOAT_MAX)
                                              options:NSStringDrawingUsesLineFragmentOrigin
                                           attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]}
                                              context:nil];
@@ -185,8 +185,20 @@
             [cell setTimestampText:message.createdAtDisplay];
             return cell;
         }
+        case IFBKMessageTypeEnter: {
+            BDKTextLabelCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKTextLabelCellID forIndexPath:indexPath];
+            IFBKUser *user = [self.roomManager userForSection:indexPath.section];
+            [cell setBodyText:[NSString stringWithFormat:@"%@ joined", user.name]];
+            return cell;
+        }
+        case IFBKMessageTypeKick: {
+            BDKTextLabelCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKTextLabelCellID forIndexPath:indexPath];
+            IFBKUser *user = [self.roomManager userForSection:indexPath.section];
+            [cell setBodyText:[NSString stringWithFormat:@"%@ left", user.name]];
+            return cell;
+        }
         default: {
-            BDKDevelopmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKDevelopmentCellID forIndexPath:indexPath];
+            BDKTextLabelCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKTextLabelCellID forIndexPath:indexPath];
             [cell setBodyText:[message description]];
             return cell;
         }

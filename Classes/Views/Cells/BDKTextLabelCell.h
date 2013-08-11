@@ -1,11 +1,11 @@
 #import <UIKit/UIKit.h>
 
-extern NSString * const BDKDevelopmentCellID;
+extern NSString * const BDKTextLabelCellID;
 
 /**
  A collection view cell intended to represent junk until I get it fixed.
  */
-@interface BDKDevelopmentCell : UICollectionViewCell
+@interface BDKTextLabelCell : UICollectionViewCell
 
 @property (readonly) UILabel *bodyLabel;
 

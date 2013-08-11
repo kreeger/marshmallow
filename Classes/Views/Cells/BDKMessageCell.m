@@ -59,18 +59,17 @@ NSString * const BDKMessageCellID = @"BDKMessageCell";
 
     [self.timestampLabel makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(10);
-        make.width.equalTo(@50);
-        make.trailing.equalTo(self.contentView).offset(-10);
+        make.width.equalTo(@60);
+        make.leading.equalTo(self.contentView).offset(10);
+        make.baseline.equalTo(self.bodyLabel);
     }];
-    [self.timestampLabel addBorderWithColor:[UIColor redColor] width:1];
     
     [self.bodyLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(self.timestampLabel.leading);
-        make.leading.equalTo(self.contentView).offset(10);
+        make.leading.equalTo(self.timestampLabel.trailing);
+        make.trailing.equalTo(self.contentView).offset(-10);
         make.top.equalTo(self.contentView).offset(10);
         make.bottom.equalTo(self.contentView).offset(-10);
     }];
-    [self.bodyLabel addBorderWithColor:[UIColor greenColor] width:1];
 }
 
 - (void)prepareForReuse {
@@ -98,8 +97,8 @@ NSString * const BDKMessageCellID = @"BDKMessageCell";
     if (_timestampLabel) return _timestampLabel;
     _timestampLabel = [UILabel new];
     _timestampLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _timestampLabel.font = [UIFont systemFontOfSize:12];
-    _timestampLabel.textAlignment = NSTextAlignmentRight;
+    _timestampLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2];
+    _timestampLabel.textAlignment = NSTextAlignmentLeft;
     _timestampLabel.backgroundColor = [UIColor clearColor];
     return _timestampLabel;
 }

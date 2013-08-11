@@ -13,7 +13,7 @@
 		C301AE6A17A4701600EDDDCB /* NSUserDefaults+App.m in Sources */ = {isa = PBXBuildFile; fileRef = C301AE6917A4701600EDDDCB /* NSUserDefaults+App.m */; };
 		C37B373917B82F950067F2BD /* BDKUserReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373817B82F950067F2BD /* BDKUserReusableView.m */; };
 		C37B373C17B834F30067F2BD /* BDKTimestampCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373B17B834F30067F2BD /* BDKTimestampCell.m */; };
-		C37B373F17B838720067F2BD /* BDKDevelopmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373E17B838720067F2BD /* BDKDevelopmentCell.m */; };
+		C37B373F17B838720067F2BD /* BDKTextLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373E17B838720067F2BD /* BDKTextLabelCell.m */; };
 		C3A744E4177120E600168C01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E3177120E600168C01 /* Foundation.framework */; };
 		C3A744E6177120E600168C01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E5177120E600168C01 /* CoreGraphics.framework */; };
 		C3A744E8177120E600168C01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E7177120E600168C01 /* UIKit.framework */; };
@@ -98,8 +98,8 @@
 		C37B373817B82F950067F2BD /* BDKUserReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUserReusableView.m; sourceTree = "<group>"; };
 		C37B373A17B834F30067F2BD /* BDKTimestampCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTimestampCell.h; sourceTree = "<group>"; };
 		C37B373B17B834F30067F2BD /* BDKTimestampCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKTimestampCell.m; sourceTree = "<group>"; };
-		C37B373D17B838720067F2BD /* BDKDevelopmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKDevelopmentCell.h; sourceTree = "<group>"; };
-		C37B373E17B838720067F2BD /* BDKDevelopmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKDevelopmentCell.m; sourceTree = "<group>"; };
+		C37B373D17B838720067F2BD /* BDKTextLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTextLabelCell.h; sourceTree = "<group>"; };
+		C37B373E17B838720067F2BD /* BDKTextLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKTextLabelCell.m; sourceTree = "<group>"; };
 		C3A744E0177120E600168C01 /* Marshmallow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A744E3177120E600168C01 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C3A744E5177120E600168C01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -440,8 +440,8 @@
 		C3A745D61771220800168C01 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				C37B373D17B838720067F2BD /* BDKDevelopmentCell.h */,
-				C37B373E17B838720067F2BD /* BDKDevelopmentCell.m */,
+				C37B373D17B838720067F2BD /* BDKTextLabelCell.h */,
+				C37B373E17B838720067F2BD /* BDKTextLabelCell.m */,
 				C3A745D71771220800168C01 /* BDKMessageCell.h */,
 				C3A745D81771220800168C01 /* BDKMessageCell.m */,
 				C3A745D91771220800168C01 /* BDKRoomCollectionCell.h */,
@@ -706,7 +706,7 @@
 				C3A745FF1771220800168C01 /* IFBKModel.m in Sources */,
 				C3A7460D1771220800168C01 /* BDKViewController.m in Sources */,
 				C3A746051771220800168C01 /* _IFBKUser.m in Sources */,
-				C37B373F17B838720067F2BD /* BDKDevelopmentCell.m in Sources */,
+				C37B373F17B838720067F2BD /* BDKTextLabelCell.m in Sources */,
 				C3A7460C1771220800168C01 /* BDKTableViewController.m in Sources */,
 				C3A746031771220800168C01 /* _IFBKIdentity.m in Sources */,
 				C3A746111771220800168C01 /* BDKCellBackground.m in Sources */,
