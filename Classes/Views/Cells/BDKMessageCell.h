@@ -1,16 +1,21 @@
 #import <UIKit/UIKit.h>
 
-#define kBDKMessageCellID @"BDKMessageCell"
+extern NSString * const BDKMessageCellID;
 
-@class IFBKCFMessage;
-
-/** A table view cell intended to represent a message in a room.
+/**
+ A collection view cell intended to represent a message in a room.
  */
 @interface BDKMessageCell : UICollectionViewCell
 
-@property (strong, nonatomic) IFBKCFMessage *message;
-@property (readonly) UILabel *typeLabel;
 @property (readonly) UILabel *bodyLabel;
 @property (readonly) UILabel *timestampLabel;
+
+/**
+ Handles setting the internal message text of bodyLabel.
+ 
+ @param messageText The text of the message to use.
+ @param timestampText The text to use for the timestamp.
+ */
+- (void)setMessageText:(NSString *)messageText timestampText:(NSString *)timestampText;
 
 @end

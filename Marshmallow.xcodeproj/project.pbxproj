@@ -11,6 +11,9 @@
 		977A83DA44BF4856B496D110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D32A25C95D4495DB5765976 /* libPods.a */; };
 		C301AE6717A46EF400EDDDCB /* BDKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C301AE6617A46EF400EDDDCB /* BDKConstants.m */; };
 		C301AE6A17A4701600EDDDCB /* NSUserDefaults+App.m in Sources */ = {isa = PBXBuildFile; fileRef = C301AE6917A4701600EDDDCB /* NSUserDefaults+App.m */; };
+		C37B373917B82F950067F2BD /* BDKUserReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373817B82F950067F2BD /* BDKUserReusableView.m */; };
+		C37B373C17B834F30067F2BD /* BDKTimestampCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373B17B834F30067F2BD /* BDKTimestampCell.m */; };
+		C37B373F17B838720067F2BD /* BDKDevelopmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373E17B838720067F2BD /* BDKDevelopmentCell.m */; };
 		C3A744E4177120E600168C01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E3177120E600168C01 /* Foundation.framework */; };
 		C3A744E6177120E600168C01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E5177120E600168C01 /* CoreGraphics.framework */; };
 		C3A744E8177120E600168C01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E7177120E600168C01 /* UIKit.framework */; };
@@ -25,7 +28,6 @@
 		C3A745F71771220800168C01 /* UINavigationController+BDKKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745901771220800168C01 /* UINavigationController+BDKKit.m */; };
 		C3A745F81771220800168C01 /* BDKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745931771220800168C01 /* BDKAppDelegate.m */; };
 		C3A745F91771220800168C01 /* BDKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745961771220800168C01 /* BDKLog.m */; };
-		C3A745FA1771220800168C01 /* BDKMarshmallowAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745981771220800168C01 /* BDKMarshmallowAppearance.m */; };
 		C3A745FB1771220800168C01 /* IFBKOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A7459C1771220800168C01 /* IFBKOrderedDictionary.m */; };
 		C3A745FC1771220800168C01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A7459D1771220800168C01 /* main.m */; };
 		C3A745FD1771220800168C01 /* IFBKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745A11771220800168C01 /* IFBKAccount.m */; };
@@ -92,6 +94,12 @@
 		C301AE6617A46EF400EDDDCB /* BDKConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKConstants.m; sourceTree = "<group>"; };
 		C301AE6817A4701600EDDDCB /* NSUserDefaults+App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+App.h"; sourceTree = "<group>"; };
 		C301AE6917A4701600EDDDCB /* NSUserDefaults+App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+App.m"; sourceTree = "<group>"; };
+		C37B373717B82F950067F2BD /* BDKUserReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKUserReusableView.h; sourceTree = "<group>"; };
+		C37B373817B82F950067F2BD /* BDKUserReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUserReusableView.m; sourceTree = "<group>"; };
+		C37B373A17B834F30067F2BD /* BDKTimestampCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTimestampCell.h; sourceTree = "<group>"; };
+		C37B373B17B834F30067F2BD /* BDKTimestampCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKTimestampCell.m; sourceTree = "<group>"; };
+		C37B373D17B838720067F2BD /* BDKDevelopmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKDevelopmentCell.h; sourceTree = "<group>"; };
+		C37B373E17B838720067F2BD /* BDKDevelopmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKDevelopmentCell.m; sourceTree = "<group>"; };
 		C3A744E0177120E600168C01 /* Marshmallow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A744E3177120E600168C01 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C3A744E5177120E600168C01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -112,8 +120,6 @@
 		C3A745941771220800168C01 /* BDKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKConstants.h; sourceTree = "<group>"; };
 		C3A745951771220800168C01 /* BDKLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLog.h; sourceTree = "<group>"; };
 		C3A745961771220800168C01 /* BDKLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLog.m; sourceTree = "<group>"; };
-		C3A745971771220800168C01 /* BDKMarshmallowAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKMarshmallowAppearance.h; sourceTree = "<group>"; };
-		C3A745981771220800168C01 /* BDKMarshmallowAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKMarshmallowAppearance.m; sourceTree = "<group>"; };
 		C3A745991771220800168C01 /* BDKTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTypedefs.h; sourceTree = "<group>"; };
 		C3A7459A1771220800168C01 /* IFBKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKConstants.h; sourceTree = "<group>"; };
 		C3A7459B1771220800168C01 /* IFBKOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKOrderedDictionary.h; sourceTree = "<group>"; };
@@ -221,6 +227,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C37B373617B82F840067F2BD /* ReusableViews */ = {
+			isa = PBXGroup;
+			children = (
+				C37B373717B82F950067F2BD /* BDKUserReusableView.h */,
+				C37B373817B82F950067F2BD /* BDKUserReusableView.m */,
+			);
+			path = ReusableViews;
+			sourceTree = "<group>";
+		};
 		C3A744D7177120E600168C01 = {
 			isa = PBXGroup;
 			children = (
@@ -304,8 +319,6 @@
 				C301AE6617A46EF400EDDDCB /* BDKConstants.m */,
 				C3A745951771220800168C01 /* BDKLog.h */,
 				C3A745961771220800168C01 /* BDKLog.m */,
-				C3A745971771220800168C01 /* BDKMarshmallowAppearance.h */,
-				C3A745981771220800168C01 /* BDKMarshmallowAppearance.m */,
 				C3A745991771220800168C01 /* BDKTypedefs.h */,
 				C3A7459A1771220800168C01 /* IFBKConstants.h */,
 				C3A7459B1771220800168C01 /* IFBKOrderedDictionary.h */,
@@ -413,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				C3A745D61771220800168C01 /* Cells */,
+				C37B373617B82F840067F2BD /* ReusableViews */,
 				C3A745D01771220800168C01 /* BDKCellBackground.h */,
 				C3A745D11771220800168C01 /* BDKCellBackground.m */,
 				C3A745D21771220800168C01 /* BDKTableHeaderView.h */,
@@ -426,12 +440,16 @@
 		C3A745D61771220800168C01 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				C37B373D17B838720067F2BD /* BDKDevelopmentCell.h */,
+				C37B373E17B838720067F2BD /* BDKDevelopmentCell.m */,
 				C3A745D71771220800168C01 /* BDKMessageCell.h */,
 				C3A745D81771220800168C01 /* BDKMessageCell.m */,
 				C3A745D91771220800168C01 /* BDKRoomCollectionCell.h */,
 				C3A745DA1771220800168C01 /* BDKRoomCollectionCell.m */,
 				C3A745DB1771220800168C01 /* BDKTextFieldCell.h */,
 				C3A745DC1771220800168C01 /* BDKTextFieldCell.m */,
+				C37B373A17B834F30067F2BD /* BDKTimestampCell.h */,
+				C37B373B17B834F30067F2BD /* BDKTimestampCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -529,6 +547,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Ben Kreeger";
 				TargetAttributes = {
+					C3A744DF177120E600168C01 = {
+						DevelopmentTeam = K5EBZHR9ZN;
+					};
 					C3A744FF177120E600168C01 = {
 						TestTargetID = C3A744DF177120E600168C01;
 					};
@@ -651,6 +672,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37B373917B82F950067F2BD /* BDKUserReusableView.m in Sources */,
 				C3A746011771220800168C01 /* IFBKUser.m in Sources */,
 				C3A745F71771220800168C01 /* UINavigationController+BDKKit.m in Sources */,
 				C3A746081771220800168C01 /* IFBKRoomManager.m in Sources */,
@@ -665,8 +687,8 @@
 				C3A745F41771220800168C01 /* BDKAPIKeyManager.m in Sources */,
 				C3A746091771220800168C01 /* BDKLoginViewController.m in Sources */,
 				C3A746041771220800168C01 /* _IFBKLaunchpadAccount.m in Sources */,
-				C3A745FA1771220800168C01 /* BDKMarshmallowAppearance.m in Sources */,
 				C3A746001771220800168C01 /* IFBKModel.xcdatamodeld in Sources */,
+				C37B373C17B834F30067F2BD /* BDKTimestampCell.m in Sources */,
 				C3A746121771220800168C01 /* BDKTableHeaderView.m in Sources */,
 				C3A7460E1771220800168C01 /* BDKWebViewController.m in Sources */,
 				C301AE6A17A4701600EDDDCB /* NSUserDefaults+App.m in Sources */,
@@ -684,6 +706,7 @@
 				C3A745FF1771220800168C01 /* IFBKModel.m in Sources */,
 				C3A7460D1771220800168C01 /* BDKViewController.m in Sources */,
 				C3A746051771220800168C01 /* _IFBKUser.m in Sources */,
+				C37B373F17B838720067F2BD /* BDKDevelopmentCell.m in Sources */,
 				C3A7460C1771220800168C01 /* BDKTableViewController.m in Sources */,
 				C3A746031771220800168C01 /* _IFBKIdentity.m in Sources */,
 				C3A746111771220800168C01 /* BDKCellBackground.m in Sources */,
@@ -736,6 +759,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Benjamin Kreeger (L2EUVVJNQG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -774,6 +798,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Benjamin Kreeger (L2EUVVJNQG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -796,12 +821,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Benjamin Kreeger (L2EUVVJNQG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Core/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -812,12 +839,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Benjamin Kreeger (L2EUVVJNQG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Core/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

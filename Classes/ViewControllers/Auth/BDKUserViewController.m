@@ -51,7 +51,7 @@
     if (self = [super initWithIdentifier:[NSString stringWithFormat:@"user:%@", user.name]]) {
         _user = user;
         if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
-            self.edgesForExtendedLayout = UIExtendedEdgeNone;
+            self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     return self;
 }

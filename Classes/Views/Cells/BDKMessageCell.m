@@ -11,38 +11,43 @@
 #import "UIFont+App.h"
 #import "NSUserDefaults+App.h"
 
+NSString * const BDKMessageCellID = @"BDKMessageCell";
+
 @interface BDKMessageCell ()
 
-- (void)setupCell;
+/**
+ Common cell layout and initialization instructions.
+ */
+- (void)setup;
 
 @end
 
 @implementation BDKMessageCell
 
-@synthesize typeLabel = _typeLabel, bodyLabel = _bodyLabel, timestampLabel = _timestampLabel;
+@synthesize bodyLabel = _bodyLabel, timestampLabel = _timestampLabel;
 
 - (instancetype)init {
     if (self = [super init]) {
-        [self setupCell];
+        [self setup];
     }
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        [self setupCell];
+        [self setup];
     }
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self setupCell];
+        [self setup];
     }
     return self;
 }
 
-- (void)setupCell {
+- (void)setup {
     [self.contentView addBorderWithColor:[UIColor grayColor] width:1];
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView makeConstraints:^(MASConstraintMaker *make) {
@@ -51,24 +56,21 @@
     
     [self.contentView addSubview:self.timestampLabel];
     [self.contentView addSubview:self.bodyLabel];
-    [self.contentView addSubview:self.typeLabel];
-    
-    [self.typeLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.contentView).offset(10);
-        make.top.equalTo(self.contentView);
-    }];
+
     [self.timestampLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(self.typeLabel);
-        make.top.equalTo(self.contentView);
-        make.leading.equalTo(self.typeLabel.right);
+        make.top.equalTo(self.contentView).offset(10);
+        make.width.equalTo(@50);
         make.trailing.equalTo(self.contentView).offset(-10);
     }];
+    [self.timestampLabel addBorderWithColor:[UIColor redColor] width:1];
+    
     [self.bodyLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(self.contentView).offset(-10);
+        make.trailing.equalTo(self.timestampLabel.leading);
         make.leading.equalTo(self.contentView).offset(10);
-        make.top.equalTo(self.typeLabel.bottom).offset(5);
+        make.top.equalTo(self.contentView).offset(10);
         make.bottom.equalTo(self.contentView).offset(-10);
     }];
+    [self.bodyLabel addBorderWithColor:[UIColor greenColor] width:1];
 }
 
 - (void)prepareForReuse {
@@ -76,44 +78,15 @@
 
     self.bodyLabel.text = nil;
     self.timestampLabel.text = nil;
-    self.typeLabel.text = nil;
 }
 
 #pragma mark - Properties
-
-- (void)setMessage:(IFBKCFMessage *)message {
-    _message = message;
-    if (!_message) return;
-    
-    self.timestampLabel.text = message.createdAtDisplay;
-    self.typeLabel.text = message.type;
-
-    if ([message.body isNotNull]) {
-        self.bodyLabel.text = message.body;
-        [self invalidateIntrinsicContentSize];
-    }
-}
-
-- (UILabel *)typeLabel {
-    if (_typeLabel) return _typeLabel;
-    _typeLabel = [UILabel new];
-    _typeLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    if ([NSUserDefaults deviceIsiOS7])
-        _typeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    else
-        _typeLabel.font = [UIFont appFontOfSize:13];
-    _typeLabel.backgroundColor = [UIColor clearColor];
-    return _typeLabel;
-}
 
 - (UILabel *)bodyLabel {
     if (_bodyLabel) return _bodyLabel;
     _bodyLabel = [UILabel new];
     _bodyLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    if ([NSUserDefaults deviceIsiOS7])
-        _bodyLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    else
-        _bodyLabel.font = [UIFont appFontOfSize:15];
+    _bodyLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     _bodyLabel.contentMode = UIViewContentModeTopLeft;
     _bodyLabel.backgroundColor = [UIColor clearColor];
     _bodyLabel.numberOfLines = 0;
@@ -125,13 +98,18 @@
     if (_timestampLabel) return _timestampLabel;
     _timestampLabel = [UILabel new];
     _timestampLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    if ([NSUserDefaults deviceIsiOS7])
-        _timestampLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    else
-        _timestampLabel.font = [UIFont appFontOfSize:13];
+    _timestampLabel.font = [UIFont systemFontOfSize:12];
     _timestampLabel.textAlignment = NSTextAlignmentRight;
     _timestampLabel.backgroundColor = [UIColor clearColor];
     return _timestampLabel;
+}
+
+#pragma mark - Methods
+
+- (void)setMessageText:(NSString *)messageText timestampText:(NSString *)timestampText {
+    self.bodyLabel.text = messageText;
+    self.timestampLabel.text = timestampText;
+    [self invalidateIntrinsicContentSize];
 }
 
 @end

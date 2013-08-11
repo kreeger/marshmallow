@@ -1,4 +1,4 @@
-platform :ios, '6.0'
+platform :ios, '7.0'
 inhibit_all_warnings!
 
 pod 'MagicalRecord', '~> 2.1'
@@ -9,12 +9,11 @@ pod 'Masonry'
 pod 'BDKGeometry', path: '~/Code/kreeger/BDKGeometry'
 pod 'BDKKit', path: '~/Code/kreeger/BDKKit'
 pod 'AFNetworking', '~> 1.3.1'
-# pod 'CrittercismSDK', '~> 3.5.1'
+pod 'PHFComposeBarView', '~> 1.1.1'
+pod 'Reveal-iOS-SDK'
 
 pod 'IFBKThirtySeven', path: '~/Code/kreeger/IFBKThirtySeven'
 # pod 'IFBKThirtySeven', git: 'git://github.com/kreeger/IFBKThirtySeven.git'
-# pod 'IFBKSharedComponents', path: '~/Code/kreeger/IFBKSharedComponents'
-# pod 'IFBKSharedComponents', git: 'git://github.com/kreeger/IFBKSharedComponents.git'
 
 target :test, exclusive: true do
   link_with 'MarshmallowTests'

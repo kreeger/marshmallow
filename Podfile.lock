@@ -10,6 +10,10 @@ PODS:
   - MagicalRecord (2.1)
   - Masonry (0.0.3)
   - ObjectiveSugar (0.6.2)
+  - PHFComposeBarView (1.1.1):
+    - PHFDelegateChain (~> 1.0)
+  - PHFDelegateChain (1.0.1)
+  - Reveal-iOS-SDK (0.8.3)
   - SBJson (3.2)
   - ViewDeck (2.2.11)
 
@@ -23,6 +27,8 @@ DEPENDENCIES:
   - MagicalRecord (~> 2.1)
   - Masonry
   - ObjectiveSugar (~> 0.6.2)
+  - PHFComposeBarView (~> 1.1.1)
+  - Reveal-iOS-SDK
   - ViewDeck (~> 2.2.11)
 
 EXTERNAL SOURCES:
@@ -43,7 +49,10 @@ SPEC CHECKSUMS:
   MagicalRecord: 64e7184c240087a45e9588a722eaf05b0ad837f7
   Masonry: 5b49e4bb4c059aadb00deb1fef8e1af42afa42d8
   ObjectiveSugar: 50bcd329b18ab6da6457e1bf55be71acb7c39d44
+  PHFComposeBarView: 510e96ec021f762ac00c407313a3b79dc409c213
+  PHFDelegateChain: 2c80836ba0c1b2ca4b5e6d3fa241343465e0eb70
+  Reveal-iOS-SDK: 0d58ea01260eb109b924a09631d9cc8dd96e12c4
   SBJson: e60b4dc22448c2ae1e754b523a4ab53408e85c8d
   ViewDeck: b5eddc8559b0e47259ab7addbf2de6768061f139
 
-COCOAPODS: 0.22.3
+COCOAPODS: 0.23.0

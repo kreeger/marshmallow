@@ -3,7 +3,6 @@
 #import "BDKLoginViewController.h"
 #import "BDKRoomsViewController.h"
 
-#import "BDKMarshmallowAppearance.h"
 #import "BDKAPIKeyManager.h"
 #import "BDKConstants.h"
 #import "IFBKAccountsManager.h"
@@ -42,8 +41,6 @@
     [self kickstartUserDefaults];
     [self configureLogging];
     [self configureAccountsManager];
-
-    [BDKMarshmallowAppearance setApplicationAppearance];
 
     // check if the user is logged in first
     if (self.accountsManager.isLoggedIn) {

@@ -3,12 +3,14 @@
 #import "IFBKRoomManager.h"
 #import "IFBKMessageSet.h"
 
-#import "BDKMessageCell.h"
-#import "BDKTableHeaderView.h"
-
 #import "IFBKCFRoom.h"
 #import "IFBKCFMessage.h"
 #import "IFBKUser.h"
+
+#import "BDKMessageCell.h"
+#import "BDKTimestampCell.h"
+#import "BDKDevelopmentCell.h"
+#import "BDKUserReusableView.h"
 
 #import <IFBKThirtySeven/IFBKCampfireClient.h>
 #import <BDKGeometry/BDKGeometry.h>
@@ -32,6 +34,14 @@
  *  @returns An approximated float value.
  */
 - (CGFloat)cellHeightForMessage:(IFBKCFMessage *)message;
+
+/**
+ Common logic for determining whether or not to show a header view at a given section.
+ 
+ @param section The section to be used in the lookup.
+ @return If a user is to be shown for a section, this returns the user. Otherwise, nil.
+ */
+- (IFBKUser *)userForSection:(NSInteger)section;
 
 @end
 
@@ -76,7 +86,13 @@
 }
 
 - (void)registerCellTypes {
-    [self.collectionView registerClass:[BDKMessageCell class] forCellWithReuseIdentifier:kBDKMessageCellID];
+    [self.collectionView registerClass:[BDKMessageCell class] forCellWithReuseIdentifier:BDKMessageCellID];
+    [self.collectionView registerClass:[BDKTimestampCell class] forCellWithReuseIdentifier:BDKTimestampCellID];
+    [self.collectionView registerClass:[BDKDevelopmentCell class] forCellWithReuseIdentifier:BDKDevelopmentCellID];
+    
+    [self.collectionView registerClass:[BDKUserReusableView class]
+            forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                   withReuseIdentifier:BDKUserResuableViewID];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -105,18 +121,26 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Methods
+#pragma mark - Private methods
 
 - (CGFloat)cellHeightForMessage:(IFBKCFMessage *)message {
     if ([message.body isNull]) return 30;
     
-    UIFont *font;
-    if ([NSUserDefaults deviceIsiOS7]) font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    else font = [UIFont appFontOfSize:15];
-    CGSize size = [message.body sizeWithFont:font constrainedToSize:CGSizeMake(300, CGFLOAT_MAX)
-                               lineBreakMode:NSLineBreakByWordWrapping];
-    DDLogUI(@"Generated size %@.", NSStringFromCGSize(size));
-    return 30 + size.height;
+    CGRect rect = [message.body boundingRectWithSize:CGSizeMake(250, CGFLOAT_MAX)
+                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                          attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]}
+                                             context:nil];
+    DDLogUI(@"Generated size %@.", NSStringFromCGRect(rect));
+    return 30 + rect.size.height;
+}
+
+- (IFBKUser *)userForSection:(NSInteger)section {
+    IFBKCFMessage *firstMessage = [self.roomManager messageAtSection:section row:0];
+    if (firstMessage.messageType != IFBKMessageTypeText) {
+        return nil;
+    }
+    
+    return [self.roomManager userForSection:section];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -129,14 +153,44 @@
     return [[self.roomManager messagesForSection:section] count];
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//    return [[self.roomManager userForSection:section] name];
-//}
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+           viewForSupplementaryElementOfKind:(NSString *)kind
+                                 atIndexPath:(NSIndexPath *)indexPath {
+    IFBKUser *user = [self userForSection:indexPath.section];
+    if (!user) {
+        return nil;
+    }
+    
+    BDKUserReusableView *userView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                                       withReuseIdentifier:BDKUserResuableViewID
+                                                                              forIndexPath:indexPath];
+    [userView setUserName:user.name];
+    return userView;
+}
 
-- (BDKMessageCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    BDKMessageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kBDKMessageCellID forIndexPath:indexPath];
-    cell.message = [self.roomManager messageAtSection:indexPath.section row:indexPath.row];
-    return cell;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [[self.roomManager userForSection:section] name];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    IFBKCFMessage *message = [self.roomManager messageAtSection:indexPath.section row:indexPath.row];
+    switch (message.messageType) {
+        case IFBKMessageTypeText: {
+            BDKMessageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKMessageCellID forIndexPath:indexPath];
+            [cell setMessageText:message.body timestampText:message.createdAtDisplay];
+            return cell;
+        }
+        case IFBKMessageTypeTimestamp: {
+            BDKTimestampCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKTimestampCellID forIndexPath:indexPath];
+            [cell setTimestampText:message.createdAtDisplay];
+            return cell;
+        }
+        default: {
+            BDKDevelopmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKDevelopmentCellID forIndexPath:indexPath];
+            [cell setBodyText:[message description]];
+            return cell;
+        }
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -144,6 +198,13 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     IFBKCFMessage *message = [self.roomManager messageAtSection:indexPath.section row:indexPath.row];
     return CGSizeMake(320, [self cellHeightForMessage:message]);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+    referenceSizeForHeaderInSection:(NSInteger)section {
+    IFBKUser *user = [self userForSection:section];
+    return user ? CGSizeMake(320, 24) : CGSizeZero;
 }
 
 #pragma mark - UICollectionViewDelegate

@@ -3,10 +3,6 @@
 
 @implementation NSUserDefaults (App)
 
-+ (BOOL)deviceIsiOS7 {
-    return [[self standardUserDefaults] boolForKey:kBDKDefaultsDeviceIsiOS7];
-}
-
 + (BOOL)deviceIs4Inch {
     return [[self standardUserDefaults] boolForKey:kBDKDefaultsDeviceIs4Inch];
 }
