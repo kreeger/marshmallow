@@ -59,8 +59,10 @@
                                                            authorizationToken:_user.apiAuthToken];
         __weak IFBKRoomManager *unretainedSelf = self;
         [_streamingClient setMessageReceivedBlock:^(IFBKCFMessage *message) {
-            [unretainedSelf.messages addMessage:message];
-            if (unretainedSelf.didReceiveMessageBlock) unretainedSelf.didReceiveMessageBlock(message);
+            BOOL result = [unretainedSelf.messages addMessage:message];
+            if (result && unretainedSelf.didReceiveMessageBlock) {
+                unretainedSelf.didReceiveMessageBlock(message);
+            }
         }];
 
         // Initialize our regular API client.
@@ -77,8 +79,10 @@
     _didReceiveMessageBlock = didReceiveMessageBlock;
     __weak IFBKRoomManager *unretainedSelf = self;
     [self.streamingClient setMessageReceivedBlock:^(IFBKCFMessage *message) {
-        [unretainedSelf.messages addMessage:message];
-        unretainedSelf.didReceiveMessageBlock(message);
+        BOOL result = [unretainedSelf.messages addMessage:message];
+        if (result) {
+            unretainedSelf.didReceiveMessageBlock(message);
+        }
     }];
 }
 
@@ -112,7 +116,7 @@
                 
                 NSMutableArray *users = [NSMutableArray array];
                 [result enumerateObjectsUsingBlock:^(IFBKCFMessage *message, NSUInteger idx, BOOL *stop) {
-                    [self.messages addMessage:message];
+                    if (![self.messages addMessage:message]) return;
                     if (![(NSNull *)message.userIdentifier isEqual:[NSNull null]] &&
                         ![users containsObject:message.userIdentifier]) {
                         [users addObject:message.userIdentifier];

@@ -39,9 +39,14 @@
 
 #pragma mark - Public methods
 
-- (void)addMessage:(IFBKCFMessage *)message {
+- (BOOL)addMessage:(IFBKCFMessage *)message {
+    
+    // TODO: Make this user-configurable.
+    if (message.messageType == IFBKMessageTypeTimestamp) {
+        return NO;
+    }
+    
     // If most recent key (user) is the same as this message's sender, then add this message to the key's array value.
-    // TODO: guard against -[NSNull stringValue]: unrecognized selector sent to instance
     NSNumber *identifier = [(NSNull *)message.userIdentifier isEqual:[NSNull null]] ? @0 : message.userIdentifier;
     if ([[identifier stringValue] isEqualToString:self.mostRecentUserId] &&
         [message.type isEqualToString:self.mostRecentMessageType]) {
@@ -51,6 +56,8 @@
         // at the beginning of it.
         [self addEntriesFromDictionary:@{[self keyStringForMessage:message]: [NSMutableArray arrayWithArray:@[message]]}];
     }
+    
+    return YES;
 }
 
 - (IFBKCFMessage *)messageAtSection:(NSInteger)section row:(NSInteger)row {

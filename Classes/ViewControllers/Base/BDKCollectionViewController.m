@@ -48,6 +48,8 @@
 - (UICollectionViewFlowLayout *)flowLayout {
     if (_flowLayout) return _flowLayout;
     _flowLayout = [UICollectionViewFlowLayout new];
+    _flowLayout.minimumInteritemSpacing = 0;
+    _flowLayout.minimumLineSpacing = 0;
     return _flowLayout;
 }
 

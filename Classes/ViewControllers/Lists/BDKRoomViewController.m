@@ -99,11 +99,11 @@
     [super viewDidAppear:animated];
 
     // TODO: Don't join if room is already "joined" to.
-    [self.roomManager joinRoom:^{
-        DDLogAPI(@"Room joined.");
-    } failure:^(NSError *error) {
-        DDLogWarn(@"Failed to join room. %@.", error);
-    }];
+//    [self.roomManager joinRoom:^{
+//        DDLogAPI(@"Room joined.");
+//    } failure:^(NSError *error) {
+//        DDLogWarn(@"Failed to join room. %@.", error);
+//    }];
     
     [self.roomManager startStreamingMessages:^{
         DDLogAPI(@"Began streaming.");

@@ -21,8 +21,9 @@
  Files away an incoming API message under the most recent key if it matches the sender or a new key if it doesn't.
  
  @param message The API message to store.
+ @return If message was successfully added, `YES`. Otherwise, `NO`.
  */
-- (void)addMessage:(IFBKCFMessage *)message;
+- (BOOL)addMessage:(IFBKCFMessage *)message;
 
 /**
  Gets a message for a given section and row - in other words, an `NSIndexPath`. This is pulled into section/row

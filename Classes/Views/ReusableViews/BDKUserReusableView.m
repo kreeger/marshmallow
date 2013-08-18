@@ -112,7 +112,7 @@ NSString * const BDKUserResuableViewID = @"BDKUserResuableView";
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
         [self.imageProgressView removeFromSuperview];
-        UIImage *image = [UIImage imageWithData:responseObject];
+        UIImage *image = [UIImage imageWithData:responseObject scale:[[UIScreen mainScreen] scale]];
         self.userImageView.image = image;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.imageProgressView removeFromSuperview];
