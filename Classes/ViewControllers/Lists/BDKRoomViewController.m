@@ -165,6 +165,7 @@
                                                                        withReuseIdentifier:BDKUserResuableViewID
                                                                               forIndexPath:indexPath];
     [userView setUserName:user.name];
+    [userView setAvatarURL:user.avatarUrlValue];
     return userView;
 }
 

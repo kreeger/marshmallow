@@ -1,10 +1,13 @@
 #import "BDKUserReusableView.h"
 
 #import <Masonry/Masonry.h>
+#import <AFNetworking/AFNetworking.h>
 
 NSString * const BDKUserResuableViewID = @"BDKUserResuableView";
 
 @interface BDKUserReusableView ()
+
+@property (strong, nonatomic) UIActivityIndicatorView *imageProgressView;
 
 /**
  Common view layout and initialization instructions.
@@ -16,6 +19,7 @@ NSString * const BDKUserResuableViewID = @"BDKUserResuableView";
 @implementation BDKUserReusableView
 
 @synthesize userLabel = _userLabel;
+@synthesize userImageView = _userImageView;
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -40,10 +44,19 @@ NSString * const BDKUserResuableViewID = @"BDKUserResuableView";
 
 - (void)setup {
     self.backgroundColor = [UIColor darkGrayColor];
+    [self addSubview:self.userImageView];
     [self addSubview:self.userLabel];
-    [self.userLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self);
+    
+    [self.userImageView makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self).offset(10);
+        make.width.equalTo(@40);
+        make.height.equalTo(@40);
+        make.centerY.equalTo(self);
+    }];
+    
+    [self.userLabel makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self);
+        make.leading.equalTo(self.userImageView.trailing).offset(10);
         make.trailing.equalTo(self).offset(-10);
         make.top.equalTo(self);
     }];
@@ -67,10 +80,46 @@ NSString * const BDKUserResuableViewID = @"BDKUserResuableView";
     return _userLabel;
 }
 
+- (UIImageView *)userImageView {
+    if (_userImageView) return _userImageView;
+    _userImageView = [UIImageView new];
+    _userImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    _userImageView.backgroundColor = [UIColor whiteColor];
+    _userImageView.contentMode = UIViewContentModeScaleAspectFill;
+    return _userImageView;
+}
+
+- (UIActivityIndicatorView *)imageProgressView {
+    if (_imageProgressView) return _imageProgressView;
+    _imageProgressView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _imageProgressView.backgroundColor = [UIColor clearColor];
+    return _imageProgressView;
+}
+
 #pragma mark - Public methods
 
 - (void)setUserName:(NSString *)userName {
     self.userLabel.text = userName;
+}
+
+- (void)setAvatarURL:(NSURL *)avatarURL {
+    [self.userImageView addSubview:self.imageProgressView];
+    [self.imageProgressView makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.imageProgressView.superview);
+    }];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:avatarURL cachePolicy:NSURLCacheStorageAllowed timeoutInterval:0];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
+        [self.imageProgressView removeFromSuperview];
+        UIImage *image = [UIImage imageWithData:responseObject];
+        self.userImageView.image = image;
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self.imageProgressView removeFromSuperview];
+        self.userImageView.backgroundColor = [UIColor redColor];
+    }];
+    
+    [operation start];
 }
 
 @end

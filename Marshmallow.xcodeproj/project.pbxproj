@@ -24,7 +24,6 @@
 		C3A74505177120E600168C01 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E9177120E600168C01 /* CoreData.framework */; };
 		C3A745F41771220800168C01 /* BDKAPIKeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745891771220800168C01 /* BDKAPIKeyManager.m */; };
 		C3A745F61771220800168C01 /* UIFont+App.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A7458E1771220800168C01 /* UIFont+App.m */; };
-		C3A745F71771220800168C01 /* UINavigationController+BDKKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745901771220800168C01 /* UINavigationController+BDKKit.m */; };
 		C3A745F81771220800168C01 /* BDKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745931771220800168C01 /* BDKAppDelegate.m */; };
 		C3A745F91771220800168C01 /* BDKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745961771220800168C01 /* BDKLog.m */; };
 		C3A745FB1771220800168C01 /* IFBKOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A7459C1771220800168C01 /* IFBKOrderedDictionary.m */; };
@@ -110,8 +109,6 @@
 		C3A745891771220800168C01 /* BDKAPIKeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKAPIKeyManager.m; sourceTree = "<group>"; };
 		C3A7458D1771220800168C01 /* UIFont+App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+App.h"; sourceTree = "<group>"; };
 		C3A7458E1771220800168C01 /* UIFont+App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+App.m"; sourceTree = "<group>"; };
-		C3A7458F1771220800168C01 /* UINavigationController+BDKKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BDKKit.h"; sourceTree = "<group>"; };
-		C3A745901771220800168C01 /* UINavigationController+BDKKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+BDKKit.m"; sourceTree = "<group>"; };
 		C3A745921771220800168C01 /* BDKAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKAppDelegate.h; sourceTree = "<group>"; };
 		C3A745931771220800168C01 /* BDKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKAppDelegate.m; sourceTree = "<group>"; };
 		C3A745941771220800168C01 /* BDKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKConstants.h; sourceTree = "<group>"; };
@@ -299,8 +296,6 @@
 				C301AE6917A4701600EDDDCB /* NSUserDefaults+App.m */,
 				C3A7458D1771220800168C01 /* UIFont+App.h */,
 				C3A7458E1771220800168C01 /* UIFont+App.m */,
-				C3A7458F1771220800168C01 /* UINavigationController+BDKKit.h */,
-				C3A745901771220800168C01 /* UINavigationController+BDKKit.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -669,7 +664,6 @@
 			files = (
 				C37B373917B82F950067F2BD /* BDKUserReusableView.m in Sources */,
 				C3A746011771220800168C01 /* IFBKUser.m in Sources */,
-				C3A745F71771220800168C01 /* UINavigationController+BDKKit.m in Sources */,
 				C3A746081771220800168C01 /* IFBKRoomManager.m in Sources */,
 				C3A745FD1771220800168C01 /* IFBKAccount.m in Sources */,
 				C3A746021771220800168C01 /* _IFBKAccount.m in Sources */,

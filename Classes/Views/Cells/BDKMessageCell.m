@@ -48,7 +48,6 @@ NSString * const BDKMessageCellID = @"BDKMessageCell";
 }
 
 - (void)setup {
-    [self.contentView addBorderWithColor:[UIColor grayColor] width:1];
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
@@ -69,6 +68,18 @@ NSString * const BDKMessageCellID = @"BDKMessageCell";
         make.trailing.equalTo(self.contentView).offset(-10);
         make.top.equalTo(self.contentView).offset(10);
         make.bottom.equalTo(self.contentView).offset(-10);
+    }];
+    
+    UIView *line = [UIView new];
+    line.backgroundColor = [UIColor lightGrayColor];
+    line.userInteractionEnabled = NO;
+    [self.contentView addSubview:line];
+    
+    [line makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@1);
+        make.trailing.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView).offset(-1);
+        make.leading.equalTo(self.bodyLabel);
     }];
 }
 
