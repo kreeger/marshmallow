@@ -7,4 +7,6 @@
 + (UIFont *)italicAppFontOfSize:(CGFloat)size;
 + (UIFont *)appFontOfSize:(CGFloat)size;
 
++ (UIFont *)monospaceFontOfSize:(CGFloat)size;
+
 @end

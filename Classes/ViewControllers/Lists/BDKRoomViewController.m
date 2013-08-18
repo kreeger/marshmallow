@@ -8,6 +8,7 @@
 #import "IFBKUser.h"
 
 #import "BDKMessageCell.h"
+#import "BDKEnterKickCell.h"
 #import "BDKTimestampCell.h"
 #import "BDKTextLabelCell.h"
 #import "BDKUserReusableView.h"
@@ -86,9 +87,10 @@
 }
 
 - (void)registerCellTypes {
+    [self.collectionView registerClass:[BDKEnterKickCell class] forCellWithReuseIdentifier:BDKEnterKickCellID];
     [self.collectionView registerClass:[BDKMessageCell class] forCellWithReuseIdentifier:BDKMessageCellID];
-    [self.collectionView registerClass:[BDKTimestampCell class] forCellWithReuseIdentifier:BDKTimestampCellID];
     [self.collectionView registerClass:[BDKTextLabelCell class] forCellWithReuseIdentifier:BDKTextLabelCellID];
+    [self.collectionView registerClass:[BDKTimestampCell class] forCellWithReuseIdentifier:BDKTimestampCellID];
     
     [self.collectionView registerClass:[BDKUserReusableView class]
             forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
@@ -176,9 +178,11 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     IFBKCFMessage *message = [self.roomManager messageAtSection:indexPath.section row:indexPath.row];
     switch (message.messageType) {
-        case IFBKMessageTypeText: {
+        case IFBKMessageTypeText:
+        case IFBKMessageTypePaste: {
             BDKMessageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKMessageCellID forIndexPath:indexPath];
-            [cell setMessageText:message.body timestampText:message.createdAtDisplay];
+            [cell setMessage:message.body timestamp:message.createdAtDisplay];
+            cell.paste = message.messageType == IFBKMessageTypePaste;
             return cell;
         }
         case IFBKMessageTypeTimestamp: {
@@ -186,16 +190,11 @@
             [cell setTimestampText:message.createdAtDisplay];
             return cell;
         }
+        case IFBKMessageTypeKick:
         case IFBKMessageTypeEnter: {
-            BDKTextLabelCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKTextLabelCellID forIndexPath:indexPath];
+            BDKEnterKickCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKEnterKickCellID forIndexPath:indexPath];
             IFBKUser *user = [self.roomManager userForSection:indexPath.section];
-            [cell setBodyText:[NSString stringWithFormat:@"%@ joined", user.name]];
-            return cell;
-        }
-        case IFBKMessageTypeKick: {
-            BDKTextLabelCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKTextLabelCellID forIndexPath:indexPath];
-            IFBKUser *user = [self.roomManager userForSection:indexPath.section];
-            [cell setBodyText:[NSString stringWithFormat:@"%@ left", user.name]];
+            [cell setUsername:user.name timestamp:message.createdAtDisplay isEntering:(message.messageType == IFBKMessageTypeEnter)];
             return cell;
         }
         default: {

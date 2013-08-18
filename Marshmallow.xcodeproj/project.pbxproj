@@ -11,6 +11,8 @@
 		977A83DA44BF4856B496D110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D32A25C95D4495DB5765976 /* libPods.a */; };
 		C301AE6717A46EF400EDDDCB /* BDKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C301AE6617A46EF400EDDDCB /* BDKConstants.m */; };
 		C301AE6A17A4701600EDDDCB /* NSUserDefaults+App.m in Sources */ = {isa = PBXBuildFile; fileRef = C301AE6917A4701600EDDDCB /* NSUserDefaults+App.m */; };
+		C379B29317C145B40045A05D /* BDKEnterKickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C379B29217C145B40045A05D /* BDKEnterKickCell.m */; };
+		C379B29617C1487E0045A05D /* BDKRoomEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C379B29517C1487E0045A05D /* BDKRoomEventCell.m */; };
 		C37B373917B82F950067F2BD /* BDKUserReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373817B82F950067F2BD /* BDKUserReusableView.m */; };
 		C37B373C17B834F30067F2BD /* BDKTimestampCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373B17B834F30067F2BD /* BDKTimestampCell.m */; };
 		C37B373F17B838720067F2BD /* BDKTextLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373E17B838720067F2BD /* BDKTextLabelCell.m */; };
@@ -92,6 +94,10 @@
 		C301AE6617A46EF400EDDDCB /* BDKConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKConstants.m; sourceTree = "<group>"; };
 		C301AE6817A4701600EDDDCB /* NSUserDefaults+App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+App.h"; sourceTree = "<group>"; };
 		C301AE6917A4701600EDDDCB /* NSUserDefaults+App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+App.m"; sourceTree = "<group>"; };
+		C379B29117C145B40045A05D /* BDKEnterKickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKEnterKickCell.h; sourceTree = "<group>"; };
+		C379B29217C145B40045A05D /* BDKEnterKickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKEnterKickCell.m; sourceTree = "<group>"; };
+		C379B29417C1487E0045A05D /* BDKRoomEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoomEventCell.h; sourceTree = "<group>"; };
+		C379B29517C1487E0045A05D /* BDKRoomEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomEventCell.m; sourceTree = "<group>"; };
 		C37B373717B82F950067F2BD /* BDKUserReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKUserReusableView.h; sourceTree = "<group>"; };
 		C37B373817B82F950067F2BD /* BDKUserReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUserReusableView.m; sourceTree = "<group>"; };
 		C37B373A17B834F30067F2BD /* BDKTimestampCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTimestampCell.h; sourceTree = "<group>"; };
@@ -430,14 +436,18 @@
 		C3A745D61771220800168C01 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				C37B373D17B838720067F2BD /* BDKTextLabelCell.h */,
-				C37B373E17B838720067F2BD /* BDKTextLabelCell.m */,
+				C379B29117C145B40045A05D /* BDKEnterKickCell.h */,
+				C379B29217C145B40045A05D /* BDKEnterKickCell.m */,
 				C3A745D71771220800168C01 /* BDKMessageCell.h */,
 				C3A745D81771220800168C01 /* BDKMessageCell.m */,
 				C3A745D91771220800168C01 /* BDKRoomCollectionCell.h */,
 				C3A745DA1771220800168C01 /* BDKRoomCollectionCell.m */,
+				C379B29417C1487E0045A05D /* BDKRoomEventCell.h */,
+				C379B29517C1487E0045A05D /* BDKRoomEventCell.m */,
 				C3A745DB1771220800168C01 /* BDKTextFieldCell.h */,
 				C3A745DC1771220800168C01 /* BDKTextFieldCell.m */,
+				C37B373D17B838720067F2BD /* BDKTextLabelCell.h */,
+				C37B373E17B838720067F2BD /* BDKTextLabelCell.m */,
 				C37B373A17B834F30067F2BD /* BDKTimestampCell.h */,
 				C37B373B17B834F30067F2BD /* BDKTimestampCell.m */,
 			);
@@ -689,9 +699,11 @@
 				C3A746161771220800168C01 /* BDKTextFieldCell.m in Sources */,
 				C3A745F61771220800168C01 /* UIFont+App.m in Sources */,
 				C3A746101771220800168C01 /* BDKRoomViewController.m in Sources */,
+				C379B29317C145B40045A05D /* BDKEnterKickCell.m in Sources */,
 				C3A746071771220800168C01 /* IFBKMessageSet.m in Sources */,
 				C3A7460B1771220800168C01 /* BDKCollectionViewController.m in Sources */,
 				C3A745FF1771220800168C01 /* IFBKModel.m in Sources */,
+				C379B29617C1487E0045A05D /* BDKRoomEventCell.m in Sources */,
 				C3A7460D1771220800168C01 /* BDKViewController.m in Sources */,
 				C3A746051771220800168C01 /* _IFBKUser.m in Sources */,
 				C37B373F17B838720067F2BD /* BDKTextLabelCell.m in Sources */,

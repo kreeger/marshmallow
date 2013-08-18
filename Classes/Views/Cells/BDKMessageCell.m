@@ -1,59 +1,21 @@
 #import "BDKMessageCell.h"
 #import "BDKCellBackground.h"
 
-#import <QuartzCore/QuartzCore.h>
-#import <IFBKThirtySeven/IFBKCFMessage.h>
-#import <BDKGeometry/BDKGeometry.h>
-#import <BDKKit/NSObject+BDKKit.h>
-#import <BDKKit/UIView+BDKKit.h>
 #import <Masonry/Masonry.h>
 
 #import "UIFont+App.h"
-#import "NSUserDefaults+App.h"
 
 NSString * const BDKMessageCellID = @"BDKMessageCell";
 
-@interface BDKMessageCell ()
-
-/**
- Common cell layout and initialization instructions.
- */
-- (void)setup;
-
-@end
-
 @implementation BDKMessageCell
 
-@synthesize bodyLabel = _bodyLabel, timestampLabel = _timestampLabel;
-
-- (instancetype)init {
-    if (self = [super init]) {
-        [self setup];
-    }
-    return self;
-}
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super initWithCoder:aDecoder]) {
-        [self setup];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self setup];
-    }
-    return self;
-}
+@synthesize bodyLabel = _bodyLabel;
 
 - (void)setup {
-    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self);
-    }];
+    [super setup];
     
-    [self.contentView addSubview:self.timestampLabel];
+    self.paste = NO;
+    
     [self.contentView addSubview:self.bodyLabel];
 
     [self.timestampLabel makeConstraints:^(MASConstraintMaker *make) {
@@ -88,6 +50,7 @@ NSString * const BDKMessageCellID = @"BDKMessageCell";
 
     self.bodyLabel.text = nil;
     self.timestampLabel.text = nil;
+    self.paste = NO;
 }
 
 #pragma mark - Properties
@@ -104,22 +67,20 @@ NSString * const BDKMessageCellID = @"BDKMessageCell";
     return _bodyLabel;
 }
 
-- (UILabel *)timestampLabel {
-    if (_timestampLabel) return _timestampLabel;
-    _timestampLabel = [UILabel new];
-    _timestampLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _timestampLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2];
-    _timestampLabel.textAlignment = NSTextAlignmentLeft;
-    _timestampLabel.backgroundColor = [UIColor clearColor];
-    return _timestampLabel;
-}
-
 #pragma mark - Methods
 
-- (void)setMessageText:(NSString *)messageText timestampText:(NSString *)timestampText {
-    self.bodyLabel.text = messageText;
-    self.timestampLabel.text = timestampText;
+- (void)setMessage:(NSString *)message timestamp:(NSString *)timestamp {
+    self.bodyLabel.text = message;
+    self.timestampLabel.text = timestamp;
     [self invalidateIntrinsicContentSize];
+}
+
+- (void)setPaste:(BOOL)paste {
+    if (paste) {
+        self.bodyLabel.font = [UIFont monospaceFontOfSize:13];
+    } else {
+        self.bodyLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    }
 }
 
 @end

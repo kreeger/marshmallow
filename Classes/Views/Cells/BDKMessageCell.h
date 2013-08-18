@@ -1,21 +1,28 @@
-#import <UIKit/UIKit.h>
+#import "BDKRoomEventCell.h"
 
 extern NSString * const BDKMessageCellID;
 
 /**
  A collection view cell intended to represent a message in a room.
  */
-@interface BDKMessageCell : UICollectionViewCell
+@interface BDKMessageCell : BDKRoomEventCell
 
+/**
+ Displays the body of the message.
+ */
 @property (readonly) UILabel *bodyLabel;
-@property (readonly) UILabel *timestampLabel;
+
+/**
+ If `YES`, the message is a paste.
+ */
+@property (nonatomic, getter = isPaste) BOOL paste;
 
 /**
  Handles setting the internal message text of bodyLabel.
  
- @param messageText The text of the message to use.
- @param timestampText The text to use for the timestamp.
+ @param message The text of the message to use.
+ @param timestamp The text to use for the timestamp.
  */
-- (void)setMessageText:(NSString *)messageText timestampText:(NSString *)timestampText;
+- (void)setMessage:(NSString *)message timestamp:(NSString *)timestamp;
 
 @end
