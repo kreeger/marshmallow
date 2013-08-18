@@ -40,7 +40,7 @@ NSString * const BDKRoomEventCellID = @"BDKRoomEventCell";
     [self.timestampLabel makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(10);
         make.width.equalTo(@60);
-        make.leading.equalTo(self.contentView).offset(10);
+        make.leading.equalTo(self.contentView).offset(5);
     }];
 }
 
@@ -61,7 +61,7 @@ NSString * const BDKRoomEventCellID = @"BDKRoomEventCell";
     _timestampLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _timestampLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2];
     _timestampLabel.textColor = [UIColor lightGrayColor];
-    _timestampLabel.textAlignment = NSTextAlignmentLeft;
+    _timestampLabel.textAlignment = NSTextAlignmentRight;
     _timestampLabel.backgroundColor = [UIColor clearColor];
     return _timestampLabel;
 }

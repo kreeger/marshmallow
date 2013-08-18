@@ -17,16 +17,8 @@ NSString * const BDKMessageCellID = @"BDKMessageCell";
     self.paste = NO;
     
     [self.contentView addSubview:self.bodyLabel];
-
-    [self.timestampLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(10);
-        make.width.equalTo(@60);
-        make.leading.equalTo(self.contentView).offset(10);
-        make.baseline.equalTo(self.bodyLabel);
-    }];
-    
     [self.bodyLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.timestampLabel.trailing);
+        make.leading.equalTo(self.timestampLabel.trailing).offset(10);
         make.trailing.equalTo(self.contentView).offset(-10);
         make.top.equalTo(self.contentView).offset(10);
         make.bottom.equalTo(self.contentView).offset(-10);

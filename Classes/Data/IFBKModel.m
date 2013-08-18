@@ -24,7 +24,10 @@
 
 + (id)createOrUpdateWithModel:(IFBKCFModel *)model inContext:(NSManagedObjectContext *)context
 {
-    if (!context) context = [NSManagedObjectContext defaultContext];
+    if (!context) {
+        context = [NSManagedObjectContext defaultContext];
+    }
+    
     NSNumber *apiIdentifier = [model valueForKeyPath:@"identifier"];
     IFBKModel *found = [self findFirstByAttribute:@"identifier" withValue:apiIdentifier inContext:context];
     if (found) {

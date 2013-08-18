@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>6318E0D7-54C3-4EE8-94FB-2030FC6F3927</string>
 	<key>IDESourceControlProjectName</key>
@@ -12,6 +14,8 @@
 		<string>file:///Users/bkreeger/Library/Caches/CocoaPods/GitHub/6b32e1cb1d66f3fa9b1ff93f5ceef7f8aa33a191/</string>
 		<key>528231AB-93E0-44AD-B7E0-35E5A0B4F82F</key>
 		<string>ssh://github.com/kreeger/BDKGeometry.git</string>
+		<key>6D8E4A49-EB57-479F-9C38-7362EA9DEA24</key>
+		<string>ssh://github.com/kreeger/AGMedallionView.git</string>
 		<key>9768EDED-F52B-4DB9-8FA6-6C238C9EE32A</key>
 		<string>ssh://github.com/kreeger/IFBKThirtySeven.git</string>
 		<key>CFDC297C-807E-4501-B455-79447E2FA846</key>
@@ -27,6 +31,8 @@
 		<string>../Pods/BDKKit</string>
 		<key>528231AB-93E0-44AD-B7E0-35E5A0B4F82F</key>
 		<string>../../BDKGeometry</string>
+		<key>6D8E4A49-EB57-479F-9C38-7362EA9DEA24</key>
+		<string>../../AGMedallionView</string>
 		<key>9768EDED-F52B-4DB9-8FA6-6C238C9EE32A</key>
 		<string>../../IFBKThirtySeven</string>
 		<key>CFDC297C-807E-4501-B455-79447E2FA846</key>
@@ -35,7 +41,7 @@
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://bitbucket.org/kreeger/marshmallow.git</string>
+	<string>file:///Users/bkreeger/Code/kreeger/marshmallow/Marshmallow.xcworkspace/</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -46,9 +52,25 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>EA38C766-A5D1-4050-94F7-683EDA63F4B3</string>
+			<string>6D8E4A49-EB57-479F-9C38-7362EA9DEA24</string>
 			<key>IDESourceControlWCCName</key>
-			<string>marshmallow</string>
+			<string>AGMedallionView</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CFDC297C-807E-4501-B455-79447E2FA846</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BDKGeometry</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>528231AB-93E0-44AD-B7E0-35E5A0B4F82F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BDKGeometry</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
@@ -70,17 +92,9 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>CFDC297C-807E-4501-B455-79447E2FA846</string>
+			<string>EA38C766-A5D1-4050-94F7-683EDA63F4B3</string>
 			<key>IDESourceControlWCCName</key>
-			<string>BDKGeometry</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>528231AB-93E0-44AD-B7E0-35E5A0B4F82F</string>
-			<key>IDESourceControlWCCName</key>
-			<string>BDKGeometry</string>
+			<string>marshmallow</string>
 		</dict>
 	</array>
 </dict>

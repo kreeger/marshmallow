@@ -2,6 +2,7 @@
 
 #import <Masonry/Masonry.h>
 #import <AFNetworking/AFNetworking.h>
+#import <AGMedallionView/AGMedallionView.h>
 
 NSString * const BDKUserResuableViewID = @"BDKUserResuableView";
 
@@ -80,11 +81,15 @@ NSString * const BDKUserResuableViewID = @"BDKUserResuableView";
     return _userLabel;
 }
 
-- (UIImageView *)userImageView {
+- (AGMedallionView *)userImageView {
     if (_userImageView) return _userImageView;
-    _userImageView = [UIImageView new];
+    _userImageView = [AGMedallionView new];
     _userImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    _userImageView.backgroundColor = [UIColor whiteColor];
+    _userImageView.imageFillColor = [UIColor whiteColor];
+    _userImageView.borderWidth = 1;
+    _userImageView.borderColor = [UIColor lightGrayColor];
+    _userImageView.shadowBlur = 0;
+    _userImageView.shadowColor = [UIColor clearColor];
     _userImageView.contentMode = UIViewContentModeScaleAspectFill;
     return _userImageView;
 }

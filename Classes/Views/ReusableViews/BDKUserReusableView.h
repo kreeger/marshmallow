@@ -2,6 +2,8 @@
 
 extern NSString * const BDKUserResuableViewID;
 
+@class AGMedallionView;
+
 /**
  Shows the user that sent the messages in a given group.
  */
@@ -15,7 +17,7 @@ extern NSString * const BDKUserResuableViewID;
 /**
  Holds the avatar of the user.
  */
-@property (readonly) UIImageView *userImageView;
+@property (readonly) AGMedallionView *userImageView;
 
 /**
  Sets the user name displayed in the label.

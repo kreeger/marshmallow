@@ -107,7 +107,6 @@
     [self.apiClient getRoomForId:self.room.identifier success:^(IFBKCFRoom *room) {
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
             [room.users enumerateObjectsUsingBlock:^(IFBKCFUser *user, NSUInteger idx, BOOL *stop) {
-                DDLogAPI(@"Pre-creating user %@.", user.name);
                 [IFBKUser createOrUpdateWithModel:user inContext:localContext];
             }];
         } completion:^(BOOL success, NSError *error) {

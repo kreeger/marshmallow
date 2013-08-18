@@ -29,7 +29,7 @@ NSString * const BDKEnterKickCellID = @"BDKEnterKickCell";
     
     [self.contentView addSubview:self.iconView];
     [self.iconView makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.timestampLabel.trailing);
+        make.leading.equalTo(self.timestampLabel.trailing).offset(10);
         make.height.equalTo(@14);
         make.width.equalTo(@14);
         make.centerY.equalTo(self.contentView).offset(2);
