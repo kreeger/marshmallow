@@ -4,7 +4,6 @@
 
 #import <IFBKThirtySeven/IFBKLaunchpadClient.h>
 #import <BDKKit/NSString+BDKKit.h>
-#import <ObjectiveSugar/NSString+ObjectiveSugar.h>
 
 @interface BDKLoginViewController ()
 
@@ -44,7 +43,7 @@
         !self.authWasSubmitted) {
         // Don't know if I like this shitty way of doing things.
         self.authWasSubmitted = YES;
-        NSString *authCode = [request.URL.absoluteString split:@"="][1];
+        NSString *authCode = [request.URL.absoluteString componentsSeparatedByString:@"="][1];
         self.userGotAuthCodeBlock(authCode);
         self.userGotAuthCodeBlock = nil;
         return NO;

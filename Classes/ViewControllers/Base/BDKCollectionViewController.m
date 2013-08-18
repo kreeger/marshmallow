@@ -1,7 +1,7 @@
 #import "BDKCollectionViewController.h"
 
-#import <ObjectiveSugar/NSArray+ObjectiveSugar.h>
 #import <Masonry/Masonry.h>
+#import <BDKKit/NSArray+BDKKit.h>
 
 @implementation BDKCollectionViewController
 

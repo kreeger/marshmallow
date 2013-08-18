@@ -23,7 +23,6 @@
 		C3A74504177120E600168C01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E7177120E600168C01 /* UIKit.framework */; };
 		C3A74505177120E600168C01 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E9177120E600168C01 /* CoreData.framework */; };
 		C3A745F41771220800168C01 /* BDKAPIKeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745891771220800168C01 /* BDKAPIKeyManager.m */; };
-		C3A745F51771220800168C01 /* NSString+BDKKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A7458C1771220800168C01 /* NSString+BDKKit.m */; };
 		C3A745F61771220800168C01 /* UIFont+App.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A7458E1771220800168C01 /* UIFont+App.m */; };
 		C3A745F71771220800168C01 /* UINavigationController+BDKKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745901771220800168C01 /* UINavigationController+BDKKit.m */; };
 		C3A745F81771220800168C01 /* BDKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745931771220800168C01 /* BDKAppDelegate.m */; };
@@ -109,8 +108,6 @@
 		C3A74501177120E600168C01 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C3A745881771220800168C01 /* BDKAPIKeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKAPIKeyManager.h; sourceTree = "<group>"; };
 		C3A745891771220800168C01 /* BDKAPIKeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKAPIKeyManager.m; sourceTree = "<group>"; };
-		C3A7458B1771220800168C01 /* NSString+BDKKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BDKKit.h"; sourceTree = "<group>"; };
-		C3A7458C1771220800168C01 /* NSString+BDKKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BDKKit.m"; sourceTree = "<group>"; };
 		C3A7458D1771220800168C01 /* UIFont+App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+App.h"; sourceTree = "<group>"; };
 		C3A7458E1771220800168C01 /* UIFont+App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+App.m"; sourceTree = "<group>"; };
 		C3A7458F1771220800168C01 /* UINavigationController+BDKKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BDKKit.h"; sourceTree = "<group>"; };
@@ -298,8 +295,6 @@
 		C3A7458A1771220800168C01 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				C3A7458B1771220800168C01 /* NSString+BDKKit.h */,
-				C3A7458C1771220800168C01 /* NSString+BDKKit.m */,
 				C301AE6817A4701600EDDDCB /* NSUserDefaults+App.h */,
 				C301AE6917A4701600EDDDCB /* NSUserDefaults+App.m */,
 				C3A7458D1771220800168C01 /* UIFont+App.h */,
@@ -680,7 +675,6 @@
 				C3A746021771220800168C01 /* _IFBKAccount.m in Sources */,
 				C3A745FE1771220800168C01 /* IFBKLaunchpadAccount.m in Sources */,
 				C3A745FB1771220800168C01 /* IFBKOrderedDictionary.m in Sources */,
-				C3A745F51771220800168C01 /* NSString+BDKKit.m in Sources */,
 				C3A746151771220800168C01 /* BDKRoomCollectionCell.m in Sources */,
 				C3A745F81771220800168C01 /* BDKAppDelegate.m in Sources */,
 				C3A7460A1771220800168C01 /* BDKUserViewController.m in Sources */,
@@ -823,6 +817,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COMPRESS_PNG_FILES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Core/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
@@ -841,6 +836,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COMPRESS_PNG_FILES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Core/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";

@@ -3,8 +3,7 @@ inhibit_all_warnings!
 
 pod 'MagicalRecord', '~> 2.1'
 pod 'CocoaLumberjack', '~> 1.6'
-pod 'ObjectiveSugar', '~> 0.6.2'
-pod 'ViewDeck', '~> 2.2.11'
+# pod 'ObjectiveSugar', '~> 0.6.2'
 pod 'Masonry'
 pod 'BDKGeometry', path: '~/Code/kreeger/BDKGeometry'
 pod 'BDKKit', path: '~/Code/kreeger/BDKKit'
@@ -17,5 +16,5 @@ pod 'IFBKThirtySeven', path: '~/Code/kreeger/IFBKThirtySeven'
 
 target :test, exclusive: true do
   link_with 'MarshmallowTests'
-  pod 'Kiwi'
+  pod 'Kiwi', '~> 2.2'
 end

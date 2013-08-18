@@ -6,16 +6,14 @@ PODS:
   - IFBKThirtySeven (0.0.3):
     - AFNetworking (~> 1.2)
     - SBJson (~> 3.2)
-  - Kiwi (2.0.6)
+  - Kiwi (2.2)
   - MagicalRecord (2.1)
   - Masonry (0.0.3)
-  - ObjectiveSugar (0.6.2)
   - PHFComposeBarView (1.1.1):
     - PHFDelegateChain (~> 1.0)
   - PHFDelegateChain (1.0.1)
   - Reveal-iOS-SDK (0.8.3)
   - SBJson (3.2)
-  - ViewDeck (2.2.11)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3.1)
@@ -23,13 +21,11 @@ DEPENDENCIES:
   - BDKKit (from `~/Code/kreeger/BDKKit`)
   - CocoaLumberjack (~> 1.6)
   - IFBKThirtySeven (from `~/Code/kreeger/IFBKThirtySeven`)
-  - Kiwi
+  - Kiwi (~> 2.2)
   - MagicalRecord (~> 2.1)
   - Masonry
-  - ObjectiveSugar (~> 0.6.2)
   - PHFComposeBarView (~> 1.1.1)
   - Reveal-iOS-SDK
-  - ViewDeck (~> 2.2.11)
 
 EXTERNAL SOURCES:
   BDKGeometry:
@@ -45,14 +41,12 @@ SPEC CHECKSUMS:
   BDKKit: 76056bd1a83e829f8c1fc880a5da2fa73ffd00c7
   CocoaLumberjack: 0f2fa7090a23f13261072d882e017c688300efbe
   IFBKThirtySeven: 3df1fc0a957d9501222d53a56b0bc5bf94ef37a0
-  Kiwi: 56082a80f942de4d10423d8d8a599ab30cf50228
+  Kiwi: db174bba4ee8068b15d7122f1b22fb64b7c1d378
   MagicalRecord: 64e7184c240087a45e9588a722eaf05b0ad837f7
   Masonry: 5b49e4bb4c059aadb00deb1fef8e1af42afa42d8
-  ObjectiveSugar: 50bcd329b18ab6da6457e1bf55be71acb7c39d44
   PHFComposeBarView: 510e96ec021f762ac00c407313a3b79dc409c213
   PHFDelegateChain: 2c80836ba0c1b2ca4b5e6d3fa241343465e0eb70
   Reveal-iOS-SDK: 0d58ea01260eb109b924a09631d9cc8dd96e12c4
   SBJson: e60b4dc22448c2ae1e754b523a4ab53408e85c8d
-  ViewDeck: b5eddc8559b0e47259ab7addbf2de6768061f139
 
 COCOAPODS: 0.23.0
