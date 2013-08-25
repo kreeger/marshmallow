@@ -68,7 +68,7 @@ NSString * const BDKRoomEventCellID = @"BDKRoomEventCell";
 
 - (void)setTime:(NSDate *)time {
     NSDateFormatter *formatter = [NSDateFormatter new];
-    formatter.dateFormat = @"K:mm a";
+    formatter.dateFormat = @"h:mm a";
     self.timestampLabel.text = [formatter stringFromDate:time];
     formatter = nil;
 }
