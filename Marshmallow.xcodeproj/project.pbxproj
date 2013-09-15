@@ -61,6 +61,8 @@
 		C3AA59F717E6429700B1E795 /* IFBKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59F217E6429700B1E795 /* IFBKAccount.m */; };
 		C3AA59F817E6429700B1E795 /* IFBKLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59F417E6429700B1E795 /* IFBKLaunchpadAccount.m */; };
 		C3AA59F917E6429700B1E795 /* IFBKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59F617E6429700B1E795 /* IFBKUser.m */; };
+		C3AA59FC17E6484400B1E795 /* IFBKManagedObject+Finders.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59FB17E6484400B1E795 /* IFBKManagedObject+Finders.m */; };
+		C3AA59FF17E648F700B1E795 /* IFBKCoreDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59FE17E648F700B1E795 /* IFBKCoreDataStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +173,10 @@
 		C3AA59F417E6429700B1E795 /* IFBKLaunchpadAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKLaunchpadAccount.m; sourceTree = "<group>"; };
 		C3AA59F517E6429700B1E795 /* IFBKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKUser.h; sourceTree = "<group>"; };
 		C3AA59F617E6429700B1E795 /* IFBKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKUser.m; sourceTree = "<group>"; };
+		C3AA59FA17E6484400B1E795 /* IFBKManagedObject+Finders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IFBKManagedObject+Finders.h"; sourceTree = "<group>"; };
+		C3AA59FB17E6484400B1E795 /* IFBKManagedObject+Finders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IFBKManagedObject+Finders.m"; sourceTree = "<group>"; };
+		C3AA59FD17E648F700B1E795 /* IFBKCoreDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKCoreDataStore.h; sourceTree = "<group>"; };
+		C3AA59FE17E648F700B1E795 /* IFBKCoreDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKCoreDataStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +288,8 @@
 				C3A7458E1771220800168C01 /* UIFont+App.m */,
 				C3AA59DA17E63BCA00B1E795 /* IFBKCFMessage+DataHelpers.h */,
 				C3AA59DB17E63BCA00B1E795 /* IFBKCFMessage+DataHelpers.m */,
+				C3AA59FA17E6484400B1E795 /* IFBKManagedObject+Finders.h */,
+				C3AA59FB17E6484400B1E795 /* IFBKManagedObject+Finders.m */,
 				C3AA59D417E6395F00B1E795 /* IFBKRoomManager+UIKit.h */,
 				C3AA59D517E6395F00B1E795 /* IFBKRoomManager+UIKit.m */,
 			);
@@ -312,6 +320,8 @@
 			children = (
 				C3AA59F117E6429700B1E795 /* IFBKAccount.h */,
 				C3AA59F217E6429700B1E795 /* IFBKAccount.m */,
+				C3AA59FD17E648F700B1E795 /* IFBKCoreDataStore.h */,
+				C3AA59FE17E648F700B1E795 /* IFBKCoreDataStore.m */,
 				C3AA59F317E6429700B1E795 /* IFBKLaunchpadAccount.h */,
 				C3AA59F417E6429700B1E795 /* IFBKLaunchpadAccount.m */,
 				C3A745A41771220800168C01 /* IFBKManagedObject.h */,
@@ -640,12 +650,14 @@
 				C3A746101771220800168C01 /* BDKRoomViewController.m in Sources */,
 				C379B29317C145B40045A05D /* BDKEnterKickCell.m in Sources */,
 				C3A746071771220800168C01 /* IFBKMessageSet.m in Sources */,
+				C3AA59FC17E6484400B1E795 /* IFBKManagedObject+Finders.m in Sources */,
 				C3A7460B1771220800168C01 /* BDKCollectionViewController.m in Sources */,
 				C3AA59F917E6429700B1E795 /* IFBKUser.m in Sources */,
 				C3A745FF1771220800168C01 /* IFBKManagedObject.m in Sources */,
 				C379B29617C1487E0045A05D /* BDKRoomEventCell.m in Sources */,
 				C3A7460D1771220800168C01 /* BDKViewController.m in Sources */,
 				C37B373F17B838720067F2BD /* BDKTextLabelCell.m in Sources */,
+				C3AA59FF17E648F700B1E795 /* IFBKCoreDataStore.m in Sources */,
 				C3A7460C1771220800168C01 /* BDKTableViewController.m in Sources */,
 				C3A746111771220800168C01 /* BDKCellBackground.m in Sources */,
 				C3AA59D317E634E600B1E795 /* NSDate+Marshmallow.m in Sources */,

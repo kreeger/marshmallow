@@ -17,6 +17,7 @@
 #import <BDKGeometry/BDKGeometry.h>
 #import <BDKKit/UINavigationController+BDKKit.h>
 
+#import "IFBKManagedObject+Finders.h"
 #import "UIFont+App.h"
 
 @interface BDKRoomsViewController ()
@@ -132,7 +133,7 @@
 }
 
 - (void)presentProfileController {
-    IFBKUser *user = [IFBKUser findFirstWithPredicate:[NSPredicate predicateWithFormat:@"launchpadAccount != nil"]];
+    IFBKUser *user = [[IFBKUser findWithPredicate:[NSPredicate predicateWithFormat:@"launchpadAccount != nil"]] firstObject];
     BDKUserViewController *userVC = [BDKUserViewController vcWithIFBKUser:user];
     userVC.modalDismissalBlock = ^{
         [self dismissViewControllerAnimated:YES completion:nil];

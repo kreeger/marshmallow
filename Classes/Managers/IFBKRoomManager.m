@@ -1,6 +1,7 @@
 #import "IFBKRoomManager.h"
 
 #import "IFBKConstants.h"
+#import "IFBKCoreDataStore.h"
 
 #import "IFBKCFUser.h"
 #import "IFBKUser.h"
@@ -11,6 +12,9 @@
 #import <IFBKThirtySeven/IFBKCampfireClient.h>
 #import <IFBKThirtySeven/IFBKCFRoom.h>
 #import <IFBKThirtySeven/IFBKCFMessage.h>
+#import <BDKKit/BDKCoreDataOperation.h>
+
+#import "IFBKManagedObject+Finders.h"
 
 @interface IFBKRoomManager ()
 
@@ -102,33 +106,38 @@
 - (void)loadHistorySinceMessageId:(NSNumber *)messageId
                           success:(void (^)(void))success
                           failure:(void (^)(NSError *))failure {
-    [self.apiClient getRoomForId:self.room.identifier success:^(IFBKCFRoom *room) {
-        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            [room.users enumerateObjectsUsingBlock:^(IFBKCFUser *user, NSUInteger idx, BOOL *stop) {
-                [IFBKUser createOrUpdateWithModel:user inContext:localContext];
-            }];
-        } completion:^(BOOL success, NSError *error) {
-            [self.apiClient getMessagesForRoom:self.room.identifier sinceMessageId:messageId success:^(NSArray *result) {
-                __block IFBKCFMessage *lastMessage = nil;
-                
-                NSMutableArray *users = [NSMutableArray array];
-                [result enumerateObjectsUsingBlock:^(IFBKCFMessage *message, NSUInteger idx, BOOL *stop) {
-                    if (![self.messages addMessage:message]) return;
-                    if (![(NSNull *)message.userIdentifier isEqual:[NSNull null]] &&
-                        ![users containsObject:message.userIdentifier]) {
-                        [users addObject:message.userIdentifier];
-                    }
-                    lastMessage = message;
-                }];
-                
-                [self handleDataForUsers:users];
-                if (self.didReceiveMessageBlock) {
-                    self.didReceiveMessageBlock(lastMessage);
+
+    void (^completionBlock)(BOOL, NSError *) = ^(BOOL success, NSError *error) {
+        [self.apiClient getMessagesForRoom:self.room.identifier sinceMessageId:messageId success:^(NSArray *result) {
+            __block IFBKCFMessage *lastMessage = nil;
+            
+            NSMutableArray *users = [NSMutableArray array];
+            [result enumerateObjectsUsingBlock:^(IFBKCFMessage *message, NSUInteger idx, BOOL *stop) {
+                if (![self.messages addMessage:message]) return;
+                if (![(NSNull *)message.userIdentifier isEqual:[NSNull null]] &&
+                    ![users containsObject:message.userIdentifier]) {
+                    [users addObject:message.userIdentifier];
                 }
-            } failure:^(NSError *error, NSInteger responseCode) {
-                NSLog(@"Encountered error %i getting messages for room. Error: %@", responseCode, error);
+                lastMessage = message;
             }];
+            
+            [self handleDataForUsers:users];
+            if (self.didReceiveMessageBlock) {
+                self.didReceiveMessageBlock(lastMessage);
+            }
+        } failure:^(NSError *error, NSInteger responseCode) {
+            NSLog(@"Encountered error %i getting messages for room. Error: %@", responseCode, error);
         }];
+    };
+    
+    [self.apiClient getRoomForId:self.room.identifier success:^(IFBKCFRoom *room) {
+        [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
+                                               backgroundOperation:^(NSManagedObjectContext *innerContext)
+         {
+             [room.users enumerateObjectsUsingBlock:^(IFBKCFUser *user, NSUInteger idx, BOOL *stop) {
+                 [IFBKUser createOrUpdateWithModel:user inContext:innerContext];
+             }];
+         } completion:completionBlock];
     } failure:^(NSError *error, NSInteger responseCode) {
         NSLog(@"Encountered error %i getting room data. Error: %@", responseCode, error);
     }];
@@ -193,18 +202,19 @@
     
     NSMutableArray *usersToFetch = [NSMutableArray arrayWithCapacity:[users count]];
     [users enumerateObjectsUsingBlock:^(NSNumber *userId, NSUInteger idx, BOOL *stop) {
-        IFBKUser *found = [IFBKUser findFirstByAttribute:@"identifier" withValue:userId];
+        IFBKUser *found = [IFBKUser findByIdentifier:userId inContext:[NSManagedObjectContext defaultContext]];
         if (!found) {
             [usersToFetch addObject:userId];
         }
     }];
 
     void (^databaseHitBlock)(NSArray *) = ^(NSArray *userArray) {
-        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            [userArray enumerateObjectsUsingBlock:^(IFBKCFUser *user, NSUInteger idx, BOOL *stop) {
-                [IFBKUser createOrUpdateWithModel:user inContext:localContext];
-            }];
-        }];
+        [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
+                                               backgroundOperation:^(NSManagedObjectContext *innerContext) {
+                                                   [userArray enumerateObjectsUsingBlock:^(IFBKCFUser *user, NSUInteger idx, BOOL *stop) {
+                                                       [IFBKUser createOrUpdateWithModel:user inContext:innerContext];
+                                                   }];
+                                               } completion:nil];
     };
 
     NSMutableArray *fetched = [NSMutableArray arrayWithCapacity:[usersToFetch count]];

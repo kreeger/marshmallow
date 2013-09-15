@@ -32,48 +32,6 @@
 + (NSFetchRequest *)fetchRequest;
 
 /**
- Convenience method for finding a set of matching objects using a predicate.
- 
- @param predicate The instance of an NSPredicate to use when fetching objects.
- @param context The managed object context in which to search for results.
- @return An array of found objects.
- */
-+ (NSArray *)findWithPredicate:(NSPredicate *)predicate inContext:(NSManagedObjectContext *)context;
-
-/**
- Finds a whole bunch of objects based on a set of identifiers.
- 
- @param identifiers The list of identifiers to use in the predicate.
- @param context The managed object context; can be nil (if so, the default is used).
- @return An array with the resulting models.
- */
-+ (NSArray *)findAllWithIdentifiers:(NSArray *)identifiers inContext:(NSManagedObjectContext *)context;
-
-/**
- Finds a whole bunch of objects based on a set of identifiers.
- 
- @param identifiers The list of identifiers to use in the predicate.
- @param sortedBy The key path to sort by.
- @param ascending If `YES`, sort in order.
- @param context The managed object context; can be nil (if so, the default is used).
- @return An array with the resulting models.
- */
-+ (NSArray *)findAllWithIdentifiers:(NSArray *)identifiers
-                           sortedBy:(NSString *)sortedBy
-                          ascending:(BOOL)ascending
-                          inContext:(NSManagedObjectContext *)context;
-
-/**
- Convenience method for grabbing all objects with a sort parameter.
- 
- @param sortProperty The string of the keypath by which to sort.
- @param flag If YES, the sort operation will be performed in an ascending manner.
- @param context The managed object context in which to search for results.
- @return An array of found objects, sorted.
- */
-+ (NSArray *)findAllSortedBy:(NSString *)sortProperty ascending:(BOOL)flag inContext:(NSManagedObjectContext *)context;
-
-/**
  The main method to call when dealing with a Core Data representation of an API model.
  
  @param model The API model to use in looking up to see if it exists.
