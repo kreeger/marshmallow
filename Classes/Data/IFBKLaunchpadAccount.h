@@ -1,17 +1,24 @@
-#import "_IFBKLaunchpadAccount.h"
+#import "IFBKManagedObject.h"
 
-typedef enum {
+@class IFBKAccount, IFBKUser;
+
+typedef NS_ENUM(NSInteger, IFBKLaunchpadAccountType) {
     IFBKLaunchpadAccountTypeCampfire = 0,
     IFBKLaunchpadAccountTypeBasecamp,
     IFBKLaunchpadAccountTypeBasecampClassic,
     IFBKLaunchpadAccountTypeHighrise,
     IFBKLaunchpadAccountTypeBackpack,
     IFBKLaunchpadAccountTypeUnknown,
-} IFBKLaunchpadAccountType;
+};
 
-/** A Core Data representation of a 37signals Launchpad account.
- */
-@interface IFBKLaunchpadAccount : _IFBKLaunchpadAccount {}
+@interface IFBKLaunchpadAccount : IFBKManagedObject
+
+@property (nonatomic, retain) NSString *href;
+@property (nonatomic, retain) NSNumber *identifier;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *product;
+@property (nonatomic, retain) IFBKAccount *campfireAccount;
+@property (nonatomic, retain) IFBKUser *user;
 
 /** The API access URL for this Launchpad account.
  */

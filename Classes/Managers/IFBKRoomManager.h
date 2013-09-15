@@ -34,9 +34,9 @@
  *
  *  @param room A Campfire room.
  *  @param user The user that has access to this room.
- *  @returns An instance of self.
+ *  @return An instance of self.
  */
-+ (id)roomManagerWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user;
++ (instancetype)roomManagerWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user;
 
 /** Loads the most recent 100 messages in the room and stores them, along with full room data (with users).
  *  Should be called upon entering the room.
@@ -90,25 +90,26 @@
  */
 - (void)leaveRoom:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
+/**
+ Returns a display-date-based header for a section.
+ 
+ @param section The section at which to look up a date.
+ @return A display date formatted based on the current locale.
+ */
+- (NSString *)headerForSection:(NSInteger)section;
+
 /** Gets a message for a given section and row - in other words, an `NSIndexPath`.
  *
  *  @param section The section for the index path for which to store the message.
  *  @param row The row in the second.
- *  @returns The Campfire message.
+ *  @return The Campfire message.
  */
-- (IFBKCFMessage *)messageAtSection:(NSInteger)section row:(NSInteger)row;
-
-/** Gets the user belonging to the messages at a given section.
- *
- *  @param section The section for which to retrieve the user.
- *  @returns The user object for that section.
- */
-- (IFBKUser *)userForSection:(NSInteger)section;
+- (IFBKCFMessage *)messageForSection:(NSInteger)section row:(NSInteger)row;
 
 /** Gets the array of messages for a given section.
  *
  *  @param section The section for which to retrieve messages.
- *  @returns The array of messages at that section.
+ *  @return The array of messages at that section.
  */
 - (NSArray *)messagesForSection:(NSInteger)section;
 

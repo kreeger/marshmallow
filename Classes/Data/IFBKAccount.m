@@ -1,16 +1,28 @@
 #import "IFBKAccount.h"
-#import "IFBKCFAccount.h"
 #import "IFBKLaunchpadAccount.h"
 
+#import <IFBKThirtySeven/IFBKCFAccount.h>
+
 @implementation IFBKAccount
+
+@dynamic createdAt;
+@dynamic identifier;
+@dynamic name;
+@dynamic ownerIdentifier;
+@dynamic plan;
+@dynamic storage;
+@dynamic subdomain;
+@dynamic timeZone;
+@dynamic updatedAt;
+@dynamic launchpadAccount;
 
 - (void)updateWithIFBKCFModel:(IFBKCFModel *)model {
     IFBKCFAccount *account = (IFBKCFAccount *)model;
     NSArray *attributes = @[@"identifier", @"name", @"subdomain", @"plan", @"ownerIdentifier", @"storage",
                             @"createdAt", @"updatedAt"];
-    for (NSString *attribute in attributes) {
+    [attributes enumerateObjectsUsingBlock:^(NSString *attribute, NSUInteger idx, BOOL *stop) {
         [self setValue:[account valueForKeyPath:attribute] forKeyPath:attribute];
-    }
+    }];
 }
 
 #pragma mark - Properties

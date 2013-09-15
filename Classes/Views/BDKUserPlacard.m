@@ -148,7 +148,7 @@
     self.nameLabel.text = user.name;
     self.emailLabel.text = user.emailAddress;
     // AFNetworking this thing.
-    [self.avatarImageView setImageWithURL:user.avatarUrlValue];
+    [self.avatarImageView setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     [self setNeedsUpdateConstraints];
 }
 

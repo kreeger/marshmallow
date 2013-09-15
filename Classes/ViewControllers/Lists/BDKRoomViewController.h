@@ -12,8 +12,8 @@
 
 /** An initializer that takes a IFBKRoomManager and sets everything up all nice.
  *  @param roomManager The room manager to be userd in this view controller.
- *  @returns An instance of self.
+ *  @return An instance of self.
  */
-+ (id)vcWithRoomManager:(IFBKRoomManager *)roomManager;
++ (instancetype)vcWithRoomManager:(IFBKRoomManager *)roomManager;
 
 @end

@@ -1,7 +1,6 @@
 platform :ios, '7.0'
 inhibit_all_warnings!
 
-pod 'MagicalRecord', '~> 2.1'
 pod 'CocoaLumberjack', '~> 1.6'
 pod 'Masonry'
 pod 'BDKGeometry', path: '~/Code/kreeger/BDKGeometry'
@@ -12,7 +11,6 @@ pod 'AGMedallionView', git: 'git://github.com/kreeger/AGMedallionView.git', comm
 pod 'Reveal-iOS-SDK'
 pod 'FontasticIcons', '~> 0.5.0'
 pod 'IFBKThirtySeven', path: '~/Code/kreeger/IFBKThirtySeven'
-# pod 'IFBKThirtySeven', git: 'git://github.com/kreeger/IFBKThirtySeven.git'
 
 target :test, exclusive: true do
   link_with 'MarshmallowTests'

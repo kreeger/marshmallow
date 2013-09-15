@@ -17,6 +17,8 @@
 #import <BDKGeometry/BDKGeometry.h>
 #import <BDKKit/NSObject+BDKKit.h>
 
+#import "IFBKCFMessage+DataHelpers.h"
+#import "IFBKRoomManager+UIKit.h"
 #import "NSUserDefaults+App.h"
 #import "UIFont+App.h"
 
@@ -26,23 +28,15 @@
 
 /** An initializer that takes a IFBKRoomManager and sets everything up all nice.
  *  @param roomManager The room manager to be userd in this view controller.
- *  @returns An instance of self.
+ *  @return An instance of self.
  */
-- (id)initWithRoomManager:(IFBKRoomManager *)roomManager;
+- (instancetype)initWithRoomManager:(IFBKRoomManager *)roomManager;
 
 /** Calculates the height of a message.
  *  @param message The message to be used in the cell.
- *  @returns An approximated float value.
+ *  @return An approximated float value.
  */
 - (CGFloat)cellHeightForMessage:(IFBKCFMessage *)message;
-
-/**
- Common logic for determining whether or not to show a header view at a given section.
- 
- @param section The section to be used in the lookup.
- @return If a user is to be shown for a section, this returns the user. Otherwise, nil.
- */
-- (IFBKUser *)userForSection:(NSInteger)section;
 
 @end
 
@@ -50,11 +44,11 @@
 
 @synthesize roomManager = _roomManager;
 
-+ (id)vcWithRoomManager:(IFBKRoomManager *)roomManager {
++ (instancetype)vcWithRoomManager:(IFBKRoomManager *)roomManager {
     return [[self alloc] initWithRoomManager:roomManager];
 }
 
-- (id)initWithRoomManager:(IFBKRoomManager *)roomManager {
+- (instancetype)initWithRoomManager:(IFBKRoomManager *)roomManager {
     if (self = [super initWithIdentifier:roomManager.room.name]) {
         _roomManager = roomManager;
         __weak BDKRoomViewController *unretainedSelf = self;
@@ -136,15 +130,6 @@
     return 30 + rect.size.height;
 }
 
-- (IFBKUser *)userForSection:(NSInteger)section {
-    IFBKCFMessage *firstMessage = [self.roomManager messageAtSection:section row:0];
-    if (firstMessage.messageType != IFBKMessageTypeText) {
-        return nil;
-    }
-    
-    return [self.roomManager userForSection:section];
-}
-
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -158,25 +143,20 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
-    IFBKUser *user = [self userForSection:indexPath.section];
-    if (!user) {
+    NSString *title = [self.roomManager headerForSection:indexPath.section];
+    if (!title) {
         return nil;
     }
     
     BDKUserReusableView *userView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
                                                                        withReuseIdentifier:BDKUserResuableViewID
                                                                               forIndexPath:indexPath];
-    [userView setUserName:user.name];
-    [userView setAvatarURL:user.avatarUrlValue];
+    [userView setUserName:title];
     return userView;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [[self.roomManager userForSection:section] name];
-}
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    IFBKCFMessage *message = [self.roomManager messageAtSection:indexPath.section row:indexPath.row];
+    IFBKCFMessage *message = [self.roomManager messageForIndexPath:indexPath];
     switch (message.messageType) {
         case IFBKMessageTypeText:
         case IFBKMessageTypePaste: {
@@ -193,7 +173,7 @@
         case IFBKMessageTypeKick:
         case IFBKMessageTypeEnter: {
             BDKEnterKickCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKEnterKickCellID forIndexPath:indexPath];
-            IFBKUser *user = [self.roomManager userForSection:indexPath.section];
+            IFBKUser *user = [message user];
             [cell setUsername:user.name timestamp:message.createdAtDisplay isEntering:(message.messageType == IFBKMessageTypeEnter)];
             return cell;
         }
@@ -208,15 +188,14 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    IFBKCFMessage *message = [self.roomManager messageAtSection:indexPath.section row:indexPath.row];
+    IFBKCFMessage *message = [self.roomManager messageForIndexPath:indexPath];
     return CGSizeMake(320, [self cellHeightForMessage:message]);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
     referenceSizeForHeaderInSection:(NSInteger)section {
-    IFBKUser *user = [self userForSection:section];
-    return user ? CGSizeMake(320, 24) : CGSizeZero;
+    return CGSizeMake(320, 24);
 }
 
 #pragma mark - UICollectionViewDelegate

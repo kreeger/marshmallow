@@ -13,9 +13,9 @@
 /**
  Initializes a fresh message set.
  
- @returns An instance of this class.
+ @return An instance of this class.
  */
-+ (id)messageSet;
++ (instancetype)messageSet;
 
 /**
  Files away an incoming API message under the most recent key if it matches the sender or a new key if it doesn't.
@@ -27,35 +27,35 @@
 
 /**
  Gets a message for a given section and row - in other words, an `NSIndexPath`. This is pulled into section/row
- to reduce dependencies on UIKit.
+ to reduce dependencies on UIKit/AppKit.
  
  @param section The section of the index path for which to store the message.
  @param row The row in the section.
- @returns The Campfire message.
+ @return The Campfire message.
  */
-- (IFBKCFMessage *)messageAtSection:(NSInteger)section row:(NSInteger)row;
+- (IFBKCFMessage *)messageForSection:(NSInteger)section row:(NSInteger)row;
 
 /**
- Determines the user ID stored in the key string and returns it.
+ Determines the date stored in the dictionary key at an index and returns it.
  
- @param section The section for which to retrieve the user from the key string.
- @returns A string that identifies the user (for use in database lookups).
+ @param section The section for which to retrieve the date from the key.
+ @return A date.
  */
-- (NSString *)userIdStringFromSection:(NSInteger)section;
+- (NSDate *)dateForSection:(NSInteger)section;
 
 /**
- Determines the message type stored in the key string and returns it.
+ Determines the display date stored in the key and returns it.
  
- @param section The section for which to retrieve the message type from the key string.
- @return The message type for the first message in the section.
+ @param section The section for which to retrieve the display date.
+ @return A date formatted as a string using the current locale.
  */
-- (NSString *)messageTypeFromSection:(NSInteger)section;
+- (NSString *)displayDateForSection:(NSInteger)section;
 
 /**
  Gets the array of messages for a given section.
  
  @param section The section for which to retrieve messages.
- @returns The array of messages at that section.
+ @return The array of messages at that section.
  */
 - (NSArray *)messagesForSection:(NSInteger)section;
 

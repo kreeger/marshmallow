@@ -9,7 +9,6 @@ PODS:
     - AFNetworking (~> 1.2)
     - SBJson (~> 3.2)
   - Kiwi (2.2)
-  - MagicalRecord (2.1)
   - Masonry (0.0.3)
   - PHFComposeBarView (1.1.1):
     - PHFDelegateChain (~> 1.0)
@@ -26,7 +25,6 @@ DEPENDENCIES:
   - FontasticIcons (~> 0.5.0)
   - IFBKThirtySeven (from `~/Code/kreeger/IFBKThirtySeven`)
   - Kiwi (~> 2.2)
-  - MagicalRecord (~> 2.1)
   - Masonry
   - PHFComposeBarView (~> 1.1.1)
   - Reveal-iOS-SDK
@@ -51,11 +49,10 @@ SPEC CHECKSUMS:
   FontasticIcons: 98134b5470a11ebda5a510347bab786121e1b0b9
   IFBKThirtySeven: 3df1fc0a957d9501222d53a56b0bc5bf94ef37a0
   Kiwi: db174bba4ee8068b15d7122f1b22fb64b7c1d378
-  MagicalRecord: 64e7184c240087a45e9588a722eaf05b0ad837f7
   Masonry: 5b49e4bb4c059aadb00deb1fef8e1af42afa42d8
   PHFComposeBarView: 510e96ec021f762ac00c407313a3b79dc409c213
   PHFDelegateChain: 2c80836ba0c1b2ca4b5e6d3fa241343465e0eb70
   Reveal-iOS-SDK: 0d58ea01260eb109b924a09631d9cc8dd96e12c4
   SBJson: e60b4dc22448c2ae1e754b523a4ab53408e85c8d
 
-COCOAPODS: 0.23.0
+COCOAPODS: 0.24.0

@@ -9,7 +9,6 @@
 
 #import <BDKKit/UINavigationController+BDKKit.h>
 #import <CocoaLumberjack/DDTTYLogger.h>
-#import <MagicalRecord/MagicalRecord+Setup.h>
 #import <BDKKit/UIDevice+BDKKit.h>
 
 @interface BDKAppDelegate ()
@@ -36,7 +35,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [MagicalRecord setupAutoMigratingCoreDataStack];
+
+    // Setup CoreData
     
     [self kickstartUserDefaults];
     [self configureLogging];
@@ -58,9 +58,11 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
+    // Save context
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    // Save context
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -70,7 +72,8 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [MagicalRecord cleanUp];
+    // Save context?
+    
 }
 
 #pragma mark - Methods
@@ -102,7 +105,8 @@
 
 - (void)kickstartUserDefaults {
     NSDictionary *userDefaults = (@{
-                                    kBDKDefaultsDeviceIsiOS7: @([[UIApplication sharedApplication] respondsToSelector:@selector(setMinimumBackgroundFetchInterval:)]),
+                                    kBDKDefaultsDeviceIsiOS7: @([[UIApplication sharedApplication]
+                                                                 respondsToSelector:@selector(setMinimumBackgroundFetchInterval:)]),
                                     kBDKDefaultsDeviceIs4Inch: @([[UIDevice currentDevice] is4Inch]),
                                     kBDKDefaultsDeviceIsPad: @([[UIDevice currentDevice] isPad]),
                                     });

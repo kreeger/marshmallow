@@ -14,7 +14,7 @@
 
 /** Initializes the view controller for a user facade.
  *  @param user The user for which to initialize this view controller.
- *  @returns An instance of self.
+ *  @return An instance of self.
  */
 + (id)vcWithIFBKUser:(IFBKUser *)user;
 

@@ -17,19 +17,19 @@
 /** Returns the key at a given index.
  *  
  *  @param anIndex The index for which to retrieve the key.
- *  @returns The key found at the index, or NSNotFound if... well, not found.
+ *  @return The key found at the index, or NSNotFound if... well, not found.
  */
 - (id)keyAtIndex:(NSUInteger)anIndex;
 
 /** Returns the reverse key enumerator.
  *
- *  @returns The reverse key enumerator for this class.
+ *  @return The reverse key enumerator for this class.
  */
 - (NSEnumerator *)reverseKeyEnumerator;
 
 /** Returns an array of the keys from the dictionary, sorted alphabetically.
  *
- *  @returns The sorted array of dictionary keys.
+ *  @return The sorted array of dictionary keys.
  */
 - (NSArray *)sortedKeys;
 

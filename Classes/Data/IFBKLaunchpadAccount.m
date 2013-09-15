@@ -1,12 +1,19 @@
 #import "IFBKLaunchpadAccount.h"
-#import "IFBKLPAccount.h"
+#import "IFBKAccount.h"
+#import "IFBKUser.h"
+
+#import <IFBKThirtySeven/IFBKLPAccount.h>
 
 @implementation IFBKLaunchpadAccount
 
-@dynamic type, hrefUrl;
+@dynamic href;
+@dynamic identifier;
+@dynamic name;
+@dynamic product;
+@dynamic campfireAccount;
+@dynamic user;
 
-- (void)updateWithIFBKCFModel:(IFBKCFModel *)model
-{
+- (void)updateWithIFBKCFModel:(IFBKCFModel *)model {
     IFBKLPAccount *account = (IFBKLPAccount *)model;
     NSArray *attributes = @[@"identifier", @"href", @"name", @"product"];
     for (NSString *attribute in attributes) {
@@ -16,8 +23,7 @@
 
 #pragma mark - Properties
 
-+ (NSDictionary *)accountTypeMappings
-{
++ (NSDictionary *)accountTypeMappings {
     return @{@"bcx": @(IFBKLaunchpadAccountTypeBasecamp),
              @"basecamp": @(IFBKLaunchpadAccountTypeBasecampClassic),
              @"campfire": @(IFBKLaunchpadAccountTypeCampfire),
@@ -25,14 +31,12 @@
              @"backpack": @(IFBKLaunchpadAccountTypeBackpack),};
 }
 
-- (IFBKLaunchpadAccountType)type
-{
+- (IFBKLaunchpadAccountType)type {
     NSNumber *type = [[self class] accountTypeMappings][self.product];
-    return type ? type.integerValue : IFBKLaunchpadAccountTypeUnknown;
+    return type ? [type integerValue] : IFBKLaunchpadAccountTypeUnknown;
 }
 
-- (NSURL *)hrefUrl
-{
+- (NSURL *)hrefUrl {
     return [NSURL URLWithString:self.href];
 }
 

@@ -14,7 +14,7 @@
  *
  *  @param title The title with which to initialize this view.
  *  @param width The width for which to initialize this view.
- *  @returns An instance of the header view.
+ *  @return An instance of the header view.
  */
 + (id)headerWithTitle:(NSString *)title width:(CGFloat)width;
 
@@ -22,7 +22,7 @@
  *
  *  @param title The title with which to initialize this view.
  *  @param width The width for which to initialize this view.
- *  @returns An instance of the header view.
+ *  @return An instance of the header view.
  */
 - (id)initWithTitle:(NSString *)title width:(CGFloat)width;
 

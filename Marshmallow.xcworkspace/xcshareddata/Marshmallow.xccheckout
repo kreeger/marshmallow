@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>6318E0D7-54C3-4EE8-94FB-2030FC6F3927</string>
+	<string>F7DE8139-94A1-4CD1-B981-B9845270E64E</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Marshmallow</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,14 +14,14 @@
 		<string>file:///Users/bkreeger/Library/Caches/CocoaPods/GitHub/6b32e1cb1d66f3fa9b1ff93f5ceef7f8aa33a191/</string>
 		<key>528231AB-93E0-44AD-B7E0-35E5A0B4F82F</key>
 		<string>ssh://github.com/kreeger/BDKGeometry.git</string>
-		<key>6D8E4A49-EB57-479F-9C38-7362EA9DEA24</key>
-		<string>ssh://github.com/kreeger/AGMedallionView.git</string>
 		<key>9768EDED-F52B-4DB9-8FA6-6C238C9EE32A</key>
 		<string>ssh://github.com/kreeger/IFBKThirtySeven.git</string>
 		<key>CFDC297C-807E-4501-B455-79447E2FA846</key>
 		<string>file:///Users/bkreeger/Library/Caches/CocoaPods/GitHub/289883febaa2989413271a2a23484c9da07e5d5b/</string>
 		<key>EA38C766-A5D1-4050-94F7-683EDA63F4B3</key>
 		<string>ssh://bitbucket.org/kreeger/marshmallow.git</string>
+		<key>FFEBEAE9-789D-4719-8C1D-FC977B1AB0FA</key>
+		<string>ssh://github.com/kreeger/BDKKit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Marshmallow.xcworkspace</string>
@@ -31,17 +31,17 @@
 		<string>../Pods/BDKKit</string>
 		<key>528231AB-93E0-44AD-B7E0-35E5A0B4F82F</key>
 		<string>../../BDKGeometry</string>
-		<key>6D8E4A49-EB57-479F-9C38-7362EA9DEA24</key>
-		<string>../../AGMedallionView</string>
 		<key>9768EDED-F52B-4DB9-8FA6-6C238C9EE32A</key>
 		<string>../../IFBKThirtySeven</string>
 		<key>CFDC297C-807E-4501-B455-79447E2FA846</key>
 		<string>../Pods/BDKGeometry</string>
 		<key>EA38C766-A5D1-4050-94F7-683EDA63F4B3</key>
 		<string>..</string>
+		<key>FFEBEAE9-789D-4719-8C1D-FC977B1AB0FA</key>
+		<string>../../BDKKit</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>file:///Users/bkreeger/Code/kreeger/marshmallow/Marshmallow.xcworkspace/</string>
+	<string>ssh://bitbucket.org/kreeger/marshmallow.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -52,9 +52,9 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>6D8E4A49-EB57-479F-9C38-7362EA9DEA24</string>
+			<string>528231AB-93E0-44AD-B7E0-35E5A0B4F82F</string>
 			<key>IDESourceControlWCCName</key>
-			<string>AGMedallionView</string>
+			<string>BDKGeometry</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
@@ -68,15 +68,15 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>528231AB-93E0-44AD-B7E0-35E5A0B4F82F</string>
+			<string>1A5CC45A-0984-4B25-B70D-1BBC07CC225F</string>
 			<key>IDESourceControlWCCName</key>
-			<string>BDKGeometry</string>
+			<string>BDKKit</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>1A5CC45A-0984-4B25-B70D-1BBC07CC225F</string>
+			<string>FFEBEAE9-789D-4719-8C1D-FC977B1AB0FA</string>
 			<key>IDESourceControlWCCName</key>
 			<string>BDKKit</string>
 		</dict>

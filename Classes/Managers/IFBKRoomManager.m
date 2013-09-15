@@ -11,8 +11,6 @@
 #import <IFBKThirtySeven/IFBKCampfireClient.h>
 #import <IFBKThirtySeven/IFBKCFRoom.h>
 #import <IFBKThirtySeven/IFBKCFMessage.h>
-#import <MagicalRecord/MagicalRecord.h>
-#import <MagicalRecord/CoreData+MagicalRecord.h>
 
 @interface IFBKRoomManager ()
 
@@ -28,9 +26,9 @@
  *
  *  @param room A Campfire room.
  *  @param user The user that has access to this room.
- *  @returns An instance of self.
+ *  @return An instance of self.
  */
-- (id)initWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user;
+- (instancetype)initWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user;
 
 /** Fetches the latest API data for a set of users.
  *  
@@ -44,11 +42,11 @@
 
 @synthesize room = _room, user = _user;
 
-+ (id)roomManagerWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user {
++ (instancetype)roomManagerWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user {
     return [[self alloc] initWithRoom:room user:user];
 }
 
-- (id)initWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user {
+- (instancetype)initWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user {
     if (self = [super init]) {
         _room = room;
         _user = user;
@@ -177,16 +175,12 @@
     [self.apiClient leaveRoom:self.room.identifier success:success failure:failureBlock];
 }
 
-- (IFBKCFMessage *)messageAtSection:(NSInteger)section row:(NSInteger)row {
-    return [self.messages messageAtSection:section row:row];
+- (NSString *)headerForSection:(NSInteger)section {
+    return [self.messages displayDateForSection:section];
 }
 
-- (IFBKUser *)userForSection:(NSInteger)section {
-    NSString *userIdString = [self.messages userIdStringFromSection:section];
-    if (![userIdString isEqualToString:@"0"]) {
-        return [IFBKUser findFirstByAttribute:@"identifier" withValue:userIdString];
-    }
-    return nil;
+- (IFBKCFMessage *)messageForSection:(NSInteger)section row:(NSInteger)row {
+    return [self.messages messageForSection:section row:row];
 }
 
 - (NSArray *)messagesForSection:(NSInteger)section {

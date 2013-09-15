@@ -2,39 +2,53 @@
 #import "IFBKUser.h"
 #import "IFBKCFMessage.h"
 
+#import "NSDate+Marshmallow.h"
+#import "NSObject+Marshmallow.h"
+
 @interface IFBKMessageSet ()
 
 /**
- The user ID-specific component of the most recent dictionary key.
+ Holds an instance of a date formatter.
  */
-@property (readonly) NSString *mostRecentUserId;
-
-@property (readonly) NSString *mostRecentMessageType;
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
 /**
- Generates a key string for a message. This is equivalent to the message ID and user ID separated by a hyphen.
+ Gets the NSNumber stored in a section and unboxes it into an NSTimeInterval.
+ 
+ @param section The section for which to get the number key.
+ @return A time interval representing the date for the section.
+ */
+- (NSTimeInterval)timeIntervalForSection:(NSInteger)section;
+
+/**
+ Generates a time interval for a message. This is the timestamp rounded down to the nearest day.
  
  @param message The instance of the message.
- @returns A string that identifies the message (for use as a dictionary key).
+ @return A time interval that identifies the message (for use as a dictionary key).
  */
-- (NSString *)keyStringForMessage:(IFBKCFMessage *)message;
+- (NSTimeInterval)timeIntervalForMessage:(IFBKCFMessage *)message;
 
 @end
 
 @implementation IFBKMessageSet
 
-+ (id)messageSet {
++ (instancetype)messageSet {
     return [[self alloc] init];
 }
 
-#pragma mark - Properties
-
-- (NSString *)mostRecentUserId {
-    return [self userIdStringFromSection:([self count] - 1)];
+- (instancetype)init {
+    if (self = [super init]) {
+        _dateFormatter = [NSDateFormatter new];
+        [_dateFormatter setDateStyle:NSDateFormatterLongStyle];
+        [_dateFormatter setLocale:[NSLocale currentLocale]];
+    }
+    return self;
 }
 
-- (NSString *)mostRecentMessageType {
-    return [self messageTypeFromSection:([self count] - 1)];
+#pragma mark - IFBKOrderedDictionary
+
+- (NSArray *)sortedKeys {
+    return [self.allKeys sortedArrayUsingSelector:@selector(compare:)];
 }
 
 #pragma mark - Public methods
@@ -46,37 +60,40 @@
         return NO;
     }
     
-    // If most recent key (user) is the same as this message's sender, then add this message to the key's array value.
-    NSNumber *identifier = [(NSNull *)message.userIdentifier isEqual:[NSNull null]] ? @0 : message.userIdentifier;
-    if ([[identifier stringValue] isEqualToString:self.mostRecentUserId] &&
-        [message.type isEqualToString:self.mostRecentMessageType]) {
+    // If most recent time key (user) is the same as this message's date, then add this message to the key's array value.
+    NSTimeInterval interval = [self timeIntervalForMessage:message];
+    NSTimeInterval latest = [self timeIntervalForSection:[[self allKeys] count] - 1];
+    
+    if (interval == latest) {
         [self[[self.sortedKeys lastObject]] addObject:message];
     } else {
         // Otherwise, append a new key to the messages ordered dictionary with a fresh mutable array with this message
         // at the beginning of it.
-        [self addEntriesFromDictionary:@{[self keyStringForMessage:message]: [NSMutableArray arrayWithArray:@[message]]}];
+        [self addEntriesFromDictionary:@{@(interval): [@[message] mutableCopy]}];
     }
     
     return YES;
 }
 
-- (IFBKCFMessage *)messageAtSection:(NSInteger)section row:(NSInteger)row {
+- (IFBKCFMessage *)messageForSection:(NSInteger)section row:(NSInteger)row {
     NSArray *messages = [self messagesForSection:section];
     return [messages count] ? messages[row] : nil;
 }
 
-- (NSString *)userIdStringFromSection:(NSInteger)section {
-    return [self.sortedKeys count] ? [self.sortedKeys[section] componentsSeparatedByString:@"-"][2] : nil;
+- (NSDate *)dateForSection:(NSInteger)section {
+    if ([self.sortedKeys count]) return nil;
+    return [NSDate dateWithTimeIntervalSince1970:[self timeIntervalForSection:section]];
 }
 
-- (NSString *)messageTypeFromSection:(NSInteger)section {
-    return [self.sortedKeys count] ? [self.sortedKeys[section] componentsSeparatedByString:@"-"][1] : nil;
+- (NSString *)displayDateForSection:(NSInteger)section {
+    
+    return [self.dateFormatter stringFromDate:[self dateForSection:section]];
 }
 
 - (NSArray *)messagesForSection:(NSInteger)section {
     if ([[self sortedKeys] count]) {
-        NSString *userId = [self sortedKeys][section];
-        return self[userId];
+        NSNumber *timeInterval = [self sortedKeys][section];
+        return self[timeInterval];
     } else {
         return @[];
     }
@@ -84,9 +101,16 @@
 
 #pragma mark - Private methods
 
-- (NSString *)keyStringForMessage:(IFBKCFMessage *)message {
-    NSNumber *identifier = [(NSNull *)message.userIdentifier isEqual:[NSNull null]] ? @0 : message.userIdentifier;
-    return [@[message.identifier, message.type, identifier] componentsJoinedByString:@"-"];
+- (NSTimeInterval)timeIntervalForSection:(NSInteger)section {
+    if ([self.sortedKeys count] == 0) {
+        return -1;
+    } else {
+        return [(NSNumber *)self.sortedKeys[section] doubleValue];
+    }
+}
+
+- (NSTimeInterval)timeIntervalForMessage:(IFBKCFMessage *)message {
+    return [[message.createdAt beginningOfDay] timeIntervalSince1970];
 }
 
 @end

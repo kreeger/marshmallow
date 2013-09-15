@@ -10,7 +10,7 @@
 @interface BDKAPIKeyManager : NSObject
 
 /** Grabs a singleton instance of the adapter.
- *  @returns singleton instance.
+ *  @return singleton instance.
  */
 + (id)sharedInstance;
 

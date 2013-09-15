@@ -16,7 +16,6 @@
 
 #import <BDKGeometry/BDKGeometry.h>
 #import <BDKKit/UINavigationController+BDKKit.h>
-#import <MagicalRecord/CoreData+MagicalRecord.h>
 
 #import "UIFont+App.h"
 
@@ -36,13 +35,13 @@
 
 /** Gets an IFBKCFRoom given the index path.
  *  @param indexPath the index path to use when finding the room (the `row` property will be used).
- *  @returns A room object.
+ *  @return A room object.
  */
 - (IFBKCFRoom *)roomForIndexPath:(NSIndexPath *)indexPath;
 
 /** Gets an IFBKAccount given the index path.
  *  @param indexPath the index path to use when finding the account (the `section` property will be used).
- *  @returns An account object.
+ *  @return An account object.
  */
 - (IFBKAccount *)accountForIndexPath:(NSIndexPath *)indexPath;
 

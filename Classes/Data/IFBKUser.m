@@ -1,16 +1,27 @@
 #import "IFBKUser.h"
-#import "IFBKCFUser.h"
+#import "IFBKLaunchpadAccount.h"
+
+#import <IFBKThirtySeven/IFBKCFUser.h>
 
 @implementation IFBKUser
 
-@dynamic userType;
+@dynamic admin;
+@dynamic apiAuthToken;
+@dynamic avatarUrl;
+@dynamic createdAt;
+@dynamic emailAddress;
+@dynamic identifier;
+@dynamic name;
+@dynamic type;
+@dynamic launchpadAccount;
 
 - (void)updateWithIFBKCFModel:(IFBKCFModel *)model {
     IFBKCFUser *user = (IFBKCFUser *)model;
-    NSArray *attributes = @[@"identifier", @"name", @"emailAddress", @"admin", @"createdAt", @"type", @"avatarUrl", @"apiAuthToken"];
-    for (NSString *attribute in attributes) {
+    NSArray *attributes = @[@"identifier", @"name", @"emailAddress", @"admin", @"createdAt", @"type", @"avatarUrl",
+                            @"apiAuthToken"];
+    [attributes enumerateObjectsUsingBlock:^(NSString *attribute, NSUInteger idx, BOOL *stop) {
         [self setValue:[user valueForKeyPath:attribute] forKeyPath:attribute];
-    }
+    }];
 }
 
 #pragma mark - Properties
@@ -32,6 +43,5 @@
     return @{@"Member": @(IFBKUserTypeMember),
              @"Guest": @(IFBKUserTypeGuest),};
 }
-
 
 @end

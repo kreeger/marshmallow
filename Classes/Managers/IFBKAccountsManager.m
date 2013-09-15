@@ -7,8 +7,6 @@
 #import "IFBKModels.h"
 
 #import <IFBKThirtySeven/IFBKThirtySeven.h>
-#import <MagicalRecord/CoreData+MagicalRecord.h>
-#import <MagicalRecord/MagicalRecord.h>
 
 @interface IFBKAccountsManager ()
 
@@ -30,7 +28,7 @@
 
 @synthesize accessToken = _accessToken, refreshToken = _refreshToken, expiresAt = _expiresAt;
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         
     }
