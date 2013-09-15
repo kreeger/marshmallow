@@ -81,12 +81,11 @@
 }
 
 - (NSDate *)dateForSection:(NSInteger)section {
-    if ([self.sortedKeys count]) return nil;
+    if ([self.sortedKeys count] == 0) return nil;
     return [NSDate dateWithTimeIntervalSince1970:[self timeIntervalForSection:section]];
 }
 
 - (NSString *)displayDateForSection:(NSInteger)section {
-    
     return [self.dateFormatter stringFromDate:[self dateForSection:section]];
 }
 

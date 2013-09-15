@@ -1,5 +1,6 @@
 #import "IFBKAccountsManager.h"
 
+#import "IFBKCoreDataStore.h"
 #import "IFBKConstants.h"
 
 #import "IFBKLPModels.h"
@@ -7,6 +8,9 @@
 #import "IFBKModels.h"
 
 #import <IFBKThirtySeven/IFBKThirtySeven.h>
+#import <BDKKit/BDKCoreDataOperation.h>
+
+#import "IFBKManagedObject+Finders.h"
 
 @interface IFBKAccountsManager ()
 
@@ -109,16 +113,17 @@
     // TODO: also check expiresOn is less than today
     __block void (^refreshBlock)(void) = ^{
         [IFBKLaunchpadClient getAuthorization:^(IFBKLPAuthorizationData *authData) {
-            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-                for (IFBKCFAccount *account in authData.accounts) {
-                    [IFBKLaunchpadAccount createOrUpdateWithModel:account inContext:localContext];
-                }
-            } completion:^(BOOL success, NSError *error) {
-                // We only want Campfire ones!
-                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"product = %@", @"campfire"];
-                self.launchpadAccounts = [IFBKLaunchpadAccount findAllWithPredicate:predicate];
-                if (completion) completion();
-            }];
+            [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
+                                                   backgroundOperation:^(NSManagedObjectContext *innerContext) {
+                                                       for (IFBKCFAccount *account in authData.accounts) {
+                                                           [IFBKLaunchpadAccount createOrUpdateWithModel:account inContext:innerContext];
+                                                       }
+                                                   } completion:^(BOOL success, NSError *error) {
+                                                       // We only want Campfire ones!
+                                                       NSPredicate *predicate = [NSPredicate predicateWithFormat:@"product = %@", @"campfire"];
+                                                       self.launchpadAccounts = [IFBKLaunchpadAccount findWithPredicate:predicate];
+                                                       if (completion) completion();
+                                                   }];
         } failure:^(NSError *error, NSInteger responseCode) {
             NSLog(@"Error! %@.", error);
             if (failure) failure(error);
@@ -145,18 +150,22 @@
         IFBKCampfireClient *campfire = [IFBKCampfireClient clientWithBaseURL:lpAccount.hrefUrl];
         [campfire setBearerToken:self.accessToken];
         [campfire getCurrentAccount:^(IFBKCFAccount *account) {
-            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-                IFBKAccount *cAccount = [IFBKAccount createOrUpdateWithModel:account inContext:localContext];
-                cAccount.launchpadAccount = [lpAccount inContext:localContext];
-                identifier = cAccount.identifier;
-            } completion:^(BOOL success, NSError *error) {
-                IFBKAccount *cAccount = [IFBKAccount findFirstByAttribute:@"identifier" withValue:identifier];
-                [campfireAccounts addObject:cAccount];
-                if (completion && count == [campfireAccounts count]) {
-                    self.campfireAccounts = campfireAccounts;
-                    completion(self.campfireAccounts);
-                }
-            }];
+            [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
+                                                   backgroundOperation:^(NSManagedObjectContext *innerContext) {
+                                                       IFBKAccount *cAccount = [IFBKAccount createOrUpdateWithModel:account inContext:innerContext];
+                                                       IFBKLaunchpadAccount *lAccount = [IFBKLaunchpadAccount findByIdentifier:lpAccount.identifier
+                                                                                                                     inContext:innerContext];
+                                                       cAccount.launchpadAccount = lAccount;
+                                                       identifier = cAccount.identifier;
+                                                   } completion:^(BOOL success, NSError *error) {
+                                                       IFBKAccount *cAccount = [IFBKAccount findByIdentifier:identifier
+                                                                                                   inContext:[NSManagedObjectContext defaultContext]];
+                                                       [campfireAccounts addObject:cAccount];
+                                                       if (completion && count == [campfireAccounts count]) {
+                                                           self.campfireAccounts = campfireAccounts;
+                                                           completion(self.campfireAccounts);
+                                                       }
+                                                   }];
         } failure:^(NSError *error, NSInteger responseCode) {
             if (failure) failure(error);
         }];
@@ -171,18 +180,22 @@
         IFBKCampfireClient *campfire = [IFBKCampfireClient clientWithBaseURL:account.hrefUrl];
         [campfire setBearerToken:self.accessToken];
         [campfire getCurrentUser:^(IFBKCFUser *user) {
-            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-                IFBKUser *cUser = [IFBKUser createOrUpdateWithModel:user inContext:localContext];
-                cUser.launchpadAccount = [account inContext:localContext];
-                identifier = cUser.identifier;
-            } completion:^(BOOL success, NSError *error) {
-                IFBKUser *cUser = [IFBKUser findFirstByAttribute:@"identifier" withValue:identifier];
-                [currentUsers addObject:cUser];
-                if (completion && count == [currentUsers count]) {
-                    self.campfireUsers = currentUsers;
-                    completion(self.campfireUsers);
-                }
-            }];
+            [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
+                                                   backgroundOperation:^(NSManagedObjectContext *innerContext) {
+                                                       IFBKUser *cUser = [IFBKUser createOrUpdateWithModel:user inContext:innerContext];
+                                                       IFBKLaunchpadAccount *lAccount = [IFBKLaunchpadAccount findByIdentifier:account.identifier
+                                                                                                                     inContext:innerContext];
+                                                       cUser.launchpadAccount = lAccount;
+                                                       identifier = cUser.identifier;
+                                                   } completion:^(BOOL success, NSError *error) {
+                                                       IFBKUser *cUser = [IFBKUser findByIdentifier:identifier
+                                                                                          inContext:[NSManagedObjectContext defaultContext]];
+                                                       [currentUsers addObject:cUser];
+                                                       if (completion && count == [currentUsers count]) {
+                                                           self.campfireUsers = currentUsers;
+                                                           completion(self.campfireUsers);
+                                                       }
+                                                   }];
         } failure:^(NSError *error, NSInteger responseCode) {
             if (failure) failure(error);
         }];
