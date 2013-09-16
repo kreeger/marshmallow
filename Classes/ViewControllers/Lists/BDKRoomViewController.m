@@ -11,7 +11,8 @@
 #import "BDKEnterKickCell.h"
 #import "BDKTimestampCell.h"
 #import "BDKTextLabelCell.h"
-#import "BDKUserReusableView.h"
+#import "BDKLabelReusableView.h"
+#import "BDKFloatingHeaderFlowLayout.h"
 
 #import <IFBKThirtySeven/IFBKCampfireClient.h>
 #import <BDKGeometry/BDKGeometry.h>
@@ -86,9 +87,9 @@
     [self.collectionView registerClass:[BDKTextLabelCell class] forCellWithReuseIdentifier:BDKTextLabelCellID];
     [self.collectionView registerClass:[BDKTimestampCell class] forCellWithReuseIdentifier:BDKTimestampCellID];
     
-    [self.collectionView registerClass:[BDKUserReusableView class]
+    [self.collectionView registerClass:[BDKLabelReusableView class]
             forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                   withReuseIdentifier:BDKUserResuableViewID];
+                   withReuseIdentifier:BDKLabelReusableViewID];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -105,6 +106,11 @@
         DDLogAPI(@"Began streaming.");
     } failure:^(NSError *error) {
         DDLogWarn(@"Could not start streaming. %@", error.localizedDescription);
+        [self.roomManager startStreamingMessages:^{
+            DDLogAPI(@"Second attempt to begin streaming succeeded.");
+        } failure:^(NSError *error) {
+            DDLogWarn(@"Final error for streaming. %@", error);
+        }];
     }];
 }
 
@@ -143,15 +149,10 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
-    NSString *title = [self.roomManager headerForSection:indexPath.section];
-    if (!title) {
-        return nil;
-    }
-    
-    BDKUserReusableView *userView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                                       withReuseIdentifier:BDKUserResuableViewID
-                                                                              forIndexPath:indexPath];
-    [userView setUserName:title];
+    BDKLabelReusableView *userView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                                        withReuseIdentifier:BDKLabelReusableViewID
+                                                                               forIndexPath:indexPath];
+    userView.label.text = [self.roomManager headerForSection:indexPath.section];;
     return userView;
 }
 

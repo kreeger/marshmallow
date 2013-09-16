@@ -64,6 +64,9 @@
     self.pullToRefreshEnabled = YES;
     self.title = @"Rooms";
     self.navigationItem.leftBarButtonItem = self.profileBarButton;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(performFetch)
+                                                 name:kBDKNotificationDidReloadRooms object:nil];
     [self.refreshControl beginRefreshing];
 }
 
@@ -74,22 +77,19 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(performFetch)
-                                                 name:kBDKNotificationDidReloadRooms object:nil];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     [self performFetch];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     if (!self.view.superview) {
         _rooms = nil;
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
 }
 

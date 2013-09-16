@@ -14,7 +14,6 @@
 		C316F04917CA97750045AEE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C316F04817CA97750045AEE8 /* Images.xcassets */; };
 		C379B29317C145B40045A05D /* BDKEnterKickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C379B29217C145B40045A05D /* BDKEnterKickCell.m */; };
 		C379B29617C1487E0045A05D /* BDKRoomEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C379B29517C1487E0045A05D /* BDKRoomEventCell.m */; };
-		C37B373917B82F950067F2BD /* BDKUserReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373817B82F950067F2BD /* BDKUserReusableView.m */; };
 		C37B373C17B834F30067F2BD /* BDKTimestampCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373B17B834F30067F2BD /* BDKTimestampCell.m */; };
 		C37B373F17B838720067F2BD /* BDKTextLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373E17B838720067F2BD /* BDKTextLabelCell.m */; };
 		C3A744E4177120E600168C01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E3177120E600168C01 /* Foundation.framework */; };
@@ -63,6 +62,8 @@
 		C3AA59F917E6429700B1E795 /* IFBKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59F617E6429700B1E795 /* IFBKUser.m */; };
 		C3AA59FC17E6484400B1E795 /* IFBKManagedObject+Finders.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59FB17E6484400B1E795 /* IFBKManagedObject+Finders.m */; };
 		C3AA59FF17E648F700B1E795 /* IFBKCoreDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59FE17E648F700B1E795 /* IFBKCoreDataStore.m */; };
+		C3AA5A0217E66E6300B1E795 /* BDKLabelReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA5A0117E66E6300B1E795 /* BDKLabelReusableView.m */; };
+		C3AA5A0617E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA5A0517E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +89,6 @@
 		C379B29217C145B40045A05D /* BDKEnterKickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKEnterKickCell.m; sourceTree = "<group>"; };
 		C379B29417C1487E0045A05D /* BDKRoomEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKRoomEventCell.h; sourceTree = "<group>"; };
 		C379B29517C1487E0045A05D /* BDKRoomEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKRoomEventCell.m; sourceTree = "<group>"; };
-		C37B373717B82F950067F2BD /* BDKUserReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKUserReusableView.h; sourceTree = "<group>"; };
-		C37B373817B82F950067F2BD /* BDKUserReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKUserReusableView.m; sourceTree = "<group>"; };
 		C37B373A17B834F30067F2BD /* BDKTimestampCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTimestampCell.h; sourceTree = "<group>"; };
 		C37B373B17B834F30067F2BD /* BDKTimestampCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKTimestampCell.m; sourceTree = "<group>"; };
 		C37B373D17B838720067F2BD /* BDKTextLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTextLabelCell.h; sourceTree = "<group>"; };
@@ -177,6 +176,10 @@
 		C3AA59FB17E6484400B1E795 /* IFBKManagedObject+Finders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IFBKManagedObject+Finders.m"; sourceTree = "<group>"; };
 		C3AA59FD17E648F700B1E795 /* IFBKCoreDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKCoreDataStore.h; sourceTree = "<group>"; };
 		C3AA59FE17E648F700B1E795 /* IFBKCoreDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKCoreDataStore.m; sourceTree = "<group>"; };
+		C3AA5A0017E66E6300B1E795 /* BDKLabelReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLabelReusableView.h; sourceTree = "<group>"; };
+		C3AA5A0117E66E6300B1E795 /* BDKLabelReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLabelReusableView.m; sourceTree = "<group>"; };
+		C3AA5A0417E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKFloatingHeaderFlowLayout.h; sourceTree = "<group>"; };
+		C3AA5A0517E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKFloatingHeaderFlowLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,8 +213,8 @@
 		C37B373617B82F840067F2BD /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
-				C37B373717B82F950067F2BD /* BDKUserReusableView.h */,
-				C37B373817B82F950067F2BD /* BDKUserReusableView.m */,
+				C3AA5A0017E66E6300B1E795 /* BDKLabelReusableView.h */,
+				C3AA5A0117E66E6300B1E795 /* BDKLabelReusableView.m */,
 			);
 			path = ReusableViews;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				C3A7458A1771220800168C01 /* Categories */,
 				C3A745911771220800168C01 /* Core */,
 				C3A7459F1771220800168C01 /* Data */,
+				C3AA5A0317E66F4F00B1E795 /* Layouts */,
 				C3A745B41771220800168C01 /* Managers */,
 				C3A745BB1771220800168C01 /* ViewControllers */,
 				C3A745CF1771220800168C01 /* Views */,
@@ -458,6 +462,15 @@
 			path = "Avenir Next";
 			sourceTree = "<group>";
 		};
+		C3AA5A0317E66F4F00B1E795 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				C3AA5A0417E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.h */,
+				C3AA5A0517E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.m */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -622,7 +635,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C37B373917B82F950067F2BD /* BDKUserReusableView.m in Sources */,
 				C3A746081771220800168C01 /* IFBKRoomManager.m in Sources */,
 				C3A745FB1771220800168C01 /* IFBKOrderedDictionary.m in Sources */,
 				C3A746151771220800168C01 /* BDKRoomCollectionCell.m in Sources */,
@@ -641,6 +653,7 @@
 				C301AE6A17A4701600EDDDCB /* NSUserDefaults+App.m in Sources */,
 				C3A746141771220800168C01 /* BDKMessageCell.m in Sources */,
 				C3A745F91771220800168C01 /* BDKLog.m in Sources */,
+				C3AA5A0217E66E6300B1E795 /* BDKLabelReusableView.m in Sources */,
 				C3A746131771220800168C01 /* BDKUserPlacard.m in Sources */,
 				C3A746061771220800168C01 /* IFBKAccountsManager.m in Sources */,
 				C3A745FC1771220800168C01 /* main.m in Sources */,
@@ -652,6 +665,7 @@
 				C3A746071771220800168C01 /* IFBKMessageSet.m in Sources */,
 				C3AA59FC17E6484400B1E795 /* IFBKManagedObject+Finders.m in Sources */,
 				C3A7460B1771220800168C01 /* BDKCollectionViewController.m in Sources */,
+				C3AA5A0617E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.m in Sources */,
 				C3AA59F917E6429700B1E795 /* IFBKUser.m in Sources */,
 				C3A745FF1771220800168C01 /* IFBKManagedObject.m in Sources */,
 				C379B29617C1487E0045A05D /* BDKRoomEventCell.m in Sources */,

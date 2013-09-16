@@ -13,7 +13,7 @@ PODS:
   - PHFComposeBarView (1.1.1):
     - PHFDelegateChain (~> 1.0)
   - PHFDelegateChain (1.0.1)
-  - Reveal-iOS-SDK (0.8.3)
+  - Reveal-iOS-SDK (0.9.1)
   - SBJson (3.2)
 
 DEPENDENCIES:
@@ -27,7 +27,7 @@ DEPENDENCIES:
   - Kiwi (~> 2.2)
   - Masonry
   - PHFComposeBarView (~> 1.1.1)
-  - Reveal-iOS-SDK
+  - Reveal-iOS-SDK (~> 0.9.1)
 
 EXTERNAL SOURCES:
   AGMedallionView:
@@ -52,7 +52,7 @@ SPEC CHECKSUMS:
   Masonry: 5b49e4bb4c059aadb00deb1fef8e1af42afa42d8
   PHFComposeBarView: 510e96ec021f762ac00c407313a3b79dc409c213
   PHFDelegateChain: 2c80836ba0c1b2ca4b5e6d3fa241343465e0eb70
-  Reveal-iOS-SDK: 0d58ea01260eb109b924a09631d9cc8dd96e12c4
+  Reveal-iOS-SDK: 7396a20e743807b1e6f1caae664e1a9dc0cc442c
   SBJson: e60b4dc22448c2ae1e754b523a4ab53408e85c8d
 
 COCOAPODS: 0.24.0
