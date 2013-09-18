@@ -108,7 +108,10 @@
 - (void)pullToRefreshPulled:(UIRefreshControl *)sender {
     DDLogUI(@"Refresh pulled.");
     [((BDKAppDelegate *)[[UIApplication sharedApplication] delegate]).accountsManager getRooms:^(NSArray *rooms) {
-        [self performFetch];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self performFetch];
+        });
+        
     } failure:^(NSError *error) {
         DDLogError(@"Failure getting rooms on pull-to-refresh. %@", error);
     }];

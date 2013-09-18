@@ -152,7 +152,7 @@
     BDKLabelReusableView *userView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
                                                                         withReuseIdentifier:BDKLabelReusableViewID
                                                                                forIndexPath:indexPath];
-    userView.label.text = [self.roomManager headerForSection:indexPath.section];;
+    userView.label.text = [self.roomManager headerForSection:indexPath.section];
     return userView;
 }
 
@@ -196,7 +196,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
     referenceSizeForHeaderInSection:(NSInteger)section {
-    return CGSizeMake(320, 24);
+    return CGSizeMake(320, 32);
 }
 
 #pragma mark - UICollectionViewDelegate

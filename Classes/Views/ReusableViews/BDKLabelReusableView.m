@@ -1,5 +1,7 @@
 #import "BDKLabelReusableView.h"
 
+#import <Masonry/Masonry.h>
+
 NSString * const BDKLabelReusableViewID = @"BDKLabelReusableView";
 
 @interface BDKLabelReusableView ()
@@ -39,7 +41,14 @@ NSString * const BDKLabelReusableViewID = @"BDKLabelReusableView";
 }
 
 - (void)setup {
+    self.backgroundColor = [UIColor clearColor];
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
     [self addSubview:self.label];
+    [self.label makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self);
+        make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(4, 0, 4, 0));
+    }];
 }
 
 - (void)prepareForReuse {
@@ -53,8 +62,9 @@ NSString * const BDKLabelReusableViewID = @"BDKLabelReusableView";
     if (_label) return _label;
     _label = [UILabel new];
     _label.textColor = [UIColor blackColor];
-    _label.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    _label.backgroundColor = [UIColor clearColor];
+    _label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    [_label setTranslatesAutoresizingMaskIntoConstraints:NO];
+    _label.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
     _label.textAlignment = NSTextAlignmentCenter;
     return _label;
 }
