@@ -32,7 +32,7 @@
 		C3A745FC1771220800168C01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A7459D1771220800168C01 /* main.m */; };
 		C3A745FF1771220800168C01 /* MLLWManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745A51771220800168C01 /* MLLWManagedObject.m */; };
 		C3A746001771220800168C01 /* MLLWModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3A745A61771220800168C01 /* MLLWModel.xcdatamodeld */; };
-		C3A746061771220800168C01 /* MLLWAccountsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745B61771220800168C01 /* MLLWAccountsManager.m */; };
+		C3A746061771220800168C01 /* MLLWAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745B61771220800168C01 /* MLLWAccountManager.m */; };
 		C3A746071771220800168C01 /* MLLWMessageSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745B81771220800168C01 /* MLLWMessageSet.m */; };
 		C3A746081771220800168C01 /* MLLWRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745BA1771220800168C01 /* MLLWRoomManager.m */; };
 		C3A746091771220800168C01 /* BDKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745BE1771220800168C01 /* BDKLoginViewController.m */; };
@@ -118,8 +118,8 @@
 		C3A745A51771220800168C01 /* MLLWManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWManagedObject.m; sourceTree = "<group>"; };
 		C3A745A71771220800168C01 /* MLLWModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MLLWModel.xcdatamodel; sourceTree = "<group>"; };
 		C3A745A81771220800168C01 /* MLLWModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWModels.h; sourceTree = "<group>"; };
-		C3A745B51771220800168C01 /* MLLWAccountsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWAccountsManager.h; sourceTree = "<group>"; };
-		C3A745B61771220800168C01 /* MLLWAccountsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWAccountsManager.m; sourceTree = "<group>"; };
+		C3A745B51771220800168C01 /* MLLWAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWAccountManager.h; sourceTree = "<group>"; };
+		C3A745B61771220800168C01 /* MLLWAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWAccountManager.m; sourceTree = "<group>"; };
 		C3A745B71771220800168C01 /* MLLWMessageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MLLWMessageSet.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		C3A745B81771220800168C01 /* MLLWMessageSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MLLWMessageSet.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C3A745B91771220800168C01 /* MLLWRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWRoomManager.h; sourceTree = "<group>"; };
@@ -339,8 +339,8 @@
 		C3A745B41771220800168C01 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				C3A745B51771220800168C01 /* MLLWAccountsManager.h */,
-				C3A745B61771220800168C01 /* MLLWAccountsManager.m */,
+				C3A745B51771220800168C01 /* MLLWAccountManager.h */,
+				C3A745B61771220800168C01 /* MLLWAccountManager.m */,
 				C3A745B71771220800168C01 /* MLLWMessageSet.h */,
 				C3A745B81771220800168C01 /* MLLWMessageSet.m */,
 				C3A745B91771220800168C01 /* MLLWRoomManager.h */,
@@ -653,7 +653,7 @@
 				C3A745F91771220800168C01 /* BDKLog.m in Sources */,
 				C3AA5A0217E66E6300B1E795 /* BDKLabelReusableView.m in Sources */,
 				C3A746131771220800168C01 /* BDKUserPlacard.m in Sources */,
-				C3A746061771220800168C01 /* MLLWAccountsManager.m in Sources */,
+				C3A746061771220800168C01 /* MLLWAccountManager.m in Sources */,
 				C3A745FC1771220800168C01 /* main.m in Sources */,
 				C3A7460F1771220800168C01 /* BDKRoomsViewController.m in Sources */,
 				C3A746161771220800168C01 /* BDKTextFieldCell.m in Sources */,

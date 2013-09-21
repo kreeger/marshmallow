@@ -3,7 +3,7 @@
 /**
  A manager class for managing multiple Launchpad accounts for Campfire.
  */
-@interface MLLWAccountsManager : NSObject
+@interface MLLWAccountManager : NSObject
 
 /**
  The list of Campfire-specific 37signals Launchpad accounts.

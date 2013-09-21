@@ -3,7 +3,7 @@
 #import "BDKUserViewController.h"
 #import "BDKAppDelegate.h"
 
-#import "MLLWAccountsManager.h"
+#import "MLLWAccountManager.h"
 #import "MLLWRoomManager.h"
 #import "BDKConstants.h"
 

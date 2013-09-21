@@ -1,4 +1,4 @@
-#import "MLLWAccountsManager.h"
+#import "MLLWAccountManager.h"
 
 #import "MLLWCoreDataStore.h"
 #import "MLLWConstants.h"
@@ -10,7 +10,7 @@
 #import <IFBKThirtySeven/IFBKThirtySeven.h>
 #import <BDKKit/BDKCoreDataOperation.h>
 
-@interface MLLWAccountsManager ()
+@interface MLLWAccountManager ()
 
 /**
  The OAuth access token, used for connecting to both Launchpad and the Campfire API.
@@ -44,7 +44,7 @@
 
 @end
 
-@implementation MLLWAccountsManager
+@implementation MLLWAccountManager
 
 @synthesize accessToken = _accessToken, refreshToken = _refreshToken, expiresAt = _expiresAt;
 
