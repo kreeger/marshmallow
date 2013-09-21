@@ -1,5 +1,9 @@
 #import "BDKAPIKeyManager.h"
 
+NSString * const BDK37SignalsClientKey = @"37SignalsClientKey";
+NSString * const BDK37SignalsClientSecret = @"37SignalsClientSecret";
+NSString * const BDK37SignalsRedirectURI = @"37SignalsRedirectURI";
+
 @interface BDKAPIKeyManager ()
 
 @property (strong, nonatomic) NSDictionary *apiKeys;
@@ -10,7 +14,7 @@
 
 #pragma mark - Initialization and singleton
 
-+ (id)sharedInstance {
++ (instancetype)sharedInstance {
     static BDKAPIKeyManager *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -19,11 +23,11 @@
     return __sharedInstance;
 }
 
-- (id)init {
-    if (self = [super init]) {
-        _apiKeys = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"APIKeys"
-                                                                                              ofType:@"plist"]];
-    }
+- (instancetype)init {
+    self = [super init];
+    if (!self) return nil;
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"APIKeys" ofType:@"plist"];
+    _apiKeys = [NSDictionary dictionaryWithContentsOfFile:path];
     return self;
 }
 

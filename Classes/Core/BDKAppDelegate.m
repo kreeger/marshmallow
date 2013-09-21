@@ -80,9 +80,9 @@
 
 - (void)configureAccountsManager {
     self.accountsManager = [[MLLWAccountsManager alloc] init];
-    [self.accountsManager configureLaunchpadWithClientId:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientKey]
-                                            clientSecret:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientSecret]
-                                             redirectUri:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsRedirectURI]];
+    [self.accountsManager configureLaunchpadWithClientId:[BDKAPIKeyManager apiKeyForKey:BDK37SignalsClientKey]
+                                            clientSecret:[BDKAPIKeyManager apiKeyForKey:BDK37SignalsClientSecret]
+                                             redirectUri:[BDKAPIKeyManager apiKeyForKey:BDK37SignalsRedirectURI]];
 }
 
 - (void)setLoginControllerAsCenter {
