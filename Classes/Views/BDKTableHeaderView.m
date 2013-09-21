@@ -18,17 +18,18 @@
 
 @synthesize title = _title;
 
-+ (id)headerWithTitle:(NSString *)title width:(CGFloat)width {
++ (instancetype)headerWithTitle:(NSString *)title width:(CGFloat)width {
     return [[self alloc] initWithTitle:title width:width];
 }
 
-- (id)initWithTitle:(NSString *)title width:(CGFloat)width {
-    if (self = [super initWithFrame:CGRectMake(0, 0, width, kBDKTableHeaderViewHeight)]) {
-        self.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:1];
-        self.userInteractionEnabled = YES;
-        [self addSubview:self.label];
-        self.title = title;
-    }
+- (instancetype)initWithTitle:(NSString *)title width:(CGFloat)width {
+    self = [super initWithFrame:CGRectMake(0, 0, width, kBDKTableHeaderViewHeight)];
+    if (!self) return nil;
+    
+    self.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:1];
+    self.userInteractionEnabled = YES;
+    [self addSubview:self.label];
+    self.title = title;
     return self;
 }
 

@@ -81,7 +81,7 @@
 #pragma mark - Methods
 
 - (void)configureAccountsManager {
-    self.accountsManager = [[MLLWAccountsManager alloc] init];
+    self.accountsManager = [MLLWAccountsManager new];
     [self.accountsManager configureLaunchpadWithClientId:[BDKAPIKeyManager apiKeyForKey:BDK37SignalsClientKey]
                                             clientSecret:[BDKAPIKeyManager apiKeyForKey:BDK37SignalsClientSecret]
                                              redirectUri:[BDKAPIKeyManager apiKeyForKey:BDK37SignalsRedirectURI]];
@@ -119,7 +119,7 @@
 
 - (void)configureLogging {
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
-    [DDTTYLogger sharedInstance].logFormatter = [[BDKLog alloc] init];
+    [DDTTYLogger sharedInstance].logFormatter = [BDKLog new];
     [DDTTYLogger sharedInstance].colorsEnabled = YES;
     [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.60 green:0.81 blue:0.92 alpha:1.0]
                                      backgroundColor:nil forFlag:LOG_FLAG_INFO];

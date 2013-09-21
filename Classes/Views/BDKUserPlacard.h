@@ -2,24 +2,30 @@
 
 @class MLLWUser;
 
-/** A "37signals user badge" view.
+/**
+ A "37signals user badge" view.
  */
 @interface BDKUserPlacard : UIView
 
-/** The label displaying the user's name.
+/**
+ The label displaying the user's name.
  */
 @property (readonly) UILabel *nameLabel;
 
-/** The label displaying the user's email address.
+/**
+ The label displaying the user's email address.
  */
 @property (readonly) UILabel *emailLabel;
 
-/** The label displaying the user's email address.
+/**
+ The label displaying the user's email address.
  */
 @property (readonly) UIImageView *avatarImageView;
 
-/** Handles mapping the user's attributes to the labels and views inside of this view.
- *  @param user The IFBKUser instance to use for this view.
+/**
+ Handles mapping the user's attributes to the labels and views inside of this view.
+ 
+ @param user The IFBKUser instance to use for this view.
  */
 - (void)setUser:(MLLWUser *)user;
 

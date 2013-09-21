@@ -11,15 +11,18 @@
 
 @interface BDKUserPlacard ()
 
-/** Displays the placard's title.
+/**
+ Displays the placard's title.
  */
 @property (strong, nonatomic) UILabel *titleLabel;
 
-/** The frame for the header banner.
+/**
+ The frame for the header banner.
  */
 @property (nonatomic) CGRect headerRect;
 
-/** The frame for the body.
+/**
+ The frame for the body.
  */
 @property (nonatomic) CGRect bodyRect;
 
@@ -29,39 +32,39 @@
 
 @synthesize nameLabel = _nameLabel, emailLabel = _emailLabel, avatarImageView = _avatarImageView;
 
-- (id)init {
-    if (self = [super init]) {
-        self.backgroundColor = [UIColor clearColor];
-        self.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:self.titleLabel];
-        [self addSubview:self.avatarImageView];
-        [self addSubview:self.nameLabel];
-        [self addSubview:self.emailLabel];
-        
-        [self.titleLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(10);
-            make.leading.equalTo(self).offset(20);
-            make.trailing.equalTo(self).offset(10);
-            make.height.equalTo(@30);
-        }];
-        
-        [self.avatarImageView makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleLabel.bottom).offset(10);
-            make.leading.equalTo(self).offset(20);
-            make.width.equalTo(@45);
-            make.height.equalTo(@45);
-        }];
-        
-        [self.nameLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleLabel.bottom).offset(14);
-            make.leading.equalTo(self.avatarImageView.trailing).offset(10);
-        }];
-        
-        [self.emailLabel makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.nameLabel.bottom);
-            make.leading.equalTo(self.nameLabel);
-        }];
-    }
+- (instancetype)init {
+    self = [super init];
+    if (!self) return nil;
+    self.backgroundColor = [UIColor clearColor];
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:self.titleLabel];
+    [self addSubview:self.avatarImageView];
+    [self addSubview:self.nameLabel];
+    [self addSubview:self.emailLabel];
+    
+    [self.titleLabel makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset(10);
+        make.leading.equalTo(self).offset(20);
+        make.trailing.equalTo(self).offset(10);
+        make.height.equalTo(@30);
+    }];
+    
+    [self.avatarImageView makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.titleLabel.bottom).offset(10);
+        make.leading.equalTo(self).offset(20);
+        make.width.equalTo(@45);
+        make.height.equalTo(@45);
+    }];
+    
+    [self.nameLabel makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.titleLabel.bottom).offset(14);
+        make.leading.equalTo(self.avatarImageView.trailing).offset(10);
+    }];
+    
+    [self.emailLabel makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.nameLabel.bottom);
+        make.leading.equalTo(self.nameLabel);
+    }];
     return self;
 }
 

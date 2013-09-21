@@ -21,36 +21,46 @@
 
 @interface BDKRoomsViewController ()
 
-/** A reference to the rooms presented by this view controller.
+/**
+ A reference to the rooms presented by this view controller.
  */
 @property (weak, nonatomic) NSArray *rooms;
 
-/** The toolbar button presenting the current user's profile.
+/**
+ The toolbar button presenting the current user's profile.
  */
 @property (strong, nonatomic) UIBarButtonItem *profileBarButton;
 
-/** Loads up the necessary data into the collection view.
+/**
+ Loads up the necessary data into the collection view.
  */
 - (void)performFetch;
 
-/** Gets an IFBKCFRoom given the index path.
- *  @param indexPath the index path to use when finding the room (the `row` property will be used).
- *  @return A room object.
+/**
+ Gets an IFBKCFRoom given the index path.
+ 
+ @param indexPath the index path to use when finding the room (the `row` property will be used).
+ @return A room object.
  */
 - (IFBKCFRoom *)roomForIndexPath:(NSIndexPath *)indexPath;
 
-/** Gets an IFBKAccount given the index path.
- *  @param indexPath the index path to use when finding the account (the `section` property will be used).
- *  @return An account object.
+/**
+ Gets an IFBKAccount given the index path.
+ 
+ @param indexPath the index path to use when finding the account (the `section` property will be used).
+ @return An account object.
  */
 - (MLLWAccount *)accountForIndexPath:(NSIndexPath *)indexPath;
 
-/** Fired when the profile button is tapped.
- *  @param sender The sender of the event.
+/**
+ Fired when the profile button is tapped.
+ 
+ @param sender The sender of the event.
  */
 - (void)profileBarButtonTapped:(UIBarButtonItem *)sender;
 
-/** Loads the profile controller.
+/**
+ Loads the profile controller.
  */
 - (void)presentProfileController;
 

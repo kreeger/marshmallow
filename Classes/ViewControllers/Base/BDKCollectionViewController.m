@@ -55,7 +55,7 @@
 
 - (UIRefreshControl *)refreshControl {
     if (_refreshControl) return _refreshControl;
-    _refreshControl = [[UIRefreshControl alloc] init];
+    _refreshControl = [UIRefreshControl new];
     [_refreshControl addTarget:self action:@selector(pullToRefreshPulled:) forControlEvents:UIControlEventValueChanged];
     return _refreshControl;
 }

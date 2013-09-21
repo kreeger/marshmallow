@@ -101,14 +101,14 @@
 		C3A74500177120E600168C01 /* MarshmallowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarshmallowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A74501177120E600168C01 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C3A745881771220800168C01 /* BDKAPIKeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BDKAPIKeyManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		C3A745891771220800168C01 /* BDKAPIKeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKAPIKeyManager.m; sourceTree = "<group>"; };
+		C3A745891771220800168C01 /* BDKAPIKeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDKAPIKeyManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C3A7458D1771220800168C01 /* UIFont+App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+App.h"; sourceTree = "<group>"; };
 		C3A7458E1771220800168C01 /* UIFont+App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+App.m"; sourceTree = "<group>"; };
 		C3A745921771220800168C01 /* BDKAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKAppDelegate.h; sourceTree = "<group>"; };
-		C3A745931771220800168C01 /* BDKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKAppDelegate.m; sourceTree = "<group>"; };
+		C3A745931771220800168C01 /* BDKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDKAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C3A745941771220800168C01 /* BDKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKConstants.h; sourceTree = "<group>"; };
 		C3A745951771220800168C01 /* BDKLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLog.h; sourceTree = "<group>"; };
-		C3A745961771220800168C01 /* BDKLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLog.m; sourceTree = "<group>"; };
+		C3A745961771220800168C01 /* BDKLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDKLog.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C3A745991771220800168C01 /* BDKTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTypedefs.h; sourceTree = "<group>"; };
 		C3A7459B1771220800168C01 /* MLLWOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWOrderedDictionary.h; sourceTree = "<group>"; };
 		C3A7459C1771220800168C01 /* MLLWOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWOrderedDictionary.m; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 		C3A745B51771220800168C01 /* MLLWAccountsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWAccountsManager.h; sourceTree = "<group>"; };
 		C3A745B61771220800168C01 /* MLLWAccountsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWAccountsManager.m; sourceTree = "<group>"; };
 		C3A745B71771220800168C01 /* MLLWMessageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MLLWMessageSet.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		C3A745B81771220800168C01 /* MLLWMessageSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWMessageSet.m; sourceTree = "<group>"; };
+		C3A745B81771220800168C01 /* MLLWMessageSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MLLWMessageSet.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C3A745B91771220800168C01 /* MLLWRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWRoomManager.h; sourceTree = "<group>"; };
 		C3A745BA1771220800168C01 /* MLLWRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWRoomManager.m; sourceTree = "<group>"; };
 		C3A745BD1771220800168C01 /* BDKLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLoginViewController.h; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		C3A745BF1771220800168C01 /* BDKUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BDKUserViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		C3A745C01771220800168C01 /* BDKUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDKUserViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C3A745C21771220800168C01 /* BDKCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKCollectionViewController.h; sourceTree = "<group>"; };
-		C3A745C31771220800168C01 /* BDKCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKCollectionViewController.m; sourceTree = "<group>"; };
+		C3A745C31771220800168C01 /* BDKCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDKCollectionViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C3A745C41771220800168C01 /* BDKTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTableViewController.h; sourceTree = "<group>"; };
 		C3A745C51771220800168C01 /* BDKTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKTableViewController.m; sourceTree = "<group>"; };
 		C3A745C61771220800168C01 /* BDKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKViewController.h; sourceTree = "<group>"; };

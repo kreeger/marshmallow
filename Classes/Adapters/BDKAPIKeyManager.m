@@ -18,7 +18,7 @@ NSString * const BDK37SignalsRedirectURI = @"37SignalsRedirectURI";
     static BDKAPIKeyManager *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __sharedInstance = [[BDKAPIKeyManager alloc] init];
+        __sharedInstance = [BDKAPIKeyManager new];
     });
     return __sharedInstance;
 }

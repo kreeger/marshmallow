@@ -12,7 +12,7 @@
         // Single-threaded mode.
         
         if (_threadUnsafeDateFormatter == nil) {
-            _threadUnsafeDateFormatter = [[NSDateFormatter alloc] init];
+            _threadUnsafeDateFormatter = [NSDateFormatter new];
             _threadUnsafeDateFormatter.formatterBehavior = NSDateFormatterBehavior10_4;
             _threadUnsafeDateFormatter.dateFormat = @"yyyy/MM/dd HH:mm:ss:SSS";
         }
@@ -29,7 +29,7 @@
         NSDateFormatter *dateFormatter = [threadDictionary objectForKey:key];
         
         if (dateFormatter == nil) {
-            dateFormatter = [[NSDateFormatter alloc] init];
+            dateFormatter = [NSDateFormatter new];
             dateFormatter.formatterBehavior = NSDateFormatterBehavior10_4;
             dateFormatter.dateFormat = @"yyyy/MM/dd HH:mm:ss:SSS";
             [threadDictionary setObject:dateFormatter forKey:key];

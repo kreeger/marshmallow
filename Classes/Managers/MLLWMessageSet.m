@@ -33,7 +33,7 @@
 @implementation MLLWMessageSet
 
 + (instancetype)messageSet {
-    return [[self alloc] init];
+    return [self new];
 }
 
 - (instancetype)init {

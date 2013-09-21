@@ -27,15 +27,19 @@
 
 @property (strong, nonatomic) NSMutableDictionary *cellHeights;
 
-/** An initializer that takes a IFBKRoomManager and sets everything up all nice.
- *  @param roomManager The room manager to be userd in this view controller.
- *  @return An instance of self.
+/**
+ An initializer that takes a IFBKRoomManager and sets everything up all nice.
+ 
+ @param roomManager The room manager to be userd in this view controller.
+ @return An instance of self.
  */
 - (instancetype)initWithRoomManager:(MLLWRoomManager *)roomManager;
 
-/** Calculates the height of a message.
- *  @param message The message to be used in the cell.
- *  @return An approximated float value.
+/**
+ Calculates the height of a message.
+ 
+ @param message The message to be used in the cell.
+ @return An approximated float value.
  */
 - (CGFloat)cellHeightForMessage:(IFBKCFMessage *)message;
 

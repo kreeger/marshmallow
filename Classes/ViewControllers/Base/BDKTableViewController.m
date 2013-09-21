@@ -58,7 +58,7 @@
 
 - (UIRefreshControl *)refreshControl {
     if (_refreshControl) return _refreshControl;
-    _refreshControl = [[UIRefreshControl alloc] init];
+    _refreshControl = [UIRefreshControl new];
     [_refreshControl addTarget:self action:@selector(pullToRefreshPulled:) forControlEvents:UIControlEventValueChanged];
     return _refreshControl;
 }
@@ -66,9 +66,13 @@
 - (void)setPullToRefreshEnabled:(BOOL)pullToRefreshEnabled {
     if (pullToRefreshEnabled == _pullToRefreshEnabled) return;
     if (pullToRefreshEnabled) {
-        if (!self.refreshControl.superview) [self.tableView addSubview:self.refreshControl];
+        if (!self.refreshControl.superview) {
+            [self.tableView addSubview:self.refreshControl];
+        }
     } else {
-        if (self.refreshControl.superview) [self.refreshControl removeFromSuperview];
+        if (self.refreshControl.superview) {
+            [self.refreshControl removeFromSuperview];
+        }
     }
 }
 
