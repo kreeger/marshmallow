@@ -105,10 +105,10 @@
 
 - (void)kickstartUserDefaults {
     NSDictionary *userDefaults = (@{
-                                    kBDKDefaultsDeviceIsiOS7: @([[UIApplication sharedApplication]
+                                    BDKDefaultsDeviceIsiOS7: @([[UIApplication sharedApplication]
                                                                  respondsToSelector:@selector(setMinimumBackgroundFetchInterval:)]),
-                                    kBDKDefaultsDeviceIs4Inch: @([[UIDevice currentDevice] is4Inch]),
-                                    kBDKDefaultsDeviceIsPad: @([[UIDevice currentDevice] isPad]),
+                                    BDKDefaultsDeviceIs4Inch: @([[UIDevice currentDevice] is4Inch]),
+                                    BDKDefaultsDeviceIsPad: @([[UIDevice currentDevice] isPad]),
                                     });
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaults];
     [[NSUserDefaults standardUserDefaults] setValuesForKeysWithDictionary:userDefaults];
@@ -134,7 +134,7 @@
         [self.accountsManager getAccountData:^{
             [self.accountsManager getCurrentUserData:^{
                 [self.accountsManager getRooms:^(NSArray *rooms) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidReloadRooms object:self];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:BDKNotificationDidReloadRooms object:self];
                 } failure:^(NSError *error) {
                     DDLogWarn(@"Error! %@", error);
                 }];

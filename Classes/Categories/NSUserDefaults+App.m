@@ -4,11 +4,11 @@
 @implementation NSUserDefaults (App)
 
 + (BOOL)deviceIs4Inch {
-    return [[self standardUserDefaults] boolForKey:kBDKDefaultsDeviceIs4Inch];
+    return [[self standardUserDefaults] boolForKey:BDKDefaultsDeviceIs4Inch];
 }
 
 + (BOOL)deviceIsPad {
-    return [[self standardUserDefaults] boolForKey:kBDKDefaultsDeviceIsPad];
+    return [[self standardUserDefaults] boolForKey:BDKDefaultsDeviceIsPad];
 }
 
 @end

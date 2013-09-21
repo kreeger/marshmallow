@@ -65,7 +65,7 @@
     self.navigationItem.leftBarButtonItem = self.profileBarButton;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(performFetch)
-                                                 name:kBDKNotificationDidReloadRooms object:nil];
+                                                 name:BDKNotificationDidReloadRooms object:nil];
     [self.refreshControl beginRefreshing];
 }
 
