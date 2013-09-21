@@ -1,6 +1,6 @@
 #import "BDKUserViewController.h"
 
-#import "IFBKUser.h"
+#import "MLLWUser.h"
 #import "BDKUserPlacard.h"
 
 #import <BDKGeometry/BDKGeometry.h>
@@ -25,7 +25,7 @@
  *  @param user The user with which to initialize this view controller.
  *  @return An instance of self.
  */
-- (id)initWithIFBKUser:(IFBKUser *)user;
+- (id)initWithIFBKUser:(MLLWUser *)user;
 
 /** Fired when a user taps the cancel button.
  *  @param sender The sender of the event.
@@ -43,11 +43,11 @@
 
 @synthesize user = _user;
 
-+ (id)vcWithIFBKUser:(IFBKUser *)user {
++ (id)vcWithIFBKUser:(MLLWUser *)user {
     return [[self alloc] initWithIFBKUser:user];
 }
 
-- (id)initWithIFBKUser:(IFBKUser *)user {
+- (id)initWithIFBKUser:(MLLWUser *)user {
     if (self = [super initWithIdentifier:[NSString stringWithFormat:@"user:%@", user.name]]) {
         _user = user;
         if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])

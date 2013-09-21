@@ -1,6 +1,6 @@
 #import "BDKUserPlacard.h"
 
-#import "IFBKUser.h"
+#import "MLLWUser.h"
 
 #import <Masonry/Masonry.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
@@ -144,7 +144,7 @@
     return CGSizeMake(320, 116);
 }
 
-- (void)setUser:(IFBKUser *)user {
+- (void)setUser:(MLLWUser *)user {
     self.nameLabel.text = user.name;
     self.emailLabel.text = user.emailAddress;
     // AFNetworking this thing.

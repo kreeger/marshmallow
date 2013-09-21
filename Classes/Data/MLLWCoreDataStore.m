@@ -1,6 +1,6 @@
-#import "IFBKCoreDataStore.h"
+#import "MLLWCoreDataStore.h"
 
-@implementation IFBKCoreDataStore
+@implementation MLLWCoreDataStore
 
 + (instancetype)sharedInstance {
     static id _sharedInstance = nil;
@@ -17,7 +17,7 @@
 @implementation NSManagedObjectContext (IFBKCoreDataStore)
 
 + (instancetype)defaultContext {
-    return [[IFBKCoreDataStore sharedInstance] mainMOC];
+    return [[MLLWCoreDataStore sharedInstance] mainMOC];
 }
 
 @end

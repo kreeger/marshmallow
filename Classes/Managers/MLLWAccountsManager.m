@@ -1,48 +1,63 @@
-#import "IFBKAccountsManager.h"
+#import "MLLWAccountsManager.h"
 
-#import "IFBKCoreDataStore.h"
+#import "MLLWCoreDataStore.h"
 #import "IFBKConstants.h"
 
 #import "IFBKLPModels.h"
 #import "IFBKCFModels.h"
-#import "IFBKModels.h"
+#import "MLLWModels.h"
 
 #import <IFBKThirtySeven/IFBKThirtySeven.h>
 #import <BDKKit/BDKCoreDataOperation.h>
 
-#import "IFBKManagedObject+Finders.h"
+@interface MLLWAccountsManager ()
 
-@interface IFBKAccountsManager ()
-
-/** The OAuth access token, used for connecting to both Launchpad and the Campfire API.
+/**
+ The OAuth access token, used for connecting to both Launchpad and the Campfire API.
  */
 @property (strong, nonatomic) NSString *accessToken;
-
-/** The OAuth refresh token, used for refreshing the accessToken with the Launchpad API.
+/**
+ The OAuth refresh token, used for refreshing the accessToken with the Launchpad API.
  */
 @property (strong, nonatomic) NSString *refreshToken;
-
-/** The date at which the current accessToken expires (and thus must be refreshed with the refreshToken).
+/**
+ The date at which the current accessToken expires (and thus must be refreshed with the refreshToken).
  */
 @property (strong, nonatomic) NSDate *expiresAt;
 
+/**
+ Handles fetching and saving Launchpad account data from the 37signals Launchpad API.
+ 
+ @param completion A block to be called when the operation is complete.
+ @param failure A block to be called when the operation encountered an error.
+ */
+- (void)retrieveAuthorizationData:(void (^)(void))completion failure:(void (^)(NSError *))failure;
+
+/**
+ Common error-handling logic (including a standardized logging message).
+ 
+ @param error The error handed back from the API.
+ @param responseCode The response code handed back from the API.
+ @param callback The callback method handed to the sending message.
+ */
+- (void)handleAPIError:(NSError *)error responseCode:(NSInteger)responseCode callback:(void (^)(NSError *))callback;
+
 @end
 
-@implementation IFBKAccountsManager
+@implementation MLLWAccountsManager
 
 @synthesize accessToken = _accessToken, refreshToken = _refreshToken, expiresAt = _expiresAt;
 
 - (instancetype)init {
-    if (self = [super init]) {
-        
-    }
+    self = [super init];
+    if (!self) return nil;
     return self;
 }
 
 #pragma mark - Public properties
 
 - (BOOL)isLoggedIn {
-    return self.accessToken != nil;
+    return !!self.accessToken;
 }
 
 #pragma mark - Private properties
@@ -96,72 +111,58 @@
 - (void)tradeAuthTokenDataForAuthorizationCode:(NSString *)authorizationCode
                                     completion:(void (^)(void))completion
                                        failure:(void (^)(NSError *error))failure {
-    NSLog(@"Trading auth code %@.", authorizationCode);
+    DDLogAPI(@"Trading auth code %@.", authorizationCode);
     [IFBKLaunchpadClient getAccessTokenForVerificationCode:authorizationCode
-                                                   success:^(NSString *accessToken, NSString *refreshToken, NSDate *expiresAt) {
-                                                       // Do something else with these.
-                                                       self.accessToken = accessToken;
-                                                       self.refreshToken = refreshToken;
-                                                       self.expiresAt = expiresAt;
-                                                       if (completion) completion();
-                                                   } failure:^(NSError *error, NSInteger responseCode) {
-                                                       if (failure) failure(error);
-                                                   }];
+                                                   success:^(NSString *accessT, NSString *refreshT, NSDate *expiresAt)
+     {
+         self.accessToken = accessT;
+         self.refreshToken = refreshT;
+         self.expiresAt = expiresAt;
+         if (completion) {
+             completion();
+         }
+     } failure:^(NSError *error, NSInteger responseCode) {
+         [self handleAPIError:error responseCode:responseCode callback:failure];
+     }];
 }
 
 - (void)refreshLaunchpadData:(void (^)(void))completion failure:(void (^)(NSError *error))failure {
-    // TODO: also check expiresOn is less than today
-    __block void (^refreshBlock)(void) = ^{
-        [IFBKLaunchpadClient getAuthorization:^(IFBKLPAuthorizationData *authData) {
-            [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
-                                                   backgroundOperation:^(NSManagedObjectContext *innerContext)
-             {
-                 for (IFBKCFAccount *account in authData.accounts) {
-                     [IFBKLaunchpadAccount createOrUpdateWithModel:account inContext:innerContext];
-                 }
-             } completion:^(BOOL success, NSError *error) {
-                 self.launchpadAccounts = [IFBKLaunchpadAccount campfireAccounts];
-                 if (completion) completion();
-             }];
-        } failure:^(NSError *error, NSInteger responseCode) {
-            NSLog(@"Error! %@.", error);
-            if (failure) failure(error);
-        }];
-    };
-    
     if ([self.expiresAt compare:[NSDate date]] == NSOrderedAscending) {
         [IFBKLaunchpadClient refreshAccessTokenWithRefreshToken:self.refreshToken
-                                                        success:^(NSString *accessToken, NSDate *expiresAt) {
-                                                            self.accessToken = accessToken;
-                                                            self.expiresAt = expiresAt;
-                                                            refreshBlock();
-                                                        } failure:^(NSError *error, NSInteger responseCode) {
-                                                            if (failure) failure(error);
-                                                        }];
-    } else refreshBlock();
+                                                        success:^(NSString *accessToken, NSDate *expiresAt)
+         {
+             self.accessToken = accessToken;
+             self.expiresAt = expiresAt;
+             [self retrieveAuthorizationData:completion failure:failure];
+         } failure:^(NSError *error, NSInteger responseCode) {
+             [self handleAPIError:error responseCode:responseCode callback:failure];
+         }];
+    } else {
+        [self retrieveAuthorizationData:completion failure:failure];
+    }
 }
 
 - (void)getAccountData:(void (^)(void))completion failure:(void (^)(NSError *error))failure {
     NSInteger count = [self.launchpadAccounts count];
     NSMutableArray *mAccounts = [NSMutableArray arrayWithCapacity:count];
-    for (IFBKLaunchpadAccount *lpAccount in self.launchpadAccounts) {
+    for (MLLWLaunchpadAccount *lpAccount in self.launchpadAccounts) {
         __block NSNumber *identifier = nil;
         IFBKCampfireClient *campfire = [IFBKCampfireClient clientWithBaseURL:lpAccount.hrefUrl];
         [campfire setBearerToken:self.accessToken];
         
         // Got a condition here where this doesn't fire properly. Queue up both accounts and THEN save them to the Store.
         [campfire getCurrentAccount:^(IFBKCFAccount *account) {
-            [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
+            [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[MLLWCoreDataStore sharedInstance]
                                                    backgroundOperation:^(NSManagedObjectContext *innerContext)
              {
-                 IFBKAccount *cAccount = [IFBKAccount createOrUpdateWithModel:account inContext:innerContext];
-                 IFBKLaunchpadAccount *lAccount = [IFBKLaunchpadAccount findByIdentifier:lpAccount.identifier
+                 MLLWAccount *cAccount = [MLLWAccount createOrUpdateWithModel:account inContext:innerContext];
+                 MLLWLaunchpadAccount *lAccount = [MLLWLaunchpadAccount findByIdentifier:lpAccount.identifier
                                                                                inContext:innerContext];
                  cAccount.launchpadAccount = lAccount;
                  identifier = cAccount.identifier;
              } completion:^(BOOL success, NSError *error) {
                  DDLogAPI(@"Campfire account data complete.");
-                 IFBKAccount *cAccount = [IFBKAccount findByIdentifier:identifier
+                 MLLWAccount *cAccount = [MLLWAccount findByIdentifier:identifier
                                                              inContext:[NSManagedObjectContext defaultContext]];
                  [mAccounts addObject:cAccount];
                  if (completion && count == [mAccounts count]) {
@@ -179,22 +180,22 @@
 - (void)getCurrentUserData:(void (^)(void))completion failure:(void (^)(NSError *error))failure {
     NSInteger count = [self.launchpadAccounts count];
     NSMutableArray *currentUsers = [NSMutableArray arrayWithCapacity:count];
-    for (IFBKLaunchpadAccount *account in self.launchpadAccounts) {
+    for (MLLWLaunchpadAccount *account in self.launchpadAccounts) {
         __block NSNumber *identifier = nil;
         IFBKCampfireClient *campfire = [IFBKCampfireClient clientWithBaseURL:account.hrefUrl];
         [campfire setBearerToken:self.accessToken];
         [campfire getCurrentUser:^(IFBKCFUser *user) {
-            [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
+            [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[MLLWCoreDataStore sharedInstance]
                                                    backgroundOperation:^(NSManagedObjectContext *innerContext)
              {
-                 IFBKUser *cUser = [IFBKUser createOrUpdateWithModel:user inContext:innerContext];
-                 IFBKLaunchpadAccount *lAccount = [IFBKLaunchpadAccount findByIdentifier:account.identifier
+                 MLLWUser *cUser = [MLLWUser createOrUpdateWithModel:user inContext:innerContext];
+                 MLLWLaunchpadAccount *lAccount = [MLLWLaunchpadAccount findByIdentifier:account.identifier
                                                                                inContext:innerContext];
                  cUser.launchpadAccount = lAccount;
                  identifier = cUser.identifier;
              } completion:^(BOOL success, NSError *error) {
                  DDLogAPI(@"Campfire user data complete.");
-                 IFBKUser *cUser = [IFBKUser findByIdentifier:identifier
+                 MLLWUser *cUser = [MLLWUser findByIdentifier:identifier
                                                     inContext:[NSManagedObjectContext defaultContext]];
                  [currentUsers addObject:cUser];
                  if (completion && count == [currentUsers count]) {
@@ -212,7 +213,7 @@
 - (void)getRooms:(void (^)(NSArray *rooms))completion failure:(void (^)(NSError *error))failure {
     NSInteger count = [self.campfireAccounts count];
     NSMutableArray *campfireRooms = [NSMutableArray arrayWithCapacity:count];
-    for (IFBKAccount *account in self.campfireAccounts) {
+    for (MLLWAccount *account in self.campfireAccounts) {
         IFBKCampfireClient *campfire = [IFBKCampfireClient clientWithBaseURL:[account apiUrl]];
         [campfire setBearerToken:self.accessToken];
         [campfire getRooms:^(NSArray *result) {
@@ -232,9 +233,32 @@
     self.accessToken = nil;
     self.refreshToken = nil;
     self.expiresAt = nil;
-    [IFBKUser truncateAll];
-    [IFBKAccount truncateAll];
-    [IFBKLaunchpadAccount truncateAll];
+    [MLLWUser truncateAll];
+    [MLLWAccount truncateAll];
+    [MLLWLaunchpadAccount truncateAll];
+}
+
+#pragma mark - Private methods
+
+- (void)retrieveAuthorizationData:(void (^)(void))completion failure:(void (^)(NSError *))failure {
+    [IFBKLaunchpadClient getAuthorizationData:^(IFBKLPAuthorizationData *authData) {
+        [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[MLLWCoreDataStore sharedInstance]
+                                               backgroundOperation:^(NSManagedObjectContext *innerContext)
+         {
+             
+         } completion:^(BOOL success, NSError *error) {
+             
+         }];
+    } failure:^(NSError *error, NSInteger responseCode) {
+        [self handleAPIError:error responseCode:responseCode callback:failure];
+    }];
+}
+
+- (void)handleAPIError:(NSError *)error responseCode:(NSInteger)responseCode callback:(void (^)(NSError *))callback {
+    DDLogWarn(@"MLLWAccountsManager response error %i: %@.", responseCode, [error localizedDescription]);
+    if (callback) {
+        callback(error);
+    }
 }
 
 @end

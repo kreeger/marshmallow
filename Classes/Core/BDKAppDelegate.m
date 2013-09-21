@@ -5,7 +5,7 @@
 
 #import "BDKAPIKeyManager.h"
 #import "BDKConstants.h"
-#import "IFBKAccountsManager.h"
+#import "MLLWAccountsManager.h"
 
 #import <BDKKit/UINavigationController+BDKKit.h>
 #import <CocoaLumberjack/DDTTYLogger.h>
@@ -79,7 +79,7 @@
 #pragma mark - Methods
 
 - (void)configureAccountsManager {
-    self.accountsManager = [[IFBKAccountsManager alloc] init];
+    self.accountsManager = [[MLLWAccountsManager alloc] init];
     [self.accountsManager configureLaunchpadWithClientId:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientKey]
                                             clientSecret:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsClientSecret]
                                              redirectUri:[BDKAPIKeyManager apiKeyForKey:kBDK37SignalsRedirectURI]];

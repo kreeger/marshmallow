@@ -1,11 +1,11 @@
 #import "BDKRoomViewController.h"
 
-#import "IFBKRoomManager.h"
-#import "IFBKMessageSet.h"
+#import "MLLWRoomManager.h"
+#import "MLLWMessageSet.h"
 
 #import "IFBKCFRoom.h"
 #import "IFBKCFMessage.h"
-#import "IFBKUser.h"
+#import "MLLWUser.h"
 
 #import "BDKMessageCell.h"
 #import "BDKEnterKickCell.h"
@@ -19,7 +19,7 @@
 #import <BDKKit/NSObject+BDKKit.h>
 
 #import "IFBKCFMessage+DataHelpers.h"
-#import "IFBKRoomManager+UIKit.h"
+#import "MLLWRoomManager+UIKit.h"
 #import "NSUserDefaults+App.h"
 #import "UIFont+App.h"
 
@@ -31,7 +31,7 @@
  *  @param roomManager The room manager to be userd in this view controller.
  *  @return An instance of self.
  */
-- (instancetype)initWithRoomManager:(IFBKRoomManager *)roomManager;
+- (instancetype)initWithRoomManager:(MLLWRoomManager *)roomManager;
 
 /** Calculates the height of a message.
  *  @param message The message to be used in the cell.
@@ -45,11 +45,11 @@
 
 @synthesize roomManager = _roomManager;
 
-+ (instancetype)vcWithRoomManager:(IFBKRoomManager *)roomManager {
++ (instancetype)vcWithRoomManager:(MLLWRoomManager *)roomManager {
     return [[self alloc] initWithRoomManager:roomManager];
 }
 
-- (instancetype)initWithRoomManager:(IFBKRoomManager *)roomManager {
+- (instancetype)initWithRoomManager:(MLLWRoomManager *)roomManager {
     if (self = [super initWithIdentifier:roomManager.room.name]) {
         _roomManager = roomManager;
         __weak BDKRoomViewController *unretainedSelf = self;
@@ -174,7 +174,7 @@
         case IFBKMessageTypeKick:
         case IFBKMessageTypeEnter: {
             BDKEnterKickCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BDKEnterKickCellID forIndexPath:indexPath];
-            IFBKUser *user = [message user];
+            MLLWUser *user = [message user];
             [cell setUsername:user.name timestamp:message.createdAtDisplay isEntering:(message.messageType == IFBKMessageTypeEnter)];
             return cell;
         }

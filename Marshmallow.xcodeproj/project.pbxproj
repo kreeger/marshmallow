@@ -28,13 +28,13 @@
 		C3A745F61771220800168C01 /* UIFont+App.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A7458E1771220800168C01 /* UIFont+App.m */; };
 		C3A745F81771220800168C01 /* BDKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745931771220800168C01 /* BDKAppDelegate.m */; };
 		C3A745F91771220800168C01 /* BDKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745961771220800168C01 /* BDKLog.m */; };
-		C3A745FB1771220800168C01 /* IFBKOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A7459C1771220800168C01 /* IFBKOrderedDictionary.m */; };
+		C3A745FB1771220800168C01 /* MLLWOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A7459C1771220800168C01 /* MLLWOrderedDictionary.m */; };
 		C3A745FC1771220800168C01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A7459D1771220800168C01 /* main.m */; };
-		C3A745FF1771220800168C01 /* IFBKManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745A51771220800168C01 /* IFBKManagedObject.m */; };
-		C3A746001771220800168C01 /* IFBKModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3A745A61771220800168C01 /* IFBKModel.xcdatamodeld */; };
-		C3A746061771220800168C01 /* IFBKAccountsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745B61771220800168C01 /* IFBKAccountsManager.m */; };
-		C3A746071771220800168C01 /* IFBKMessageSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745B81771220800168C01 /* IFBKMessageSet.m */; };
-		C3A746081771220800168C01 /* IFBKRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745BA1771220800168C01 /* IFBKRoomManager.m */; };
+		C3A745FF1771220800168C01 /* MLLWManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745A51771220800168C01 /* MLLWManagedObject.m */; };
+		C3A746001771220800168C01 /* MLLWModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3A745A61771220800168C01 /* MLLWModel.xcdatamodeld */; };
+		C3A746061771220800168C01 /* MLLWAccountsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745B61771220800168C01 /* MLLWAccountsManager.m */; };
+		C3A746071771220800168C01 /* MLLWMessageSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745B81771220800168C01 /* MLLWMessageSet.m */; };
+		C3A746081771220800168C01 /* MLLWRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745BA1771220800168C01 /* MLLWRoomManager.m */; };
 		C3A746091771220800168C01 /* BDKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745BE1771220800168C01 /* BDKLoginViewController.m */; };
 		C3A7460A1771220800168C01 /* BDKUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745C01771220800168C01 /* BDKUserViewController.m */; };
 		C3A7460B1771220800168C01 /* BDKCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A745C31771220800168C01 /* BDKCollectionViewController.m */; };
@@ -55,13 +55,12 @@
 		C3A7461D1771220800168C01 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3A745E41771220800168C01 /* InfoPlist.strings */; };
 		C3AA59D017E6334700B1E795 /* NSObject+Marshmallow.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59CF17E6334700B1E795 /* NSObject+Marshmallow.m */; };
 		C3AA59D317E634E600B1E795 /* NSDate+Marshmallow.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59D217E634E600B1E795 /* NSDate+Marshmallow.m */; };
-		C3AA59D617E6395F00B1E795 /* IFBKRoomManager+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59D517E6395F00B1E795 /* IFBKRoomManager+UIKit.m */; };
+		C3AA59D617E6395F00B1E795 /* MLLWRoomManager+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59D517E6395F00B1E795 /* MLLWRoomManager+UIKit.m */; };
 		C3AA59DC17E63BCA00B1E795 /* IFBKCFMessage+DataHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59DB17E63BCA00B1E795 /* IFBKCFMessage+DataHelpers.m */; };
-		C3AA59F717E6429700B1E795 /* IFBKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59F217E6429700B1E795 /* IFBKAccount.m */; };
-		C3AA59F817E6429700B1E795 /* IFBKLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59F417E6429700B1E795 /* IFBKLaunchpadAccount.m */; };
-		C3AA59F917E6429700B1E795 /* IFBKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59F617E6429700B1E795 /* IFBKUser.m */; };
-		C3AA59FC17E6484400B1E795 /* IFBKManagedObject+Finders.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59FB17E6484400B1E795 /* IFBKManagedObject+Finders.m */; };
-		C3AA59FF17E648F700B1E795 /* IFBKCoreDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59FE17E648F700B1E795 /* IFBKCoreDataStore.m */; };
+		C3AA59F717E6429700B1E795 /* MLLWAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59F217E6429700B1E795 /* MLLWAccount.m */; };
+		C3AA59F817E6429700B1E795 /* MLLWLaunchpadAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59F417E6429700B1E795 /* MLLWLaunchpadAccount.m */; };
+		C3AA59F917E6429700B1E795 /* MLLWUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59F617E6429700B1E795 /* MLLWUser.m */; };
+		C3AA59FF17E648F700B1E795 /* MLLWCoreDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59FE17E648F700B1E795 /* MLLWCoreDataStore.m */; };
 		C3AA5A0217E66E6300B1E795 /* BDKLabelReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA5A0117E66E6300B1E795 /* BDKLabelReusableView.m */; };
 		C3AA5A0617E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA5A0517E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.m */; };
 /* End PBXBuildFile section */
@@ -111,20 +110,20 @@
 		C3A745961771220800168C01 /* BDKLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLog.m; sourceTree = "<group>"; };
 		C3A745991771220800168C01 /* BDKTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTypedefs.h; sourceTree = "<group>"; };
 		C3A7459A1771220800168C01 /* IFBKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKConstants.h; sourceTree = "<group>"; };
-		C3A7459B1771220800168C01 /* IFBKOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKOrderedDictionary.h; sourceTree = "<group>"; };
-		C3A7459C1771220800168C01 /* IFBKOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKOrderedDictionary.m; sourceTree = "<group>"; };
+		C3A7459B1771220800168C01 /* MLLWOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWOrderedDictionary.h; sourceTree = "<group>"; };
+		C3A7459C1771220800168C01 /* MLLWOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWOrderedDictionary.m; sourceTree = "<group>"; };
 		C3A7459D1771220800168C01 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C3A7459E1771220800168C01 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		C3A745A41771220800168C01 /* IFBKManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKManagedObject.h; sourceTree = "<group>"; };
-		C3A745A51771220800168C01 /* IFBKManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKManagedObject.m; sourceTree = "<group>"; };
-		C3A745A71771220800168C01 /* IFBKModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IFBKModel.xcdatamodel; sourceTree = "<group>"; };
-		C3A745A81771220800168C01 /* IFBKModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKModels.h; sourceTree = "<group>"; };
-		C3A745B51771220800168C01 /* IFBKAccountsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKAccountsManager.h; sourceTree = "<group>"; };
-		C3A745B61771220800168C01 /* IFBKAccountsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKAccountsManager.m; sourceTree = "<group>"; };
-		C3A745B71771220800168C01 /* IFBKMessageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = IFBKMessageSet.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		C3A745B81771220800168C01 /* IFBKMessageSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKMessageSet.m; sourceTree = "<group>"; };
-		C3A745B91771220800168C01 /* IFBKRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKRoomManager.h; sourceTree = "<group>"; };
-		C3A745BA1771220800168C01 /* IFBKRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKRoomManager.m; sourceTree = "<group>"; };
+		C3A745A41771220800168C01 /* MLLWManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWManagedObject.h; sourceTree = "<group>"; };
+		C3A745A51771220800168C01 /* MLLWManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWManagedObject.m; sourceTree = "<group>"; };
+		C3A745A71771220800168C01 /* MLLWModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MLLWModel.xcdatamodel; sourceTree = "<group>"; };
+		C3A745A81771220800168C01 /* MLLWModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWModels.h; sourceTree = "<group>"; };
+		C3A745B51771220800168C01 /* MLLWAccountsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWAccountsManager.h; sourceTree = "<group>"; };
+		C3A745B61771220800168C01 /* MLLWAccountsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWAccountsManager.m; sourceTree = "<group>"; };
+		C3A745B71771220800168C01 /* MLLWMessageSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MLLWMessageSet.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		C3A745B81771220800168C01 /* MLLWMessageSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWMessageSet.m; sourceTree = "<group>"; };
+		C3A745B91771220800168C01 /* MLLWRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWRoomManager.h; sourceTree = "<group>"; };
+		C3A745BA1771220800168C01 /* MLLWRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWRoomManager.m; sourceTree = "<group>"; };
 		C3A745BD1771220800168C01 /* BDKLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLoginViewController.h; sourceTree = "<group>"; };
 		C3A745BE1771220800168C01 /* BDKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLoginViewController.m; sourceTree = "<group>"; };
 		C3A745BF1771220800168C01 /* BDKUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BDKUserViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -162,20 +161,18 @@
 		C3AA59CF17E6334700B1E795 /* NSObject+Marshmallow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Marshmallow.m"; sourceTree = "<group>"; };
 		C3AA59D117E634E600B1E795 /* NSDate+Marshmallow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Marshmallow.h"; sourceTree = "<group>"; };
 		C3AA59D217E634E600B1E795 /* NSDate+Marshmallow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Marshmallow.m"; sourceTree = "<group>"; };
-		C3AA59D417E6395F00B1E795 /* IFBKRoomManager+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IFBKRoomManager+UIKit.h"; sourceTree = "<group>"; };
-		C3AA59D517E6395F00B1E795 /* IFBKRoomManager+UIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IFBKRoomManager+UIKit.m"; sourceTree = "<group>"; };
+		C3AA59D417E6395F00B1E795 /* MLLWRoomManager+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MLLWRoomManager+UIKit.h"; sourceTree = "<group>"; };
+		C3AA59D517E6395F00B1E795 /* MLLWRoomManager+UIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MLLWRoomManager+UIKit.m"; sourceTree = "<group>"; };
 		C3AA59DA17E63BCA00B1E795 /* IFBKCFMessage+DataHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IFBKCFMessage+DataHelpers.h"; sourceTree = "<group>"; };
 		C3AA59DB17E63BCA00B1E795 /* IFBKCFMessage+DataHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IFBKCFMessage+DataHelpers.m"; sourceTree = "<group>"; };
-		C3AA59F117E6429700B1E795 /* IFBKAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKAccount.h; sourceTree = "<group>"; };
-		C3AA59F217E6429700B1E795 /* IFBKAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKAccount.m; sourceTree = "<group>"; };
-		C3AA59F317E6429700B1E795 /* IFBKLaunchpadAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKLaunchpadAccount.h; sourceTree = "<group>"; };
-		C3AA59F417E6429700B1E795 /* IFBKLaunchpadAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKLaunchpadAccount.m; sourceTree = "<group>"; };
-		C3AA59F517E6429700B1E795 /* IFBKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKUser.h; sourceTree = "<group>"; };
-		C3AA59F617E6429700B1E795 /* IFBKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKUser.m; sourceTree = "<group>"; };
-		C3AA59FA17E6484400B1E795 /* IFBKManagedObject+Finders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IFBKManagedObject+Finders.h"; sourceTree = "<group>"; };
-		C3AA59FB17E6484400B1E795 /* IFBKManagedObject+Finders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IFBKManagedObject+Finders.m"; sourceTree = "<group>"; };
-		C3AA59FD17E648F700B1E795 /* IFBKCoreDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKCoreDataStore.h; sourceTree = "<group>"; };
-		C3AA59FE17E648F700B1E795 /* IFBKCoreDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFBKCoreDataStore.m; sourceTree = "<group>"; };
+		C3AA59F117E6429700B1E795 /* MLLWAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWAccount.h; sourceTree = "<group>"; };
+		C3AA59F217E6429700B1E795 /* MLLWAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWAccount.m; sourceTree = "<group>"; };
+		C3AA59F317E6429700B1E795 /* MLLWLaunchpadAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWLaunchpadAccount.h; sourceTree = "<group>"; };
+		C3AA59F417E6429700B1E795 /* MLLWLaunchpadAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWLaunchpadAccount.m; sourceTree = "<group>"; };
+		C3AA59F517E6429700B1E795 /* MLLWUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWUser.h; sourceTree = "<group>"; };
+		C3AA59F617E6429700B1E795 /* MLLWUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWUser.m; sourceTree = "<group>"; };
+		C3AA59FD17E648F700B1E795 /* MLLWCoreDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWCoreDataStore.h; sourceTree = "<group>"; };
+		C3AA59FE17E648F700B1E795 /* MLLWCoreDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWCoreDataStore.m; sourceTree = "<group>"; };
 		C3AA5A0017E66E6300B1E795 /* BDKLabelReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLabelReusableView.h; sourceTree = "<group>"; };
 		C3AA5A0117E66E6300B1E795 /* BDKLabelReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLabelReusableView.m; sourceTree = "<group>"; };
 		C3AA5A0417E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKFloatingHeaderFlowLayout.h; sourceTree = "<group>"; };
@@ -292,10 +289,8 @@
 				C3A7458E1771220800168C01 /* UIFont+App.m */,
 				C3AA59DA17E63BCA00B1E795 /* IFBKCFMessage+DataHelpers.h */,
 				C3AA59DB17E63BCA00B1E795 /* IFBKCFMessage+DataHelpers.m */,
-				C3AA59FA17E6484400B1E795 /* IFBKManagedObject+Finders.h */,
-				C3AA59FB17E6484400B1E795 /* IFBKManagedObject+Finders.m */,
-				C3AA59D417E6395F00B1E795 /* IFBKRoomManager+UIKit.h */,
-				C3AA59D517E6395F00B1E795 /* IFBKRoomManager+UIKit.m */,
+				C3AA59D417E6395F00B1E795 /* MLLWRoomManager+UIKit.h */,
+				C3AA59D517E6395F00B1E795 /* MLLWRoomManager+UIKit.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -311,8 +306,8 @@
 				C3A745961771220800168C01 /* BDKLog.m */,
 				C3A745991771220800168C01 /* BDKTypedefs.h */,
 				C3A7459A1771220800168C01 /* IFBKConstants.h */,
-				C3A7459B1771220800168C01 /* IFBKOrderedDictionary.h */,
-				C3A7459C1771220800168C01 /* IFBKOrderedDictionary.m */,
+				C3A7459B1771220800168C01 /* MLLWOrderedDictionary.h */,
+				C3A7459C1771220800168C01 /* MLLWOrderedDictionary.m */,
 				C3A7459D1771220800168C01 /* main.m */,
 				C3A7459E1771220800168C01 /* Prefix.pch */,
 			);
@@ -322,18 +317,18 @@
 		C3A7459F1771220800168C01 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				C3AA59F117E6429700B1E795 /* IFBKAccount.h */,
-				C3AA59F217E6429700B1E795 /* IFBKAccount.m */,
-				C3AA59FD17E648F700B1E795 /* IFBKCoreDataStore.h */,
-				C3AA59FE17E648F700B1E795 /* IFBKCoreDataStore.m */,
-				C3AA59F317E6429700B1E795 /* IFBKLaunchpadAccount.h */,
-				C3AA59F417E6429700B1E795 /* IFBKLaunchpadAccount.m */,
-				C3A745A41771220800168C01 /* IFBKManagedObject.h */,
-				C3A745A51771220800168C01 /* IFBKManagedObject.m */,
-				C3AA59F517E6429700B1E795 /* IFBKUser.h */,
-				C3AA59F617E6429700B1E795 /* IFBKUser.m */,
-				C3A745A61771220800168C01 /* IFBKModel.xcdatamodeld */,
-				C3A745A81771220800168C01 /* IFBKModels.h */,
+				C3AA59F117E6429700B1E795 /* MLLWAccount.h */,
+				C3AA59F217E6429700B1E795 /* MLLWAccount.m */,
+				C3AA59FD17E648F700B1E795 /* MLLWCoreDataStore.h */,
+				C3AA59FE17E648F700B1E795 /* MLLWCoreDataStore.m */,
+				C3AA59F317E6429700B1E795 /* MLLWLaunchpadAccount.h */,
+				C3AA59F417E6429700B1E795 /* MLLWLaunchpadAccount.m */,
+				C3A745A41771220800168C01 /* MLLWManagedObject.h */,
+				C3A745A51771220800168C01 /* MLLWManagedObject.m */,
+				C3AA59F517E6429700B1E795 /* MLLWUser.h */,
+				C3AA59F617E6429700B1E795 /* MLLWUser.m */,
+				C3A745A61771220800168C01 /* MLLWModel.xcdatamodeld */,
+				C3A745A81771220800168C01 /* MLLWModels.h */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -341,12 +336,12 @@
 		C3A745B41771220800168C01 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				C3A745B51771220800168C01 /* IFBKAccountsManager.h */,
-				C3A745B61771220800168C01 /* IFBKAccountsManager.m */,
-				C3A745B71771220800168C01 /* IFBKMessageSet.h */,
-				C3A745B81771220800168C01 /* IFBKMessageSet.m */,
-				C3A745B91771220800168C01 /* IFBKRoomManager.h */,
-				C3A745BA1771220800168C01 /* IFBKRoomManager.m */,
+				C3A745B51771220800168C01 /* MLLWAccountsManager.h */,
+				C3A745B61771220800168C01 /* MLLWAccountsManager.m */,
+				C3A745B71771220800168C01 /* MLLWMessageSet.h */,
+				C3A745B81771220800168C01 /* MLLWMessageSet.m */,
+				C3A745B91771220800168C01 /* MLLWRoomManager.h */,
+				C3A745BA1771220800168C01 /* MLLWRoomManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -635,18 +630,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3A746081771220800168C01 /* IFBKRoomManager.m in Sources */,
-				C3A745FB1771220800168C01 /* IFBKOrderedDictionary.m in Sources */,
+				C3A746081771220800168C01 /* MLLWRoomManager.m in Sources */,
+				C3A745FB1771220800168C01 /* MLLWOrderedDictionary.m in Sources */,
 				C3A746151771220800168C01 /* BDKRoomCollectionCell.m in Sources */,
 				C3A745F81771220800168C01 /* BDKAppDelegate.m in Sources */,
 				C3A7460A1771220800168C01 /* BDKUserViewController.m in Sources */,
 				C3AA59DC17E63BCA00B1E795 /* IFBKCFMessage+DataHelpers.m in Sources */,
 				C3A745F41771220800168C01 /* BDKAPIKeyManager.m in Sources */,
-				C3AA59F817E6429700B1E795 /* IFBKLaunchpadAccount.m in Sources */,
+				C3AA59F817E6429700B1E795 /* MLLWLaunchpadAccount.m in Sources */,
 				C3A746091771220800168C01 /* BDKLoginViewController.m in Sources */,
-				C3A746001771220800168C01 /* IFBKModel.xcdatamodeld in Sources */,
+				C3A746001771220800168C01 /* MLLWModel.xcdatamodeld in Sources */,
 				C37B373C17B834F30067F2BD /* BDKTimestampCell.m in Sources */,
-				C3AA59D617E6395F00B1E795 /* IFBKRoomManager+UIKit.m in Sources */,
+				C3AA59D617E6395F00B1E795 /* MLLWRoomManager+UIKit.m in Sources */,
 				C3A746121771220800168C01 /* BDKTableHeaderView.m in Sources */,
 				C3A7460E1771220800168C01 /* BDKWebViewController.m in Sources */,
 				C3AA59D017E6334700B1E795 /* NSObject+Marshmallow.m in Sources */,
@@ -655,27 +650,26 @@
 				C3A745F91771220800168C01 /* BDKLog.m in Sources */,
 				C3AA5A0217E66E6300B1E795 /* BDKLabelReusableView.m in Sources */,
 				C3A746131771220800168C01 /* BDKUserPlacard.m in Sources */,
-				C3A746061771220800168C01 /* IFBKAccountsManager.m in Sources */,
+				C3A746061771220800168C01 /* MLLWAccountsManager.m in Sources */,
 				C3A745FC1771220800168C01 /* main.m in Sources */,
 				C3A7460F1771220800168C01 /* BDKRoomsViewController.m in Sources */,
 				C3A746161771220800168C01 /* BDKTextFieldCell.m in Sources */,
 				C3A745F61771220800168C01 /* UIFont+App.m in Sources */,
 				C3A746101771220800168C01 /* BDKRoomViewController.m in Sources */,
 				C379B29317C145B40045A05D /* BDKEnterKickCell.m in Sources */,
-				C3A746071771220800168C01 /* IFBKMessageSet.m in Sources */,
-				C3AA59FC17E6484400B1E795 /* IFBKManagedObject+Finders.m in Sources */,
+				C3A746071771220800168C01 /* MLLWMessageSet.m in Sources */,
 				C3A7460B1771220800168C01 /* BDKCollectionViewController.m in Sources */,
 				C3AA5A0617E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.m in Sources */,
-				C3AA59F917E6429700B1E795 /* IFBKUser.m in Sources */,
-				C3A745FF1771220800168C01 /* IFBKManagedObject.m in Sources */,
+				C3AA59F917E6429700B1E795 /* MLLWUser.m in Sources */,
+				C3A745FF1771220800168C01 /* MLLWManagedObject.m in Sources */,
 				C379B29617C1487E0045A05D /* BDKRoomEventCell.m in Sources */,
 				C3A7460D1771220800168C01 /* BDKViewController.m in Sources */,
 				C37B373F17B838720067F2BD /* BDKTextLabelCell.m in Sources */,
-				C3AA59FF17E648F700B1E795 /* IFBKCoreDataStore.m in Sources */,
+				C3AA59FF17E648F700B1E795 /* MLLWCoreDataStore.m in Sources */,
 				C3A7460C1771220800168C01 /* BDKTableViewController.m in Sources */,
 				C3A746111771220800168C01 /* BDKCellBackground.m in Sources */,
 				C3AA59D317E634E600B1E795 /* NSDate+Marshmallow.m in Sources */,
-				C3AA59F717E6429700B1E795 /* IFBKAccount.m in Sources */,
+				C3AA59F717E6429700B1E795 /* MLLWAccount.m in Sources */,
 				C301AE6717A46EF400EDDDCB /* BDKConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -894,13 +888,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C3A745A61771220800168C01 /* IFBKModel.xcdatamodeld */ = {
+		C3A745A61771220800168C01 /* MLLWModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C3A745A71771220800168C01 /* IFBKModel.xcdatamodel */,
+				C3A745A71771220800168C01 /* MLLWModel.xcdatamodel */,
 			);
-			currentVersion = C3A745A71771220800168C01 /* IFBKModel.xcdatamodel */;
-			path = IFBKModel.xcdatamodeld;
+			currentVersion = C3A745A71771220800168C01 /* MLLWModel.xcdatamodel */;
+			path = MLLWModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

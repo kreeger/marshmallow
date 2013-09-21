@@ -1,11 +1,11 @@
-#import "IFBKMessageSet.h"
-#import "IFBKUser.h"
+#import "MLLWMessageSet.h"
+#import "MLLWUser.h"
 #import "IFBKCFMessage.h"
 
 #import "NSDate+Marshmallow.h"
 #import "NSObject+Marshmallow.h"
 
-@interface IFBKMessageSet ()
+@interface MLLWMessageSet ()
 
 /**
  Holds an instance of a date formatter.
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation IFBKMessageSet
+@implementation MLLWMessageSet
 
 + (instancetype)messageSet {
     return [[self alloc] init];

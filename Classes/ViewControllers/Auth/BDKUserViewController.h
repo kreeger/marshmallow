@@ -6,7 +6,7 @@
 
 /** The user for this view.
  */
-@property (readonly) IFBKUser *user;
+@property (readonly) MLLWUser *user;
 
 /** The block to be called when the user requests to log out.
  */
@@ -16,6 +16,6 @@
  *  @param user The user for which to initialize this view controller.
  *  @return An instance of self.
  */
-+ (id)vcWithIFBKUser:(IFBKUser *)user;
++ (id)vcWithIFBKUser:(MLLWUser *)user;
 
 @end

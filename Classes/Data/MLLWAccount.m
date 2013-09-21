@@ -1,9 +1,9 @@
-#import "IFBKAccount.h"
-#import "IFBKLaunchpadAccount.h"
+#import "MLLWAccount.h"
+#import "MLLWLaunchpadAccount.h"
 
 #import <IFBKThirtySeven/IFBKCFAccount.h>
 
-@implementation IFBKAccount
+@implementation MLLWAccount
 
 @dynamic createdAt;
 @dynamic identifier;
@@ -31,7 +31,7 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"https://%@.campfirenow.com", self.subdomain]];
 }
 
-- (IFBKUser *)user {
+- (MLLWUser *)user {
     return self.launchpadAccount.user;
 }
 

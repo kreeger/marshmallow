@@ -3,7 +3,7 @@
 /**
  Handles all interaction with Core Data.
  */
-@interface IFBKCoreDataStore : BDKCoreDataStore
+@interface MLLWCoreDataStore : BDKCoreDataStore
 
 /**
  Returns a singleton used for the Core Data store.

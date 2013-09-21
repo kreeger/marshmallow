@@ -1,9 +1,9 @@
 #import "IFBKCFMessage.h"
 
-@class IFBKUser;
+@class MLLWUser;
 
 @interface IFBKCFMessage (DataHelpers)
 
-- (IFBKUser *)user;
+- (MLLWUser *)user;
 
 @end

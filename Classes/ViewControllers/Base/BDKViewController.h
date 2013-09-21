@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "BDKTypedefs.h"
 
-@class IFBKUser, IFBKCampfireClient;
+@class MLLWUser, IFBKCampfireClient;
 
 /** A base implementation of a view controller; not much to see here.
  */

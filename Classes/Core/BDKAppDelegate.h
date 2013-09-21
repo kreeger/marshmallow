@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@class IFBKAccountsManager;
+@class MLLWAccountsManager;
 
 /** The Marshmallow application delegate. Not much to see here.
  */
@@ -12,7 +12,7 @@
 
 /** An instance of the Accounts manager.
  */
-@property (strong, nonatomic) IFBKAccountsManager *accountsManager;
+@property (strong, nonatomic) MLLWAccountsManager *accountsManager;
 
 /** Talks to Campfire and Launchpad account managers to refresh the local data set.
  */

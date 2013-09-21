@@ -1,12 +1,12 @@
-#import "IFBKRoomManager.h"
+#import "MLLWRoomManager.h"
 
 #import "IFBKConstants.h"
-#import "IFBKCoreDataStore.h"
+#import "MLLWCoreDataStore.h"
 
 #import "IFBKCFUser.h"
-#import "IFBKUser.h"
-#import "IFBKLaunchpadAccount.h"
-#import "IFBKMessageSet.h"
+#import "MLLWUser.h"
+#import "MLLWLaunchpadAccount.h"
+#import "MLLWMessageSet.h"
 
 #import <IFBKThirtySeven/IFBKCampfireStreamingClient.h>
 #import <IFBKThirtySeven/IFBKCampfireClient.h>
@@ -14,9 +14,7 @@
 #import <IFBKThirtySeven/IFBKCFMessage.h>
 #import <BDKKit/BDKCoreDataOperation.h>
 
-#import "IFBKManagedObject+Finders.h"
-
-@interface IFBKRoomManager ()
+@interface MLLWRoomManager ()
 
 /** The streaming Campfire API for downloading messages in real-time.
  */
@@ -32,7 +30,7 @@
  *  @param user The user that has access to this room.
  *  @return An instance of self.
  */
-- (instancetype)initWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user;
+- (instancetype)initWithRoom:(IFBKCFRoom *)room user:(MLLWUser *)user;
 
 /** Fetches the latest API data for a set of users.
  *  
@@ -42,24 +40,24 @@
 
 @end
 
-@implementation IFBKRoomManager
+@implementation MLLWRoomManager
 
 @synthesize room = _room, user = _user;
 
-+ (instancetype)roomManagerWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user {
++ (instancetype)roomManagerWithRoom:(IFBKCFRoom *)room user:(MLLWUser *)user {
     return [[self alloc] initWithRoom:room user:user];
 }
 
-- (instancetype)initWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user {
+- (instancetype)initWithRoom:(IFBKCFRoom *)room user:(MLLWUser *)user {
     if (self = [super init]) {
         _room = room;
         _user = user;
-        _messages = [IFBKMessageSet messageSet];
+        _messages = [MLLWMessageSet messageSet];
 
         // Initialize our streaming client.
         _streamingClient = [[IFBKCampfireStreamingClient alloc] initWithRoomId:_room.identifier
                                                            authorizationToken:_user.apiAuthToken];
-        __weak IFBKRoomManager *unretainedSelf = self;
+        __weak MLLWRoomManager *unretainedSelf = self;
         [_streamingClient setMessageReceivedBlock:^(IFBKCFMessage *message) {
             BOOL result = [unretainedSelf.messages addMessage:message];
             if (result && unretainedSelf.didReceiveMessageBlock) {
@@ -79,7 +77,7 @@
 
 - (void)setDidReceiveMessageBlock:(void (^)(IFBKCFMessage *))didReceiveMessageBlock {
     _didReceiveMessageBlock = didReceiveMessageBlock;
-    __weak IFBKRoomManager *unretainedSelf = self;
+    __weak MLLWRoomManager *unretainedSelf = self;
     [self.streamingClient setMessageReceivedBlock:^(IFBKCFMessage *message) {
         BOOL result = [unretainedSelf.messages addMessage:message];
         if (result) {
@@ -131,11 +129,11 @@
     };
     
     [self.apiClient getRoomForId:self.room.identifier success:^(IFBKCFRoom *room) {
-        [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
+        [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[MLLWCoreDataStore sharedInstance]
                                                backgroundOperation:^(NSManagedObjectContext *innerContext)
          {
              [room.users enumerateObjectsUsingBlock:^(IFBKCFUser *user, NSUInteger idx, BOOL *stop) {
-                 [IFBKUser createOrUpdateWithModel:user inContext:innerContext];
+                 [MLLWUser createOrUpdateWithModel:user inContext:innerContext];
              }];
          } completion:completionBlock];
     } failure:^(NSError *error, NSInteger responseCode) {
@@ -202,17 +200,17 @@
     
     NSMutableArray *usersToFetch = [NSMutableArray arrayWithCapacity:[users count]];
     [users enumerateObjectsUsingBlock:^(NSNumber *userId, NSUInteger idx, BOOL *stop) {
-        IFBKUser *found = [IFBKUser findByIdentifier:userId inContext:[NSManagedObjectContext defaultContext]];
+        MLLWUser *found = [MLLWUser findByIdentifier:userId inContext:[NSManagedObjectContext defaultContext]];
         if (!found) {
             [usersToFetch addObject:userId];
         }
     }];
 
     void (^databaseHitBlock)(NSArray *) = ^(NSArray *userArray) {
-        [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
+        [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[MLLWCoreDataStore sharedInstance]
                                                backgroundOperation:^(NSManagedObjectContext *innerContext) {
                                                    [userArray enumerateObjectsUsingBlock:^(IFBKCFUser *user, NSUInteger idx, BOOL *stop) {
-                                                       [IFBKUser createOrUpdateWithModel:user inContext:innerContext];
+                                                       [MLLWUser createOrUpdateWithModel:user inContext:innerContext];
                                                    }];
                                                } completion:nil];
     };

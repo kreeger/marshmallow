@@ -1,4 +1,4 @@
-#import "IFBKManagedObject.h"
+#import "MLLWManagedObject.h"
 
 typedef NS_ENUM(NSInteger, IFBKUserType) {
     IFBKUserTypeMember = 0,
@@ -6,9 +6,9 @@ typedef NS_ENUM(NSInteger, IFBKUserType) {
     IFBKUserTypeUnknown,
 };
 
-@class IFBKLaunchpadAccount;
+@class MLLWLaunchpadAccount;
 
-@interface IFBKUser : IFBKManagedObject
+@interface MLLWUser : MLLWManagedObject
 
 @property (nonatomic) BOOL admin;
 @property (nonatomic, retain) NSString *apiAuthToken;
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, IFBKUserType) {
 @property (nonatomic, retain) NSNumber *identifier;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *type;
-@property (nonatomic, retain) IFBKLaunchpadAccount *launchpadAccount;
+@property (nonatomic, retain) MLLWLaunchpadAccount *launchpadAccount;
 
 /** The custom type enum value of the user; can be IFBKUserTypeMember or IFBKUserTypeGuest.
  */

@@ -1,9 +1,9 @@
-#import "IFBKUser.h"
-#import "IFBKLaunchpadAccount.h"
+#import "MLLWUser.h"
+#import "MLLWLaunchpadAccount.h"
 
 #import <IFBKThirtySeven/IFBKCFUser.h>
 
-@implementation IFBKUser
+@implementation MLLWUser
 
 @dynamic admin;
 @dynamic apiAuthToken;

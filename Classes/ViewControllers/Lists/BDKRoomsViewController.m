@@ -3,13 +3,13 @@
 #import "BDKUserViewController.h"
 #import "BDKAppDelegate.h"
 
-#import "IFBKAccountsManager.h"
-#import "IFBKRoomManager.h"
+#import "MLLWAccountsManager.h"
+#import "MLLWRoomManager.h"
 #import "BDKConstants.h"
 
 #import "IFBKCFRoom.h"
-#import "IFBKAccount.h"
-#import "IFBKUser.h"
+#import "MLLWAccount.h"
+#import "MLLWUser.h"
 
 #import "BDKRoomCollectionCell.h"
 #import "BDKTableHeaderView.h"
@@ -17,7 +17,6 @@
 #import <BDKGeometry/BDKGeometry.h>
 #import <BDKKit/UINavigationController+BDKKit.h>
 
-#import "IFBKManagedObject+Finders.h"
 #import "UIFont+App.h"
 
 @interface BDKRoomsViewController ()
@@ -44,7 +43,7 @@
  *  @param indexPath the index path to use when finding the account (the `section` property will be used).
  *  @return An account object.
  */
-- (IFBKAccount *)accountForIndexPath:(NSIndexPath *)indexPath;
+- (MLLWAccount *)accountForIndexPath:(NSIndexPath *)indexPath;
 
 /** Fired when the profile button is tapped.
  *  @param sender The sender of the event.
@@ -127,7 +126,7 @@
     return self.rooms[indexPath.section][@"rooms"][indexPath.row];
 }
 
-- (IFBKAccount *)accountForIndexPath:(NSIndexPath *)indexPath {
+- (MLLWAccount *)accountForIndexPath:(NSIndexPath *)indexPath {
     return self.rooms[indexPath.section][@"account"];
 }
 
@@ -136,7 +135,7 @@
 }
 
 - (void)presentProfileController {
-    IFBKUser *user = [[IFBKUser findWithPredicate:[NSPredicate predicateWithFormat:@"launchpadAccount != nil"]] firstObject];
+    MLLWUser *user = [[MLLWUser findWithPredicate:[NSPredicate predicateWithFormat:@"launchpadAccount != nil"]] firstObject];
     BDKUserViewController *userVC = [BDKUserViewController vcWithIFBKUser:user];
     userVC.modalDismissalBlock = ^{
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -156,7 +155,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return ((IFBKAccount *)self.rooms[section][@"account"]).name;
+    return ((MLLWAccount *)self.rooms[section][@"account"]).name;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -176,8 +175,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     IFBKCFRoom *room = [self roomForIndexPath:indexPath];
-    IFBKAccount *account = [self accountForIndexPath:indexPath];
-    IFBKRoomManager *roomManager = [IFBKRoomManager roomManagerWithRoom:room user:account.user];
+    MLLWAccount *account = [self accountForIndexPath:indexPath];
+    MLLWRoomManager *roomManager = [MLLWRoomManager roomManagerWithRoom:room user:account.user];
     BDKRoomViewController *roomVC = [BDKRoomViewController vcWithRoomManager:roomManager];
     [self.navigationController pushViewController:roomVC animated:YES];
 }

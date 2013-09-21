@@ -1,6 +1,6 @@
 #import "BDKCollectionViewController.h"
 
-@class IFBKRoomManager;
+@class MLLWRoomManager;
 
 /** Displays a Campfire room with messages.
  */
@@ -8,12 +8,12 @@
 
 /** The room manager used by this view controller.
  */
-@property (readonly) IFBKRoomManager *roomManager;
+@property (readonly) MLLWRoomManager *roomManager;
 
 /** An initializer that takes a IFBKRoomManager and sets everything up all nice.
  *  @param roomManager The room manager to be userd in this view controller.
  *  @return An instance of self.
  */
-+ (instancetype)vcWithRoomManager:(IFBKRoomManager *)roomManager;
++ (instancetype)vcWithRoomManager:(MLLWRoomManager *)roomManager;
 
 @end

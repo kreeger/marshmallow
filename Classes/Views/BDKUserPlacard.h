@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@class IFBKUser;
+@class MLLWUser;
 
 /** A "37signals user badge" view.
  */
@@ -21,6 +21,6 @@
 /** Handles mapping the user's attributes to the labels and views inside of this view.
  *  @param user The IFBKUser instance to use for this view.
  */
-- (void)setUser:(IFBKUser *)user;
+- (void)setUser:(MLLWUser *)user;
 
 @end

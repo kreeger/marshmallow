@@ -1,10 +1,10 @@
-#import "IFBKManagedObject.h"
+#import "MLLWManagedObject.h"
 
-@class IFBKLaunchpadAccount, IFBKUser;
+@class MLLWLaunchpadAccount, MLLWUser;
 
 /** A Core Data representation of a Campfire account.
  */
-@interface IFBKAccount : IFBKManagedObject
+@interface MLLWAccount : MLLWManagedObject
 
 @property (nonatomic, retain) NSDate *createdAt;
 @property (nonatomic, retain) NSNumber *identifier;
@@ -15,9 +15,9 @@
 @property (nonatomic, retain) NSString *subdomain;
 @property (nonatomic, retain) NSString *timeZone;
 @property (nonatomic, retain) NSDate *updatedAt;
-@property (nonatomic, retain) IFBKLaunchpadAccount *launchpadAccount;
+@property (nonatomic, retain) MLLWLaunchpadAccount *launchpadAccount;
 
 @property (readonly) NSURL *apiUrl;
-@property (readonly) IFBKUser *user;
+@property (readonly) MLLWUser *user;
 
 @end

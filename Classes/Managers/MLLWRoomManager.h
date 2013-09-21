@@ -1,10 +1,10 @@
 #import <Foundation/Foundation.h>
 
-@class IFBKCFRoom, IFBKUser, IFBKCFMessage, IFBKMessageSet;
+@class IFBKCFRoom, MLLWUser, IFBKCFMessage, MLLWMessageSet;
 
 /** Handles uh, room stuff. Ask me later.
  */
-@interface IFBKRoomManager : NSObject
+@interface MLLWRoomManager : NSObject
 
 /** The room managed by this manager.
  */
@@ -12,11 +12,11 @@
 
 /** The user profile used with this manager.
  */
-@property (readonly) IFBKUser *user;
+@property (readonly) MLLWUser *user;
 
 /** The messages loaded for the room.
  */
-@property (readonly) IFBKMessageSet *messages;
+@property (readonly) MLLWMessageSet *messages;
 
 /** The number of sections for the loaded messages.
  */
@@ -36,7 +36,7 @@
  *  @param user The user that has access to this room.
  *  @return An instance of self.
  */
-+ (instancetype)roomManagerWithRoom:(IFBKCFRoom *)room user:(IFBKUser *)user;
++ (instancetype)roomManagerWithRoom:(IFBKCFRoom *)room user:(MLLWUser *)user;
 
 /** Loads the most recent 100 messages in the room and stores them, along with full room data (with users).
  *  Should be called upon entering the room.

@@ -1,7 +1,7 @@
-#import "IFBKRoomManager+UIKit.h"
+#import "MLLWRoomManager+UIKit.h"
 #import <UIKit/UITableView.h>
 
-@implementation IFBKRoomManager (UIKit)
+@implementation MLLWRoomManager (UIKit)
 
 - (IFBKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath {
     return [self messageForSection:indexPath.section row:indexPath.row];

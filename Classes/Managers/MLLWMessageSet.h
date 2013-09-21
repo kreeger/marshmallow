@@ -1,14 +1,14 @@
 #import <Foundation/Foundation.h>
 
-#import "IFBKOrderedDictionary.h"
+#import "MLLWOrderedDictionary.h"
 #import "IFBKCFMessage.h"
 
-@class IFBKUser;
+@class MLLWUser;
 
 /**
  Handles the more complex logic for adding and sorting and grouping all the loaded messages for a room.
  */
-@interface IFBKMessageSet : IFBKOrderedDictionary
+@interface MLLWMessageSet : MLLWOrderedDictionary
 
 /**
  Initializes a fresh message set.

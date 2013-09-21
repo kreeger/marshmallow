@@ -1,6 +1,6 @@
-#import "IFBKRoomManager.h"
+#import "MLLWRoomManager.h"
 
-@interface IFBKRoomManager (UIKit)
+@interface MLLWRoomManager (UIKit)
 
 - (IFBKCFMessage *)messageForIndexPath:(NSIndexPath *)indexPath;
 

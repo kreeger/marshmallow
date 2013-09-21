@@ -1,12 +1,12 @@
 #import "IFBKCFMessage+DataHelpers.h"
-#import "IFBKCoreDataStore.h"
-#import "IFBKUser.h"
-#import "IFBKManagedObject+Finders.h"
+#import "MLLWCoreDataStore.h"
+#import "MLLWUser.h"
+#import "MLLWManagedObject.h"
 
 @implementation IFBKCFMessage (DataHelpers)
 
-- (IFBKUser *)user {
-    return [IFBKUser findByIdentifier:self.userIdentifier inContext:[NSManagedObjectContext defaultContext]];
+- (MLLWUser *)user {
+    return [MLLWUser findByIdentifier:self.userIdentifier inContext:[NSManagedObjectContext defaultContext]];
 }
 
 @end
