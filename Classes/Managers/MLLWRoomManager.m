@@ -1,6 +1,6 @@
 #import "MLLWRoomManager.h"
 
-#import "IFBKConstants.h"
+#import "MLLWConstants.h"
 #import "MLLWCoreDataStore.h"
 
 #import "IFBKCFUser.h"
@@ -67,7 +67,7 @@
 
         // Initialize our regular API client.
         // TODO: Find a clean way to pass in the access token here. Save it to Core Data, most likely.
-        NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultAccessToken];
+        NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:MLLWUserDefaultAccessToken];
         _apiClient = [[IFBKCampfireClient alloc] initWithBaseURL:_user.launchpadAccount.hrefUrl accessToken:token];
     }
     return self;

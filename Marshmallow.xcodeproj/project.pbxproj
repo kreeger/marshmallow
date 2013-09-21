@@ -63,6 +63,7 @@
 		C3AA59FF17E648F700B1E795 /* MLLWCoreDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA59FE17E648F700B1E795 /* MLLWCoreDataStore.m */; };
 		C3AA5A0217E66E6300B1E795 /* BDKLabelReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA5A0117E66E6300B1E795 /* BDKLabelReusableView.m */; };
 		C3AA5A0617E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA5A0517E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.m */; };
+		C3BA163517EE0FD8007122F9 /* MLLWConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BA163417EE0FD8007122F9 /* MLLWConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,7 +110,6 @@
 		C3A745951771220800168C01 /* BDKLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKLog.h; sourceTree = "<group>"; };
 		C3A745961771220800168C01 /* BDKLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLog.m; sourceTree = "<group>"; };
 		C3A745991771220800168C01 /* BDKTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTypedefs.h; sourceTree = "<group>"; };
-		C3A7459A1771220800168C01 /* IFBKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFBKConstants.h; sourceTree = "<group>"; };
 		C3A7459B1771220800168C01 /* MLLWOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWOrderedDictionary.h; sourceTree = "<group>"; };
 		C3A7459C1771220800168C01 /* MLLWOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWOrderedDictionary.m; sourceTree = "<group>"; };
 		C3A7459D1771220800168C01 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -177,6 +177,8 @@
 		C3AA5A0117E66E6300B1E795 /* BDKLabelReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKLabelReusableView.m; sourceTree = "<group>"; };
 		C3AA5A0417E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKFloatingHeaderFlowLayout.h; sourceTree = "<group>"; };
 		C3AA5A0517E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKFloatingHeaderFlowLayout.m; sourceTree = "<group>"; };
+		C3BA163317EE0FD8007122F9 /* MLLWConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLWConstants.h; sourceTree = "<group>"; };
+		C3BA163417EE0FD8007122F9 /* MLLWConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLWConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,7 +307,8 @@
 				C3A745951771220800168C01 /* BDKLog.h */,
 				C3A745961771220800168C01 /* BDKLog.m */,
 				C3A745991771220800168C01 /* BDKTypedefs.h */,
-				C3A7459A1771220800168C01 /* IFBKConstants.h */,
+				C3BA163317EE0FD8007122F9 /* MLLWConstants.h */,
+				C3BA163417EE0FD8007122F9 /* MLLWConstants.m */,
 				C3A7459B1771220800168C01 /* MLLWOrderedDictionary.h */,
 				C3A7459C1771220800168C01 /* MLLWOrderedDictionary.m */,
 				C3A7459D1771220800168C01 /* main.m */,
@@ -661,6 +664,7 @@
 				C3A7460B1771220800168C01 /* BDKCollectionViewController.m in Sources */,
 				C3AA5A0617E66F6900B1E795 /* BDKFloatingHeaderFlowLayout.m in Sources */,
 				C3AA59F917E6429700B1E795 /* MLLWUser.m in Sources */,
+				C3BA163517EE0FD8007122F9 /* MLLWConstants.m in Sources */,
 				C3A745FF1771220800168C01 /* MLLWManagedObject.m in Sources */,
 				C379B29617C1487E0045A05D /* BDKRoomEventCell.m in Sources */,
 				C3A7460D1771220800168C01 /* BDKViewController.m in Sources */,

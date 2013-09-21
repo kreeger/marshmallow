@@ -1,7 +1,7 @@
 #import "MLLWAccountsManager.h"
 
 #import "MLLWCoreDataStore.h"
-#import "IFBKConstants.h"
+#import "MLLWConstants.h"
 
 #import "IFBKLPModels.h"
 #import "IFBKCFModels.h"
@@ -64,13 +64,13 @@
 
 - (NSString *)accessToken {
     if (_accessToken) return _accessToken;
-    _accessToken = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultAccessToken];
+    _accessToken = [[NSUserDefaults standardUserDefaults] valueForKey:MLLWUserDefaultAccessToken];
     [IFBKLaunchpadClient setBearerToken:_accessToken];
     return _accessToken;
 }
 
 - (void)setAccessToken:(NSString *)accessToken {
-    [[NSUserDefaults standardUserDefaults] setValue:accessToken forKey:kIFBKUserDefaultAccessToken];
+    [[NSUserDefaults standardUserDefaults] setValue:accessToken forKey:MLLWUserDefaultAccessToken];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [IFBKLaunchpadClient setBearerToken:accessToken];
     _accessToken = accessToken;
@@ -78,24 +78,24 @@
 
 - (NSString *)refreshToken {
     if (_refreshToken) return _refreshToken;
-    _refreshToken = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultRefreshToken];
+    _refreshToken = [[NSUserDefaults standardUserDefaults] valueForKey:MLLWUserDefaultRefreshToken];
     return _refreshToken;
 }
 
 - (void)setRefreshToken:(NSString *)refreshToken {
-    [[NSUserDefaults standardUserDefaults] setValue:refreshToken forKey:kIFBKUserDefaultRefreshToken];
+    [[NSUserDefaults standardUserDefaults] setValue:refreshToken forKey:MLLWUserDefaultRefreshToken];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _refreshToken = refreshToken;
 }
 
 - (NSDate *)expiresAt {
     if (_expiresAt) return _expiresAt;
-    _expiresAt = [[NSUserDefaults standardUserDefaults] valueForKey:kIFBKUserDefaultTokenExpiresAt];
+    _expiresAt = [[NSUserDefaults standardUserDefaults] valueForKey:MLLWUserDefaultTokenExpiresAt];
     return _expiresAt;
 }
 
 - (void)setExpiresAt:(NSDate *)expiresAt {
-    [[NSUserDefaults standardUserDefaults] setValue:expiresAt forKey:kIFBKUserDefaultTokenExpiresAt];
+    [[NSUserDefaults standardUserDefaults] setValue:expiresAt forKey:MLLWUserDefaultTokenExpiresAt];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _expiresAt = expiresAt;
 }
