@@ -28,3 +28,9 @@ typedef NS_ENUM(NSInteger, IFBKLaunchpadAccountType) {
 + (NSDictionary *)accountTypeMappings;
 
 @end
+
+@interface IFBKLaunchpadAccount (Finders)
+
++ (NSArray *)campfireAccounts;
+
+@end

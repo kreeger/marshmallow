@@ -131,8 +131,8 @@
 
 - (void)refreshUserData {
     [self.accountsManager refreshLaunchpadData:^{
-        [self.accountsManager getAccountData:^(NSArray *accounts) {
-            [self.accountsManager getCurrentUserData:^(NSArray *accounts) {
+        [self.accountsManager getAccountData:^{
+            [self.accountsManager getCurrentUserData:^{
                 [self.accountsManager getRooms:^(NSArray *rooms) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:kBDKNotificationDidReloadRooms object:self];
                 } failure:^(NSError *error) {

@@ -57,14 +57,14 @@
  *  @param completion Will be passed the list of accounts upon completion.
  *  @param failure Will be passed an error upon failure.
  */
-- (void)getAccountData:(void (^)(NSArray *accounts))completion failure:(void (^)(NSError *error))failure;
+- (void)getAccountData:(void (^)(void))completion failure:(void (^)(NSError *error))failure;
 
 /** Initiates a remote fetch of the separate Campfire user profiles belonging to the user.
  *
  *  @param completion Will be passed the list of user profiles upon completion.
  *  @param failure Will be passed an error upon failure.
  */
-- (void)getCurrentUserData:(void (^)(NSArray *accounts))completion failure:(void (^)(NSError *error))failure;
+- (void)getCurrentUserData:(void (^)(void))completion failure:(void (^)(NSError *error))failure;
 
 /** Initiates a remote fetch of the rooms belonging to each of the various accounts passed in.
  * 

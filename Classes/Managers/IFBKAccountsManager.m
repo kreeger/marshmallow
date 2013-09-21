@@ -114,22 +114,21 @@
     __block void (^refreshBlock)(void) = ^{
         [IFBKLaunchpadClient getAuthorization:^(IFBKLPAuthorizationData *authData) {
             [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
-                                                   backgroundOperation:^(NSManagedObjectContext *innerContext) {
-                                                       for (IFBKCFAccount *account in authData.accounts) {
-                                                           [IFBKLaunchpadAccount createOrUpdateWithModel:account inContext:innerContext];
-                                                       }
-                                                   } completion:^(BOOL success, NSError *error) {
-                                                       // We only want Campfire ones!
-                                                       NSPredicate *predicate = [NSPredicate predicateWithFormat:@"product = %@", @"campfire"];
-                                                       self.launchpadAccounts = [IFBKLaunchpadAccount findWithPredicate:predicate];
-                                                       if (completion) completion();
-                                                   }];
+                                                   backgroundOperation:^(NSManagedObjectContext *innerContext)
+             {
+                 for (IFBKCFAccount *account in authData.accounts) {
+                     [IFBKLaunchpadAccount createOrUpdateWithModel:account inContext:innerContext];
+                 }
+             } completion:^(BOOL success, NSError *error) {
+                 self.launchpadAccounts = [IFBKLaunchpadAccount campfireAccounts];
+                 if (completion) completion();
+             }];
         } failure:^(NSError *error, NSInteger responseCode) {
             NSLog(@"Error! %@.", error);
             if (failure) failure(error);
         }];
     };
-
+    
     if ([self.expiresAt compare:[NSDate date]] == NSOrderedAscending) {
         [IFBKLaunchpadClient refreshAccessTokenWithRefreshToken:self.refreshToken
                                                         success:^(NSString *accessToken, NSDate *expiresAt) {
@@ -142,37 +141,42 @@
     } else refreshBlock();
 }
 
-- (void)getAccountData:(void (^)(NSArray *accounts))completion failure:(void (^)(NSError *error))failure {
+- (void)getAccountData:(void (^)(void))completion failure:(void (^)(NSError *error))failure {
     NSInteger count = [self.launchpadAccounts count];
-    NSMutableArray *campfireAccounts = [NSMutableArray arrayWithCapacity:count];
+    NSMutableArray *mAccounts = [NSMutableArray arrayWithCapacity:count];
     for (IFBKLaunchpadAccount *lpAccount in self.launchpadAccounts) {
         __block NSNumber *identifier = nil;
         IFBKCampfireClient *campfire = [IFBKCampfireClient clientWithBaseURL:lpAccount.hrefUrl];
         [campfire setBearerToken:self.accessToken];
+        
+        // Got a condition here where this doesn't fire properly. Queue up both accounts and THEN save them to the Store.
         [campfire getCurrentAccount:^(IFBKCFAccount *account) {
             [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
-                                                   backgroundOperation:^(NSManagedObjectContext *innerContext) {
-                                                       IFBKAccount *cAccount = [IFBKAccount createOrUpdateWithModel:account inContext:innerContext];
-                                                       IFBKLaunchpadAccount *lAccount = [IFBKLaunchpadAccount findByIdentifier:lpAccount.identifier
-                                                                                                                     inContext:innerContext];
-                                                       cAccount.launchpadAccount = lAccount;
-                                                       identifier = cAccount.identifier;
-                                                   } completion:^(BOOL success, NSError *error) {
-                                                       IFBKAccount *cAccount = [IFBKAccount findByIdentifier:identifier
-                                                                                                   inContext:[NSManagedObjectContext defaultContext]];
-                                                       [campfireAccounts addObject:cAccount];
-                                                       if (completion && count == [campfireAccounts count]) {
-                                                           self.campfireAccounts = campfireAccounts;
-                                                           completion(self.campfireAccounts);
-                                                       }
-                                                   }];
+                                                   backgroundOperation:^(NSManagedObjectContext *innerContext)
+             {
+                 IFBKAccount *cAccount = [IFBKAccount createOrUpdateWithModel:account inContext:innerContext];
+                 IFBKLaunchpadAccount *lAccount = [IFBKLaunchpadAccount findByIdentifier:lpAccount.identifier
+                                                                               inContext:innerContext];
+                 cAccount.launchpadAccount = lAccount;
+                 identifier = cAccount.identifier;
+             } completion:^(BOOL success, NSError *error) {
+                 DDLogAPI(@"Campfire account data complete.");
+                 IFBKAccount *cAccount = [IFBKAccount findByIdentifier:identifier
+                                                             inContext:[NSManagedObjectContext defaultContext]];
+                 [mAccounts addObject:cAccount];
+                 if (completion && count == [mAccounts count]) {
+                     self.campfireAccounts = [mAccounts copy];
+                     DDLogAPI(@"Got campfire accounts.");
+                     completion();
+                 }
+             }];
         } failure:^(NSError *error, NSInteger responseCode) {
             if (failure) failure(error);
         }];
     }
 }
 
-- (void)getCurrentUserData:(void (^)(NSArray *accounts))completion failure:(void (^)(NSError *error))failure {
+- (void)getCurrentUserData:(void (^)(void))completion failure:(void (^)(NSError *error))failure {
     NSInteger count = [self.launchpadAccounts count];
     NSMutableArray *currentUsers = [NSMutableArray arrayWithCapacity:count];
     for (IFBKLaunchpadAccount *account in self.launchpadAccounts) {
@@ -181,21 +185,24 @@
         [campfire setBearerToken:self.accessToken];
         [campfire getCurrentUser:^(IFBKCFUser *user) {
             [BDKCoreDataOperation performInBackgroundWithCoreDataStore:[IFBKCoreDataStore sharedInstance]
-                                                   backgroundOperation:^(NSManagedObjectContext *innerContext) {
-                                                       IFBKUser *cUser = [IFBKUser createOrUpdateWithModel:user inContext:innerContext];
-                                                       IFBKLaunchpadAccount *lAccount = [IFBKLaunchpadAccount findByIdentifier:account.identifier
-                                                                                                                     inContext:innerContext];
-                                                       cUser.launchpadAccount = lAccount;
-                                                       identifier = cUser.identifier;
-                                                   } completion:^(BOOL success, NSError *error) {
-                                                       IFBKUser *cUser = [IFBKUser findByIdentifier:identifier
-                                                                                          inContext:[NSManagedObjectContext defaultContext]];
-                                                       [currentUsers addObject:cUser];
-                                                       if (completion && count == [currentUsers count]) {
-                                                           self.campfireUsers = currentUsers;
-                                                           completion(self.campfireUsers);
-                                                       }
-                                                   }];
+                                                   backgroundOperation:^(NSManagedObjectContext *innerContext)
+             {
+                 IFBKUser *cUser = [IFBKUser createOrUpdateWithModel:user inContext:innerContext];
+                 IFBKLaunchpadAccount *lAccount = [IFBKLaunchpadAccount findByIdentifier:account.identifier
+                                                                               inContext:innerContext];
+                 cUser.launchpadAccount = lAccount;
+                 identifier = cUser.identifier;
+             } completion:^(BOOL success, NSError *error) {
+                 DDLogAPI(@"Campfire user data complete.");
+                 IFBKUser *cUser = [IFBKUser findByIdentifier:identifier
+                                                    inContext:[NSManagedObjectContext defaultContext]];
+                 [currentUsers addObject:cUser];
+                 if (completion && count == [currentUsers count]) {
+                     self.campfireUsers = currentUsers;
+                     DDLogAPI(@"Got campfire users.");
+                     completion();
+                 }
+             }];
         } failure:^(NSError *error, NSInteger responseCode) {
             if (failure) failure(error);
         }];
@@ -209,6 +216,7 @@
         IFBKCampfireClient *campfire = [IFBKCampfireClient clientWithBaseURL:[account apiUrl]];
         [campfire setBearerToken:self.accessToken];
         [campfire getRooms:^(NSArray *result) {
+            DDLogAPI(@"Got campfire rooms.");
             [campfireRooms addObject:@{@"account": account, @"rooms": result}];
             if (completion && count == [campfireRooms count]) {
                 self.rooms = [NSArray arrayWithArray:campfireRooms];

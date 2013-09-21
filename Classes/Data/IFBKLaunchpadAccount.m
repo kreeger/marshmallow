@@ -4,6 +4,8 @@
 
 #import <IFBKThirtySeven/IFBKLPAccount.h>
 
+#import "IFBKManagedObject+Finders.h"
+
 @implementation IFBKLaunchpadAccount
 
 @dynamic href;
@@ -38,6 +40,14 @@
 
 - (NSURL *)hrefUrl {
     return [NSURL URLWithString:self.href];
+}
+
+@end
+
+@implementation IFBKLaunchpadAccount (Finders)
+
++ (NSArray *)campfireAccounts {
+    return [IFBKLaunchpadAccount findWithPredicate:[NSPredicate predicateWithFormat:@"product = %@", @"campfire"]];
 }
 
 @end

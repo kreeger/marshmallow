@@ -167,6 +167,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenericCell" forIndexPath:indexPath];
     IFBKCFRoom *room = [self roomForIndexPath:indexPath];
     cell.textLabel.text = room.name;
+    DDLogUI(@"Room name %@.", room.name);
     cell.textLabel.font = [UIFont boldAppFontOfSize:18];
     return cell;
 }
