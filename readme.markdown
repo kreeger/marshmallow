@@ -24,7 +24,7 @@ And the one thing it won't support (at least for a super long time):
 
 Seriously, that one is kind of a big deal, but it would require moving all this processing to a server that constantly listens to thousands of rooms and I don't have that kind of money or patience.
 
-Speaking of money, it's gonna be a free app, with an in-app upgrade to pro. The pro upgrade will unlock fancy things like transcript search, any-kind-of-file uploads, and maybe a few other badass features I can think of. But since it's my first major own-released app, I want to make a majority of the features free to spur interest.
+Speaking of money, it might end up as a free app, with an in-app upgrade to pro. The pro upgrade will unlock fancy things like transcript search, any-kind-of-file uploads, and maybe a few other badass features I can think of. But since it's my first major own-released app, I want to make a majority of the features free or at least low-cost ($0.99 / $1.99 tops) to spur interest.
 
 ## In the open
 
