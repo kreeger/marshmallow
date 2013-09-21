@@ -26,9 +26,9 @@
 
 #pragma mark - Properties
 
-- (IFBKUserType)userType {
+- (MLLWUserType)userType {
     NSNumber *type = [[self class] userTypeMappings][self.type];
-    return type ? [type integerValue] : IFBKUserTypeUnknown;
+    return type ? [type integerValue] : MLLWUserTypeUnknown;
 }
 
 - (BOOL)isCurrentUser {
@@ -40,8 +40,8 @@
 }
 
 + (NSDictionary *)userTypeMappings {
-    return @{@"Member": @(IFBKUserTypeMember),
-             @"Guest": @(IFBKUserTypeGuest),};
+    return @{@"Member": @(MLLWUserTypeMember),
+             @"Guest": @(MLLWUserTypeGuest),};
 }
 
 @end

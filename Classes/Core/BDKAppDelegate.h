@@ -2,23 +2,28 @@
 
 @class MLLWAccountsManager;
 
-/** The Marshmallow application delegate. Not much to see here.
+/** 
+ The Marshmallow application delegate. Not much to see here.
  */
 @interface BDKAppDelegate : UIResponder <UIApplicationDelegate>
 
-/** The application window.
+/**
+ The application window.
  */
 @property (strong, nonatomic) UIWindow *window;
 
-/** An instance of the Accounts manager.
+/**
+ An instance of the Accounts manager.
  */
 @property (strong, nonatomic) MLLWAccountsManager *accountsManager;
 
-/** Talks to Campfire and Launchpad account managers to refresh the local data set.
+/**
+ Talks to Campfire and Launchpad account managers to refresh the local data set.
  */
 - (void)refreshUserData;
 
-/** Removes the saved user and redirects back to the login controller.
+/**
+ Removes the saved user and redirects back to the login controller.
  */
 - (void)signoutCurrentUser;
 

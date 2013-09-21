@@ -16,25 +16,29 @@
 
 @interface MLLWRoomManager ()
 
-/** The streaming Campfire API for downloading messages in real-time.
+/**
+ The streaming Campfire API for downloading messages in real-time.
  */
 @property (strong, nonatomic) IFBKCampfireStreamingClient *streamingClient;
 
-/** The standard, non-streaming Campfire client.
+/**
+ The standard, non-streaming Campfire client.
  */
 @property (strong, nonatomic) IFBKCampfireClient *apiClient;
 
-/** Initializes a version of this room manager with a given room and user.
- *
- *  @param room A Campfire room.
- *  @param user The user that has access to this room.
- *  @return An instance of self.
+/**
+ Initializes a version of this room manager with a given room and user.
+ 
+ @param room A Campfire room.
+ @param user The user that has access to this room.
+ @return An instance of self.
  */
 - (instancetype)initWithRoom:(IFBKCFRoom *)room user:(MLLWUser *)user;
 
-/** Fetches the latest API data for a set of users.
- *  
- *  @param users The set of users.
+/**
+ Fetches the latest API data for a set of users.
+ 
+ @param users The set of users.
  */
 - (void)handleDataForUsers:(NSArray *)users;
 

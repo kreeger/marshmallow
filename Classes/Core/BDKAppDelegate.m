@@ -13,19 +13,23 @@
 
 @interface BDKAppDelegate ()
 
-/** Initializes user defaults.
+/**
+ Initializes user defaults.
  */
 - (void)kickstartUserDefaults;
 
-/** Configures CocoaLumberjack.
+/**
+ Configures CocoaLumberjack.
  */
 - (void)configureLogging;
 
-/** Sets up our common Launchpad instance with the proper OAuth keys.
+/**
+ Sets up our common Launchpad instance with the proper OAuth keys.
  */
 - (void)configureAccountsManager;
 
-/** Presents the login view controller as the main center view controller.
+/**
+ Presents the login view controller as the main center view controller.
  */
 - (void)setLoginControllerAsCenter;
 
@@ -36,8 +40,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    // Setup CoreData
-    
     [self kickstartUserDefaults];
     [self configureLogging];
     [self configureAccountsManager];
@@ -46,7 +48,7 @@
     if (self.accountsManager.isLoggedIn) {
         [self refreshUserData];
         
-        BDKRoomsViewController *vc = [BDKRoomsViewController vc];
+        BDKRoomsViewController *vc = [BDKRoomsViewController new];
         UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
         self.window.rootViewController = nav;
     } else {
@@ -86,13 +88,13 @@
 }
 
 - (void)setLoginControllerAsCenter {
-    BDKLoginViewController *vc = [BDKLoginViewController vc];
+    BDKLoginViewController *vc = [BDKLoginViewController new];
     vc.userGotAuthCodeBlock = ^(NSString *authCode) {
         [self.accountsManager tradeAuthTokenDataForAuthorizationCode:authCode completion:^{
             [self refreshUserData];
 
             // transition this mofo a little better
-            BDKRoomsViewController *vc = [BDKRoomsViewController vc];
+            BDKRoomsViewController *vc = [BDKRoomsViewController new];
             UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
             self.window.rootViewController = nav;
         } failure:^(NSError *error) {

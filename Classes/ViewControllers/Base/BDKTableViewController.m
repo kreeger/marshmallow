@@ -1,16 +1,18 @@
 #import "BDKTableViewController.h"
 
+#import <Masonry/Masonry.h>
+
 @interface BDKTableViewController ()
 
 @end
 
 @implementation BDKTableViewController
 
-+ (id)vcWithIdentifier:(NSString *)identifier tableViewStyle:(UITableViewStyle)tableViewStyle {
++ (instancetype)vcWithIdentifier:(NSString *)identifier tableViewStyle:(UITableViewStyle)tableViewStyle {
     return [[self alloc] initWithIdentifier:identifier tableViewStyle:tableViewStyle];
 }
 
-- (id)initWithIdentifier:(NSString *)identifier tableViewStyle:(UITableViewStyle)tableViewStyle {
+- (instancetype)initWithIdentifier:(NSString *)identifier tableViewStyle:(UITableViewStyle)tableViewStyle {
     if (self = [super initWithIdentifier:identifier]) {
         _tableViewStyle = tableViewStyle;
         self.pullToRefreshEnabled = NO;
@@ -18,17 +20,24 @@
     return self;
 }
 
+- (void)loadView {
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.tableView];
+}
+
+- (void)updateViewConstraints {
+    [self.tableView makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.pullToRefreshEnabled) {
+        [self.tableView addSubview:self.refreshControl];
+    }
     
-    [self.view addSubview:self.tableView];
-    NSDictionary *views = @{@"tableView": self.tableView};
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|"
-                                                                      options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|"
-                                                                      options:0 metrics:nil views:views]];
-    
-    if (self.pullToRefreshEnabled) [self.tableView addSubview:self.refreshControl];
     [self registerCellTypes];
 }
 
@@ -40,10 +49,10 @@
 
 - (UITableView *)tableView {
     if (_tableView) return _tableView;
-    _tableView = [[UITableView alloc] initWithFrame:self.bounds style:self.tableViewStyle];
+    _tableView = [UITableView new];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    [_tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
     return _tableView;
 }
 

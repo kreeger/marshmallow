@@ -13,25 +13,21 @@
 
 @implementation BDKViewController
 
-+ (id)vc {
-    return [[self alloc] init];
-}
-
-+ (id)vcWithIdentifier:(NSString *)identifier {
++ (instancetype)vcWithIdentifier:(NSString *)identifier {
     return [[self alloc] initWithIdentifier:identifier];
 }
 
-- (id)init {
-    if (self = [super init]) {
-        _identifier = @"";
-    }
+- (instancetype)init {
+    self = [super init];
+    if (!self) return nil;
+    _identifier = @"";
     return self;
 }
 
-- (id)initWithIdentifier:(NSString *)identifier {
-    if (self = [super init]) {
-        _identifier = identifier;
-    }
+- (instancetype)initWithIdentifier:(NSString *)identifier {
+    self = [super init];
+    if (!self) return nil;
+    _identifier = identifier;
     return self;
 }
 
@@ -56,16 +52,6 @@
         _identifier = nil;
         _modalDismissalBlock = nil;
     }
-}
-
-#pragma mark - Properties
-
-- (CGRect)frame {
-    return self.view.frame;
-}
-
-- (CGRect)bounds {
-    return self.view.bounds;
 }
 
 #pragma mark - Methods

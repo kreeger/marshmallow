@@ -9,31 +9,40 @@
 
 @interface BDKUserViewController ()
 
-/** The user's "37signals placard" view.
+/**
+ The user's "37signals placard" view.
  */
 @property (strong, nonatomic) BDKUserPlacard *placardView;
 
-/** The cancel button.
+/**
+ The cancel button.
  */
 @property (strong, nonatomic) UIBarButtonItem *cancelButton;
 
-/** The logout button.
+/**
+ The logout button.
  */
 @property (strong, nonatomic) UIBarButtonItem *logoutButton;
 
-/** Initializes the view controller for a user facade.
- *  @param user The user with which to initialize this view controller.
- *  @return An instance of self.
+/**
+ Initializes the view controller for a user facade.
+ 
+ @param user The user with which to initialize this view controller.
+ @return An instance of self.
  */
 - (id)initWithIFBKUser:(MLLWUser *)user;
 
-/** Fired when a user taps the cancel button.
- *  @param sender The sender of the event.
+/**
+ Fired when a user taps the cancel button.
+ 
+ @param sender The sender of the event.
  */
 - (void)cancelButtonTapped:(UIBarButtonItem *)sender;
 
-/** Fired when a user taps the logout button.
- *  @param sender The sender of the event.
+/**
+ Fired when a user taps the logout button.
+ 
+ @param sender The sender of the event.
  */
 - (void)logoutButtonTapped:(UIBarButtonItem *)sender;
 

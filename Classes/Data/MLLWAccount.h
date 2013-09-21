@@ -2,7 +2,8 @@
 
 @class MLLWLaunchpadAccount, MLLWUser;
 
-/** A Core Data representation of a Campfire account.
+/**
+ A Core Data representation of a Campfire account.
  */
 @interface MLLWAccount : MLLWManagedObject
 

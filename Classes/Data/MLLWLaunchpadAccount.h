@@ -20,7 +20,8 @@ typedef NS_ENUM(NSInteger, MLLWLaunchpadAccountType) {
 @property (nonatomic, retain) MLLWAccount *campfireAccount;
 @property (nonatomic, retain) MLLWUser *user;
 
-/** The API access URL for this Launchpad account.
+/**
+ The API access URL for this Launchpad account.
  */
 @property (readonly) NSURL *hrefUrl;
 @property (readonly) MLLWLaunchpadAccountType type;
