@@ -15,7 +15,7 @@
 /**
  An instance of the Accounts manager.
  */
-@property (strong, nonatomic) MLLWAccountManager *accountsManager;
+@property (strong, nonatomic) MLLWAccountManager *accountManager;
 
 /**
  Talks to Campfire and Launchpad account managers to refresh the local data set.

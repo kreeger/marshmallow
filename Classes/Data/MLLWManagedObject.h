@@ -50,9 +50,11 @@
 + (instancetype)modelWithIFBKCFModel:(IFBKCFModel *)model inContext:(NSManagedObjectContext *)context;
 
 /**
- Deletes all with the entity type in the database.
+ Deletes all with the entity type in the database. Don't forget to save the context afterwards!
+ 
+ @param context the managed object context.
  */
-+ (void)truncateAll;
++ (void)truncateAllInContext:(NSManagedObjectContext *)context;
 
 /**
  Initializes this model with a IFBKCFModel.

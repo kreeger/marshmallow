@@ -37,8 +37,14 @@
     return [[self alloc] initWithIFBKCFModel:model inContext:context];
 }
 
-+ (void)truncateAll {
-    // TODO: implement
++ (void)truncateAllInContext:(NSManagedObjectContext *)context {
+    NSFetchRequest *request = [self fetchRequest];
+    [request setIncludesPropertyValues:NO];
+    NSError *error = nil;
+    NSArray *entities = [context executeFetchRequest:request error:&error];
+    for (MLLWManagedObject *obj in entities) {
+        [context deleteObject:obj];
+    }
 }
 
 #pragma mark - Instance methods

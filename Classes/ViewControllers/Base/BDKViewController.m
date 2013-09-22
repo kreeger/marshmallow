@@ -54,6 +54,12 @@
     }
 }
 
+#pragma mark - Properties
+
+- (MLLWAccountManager *)accountManager {
+    return [((BDKAppDelegate *)[[UIApplication sharedApplication] delegate]) accountManager];
+}
+
 #pragma mark - Methods
 
 - (void)callModalDismissalBlock {

@@ -116,18 +116,17 @@
 
 - (void)pullToRefreshPulled:(UIRefreshControl *)sender {
     DDLogUI(@"Refresh pulled.");
-    [((BDKAppDelegate *)[[UIApplication sharedApplication] delegate]).accountsManager getRooms:^(NSArray *rooms) {
+    [self.accountManager getRooms:^(NSArray *rooms) {
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self performFetch];
         });
-        
     } failure:^(NSError *error) {
         DDLogError(@"Failure getting rooms on pull-to-refresh. %@", error);
     }];
 }
 
 - (void)performFetch {
-    self.rooms = ((BDKAppDelegate *)[[UIApplication sharedApplication] delegate]).accountsManager.rooms;
+    self.rooms = self.accountManager.rooms;
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }

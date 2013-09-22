@@ -45,7 +45,7 @@
     [self configureAccountsManager];
 
     // check if the user is logged in first
-    if (self.accountsManager.isLoggedIn) {
+    if (self.accountManager.isLoggedIn) {
         [self refreshUserData];
         
         BDKRoomsViewController *vc = [BDKRoomsViewController new];
@@ -81,8 +81,8 @@
 #pragma mark - Methods
 
 - (void)configureAccountsManager {
-    self.accountsManager = [MLLWAccountManager new];
-    [self.accountsManager configureLaunchpadWithClientId:[BDKAPIKeyManager apiKeyForKey:BDK37SignalsClientKey]
+    self.accountManager = [MLLWAccountManager new];
+    [self.accountManager configureLaunchpadWithClientId:[BDKAPIKeyManager apiKeyForKey:BDK37SignalsClientKey]
                                             clientSecret:[BDKAPIKeyManager apiKeyForKey:BDK37SignalsClientSecret]
                                              redirectUri:[BDKAPIKeyManager apiKeyForKey:BDK37SignalsRedirectURI]];
 }
@@ -90,7 +90,7 @@
 - (void)setLoginControllerAsCenter {
     BDKLoginViewController *vc = [BDKLoginViewController new];
     vc.userGotAuthCodeBlock = ^(NSString *authCode) {
-        [self.accountsManager tradeAuthTokenDataForAuthorizationCode:authCode completion:^{
+        [self.accountManager tradeAuthTokenDataForAuthorizationCode:authCode completion:^{
             [self refreshUserData];
 
             // transition this mofo a little better
@@ -132,27 +132,21 @@
 }
 
 - (void)refreshUserData {
-    [self.accountsManager refreshLaunchpadData:^{
-        [self.accountsManager getAccountData:^{
-            [self.accountsManager getCurrentUserData:^{
-                [self.accountsManager getRooms:^(NSArray *rooms) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:BDKNotificationDidReloadRooms object:self];
-                } failure:^(NSError *error) {
-                    DDLogWarn(@"Error! %@", error);
-                }];
-            } failure:^(NSError *error) {
-                DDLogWarn(@"Error! %@", error);
-            }];
+    [self.accountManager refreshLaunchpadData:^{
+        [self.accountManager getRooms:^(NSArray *rooms) {
+            //
         } failure:^(NSError *error) {
-            DDLogWarn(@"Error! %@", error);
+            //
         }];
+        [self.accountManager getAccounts:nil failure:nil];
+        [self.accountManager getCurrentUsers:nil failure:nil];
     } failure:^(NSError *error) {
         //
     }];
 }
 
 - (void)signoutCurrentUser {
-    [self.accountsManager signout];
+    [self.accountManager signout];
     [self setLoginControllerAsCenter];
 }
 
