@@ -8,7 +8,7 @@
 /**
  The web view embedded in the controller's view with an identical frame.
  */
-@property (strong, nonatomic) UIWebView *webView;
+@property (readonly) UIWebView *webView;
 
 /**
  The URL to be loaded when the view appears; this is set in an initializer.

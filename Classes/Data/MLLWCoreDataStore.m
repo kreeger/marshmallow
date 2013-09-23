@@ -6,7 +6,7 @@
     static id _sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedInstance = [self storeWithName:@"IFBKModel"];
+        _sharedInstance = [self storeWithName:@"MLLWModel"];
     });
     return _sharedInstance;
 }

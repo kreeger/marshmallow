@@ -5,16 +5,19 @@
 
 @implementation BDKCollectionViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)loadView {
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.collectionView];
-    self.pullToRefreshEnabled = NO;
-    
     [self.collectionView makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.pullToRefreshEnabled = NO;
     [self registerCellTypes];
 }
 

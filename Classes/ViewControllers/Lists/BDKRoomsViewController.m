@@ -3,13 +3,13 @@
 #import "BDKUserViewController.h"
 #import "BDKAppDelegate.h"
 
+#import "MLLWCoreDataStore.h"
 #import "MLLWAccountManager.h"
 #import "MLLWRoomManager.h"
 #import "BDKConstants.h"
 
 #import "IFBKCFRoom.h"
-#import "MLLWAccount.h"
-#import "MLLWUser.h"
+#import "MLLWModels.h"
 
 #import "BDKRoomCollectionCell.h"
 #import "BDKTableHeaderView.h"
@@ -30,11 +30,6 @@
  The toolbar button presenting the current user's profile.
  */
 @property (strong, nonatomic) UIBarButtonItem *profileBarButton;
-
-/**
- Loads up the necessary data into the collection view.
- */
-- (void)performFetch;
 
 /**
  Gets an IFBKCFRoom given the index path.
@@ -73,9 +68,6 @@
     self.pullToRefreshEnabled = YES;
     self.title = @"Rooms";
     self.navigationItem.leftBarButtonItem = self.profileBarButton;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(performFetch)
-                                                 name:BDKNotificationDidReloadRooms object:nil];
     [self.refreshControl beginRefreshing];
 }
 
@@ -87,7 +79,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    [self performFetch];
+    [self refreshRooms];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -109,6 +101,7 @@
     _profileBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile"
                                                          style:UIBarButtonItemStyleBordered
                                                         target:self action:@selector(profileBarButtonTapped:)];
+    _profileBarButton.enabled = NO;
     return _profileBarButton;
 }
 
@@ -118,25 +111,34 @@
     DDLogUI(@"Refresh pulled.");
     [self.accountManager getRooms:^(NSArray *rooms) {
         dispatch_sync(dispatch_get_main_queue(), ^{
-            [self performFetch];
+            [self refreshRooms];
         });
     } failure:^(NSError *error) {
         DDLogError(@"Failure getting rooms on pull-to-refresh. %@", error);
     }];
 }
 
-- (void)performFetch {
+- (void)refreshRooms {
     self.rooms = self.accountManager.rooms;
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
+
+- (void)enableProfileButton:(BOOL)flag {
+    self.profileBarButton.enabled = flag;
+}
+
+#pragma mark - Private methods
 
 - (IFBKCFRoom *)roomForIndexPath:(NSIndexPath *)indexPath {
     return self.rooms[indexPath.section][@"rooms"][indexPath.row];
 }
 
 - (MLLWAccount *)accountForIndexPath:(NSIndexPath *)indexPath {
-    return self.rooms[indexPath.section][@"account"];
+    NSNumber *identifier = self.rooms[indexPath.section][@"identifier"];
+    MLLWLaunchpadAccount *account = [MLLWLaunchpadAccount findByIdentifier:identifier
+                                                                 inContext:[NSManagedObjectContext defaultContext]];
+    return [account campfireAccount];
 }
 
 - (void)profileBarButtonTapped:(UIBarButtonItem *)sender {
@@ -144,6 +146,7 @@
 }
 
 - (void)presentProfileController {
+    // Possibly store the user key in NSUserDefaults instead of this noodly crap.
     MLLWUser *user = [[MLLWUser findWithPredicate:[NSPredicate predicateWithFormat:@"launchpadAccount != nil"]] firstObject];
     BDKUserViewController *userVC = [BDKUserViewController vcWithIFBKUser:user];
     userVC.modalDismissalBlock = ^{
@@ -164,7 +167,8 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return ((MLLWAccount *)self.rooms[section][@"account"]).name;
+    MLLWAccount *account = [self accountForIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+    return account.name;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -175,7 +179,6 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenericCell" forIndexPath:indexPath];
     IFBKCFRoom *room = [self roomForIndexPath:indexPath];
     cell.textLabel.text = room.name;
-    DDLogUI(@"Room name %@.", room.name);
     cell.textLabel.font = [UIFont boldAppFontOfSize:18];
     return cell;
 }

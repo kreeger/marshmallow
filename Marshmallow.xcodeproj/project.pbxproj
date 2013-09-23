@@ -16,6 +16,7 @@
 		C379B29617C1487E0045A05D /* BDKRoomEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C379B29517C1487E0045A05D /* BDKRoomEventCell.m */; };
 		C37B373C17B834F30067F2BD /* BDKTimestampCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373B17B834F30067F2BD /* BDKTimestampCell.m */; };
 		C37B373F17B838720067F2BD /* BDKTextLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B373E17B838720067F2BD /* BDKTextLabelCell.m */; };
+		C3A1B0D417EF91160041CC31 /* BDKScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A1B0D317EF91160041CC31 /* BDKScrollViewController.m */; };
 		C3A744E4177120E600168C01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E3177120E600168C01 /* Foundation.framework */; };
 		C3A744E6177120E600168C01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E5177120E600168C01 /* CoreGraphics.framework */; };
 		C3A744E8177120E600168C01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A744E7177120E600168C01 /* UIKit.framework */; };
@@ -93,6 +94,8 @@
 		C37B373B17B834F30067F2BD /* BDKTimestampCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKTimestampCell.m; sourceTree = "<group>"; };
 		C37B373D17B838720067F2BD /* BDKTextLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKTextLabelCell.h; sourceTree = "<group>"; };
 		C37B373E17B838720067F2BD /* BDKTextLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKTextLabelCell.m; sourceTree = "<group>"; };
+		C3A1B0D217EF91160041CC31 /* BDKScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKScrollViewController.h; sourceTree = "<group>"; };
+		C3A1B0D317EF91160041CC31 /* BDKScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKScrollViewController.m; sourceTree = "<group>"; };
 		C3A744E0177120E600168C01 /* Marshmallow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A744E3177120E600168C01 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C3A744E5177120E600168C01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -375,6 +378,8 @@
 			children = (
 				C3A745C21771220800168C01 /* BDKCollectionViewController.h */,
 				C3A745C31771220800168C01 /* BDKCollectionViewController.m */,
+				C3A1B0D217EF91160041CC31 /* BDKScrollViewController.h */,
+				C3A1B0D317EF91160041CC31 /* BDKScrollViewController.m */,
 				C3A745C41771220800168C01 /* BDKTableViewController.h */,
 				C3A745C51771220800168C01 /* BDKTableViewController.m */,
 				C3A745C61771220800168C01 /* BDKViewController.h */,
@@ -648,6 +653,7 @@
 				C3A746121771220800168C01 /* BDKTableHeaderView.m in Sources */,
 				C3A7460E1771220800168C01 /* BDKWebViewController.m in Sources */,
 				C3AA59D017E6334700B1E795 /* NSObject+Marshmallow.m in Sources */,
+				C3A1B0D417EF91160041CC31 /* BDKScrollViewController.m in Sources */,
 				C301AE6A17A4701600EDDDCB /* NSUserDefaults+App.m in Sources */,
 				C3A746141771220800168C01 /* BDKMessageCell.m in Sources */,
 				C3A745F91771220800168C01 /* BDKLog.m in Sources */,

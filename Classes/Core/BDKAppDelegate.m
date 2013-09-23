@@ -6,6 +6,7 @@
 #import "BDKAPIKeyManager.h"
 #import "BDKConstants.h"
 #import "MLLWAccountManager.h"
+#import "BDKLog.h"
 
 #import <BDKKit/UINavigationController+BDKKit.h>
 #import <CocoaLumberjack/DDTTYLogger.h>
@@ -13,15 +14,12 @@
 
 @interface BDKAppDelegate ()
 
+@property (strong, nonatomic) BDKRoomsViewController *roomsVC;
+
 /**
  Initializes user defaults.
  */
 - (void)kickstartUserDefaults;
-
-/**
- Configures CocoaLumberjack.
- */
-- (void)configureLogging;
 
 /**
  Sets up our common Launchpad instance with the proper OAuth keys.
@@ -39,17 +37,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
+    self.window.tintColor = [UIColor orangeColor];
     [self kickstartUserDefaults];
-    [self configureLogging];
+    [BDKLog configureLogging];
     [self configureAccountsManager];
 
     // check if the user is logged in first
     if (self.accountManager.isLoggedIn) {
         [self refreshUserData];
         
-        BDKRoomsViewController *vc = [BDKRoomsViewController new];
-        UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
+        self.roomsVC = [BDKRoomsViewController new];
+        UINavigationController *nav = [UINavigationController controllerWithRootViewController:self.roomsVC];
         self.window.rootViewController = nav;
     } else {
         [self setLoginControllerAsCenter];
@@ -94,8 +92,8 @@
             [self refreshUserData];
 
             // transition this mofo a little better
-            BDKRoomsViewController *vc = [BDKRoomsViewController new];
-            UINavigationController *nav = [UINavigationController controllerWithRootViewController:vc];
+            self.roomsVC = [BDKRoomsViewController new];
+            UINavigationController *nav = [UINavigationController controllerWithRootViewController:self.roomsVC];
             self.window.rootViewController = nav;
         } failure:^(NSError *error) {
             DDLogError(@"Error trading auth token. %@.", error);
@@ -117,29 +115,24 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)configureLogging {
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-    [DDTTYLogger sharedInstance].logFormatter = [BDKLog new];
-    [DDTTYLogger sharedInstance].colorsEnabled = YES;
-    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.60 green:0.81 blue:0.92 alpha:1.0]
-                                     backgroundColor:nil forFlag:LOG_FLAG_INFO];
-    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.46 green:1.00 blue:0.48 alpha:1.0]
-                                     backgroundColor:nil forFlag:LOG_FLAG_API];
-    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:1.00 green:1.00 blue:0.60 alpha:1.0]
-                                     backgroundColor:nil forFlag:LOG_FLAG_UI];
-    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed:0.87 green:0.67 blue:0.53 alpha:1.0]
-                                     backgroundColor:nil forFlag:LOG_FLAG_DATA];
-}
-
 - (void)refreshUserData {
     [self.accountManager refreshLaunchpadData:^{
+        void (^callback)(void) = ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.roomsVC refreshRooms];
+            });
+        };
         [self.accountManager getRooms:^(NSArray *rooms) {
-            //
-        } failure:^(NSError *error) {
-            //
-        }];
-        [self.accountManager getAccounts:nil failure:nil];
-        [self.accountManager getCurrentUsers:nil failure:nil];
+            callback();
+        } failure:nil];
+        [self.accountManager getAccounts:callback failure:nil];
+        
+        [self.accountManager getCurrentUsers:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.roomsVC enableProfileButton:YES];
+            });
+        } failure:nil];
+        
     } failure:^(NSError *error) {
         //
     }];

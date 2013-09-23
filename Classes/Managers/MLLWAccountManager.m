@@ -7,6 +7,7 @@
 #import "IFBKCFModels.h"
 #import "MLLWModels.h"
 
+#import <IFBKThirtySeven/IFBKCampfireClient.h>
 #import <IFBKThirtySeven/IFBKThirtySeven.h>
 #import <BDKKit/BDKCoreDataOperation.h>
 
@@ -198,22 +199,33 @@
 }
 
 - (void)getRooms:(void (^)(NSArray *rooms))completion failure:(void (^)(NSError *error))failure {
-    NSInteger count = [self.campfireAccounts count];
-    NSMutableArray *campfireRooms = [NSMutableArray arrayWithCapacity:count];
-    for (MLLWAccount *account in self.campfireAccounts) {
-        IFBKCampfireClient *campfire = [IFBKCampfireClient clientWithBaseURL:[account apiUrl]];
-        [campfire setBearerToken:self.accessToken];
-        [campfire getRooms:^(NSArray *result) {
+    NSInteger count = [self.campfireAdapters count];
+    NSMutableArray *mRooms = [NSMutableArray arrayWithCapacity:count];
+    __block NSInteger responses = 0;
+    
+    void (^onFinish)(void) = ^{
+        self.rooms = [mRooms copy];
+        if (completion) {
+            
+            completion(self.rooms);
+        }
+    };
+    
+    for (NSDictionary *clientPair in self.campfireAdapters) {
+        NSNumber *identifier = clientPair[@"identifier"];
+        IFBKCampfireClient *client = clientPair[@"client"];
+        [client getRooms:^(NSArray *result) {
+            responses++;
             DDLogAPI(@"Got campfire rooms.");
-            [campfireRooms addObject:@{@"account": account, @"rooms": result}];
-            if (completion && count == [campfireRooms count]) {
-                self.rooms = [NSArray arrayWithArray:campfireRooms];
-                completion(self.rooms);
-            }
+            [mRooms addObject:@{@"identifier": identifier, @"rooms": result}];
+            if (responses == count) onFinish();
         } failure:^(NSError *error, NSInteger responseCode) {
+            responses++;
             if (failure) {
                 failure(error);
             }
+            if (responses == count) onFinish();
+            
         }];
     }
 }
@@ -237,9 +249,16 @@
                                                backgroundOperation:^(NSManagedObjectContext *innerContext)
          {
              for (IFBKLPAccount *account in authData.accounts) {
+                 if (![account.product isEqualToString:@"campfire"])
+                     continue;
                  MLLWLaunchpadAccount *lpAccount = [MLLWLaunchpadAccount createOrUpdateWithModel:account
                                                                                        inContext:innerContext];
+                 // This line initializes the Campfire API adapters, each with their own internal queues.
                  IFBKCampfireClient *client = [IFBKCampfireClient clientWithBaseURL:lpAccount.hrefUrl];
+                 NSString *queueName = [NSString stringWithFormat:@"campfire.queue.%@", lpAccount.href];
+                 dispatch_queue_t queue = dispatch_queue_create([queueName cStringUsingEncoding:NSASCIIStringEncoding], NULL);
+                 client.successCallbackQueue = queue;
+                 client.failureCallbackQueue = queue;
                  [client setBearerToken:self.accessToken];
                  [mCampfires addObject:@{@"identifier": lpAccount.identifier, @"client": client}];
              }

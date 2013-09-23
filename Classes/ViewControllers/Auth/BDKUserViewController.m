@@ -59,21 +59,18 @@
 - (id)initWithIFBKUser:(MLLWUser *)user {
     if (self = [super initWithIdentifier:[NSString stringWithFormat:@"user:%@", user.name]]) {
         _user = user;
-        if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
-            self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.placardView];
+    [self.scrollView addSubview:self.placardView];
     
     [self.placardView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view);
-        make.leading.equalTo(self.view);
-        make.trailing.equalTo(self.view);
+        make.top.equalTo(self.scrollView);
+        make.leading.equalTo(self.scrollView);
+        make.trailing.equalTo(self.scrollView);
     }];
     
     self.title = self.user.name;
@@ -103,13 +100,17 @@
 
 - (UIBarButtonItem *)cancelButton {
     if (_cancelButton) return _cancelButton;
-    _cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButtonTapped:)];
+    _cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                     style:UIBarButtonItemStyleBordered
+                                                    target:self action:@selector(cancelButtonTapped:)];
     return _cancelButton;
 }
 
 - (UIBarButtonItem *)logoutButton {
     if (_logoutButton) return _logoutButton;
-    _logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logoutButtonTapped:)];
+    _logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout"
+                                                     style:UIBarButtonItemStyleBordered
+                                                    target:self action:@selector(logoutButtonTapped:)];
     return _logoutButton;
 }
 

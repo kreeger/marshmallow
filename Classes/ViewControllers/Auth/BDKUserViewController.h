@@ -1,9 +1,9 @@
-#import "BDKViewController.h"
+#import "BDKScrollViewController.h"
 
 /**
  Presents data on a given user.
  */
-@interface BDKUserViewController : BDKViewController
+@interface BDKUserViewController : BDKScrollViewController
 
 /**
  The user for this view.

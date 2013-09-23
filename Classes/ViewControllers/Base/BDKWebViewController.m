@@ -8,6 +8,8 @@
 
 @implementation BDKWebViewController
 
+@synthesize webView = _webView;
+
 + (instancetype)vcWithIdentifier:(NSString *)identifier url:(NSURL *)url {
     return [[self alloc] initWithIdentifier:identifier url:url];
 }
@@ -23,9 +25,6 @@
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.webView];
-}
-
-- (void)updateViewConstraints {
     [self.webView makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];

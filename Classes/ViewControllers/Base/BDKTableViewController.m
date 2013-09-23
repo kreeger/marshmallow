@@ -23,10 +23,8 @@
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view.backgroundColor = [UIColor whiteColor];
+    
     [self.view addSubview:self.tableView];
-}
-
-- (void)updateViewConstraints {
     [self.tableView makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];

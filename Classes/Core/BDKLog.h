@@ -15,9 +15,17 @@
 // #define LOG_FLAG_CUSTOM (LOG_FLAG_UI | LOG_FLAG_DATA)
 #define LOG_FLAG_CUSTOM (LOG_FLAG_API | LOG_FLAG_UI | LOG_FLAG_DATA)
 
+/**
+ Handles custom logging setup with CocoaLumberjack (and formats outgoing logs, too).
+ */
 @interface BDKLog : NSObject <DDLogFormatter>
 
 @property (nonatomic) int atomicLoggerCount;
 @property (strong, nonatomic) NSDateFormatter *threadUnsafeDateFormatter;
+
+/**
+ Configures CocoaLumberjack.
+ */
++ (void)configureLogging;
 
 @end

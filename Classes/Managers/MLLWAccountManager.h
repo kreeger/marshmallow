@@ -10,10 +10,6 @@
  */
 @property (strong, nonatomic) NSArray *campfireAdapters;
 /**
- The list of Campfire accounts.
- */
-@property (strong, nonatomic) NSArray *campfireAccounts;
-/**
  The list of Campfire user profiles.
  */
 @property (strong, nonatomic) NSArray *campfireUsers;

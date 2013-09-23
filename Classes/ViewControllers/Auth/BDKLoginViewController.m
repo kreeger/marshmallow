@@ -38,15 +38,17 @@
 - (BOOL)webView:(UIWebView *)webView
     shouldStartLoadWithRequest:(NSURLRequest *)request
     navigationType:(UIWebViewNavigationType)navigationType {
-    if (navigationType == UIWebViewNavigationTypeFormSubmitted &&
-        [request.URL.absoluteString hasPrefix:@"marshmallow://"] &&
-        !self.authWasSubmitted) {
-        // Don't know if I like this shitty way of doing things.
-        self.authWasSubmitted = YES;
-        NSString *authCode = [request.URL.absoluteString componentsSeparatedByString:@"="][1];
-        self.userGotAuthCodeBlock(authCode);
-        self.userGotAuthCodeBlock = nil;
-        return NO;
+    if (navigationType == UIWebViewNavigationTypeFormSubmitted) {
+        if ([[[request URL] absoluteString] hasPrefix:@"marshmallow://"] && !self.authWasSubmitted) {
+            // Don't know if I like this shitty way of doing things.
+            self.authWasSubmitted = YES;
+            NSString *authCode = [request.URL.absoluteString componentsSeparatedByString:@"="][1];
+            self.userGotAuthCodeBlock(authCode);
+            self.userGotAuthCodeBlock = nil;
+            return NO;
+        } else if ([[[request URL] absoluteString] hasPrefix:@"https://launchpad.37signals.com/authorization/new"]) {
+            self.title = @"Authorize";
+        }
     }
     return YES;
 }
