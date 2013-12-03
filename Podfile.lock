@@ -1,15 +1,47 @@
 PODS:
-  - AFNetworking (1.3.1)
+  - AFNetworking (2.0.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.0.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.0.3):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.0.3)
+  - AFNetworking/Security (2.0.3)
+  - AFNetworking/Serialization (2.0.3)
+  - AFNetworking/UIKit (2.0.3):
+    - AFNetworking/NSURLConnection
   - AGMedallionView (1.1.0)
   - BDKGeometry (1.5.0)
-  - BDKKit (0.0.4)
-  - CocoaLumberjack (1.6)
+  - BDKKit (0.0.5)
+  - CocoaLumberjack (1.6.4):
+    - CocoaLumberjack/Core
+    - CocoaLumberjack/Extensions
+  - CocoaLumberjack/Core (1.6.4)
+  - CocoaLumberjack/Extensions (1.6.4):
+    - CocoaLumberjack/Core
   - FontasticIcons (0.5.0)
-  - IFBKThirtySeven (0.0.3):
-    - AFNetworking (~> 1.2)
+  - IFBKThirtySeven (0.0.4):
+    - AFNetworking (~> 2.0.2)
+    - IFBKThirtySeven/Models
     - SBJson (~> 3.2)
-  - Kiwi (2.2)
-  - Masonry (0.0.3)
+  - IFBKThirtySeven/Models (0.0.4):
+    - AFNetworking (~> 2.0.2)
+    - SBJson (~> 3.2)
+  - Kiwi (2.2.3):
+    - Kiwi/SenTestingKit
+  - Kiwi/ARC (2.2.3)
+  - Kiwi/NonARC (2.2.3)
+  - Kiwi/SenTestingKit (2.2.3):
+    - Kiwi/ARC
+    - Kiwi/NonARC
+  - Masonry (0.3.0)
   - PHFComposeBarView (1.1.1):
     - PHFDelegateChain (~> 1.0)
   - PHFDelegateChain (1.0.1)
@@ -17,7 +49,7 @@ PODS:
   - SBJson (3.2)
 
 DEPENDENCIES:
-  - AFNetworking (~> 1.3.1)
+  - AFNetworking (~> 2.0.3)
   - AGMedallionView (from `git://github.com/kreeger/AGMedallionView.git`, commit `557d3eda`)
   - BDKGeometry (from `~/Code/kreeger/BDKGeometry`)
   - BDKKit (from `~/Code/kreeger/BDKKit`)
@@ -41,18 +73,18 @@ EXTERNAL SOURCES:
     :path: ~/Code/kreeger/IFBKThirtySeven
 
 SPEC CHECKSUMS:
-  AFNetworking: 9ec8aafb9269236a7630bd8d9838ce2ba30fa2a0
+  AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
   AGMedallionView: 0c7c7e3eca4a0feb7c4c1347c31bc3b7576650d8
   BDKGeometry: c863e7996102bd42bdf182162381b9c26bbbba7f
-  BDKKit: b0c616169c6b58830bb819036f2acac25e48dcb8
-  CocoaLumberjack: 0f2fa7090a23f13261072d882e017c688300efbe
+  BDKKit: 8fcb80eae38958aac7130bb963581348b4e5182b
+  CocoaLumberjack: 006187e7e3c52f505aab43d7b5ba6af35838bf23
   FontasticIcons: 98134b5470a11ebda5a510347bab786121e1b0b9
-  IFBKThirtySeven: 3df1fc0a957d9501222d53a56b0bc5bf94ef37a0
-  Kiwi: db174bba4ee8068b15d7122f1b22fb64b7c1d378
-  Masonry: 5b49e4bb4c059aadb00deb1fef8e1af42afa42d8
+  IFBKThirtySeven: 9d99ad73cccefe64bf9ca3155e2dd5fd53744c26
+  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
+  Masonry: f7e7e5692c9133b7ee44d1a17b1c64ad423cd64e
   PHFComposeBarView: 510e96ec021f762ac00c407313a3b79dc409c213
   PHFDelegateChain: 2c80836ba0c1b2ca4b5e6d3fa241343465e0eb70
   Reveal-iOS-SDK: 7396a20e743807b1e6f1caae664e1a9dc0cc442c
-  SBJson: e60b4dc22448c2ae1e754b523a4ab53408e85c8d
+  SBJson: abc2bf2baef456d5dae213f9826fe2b6fdf19861
 
-COCOAPODS: 0.24.0
+COCOAPODS: 0.28.0
