@@ -4,7 +4,7 @@ inhibit_all_warnings!
 pod 'CocoaLumberjack', '~> 1.6'
 pod 'Masonry'
 pod 'BDKGeometry', path: '~/Code/kreeger/BDKGeometry'
-pod 'BDKKit', path: '~/Code/kreeger/BDKKit'
+pod 'BDKKit', git: 'git://github.com/kreeger/BDKKit.git', commit: '598dfb'
 pod 'AFNetworking', '~> 2.0.3'
 pod 'PHFComposeBarView', '~> 1.1.1'
 pod 'AGMedallionView', git: 'git://github.com/kreeger/AGMedallionView.git', commit: '557d3eda'

@@ -130,8 +130,8 @@
          if (completion) {
              completion();
          }
-     } failure:^(NSError *error, NSInteger responseCode) {
-         [self handleAPIError:error responseCode:responseCode callback:failure];
+     } failure:^(NSError *error, NSHTTPURLResponse *response) {
+         [self handleAPIError:error responseCode:[response statusCode] callback:failure];
      }];
 }
 
@@ -143,8 +143,8 @@
              self.accessToken = accessToken;
              self.expiresAt = expiresAt;
              [self retrieveAuthorizationData:completion failure:failure];
-         } failure:^(NSError *error, NSInteger responseCode) {
-             [self handleAPIError:error responseCode:responseCode callback:failure];
+         } failure:^(NSError *error, NSHTTPURLResponse *response) {
+             [self handleAPIError:error responseCode:[response statusCode] callback:failure];
          }];
     } else {
         [self retrieveAuthorizationData:completion failure:failure];
@@ -164,7 +164,7 @@
             if (responses == count) {
                 [self storeAccounts:mAccounts completion:completion failure:failure];
             }
-        } failure:^(NSError *error, NSInteger responseCode) {
+        } failure:^(NSError *error, NSHTTPURLResponse *response) {
             responses++;
             if (failure) failure(error);
             if (responses == count) {
@@ -188,7 +188,7 @@
             if (responses == count) {
                 [self storeUsers:mUsers completion:completion failure:failure];
             }
-        } failure:^(NSError *error, NSInteger responseCode) {
+        } failure:^(NSError *error, NSHTTPURLResponse *response) {
             responses++;
             if (failure) failure(error);
             if (responses == count) {
@@ -219,7 +219,7 @@
             DDLogAPI(@"Got campfire rooms.");
             [mRooms addObject:@{@"identifier": identifier, @"rooms": result}];
             if (responses == count) onFinish();
-        } failure:^(NSError *error, NSInteger responseCode) {
+        } failure:^(NSError *error, NSHTTPURLResponse *response) {
             responses++;
             if (failure) {
                 failure(error);
@@ -254,12 +254,8 @@
                  MLLWLaunchpadAccount *lpAccount = [MLLWLaunchpadAccount createOrUpdateWithModel:account
                                                                                        inContext:innerContext];
                  // This line initializes the Campfire API adapters, each with their own internal queues.
-                 IFBKCampfireClient *client = [IFBKCampfireClient clientWithBaseURL:lpAccount.hrefUrl];
-                 NSString *queueName = [NSString stringWithFormat:@"campfire.queue.%@", lpAccount.href];
-                 dispatch_queue_t queue = dispatch_queue_create([queueName cStringUsingEncoding:NSASCIIStringEncoding], NULL);
-                 client.successCallbackQueue = queue;
-                 client.failureCallbackQueue = queue;
-                 [client setBearerToken:self.accessToken];
+                 IFBKCampfireClient *client = [[IFBKCampfireClient alloc] initWithBaseURL:lpAccount.hrefUrl
+                                                                              accessToken:self.accessToken];
                  [mCampfires addObject:@{@"identifier": lpAccount.identifier, @"client": client}];
              }
              self.campfireAdapters = [mCampfires copy];
@@ -270,8 +266,8 @@
                  if (completion) completion();
              }
          }];
-    } failure:^(NSError *error, NSInteger responseCode) {
-        [self handleAPIError:error responseCode:responseCode callback:failure];
+    } failure:^(NSError *error, NSHTTPURLResponse *response) {
+        [self handleAPIError:error responseCode:[response statusCode] callback:failure];
     }];
 }
 

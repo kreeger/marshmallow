@@ -19,7 +19,7 @@ PODS:
     - AFNetworking/NSURLConnection
   - AGMedallionView (1.1.0)
   - BDKGeometry (1.5.0)
-  - BDKKit (0.0.5)
+  - BDKKit (0.0.6)
   - CocoaLumberjack (1.6.4):
     - CocoaLumberjack/Core
     - CocoaLumberjack/Extensions
@@ -52,7 +52,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0.3)
   - AGMedallionView (from `git://github.com/kreeger/AGMedallionView.git`, commit `557d3eda`)
   - BDKGeometry (from `~/Code/kreeger/BDKGeometry`)
-  - BDKKit (from `~/Code/kreeger/BDKKit`)
+  - BDKKit (from `git://github.com/kreeger/BDKKit.git`, commit `598dfb`)
   - CocoaLumberjack (~> 1.6)
   - FontasticIcons (~> 0.5.0)
   - IFBKThirtySeven (from `~/Code/kreeger/IFBKThirtySeven`)
@@ -68,7 +68,8 @@ EXTERNAL SOURCES:
   BDKGeometry:
     :path: ~/Code/kreeger/BDKGeometry
   BDKKit:
-    :path: ~/Code/kreeger/BDKKit
+    :commit: 598dfb
+    :git: git://github.com/kreeger/BDKKit.git
   IFBKThirtySeven:
     :path: ~/Code/kreeger/IFBKThirtySeven
 
@@ -76,7 +77,7 @@ SPEC CHECKSUMS:
   AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
   AGMedallionView: 0c7c7e3eca4a0feb7c4c1347c31bc3b7576650d8
   BDKGeometry: c863e7996102bd42bdf182162381b9c26bbbba7f
-  BDKKit: 8fcb80eae38958aac7130bb963581348b4e5182b
+  BDKKit: 8493c94dcd39ca7412f81f0bf45f9fe20a51f052
   CocoaLumberjack: 006187e7e3c52f505aab43d7b5ba6af35838bf23
   FontasticIcons: 98134b5470a11ebda5a510347bab786121e1b0b9
   IFBKThirtySeven: 9d99ad73cccefe64bf9ca3155e2dd5fd53744c26

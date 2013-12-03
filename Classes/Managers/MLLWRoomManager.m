@@ -61,13 +61,6 @@
         // Initialize our streaming client.
         _streamingClient = [[IFBKCampfireStreamingClient alloc] initWithRoomId:_room.identifier
                                                            authorizationToken:_user.apiAuthToken];
-        __weak MLLWRoomManager *unretainedSelf = self;
-        [_streamingClient setMessageReceivedBlock:^(IFBKCFMessage *message) {
-            BOOL result = [unretainedSelf.messages addMessage:message];
-            if (result && unretainedSelf.didReceiveMessageBlock) {
-                unretainedSelf.didReceiveMessageBlock(message);
-            }
-        }];
 
         // Initialize our regular API client.
         // TODO: Find a clean way to pass in the access token here. Save it to Core Data, most likely.
@@ -78,17 +71,6 @@
 }
 
 #pragma mark - Properties
-
-- (void)setDidReceiveMessageBlock:(void (^)(IFBKCFMessage *))didReceiveMessageBlock {
-    _didReceiveMessageBlock = didReceiveMessageBlock;
-    __weak MLLWRoomManager *unretainedSelf = self;
-    [self.streamingClient setMessageReceivedBlock:^(IFBKCFMessage *message) {
-        BOOL result = [unretainedSelf.messages addMessage:message];
-        if (result) {
-            unretainedSelf.didReceiveMessageBlock(message);
-        }
-    }];
-}
 
 - (NSInteger)numberOfMessageSections {
     return [self.messages count];
@@ -127,8 +109,8 @@
             if (self.didReceiveMessageBlock) {
                 self.didReceiveMessageBlock(lastMessage);
             }
-        } failure:^(NSError *error, NSInteger responseCode) {
-            NSLog(@"Encountered error %i getting messages for room. Error: %@", responseCode, error);
+        } failure:^(NSError *error, NSHTTPURLResponse *response) {
+            NSLog(@"Encountered error %i getting messages for room. Error: %@", response.statusCode, error);
         }];
     };
     
@@ -140,13 +122,22 @@
                  [MLLWUser createOrUpdateWithModel:user inContext:innerContext];
              }];
          } completion:completionBlock];
-    } failure:^(NSError *error, NSInteger responseCode) {
-        NSLog(@"Encountered error %i getting room data. Error: %@", responseCode, error);
+    } failure:^(NSError *error, NSHTTPURLResponse *response) {
+        NSLog(@"Encountered error %i getting room data. Error: %@", response.statusCode, error);
     }];
 }
 
 - (void)startStreamingMessages:(void (^)(void))success failure:(void (^)(NSError *error))failure {
-    [self.streamingClient openConnectionWithSuccess:success failure:failure];
+    __weak MLLWRoomManager *weakSelf = self;
+    [self.streamingClient openConnection:^(NSHTTPURLResponse *httpResponse) {
+        success();
+    } messageReceived:^(IFBKCFMessage *message) {
+        BOOL result = [weakSelf.messages addMessage:message];
+        if (result) {
+            weakSelf.didReceiveMessageBlock(message);
+        }
+        weakSelf.didReceiveMessageBlock(message);
+    } failure:failure];
 }
 
 - (void)stopStreamingMessages {
@@ -155,7 +146,7 @@
 }
 
 - (void)toggleRoomLock:(BOOL)isLocked success:(void (^)(void))success failure:(void (^)(NSError *error))failure {
-    void (^failureBlock)(NSError *, NSInteger) = ^(NSError *error, NSInteger responseCode) {
+    void (^failureBlock)(NSError *, NSHTTPURLResponse *) = ^(NSError *error, NSHTTPURLResponse *response) {
         if (failure) {
             failure(error);
         }
@@ -169,7 +160,7 @@
 }
 
 - (void)joinRoom:(void (^)(void))success failure:(void (^)(NSError *error))failure {
-    void (^failureBlock)(NSError *, NSInteger) = ^(NSError *error, NSInteger responseCode) {
+    void (^failureBlock)(NSError *, NSHTTPURLResponse *) = ^(NSError *error, NSHTTPURLResponse *response) {
         if (failure) {
             failure(error);
         }
@@ -178,7 +169,7 @@
 }
 
 - (void)leaveRoom:(void (^)(void))success failure:(void (^)(NSError *error))failure {
-    void (^failureBlock)(NSError *, NSInteger) = ^(NSError *error, NSInteger responseCode) {
+    void (^failureBlock)(NSError *, NSHTTPURLResponse *) = ^(NSError *error, NSHTTPURLResponse *response) {
         if (failure) {
             failure(error);
         }
@@ -228,7 +219,7 @@
             if (attemptCount == [usersToFetch count]) {
                 databaseHitBlock(fetched);
             }
-        } failure:^(NSError *error, NSInteger responseCode) {
+        } failure:^(NSError *error, NSHTTPURLResponse *response) {
             attemptCount++;
             NSLog(@"Failed getting user with error %@.", error);
             if (attemptCount == [usersToFetch count]) {
